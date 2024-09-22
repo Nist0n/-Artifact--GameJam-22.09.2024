@@ -1,0 +1,28 @@
+fileFormatVersion: 2
+guid: ee6c4b5535fd98549a12e130624ff5fd
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Cony
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 66dd578197d8fa04cbcc88e0229bd89e, type: 3}
+  - {fileID: 12800000, guid: 469e16e22a114be48a4b055a1336b76c, type: 3}
+  - {fileID: 12800000, guid: 64719378c8db96b46b5e5d56e7c47969, type: 3}
+  - {fileID: 12800000, guid: 824825a68a435054c8159f02b2c40a0d, type: 3}
+  - {fileID: 12800000, guid: 91acce5017065c94ebaa8c4840ed7ef3, type: 3}
+  - {fileID: 12800000, guid: 71d0188df058d3946bea52bff2a01fa1, type: 3}
+  - {fileID: 12800000, guid: 8a9daf8f5ae1ea2448ccfd436e3c283b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

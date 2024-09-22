@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: f1f5ca9d330e56249a33d269ddff79a8
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - PaladinPCRus
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c60d3576c9edef24a9b3090e9f2429d8, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

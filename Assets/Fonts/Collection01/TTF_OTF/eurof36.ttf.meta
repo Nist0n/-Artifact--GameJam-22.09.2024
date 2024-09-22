@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: e5b4f6e5273121548ab6f8c3cddf565e
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - eurofurence light
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c4bfde8030327dd4c8bddd4229c13f7f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: b928160e1cdcadd4d8012d856ee814f2
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Casper
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 660a0a6a1f6ff2f46b1c3f3c468d9411, type: 3}
+  - {fileID: 12800000, guid: f7e92e280aaad4a4e82288863cefde9e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
