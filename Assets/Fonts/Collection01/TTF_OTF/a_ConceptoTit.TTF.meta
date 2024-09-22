@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: e3aa21f096bd1614c98e07f94c298920
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - a_ConceptoTitulBroken
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 7ed27d9d31b689d4bb5fd2d0f6390e04, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

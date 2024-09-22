@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 91acce5017065c94ebaa8c4840ed7ef3
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Cony
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 71d0188df058d3946bea52bff2a01fa1, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

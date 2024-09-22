@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: b9c1438456fbfb147bb51855bb3042e1
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - eurofurence
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 97f171566f8505649ae93f2e840df576, type: 3}
+  - {fileID: 12800000, guid: b877d32e9cfaf5441862a53c90c2908b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

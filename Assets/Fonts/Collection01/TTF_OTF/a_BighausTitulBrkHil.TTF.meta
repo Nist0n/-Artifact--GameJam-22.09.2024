@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 2f5afacd074c2454b9fd0a0043a1e66c
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - a_BighausTitulBrkHll
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 931c2813ed22b514f8c17edbd4f0417d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
