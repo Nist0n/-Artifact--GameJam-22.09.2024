@@ -4,6 +4,16 @@ namespace Enemies
 {
     public class Enemy : MonoBehaviour
     {
-        private int _healthPoints;
+        [SerializeField] private int healthPoints;
+
+        public void ReceiveDamage(int damage)
+        {
+            healthPoints -= damage;
+
+            if (healthPoints <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }
