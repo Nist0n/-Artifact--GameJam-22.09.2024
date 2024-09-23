@@ -9,6 +9,7 @@ namespace Enemies
     {
         public RunningState Running;
         public TakingDamageState TakingDamage;
+        public FreezingState Freeze;
 
         private void Start()
         {
@@ -20,13 +21,20 @@ namespace Enemies
         {
             if (State.IsComplete)
             {
-                if (IsDamaged)
+                if (IsFreezed)
                 {
-                    Set(TakingDamage);
+                    Set(Freeze);
                 }
                 else
                 {
-                    Set(Running);
+                    if (IsDamaged)
+                    {
+                        Set(TakingDamage);
+                    }
+                    else
+                    {
+                        Set(Running);
+                    }
                 }
             }
             
@@ -38,6 +46,11 @@ namespace Enemies
             State.FixedDoBranch();
         }
 
+        public void FreezeEnemyActivate()
+        {
+            StartCoroutine(FreezeEnemy());
+        }
+        
         public void ReceiveDamageActivate()
         {
             StartCoroutine(ReceiveDamage());
@@ -48,7 +61,13 @@ namespace Enemies
             IsDamaged = true;
             yield return new WaitForSeconds(0.1f);
             IsDamaged = false;
-            Debug.Log(IsDamaged);
+        }
+        
+        private IEnumerator FreezeEnemy()
+        {
+            IsFreezed = true;
+            yield return new WaitForSeconds(2f);
+            IsFreezed = false;
         }
     }
 }

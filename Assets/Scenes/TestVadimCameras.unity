@@ -1678,8 +1678,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 637718858}
+  animationController: {fileID: 0}
   animator: {fileID: 0}
+  Health: 0
+  Damage: 0
+  IsFreezed: 0
+  IsDamaged: 0
   Running: {fileID: 602146181}
+  TakingDamage: {fileID: 0}
+  Freeze: {fileID: 0}
 --- !u!1 &655365381
 GameObject:
   m_ObjectHideFlags: 0

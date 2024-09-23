@@ -13,6 +13,8 @@ public abstract class EnemyState : MonoBehaviour
     protected Core core;
 
     protected bool IsDamaged => core.IsDamaged;
+    
+    protected bool IsFreezed => core.IsFreezed;
 
     protected Animator animator => core.animator;
 
