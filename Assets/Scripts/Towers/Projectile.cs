@@ -15,9 +15,11 @@ namespace Towers
                 Destroy(gameObject);
                 return;
             }
-            
+
+            var position = CurrentTarget.transform.position;
+            Vector3 adjustedTarget = new Vector3(position.x, position.y + 1, position.z);
             Vector3 moveProjectile = 
-                Vector3.MoveTowards(transform.position, CurrentTarget.transform.position, projectileSpeed * Time.deltaTime);
+                Vector3.MoveTowards(transform.position, position, projectileSpeed * Time.deltaTime);
             transform.position = moveProjectile;
         }
 

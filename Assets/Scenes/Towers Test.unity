@@ -318,9 +318,14 @@ MonoBehaviour:
   navMeshAgent: {fileID: 0}
   animationController: {fileID: 0}
   animator: {fileID: 0}
+  Health: 0
+  Damage: 0
+  IsFreezed: 0
   IsDamaged: 0
   Running: {fileID: 0}
   TakingDamage: {fileID: 0}
+  Freeze: {fileID: 0}
+  Death: {fileID: 0}
 --- !u!54 &549662901
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1002,10 +1007,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1158741820204909890, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-      propertyPath: searchRadius
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2749078221014681615, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1045,14 +1046,6 @@ PrefabInstance:
     - target: {fileID: 2749078221014681615, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4086545843875242751, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-      propertyPath: searchRadius
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4086545843875242751, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-      propertyPath: sphereRadius
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5593291977395259794, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
       propertyPath: m_Name

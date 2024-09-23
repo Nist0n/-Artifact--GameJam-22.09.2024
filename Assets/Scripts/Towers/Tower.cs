@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Enemies;
@@ -134,8 +135,14 @@ namespace Towers
             yield return new WaitForSeconds(fireRate);
             _canShoot = true;
         }
-    }
 
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(transform.position, attackRange);
+        }
+    }
+    
     enum AttackType
     {
         
