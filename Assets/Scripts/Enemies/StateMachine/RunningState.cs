@@ -9,7 +9,6 @@ public class RunningState : EnemyState
     {
         _target = GameObject.FindGameObjectWithTag("Castle").transform;
         navMeshAgent.speed = 1;
-        animator.Play("New state");
     }
     
     public override void Do()
