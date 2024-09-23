@@ -7,7 +7,7 @@ namespace Towers
     public class Projectile : Tower
     {
         [SerializeField] private float projectileSpeed;
-        
+
         private void Update()
         {
             Vector3 moveProjectile = 

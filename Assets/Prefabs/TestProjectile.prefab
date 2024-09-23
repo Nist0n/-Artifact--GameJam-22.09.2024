@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 716498728958437737}
   - component: {fileID: -4437314269254009921}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: TestProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,5 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 534ad8248a5c46278cc5b0063d7c2222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  damage: 0
+  attackRange: 0
+  fireRate: 0
+  projectilePrefab: {fileID: 0}
+  towerCamera: {fileID: 5654085658882090962, guid: 32dd2f1ef607fa642bf34882f9d933fb, type: 3}
   projectileSpeed: 5
