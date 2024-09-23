@@ -125,5 +125,7 @@ MonoBehaviour:
   attackRange: 0
   fireRate: 0
   projectilePrefab: {fileID: 0}
-  towerCamera: {fileID: 5654085658882090962, guid: 32dd2f1ef607fa642bf34882f9d933fb, type: 3}
+  towerCamera: {fileID: 3752908733096790281, guid: 32dd2f1ef607fa642bf34882f9d933fb, type: 3}
+  cameraHolder: {fileID: 0}
+  cameraRotationSpeed: 0
   projectileSpeed: 5
