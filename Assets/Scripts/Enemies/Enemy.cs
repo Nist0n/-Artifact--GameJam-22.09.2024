@@ -30,6 +30,7 @@ namespace Enemies
                 {
                     if (IsDamaged)
                     {
+                        Debug.Log("Damage");
                         Set(TakingDamage);
                     }
                     else
