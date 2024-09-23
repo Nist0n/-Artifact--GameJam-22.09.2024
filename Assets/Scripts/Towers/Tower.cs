@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using Enemies;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 
 namespace Towers
 {
@@ -9,11 +11,11 @@ namespace Towers
     {
         [SerializeField] protected int damage;
         [SerializeField] private float attackRange;
-        [SerializeField] private float fireRate; // Time between shots
+        [SerializeField] private float fireRate; // Time between shots (in seconds)
         
         [SerializeField] private GameObject projectilePrefab;
         
-        [SerializeField] private Camera towerCamera;
+        public Camera towerCamera;
         
         private AttackType _attackType;
         protected GameObject CurrentTarget;
@@ -29,56 +31,45 @@ namespace Towers
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (EventSystem.current.IsPointerOverGameObject()) // If clicking on UI
-                {
-                    return;
-                }
-            
-                Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hit))
-                {
-                    if (hit.collider.gameObject == gameObject) // If clicking on a tower with this script
-                    {
-                        foreach (var enabledCamera in Camera.allCameras)
-                        {
-                            if (enabledCamera.CompareTag("Tower Camera")) // If we are already looking through a tower's camera
-                            {
-                                return;
-                            }
-                        }
+            // if (Input.GetMouseButtonDown(0))
+            // {
+            //     if (EventSystem.current.IsPointerOverGameObject()) // If clicking on UI
+            //     {
+            //         return;
+            //     }
+            //
+            //     Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+            //     if (Physics.Raycast(ray, out RaycastHit hit))
+            //     {
+            //         if (hit.collider.gameObject == gameObject) // If clicking on a tower with this script
+            //         {
+            //             foreach (var enabledCamera in Camera.allCameras)
+            //             {
+            //                 if (enabledCamera.CompareTag("Tower Camera")) // If we are already looking through a tower's camera
+            //                 {
+            //                     return;
+            //                 }
+            //             }
+            //
+            //             EnterTower();
+            //         }
+            //     }
+            // }
+            //
+            // if (Input.GetKeyDown(KeyCode.Escape))
+            // {
+            //     if (_mainCamera.enabled)
+            //     {
+            //         return;
+            //     }
+            //     
+            //     ExitTower();
+            // }
 
-                        EnterTower();
-                    }
-                }
-            }
-
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetMouseButtonDown(0)) // Player shooting
             {
-                if (_mainCamera.enabled)
-                {
-                    return;
-                }
                 
-                ExitTower();
             }
-        }
-
-        private void EnterTower()
-        {
-            _mainCamera.enabled = false;
-            towerCamera.enabled = true;
-        }
-
-        private void ExitTower()
-        {
-            foreach (Camera enabledCamera in Camera.allCameras)
-            {
-                enabledCamera.enabled = false;
-            }
-            
-            _mainCamera.enabled = true;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -118,7 +109,6 @@ namespace Towers
                 new Vector3(currentPos.x, currentPos.y + 4, currentPos.z);
             Projectile projectile = Instantiate(projectilePrefab, projectilePos, Quaternion.identity).GetComponent<Projectile>();
             projectile.damage = damage;
-            // projectile.towerCamera = _mainCamera; // So Unity doesn't go insane, might need a proper fix
             if (CurrentTarget is not null)
             {
                 projectile.CurrentTarget = CurrentTarget;
