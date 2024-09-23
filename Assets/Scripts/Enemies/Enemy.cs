@@ -10,6 +10,7 @@ namespace Enemies
         public RunningState Running;
         public TakingDamageState TakingDamage;
         public FreezingState Freeze;
+        public DeathState Death;
 
         private void Start()
         {
@@ -37,6 +38,12 @@ namespace Enemies
                     }
                 }
             }
+
+            if (Health <= 0)
+            {
+                Set(Death);
+                Invoke("KillEnemy", 1.5f);
+            }
             
             State.DoBranch();
         }
@@ -44,6 +51,11 @@ namespace Enemies
         private void FixedUpdate()
         {
             State.FixedDoBranch();
+        }
+
+        private void KillEnemy()
+        {
+            Destroy(this.gameObject);
         }
 
         public void FreezeEnemyActivate()
@@ -59,6 +71,7 @@ namespace Enemies
         private IEnumerator ReceiveDamage()
         {
             IsDamaged = true;
+            Health -= 5;
             yield return new WaitForSeconds(0.1f);
             IsDamaged = false;
         }
