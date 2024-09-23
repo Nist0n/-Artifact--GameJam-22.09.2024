@@ -13,12 +13,6 @@ public abstract class Core : MonoBehaviour
 
     public StateMachine Machine;
 
-    public float Health;
-
-    public float Damage;
-
-    public bool IsFreezed = false;
-
     public EnemyState State => Machine.State;
 
     public bool IsDamaged = false;
