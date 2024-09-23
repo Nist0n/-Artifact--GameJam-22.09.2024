@@ -19,6 +19,8 @@ public abstract class Core : MonoBehaviour
 
     public bool IsFreezed = false;
 
+    public bool IsAttacking = false;
+
     public EnemyState State => Machine.State;
 
     public bool IsDamaged = false;
