@@ -25,52 +25,54 @@ namespace Towers
         private void Awake()
         {
             _mainCamera = Camera.main;
-            towerCamera.enabled = false;
         }
 
         private void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                EnterTower();
+                if (EventSystem.current.IsPointerOverGameObject()) // If clicking on UI
+                {
+                    return;
+                }
+            
+                Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hit))
+                {
+                    if (hit.collider.gameObject == gameObject) // If clicking on a tower with this script
+                    {
+                        foreach (var enabledCamera in Camera.allCameras)
+                        {
+                            if (enabledCamera.CompareTag("Tower Camera")) // If we are already looking through a tower's camera
+                            {
+                                return;
+                            }
+                        }
+
+                        EnterTower();
+                    }
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                if (_mainCamera.enabled)
+                {
+                    return;
+                }
+                
                 ExitTower();
             }
         }
 
         private void EnterTower()
         {
-            if (towerCamera.enabled) // If we are already looking through the tower's camera
-            {
-                return;
-            }
-            
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                return;
-            }
-            
-            Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
-            {
-                if (hit.collider.gameObject == gameObject)
-                {
-                    _mainCamera.enabled = false;
-                    towerCamera.enabled = true;
-                }
-            }
+            _mainCamera.enabled = false;
+            towerCamera.enabled = true;
         }
 
         private void ExitTower()
         {
-            if (_mainCamera.enabled)
-            {
-                return;
-            }
-            
             foreach (Camera enabledCamera in Camera.allCameras)
             {
                 enabledCamera.enabled = false;

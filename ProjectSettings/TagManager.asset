@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Tower
+  - Tower Camera
   layers:
   - Default
   - TransparentFX
