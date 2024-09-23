@@ -17,7 +17,6 @@ namespace Towers
             }
 
             var position = CurrentTarget.transform.position;
-            Vector3 adjustedTarget = new Vector3(position.x, position.y + 1, position.z);
             Vector3 moveProjectile = 
                 Vector3.MoveTowards(transform.position, position, projectileSpeed * Time.deltaTime);
             transform.position = moveProjectile;

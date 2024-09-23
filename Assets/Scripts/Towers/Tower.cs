@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Enemies;
@@ -66,6 +65,8 @@ namespace Towers
                         closestEnemy = enemy;
                     }
                     
+                    Debug.Log(closestEnemy);
+                    Debug.Log(minDistance);
                     CurrentTarget = closestEnemy;
                 }
             }
