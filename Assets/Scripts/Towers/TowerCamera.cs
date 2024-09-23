@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Towers
@@ -14,6 +15,14 @@ namespace Towers
         private float _rotX;
 
         private Transform _camTransform;
+
+        public GameObject currentTarget;
+
+        [SerializeField] private float maxDistance;
+        [SerializeField] private float searchRadius;
+        [SerializeField] private float sphereRadius;
+
+        private Vector3 _sphereGizmoPoint;
         
         private void Start()
         {
@@ -30,15 +39,53 @@ namespace Towers
                 return;
             }
             
-            // get the mouse inputs
             float y = Input.GetAxis("Mouse X") * turnSpeed;
             _rotX += Input.GetAxis("Mouse Y") * turnSpeed;
-            // clamp the vertical rotation
+            
             _rotX = Mathf.Clamp(_rotX, MinTurnAngle, _maxTurnAngle);
-            // rotate the camera
+            
             _camTransform.eulerAngles = new Vector3(-_rotX, _camTransform.eulerAngles.y + y, 0);
-            // move the camera position
-            _camTransform.position = target.transform.position - _camTransform.forward * _targetDistance - _camTransform.right + Vector3.up;
+            _camTransform.position = target.transform.position - _camTransform.forward * _targetDistance - _camTransform.right + 2 * Vector3.up;
+
+            Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+            // Ray ray = camComponent.ScreenPointToRay(center);
+            // if (Physics.SphereCast(ray, radius, out RaycastHit hit, maxDistance))
+            // {
+            //     _sphereGizmoPoint = hit.point;
+            //     if (hit.collider.gameObject.CompareTag("Enemy"))
+            //     {
+            //         GameObject hitEnemy = hit.collider.gameObject;
+            //         if (!enemies.Contains(hitEnemy))
+            //         {
+            //             enemies.Add(hitEnemy);
+            //         }
+            //     }
+            // }
+            Ray ray = camComponent.ScreenPointToRay(center);
+            RaycastHit[] raycastHits = Physics.SphereCastAll(ray, sphereRadius, maxDistance);
+            foreach (var raycastHit in raycastHits)
+            {
+                GameObject colliderObject = raycastHit.collider.gameObject;
+                _sphereGizmoPoint = raycastHit.point;
+
+                if (colliderObject.CompareTag("Enemy"))
+                {
+                    Collider[] colliders = Physics.OverlapSphere(target.transform.position, searchRadius);
+                    for (int i = 0; i < colliders.Length; ++i)
+                    {
+                        if (colliderObject == colliders[i].gameObject)
+                        {
+                            currentTarget = colliderObject;
+                        }
+                    }
+                }
+            }
+        }
+        
+        void OnDrawGizmos()
+        {
+            Gizmos.color=Color.red;
+            Gizmos.DrawSphere(_sphereGizmoPoint, sphereRadius);
         }
     }
 }

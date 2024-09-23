@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Enemies;
-using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
+using Unity.Mathematics.Geometry;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Towers
 {
@@ -22,61 +23,55 @@ namespace Towers
 
         private bool _canShoot = true;
 
-        private Camera _mainCamera;
-        
-        private void Awake()
-        {
-            _mainCamera = Camera.main;
-        }
+        [SerializeField] private List<GameObject> enemiesInRadius;
+        [SerializeField] private float searchRadius;
+        [SerializeField] private List<Collider> collidersInRadius;
 
         private void Update()
         {
-            // if (Input.GetMouseButtonDown(0))
-            // {
-            //     if (EventSystem.current.IsPointerOverGameObject()) // If clicking on UI
-            //     {
-            //         return;
-            //     }
-            //
-            //     Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-            //     if (Physics.Raycast(ray, out RaycastHit hit))
-            //     {
-            //         if (hit.collider.gameObject == gameObject) // If clicking on a tower with this script
-            //         {
-            //             foreach (var enabledCamera in Camera.allCameras)
-            //             {
-            //                 if (enabledCamera.CompareTag("Tower Camera")) // If we are already looking through a tower's camera
-            //                 {
-            //                     return;
-            //                 }
-            //             }
-            //
-            //             EnterTower();
-            //         }
-            //     }
-            // }
-            //
-            // if (Input.GetKeyDown(KeyCode.Escape))
-            // {
-            //     if (_mainCamera.enabled)
-            //     {
-            //         return;
-            //     }
-            //     
-            //     ExitTower();
-            // }
-
-            if (Input.GetMouseButtonDown(0)) // Player shooting
+            collidersInRadius = Physics.OverlapSphere(transform.position, searchRadius).ToList();
+            
+            float minDistance = attackRange;
+            GameObject closestEnemy;
+            foreach (var colliderInRadius in collidersInRadius)
             {
-                
+                if (colliderInRadius.gameObject.CompareTag("Enemy"))
+                {
+                    var enemy = colliderInRadius.gameObject;
+                    var towerPos = transform.position;
+                    var enemyPos = enemy.transform.position;
+                    var distance = Vector3.Distance(towerPos, enemyPos);
+
+                    closestEnemy = enemy;
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        closestEnemy = enemy;
+                    }
+                }
             }
+
+            // if (closestEnemy)
+            // {
+            //     CurrentTarget = closestEnemy;
+            //     if (_canShoot)
+            //     {
+            //         StartCoroutine(Shoot(transform.position, CurrentTarget.transform.position,
+            //                         CurrentTarget.GetComponent<Enemy>()));
+            //     }
+            // }
+            //
+            // if (Input.GetMouseButtonDown(0)) // Player shooting
+            // {
+            //     
+            // }
         }
 
         private void OnTriggerEnter(Collider other)
         {
             CurrentTarget = other.gameObject;
         }
-
+        
         private void OnTriggerStay(Collider other)
         {
             // Maybe check for collider type
@@ -93,7 +88,7 @@ namespace Towers
                 }
             }
         }
-
+        
         private void OnTriggerExit(Collider other)
         {
             CurrentTarget = null;
