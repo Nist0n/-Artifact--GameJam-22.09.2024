@@ -6,17 +6,19 @@ namespace Towers
 {
     public class Projectile : Tower
     {
-        [SerializeField] private float projectileSpeed;
+        public float projectileSpeed;
 
         private void Update()
         {
+            if (!CurrentTarget)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            
             Vector3 moveProjectile = 
                 Vector3.MoveTowards(transform.position, CurrentTarget.transform.position, projectileSpeed * Time.deltaTime);
             transform.position = moveProjectile;
-            if (CurrentTarget is null)
-            {
-                Destroy(gameObject);
-            }
         }
 
         private void OnTriggerEnter(Collider other)
