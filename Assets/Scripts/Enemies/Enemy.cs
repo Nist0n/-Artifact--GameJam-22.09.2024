@@ -1,19 +1,28 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Enemies
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : Core
     {
-        [SerializeField] private int healthPoints;
-
-        public void ReceiveDamage(int damage)
+        private void Start()
         {
-            healthPoints -= damage;
+            SetupInstances();
+        }
 
-            if (healthPoints <= 0)
+        private void Update()
+        {
+            if (State.IsComplete)
             {
-                Destroy(gameObject);
+                
             }
+            
+            State.DoBranch();
+        }
+
+        private void FixedUpdate()
+        {
+            State.FixedDoBranch();
         }
     }
 }

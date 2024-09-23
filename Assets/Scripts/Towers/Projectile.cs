@@ -22,7 +22,7 @@ namespace Towers
         private void OnTriggerEnter(Collider other)
         {
             Enemy enemy = CurrentTarget.GetComponent<Enemy>();
-            enemy.ReceiveDamage(damage);
+            //enemy.ReceiveDamage(damage);
             Destroy(gameObject);
         }
     }
