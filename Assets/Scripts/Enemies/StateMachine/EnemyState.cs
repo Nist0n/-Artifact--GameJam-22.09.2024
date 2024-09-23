@@ -12,9 +12,13 @@ public abstract class EnemyState : MonoBehaviour
 
     protected Core core;
 
+    protected bool IsDamaged => core.IsDamaged;
+
     protected Animator animator => core.animator;
 
     protected NavMeshAgent navMeshAgent => core.navMeshAgent;
+
+    protected AnimationController animationController => core.animationController;
 
     public StateMachine Machine;
 

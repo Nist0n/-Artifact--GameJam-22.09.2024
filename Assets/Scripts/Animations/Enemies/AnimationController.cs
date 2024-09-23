@@ -9,7 +9,15 @@ public class AnimationController : EnemyState
     public void Run()
     {
         _animInterpolX = Mathf.Lerp(_animInterpolX, -1f, Time.deltaTime * _timeMultiply);
-        _animInterpolY = Mathf.Lerp(_animInterpolY, 1f, Time.deltaTime * _timeMultiply);
+        _animInterpolY = Mathf.Lerp(_animInterpolY, 0f, Time.deltaTime * _timeMultiply);
+        animator.SetFloat("x", _animInterpolX);
+        animator.SetFloat("y", _animInterpolY);
+    }
+
+    public void TakeDamage()
+    {
+        _animInterpolX = Mathf.Lerp(_animInterpolX, 0f, Time.deltaTime * _timeMultiply);
+        _animInterpolY = Mathf.Lerp(_animInterpolY, 0f, Time.deltaTime * _timeMultiply);
         animator.SetFloat("x", _animInterpolX);
         animator.SetFloat("y", _animInterpolY);
     }

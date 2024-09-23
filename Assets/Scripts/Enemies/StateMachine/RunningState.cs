@@ -9,13 +9,17 @@ public class RunningState : EnemyState
     {
         _target = GameObject.FindGameObjectWithTag("Castle").transform;
         navMeshAgent.speed = 1;
-        animator.Play("mixamo_com");
+        animator.Play("New state");
     }
     
     public override void Do()
     {
         navMeshAgent.destination = _target.position;
-        animator.speed = Helpers.Map(navMeshAgent.speed - 0.43f, 0, 1, 0, 1.6f, true);
+        animationController.Run();
+        if (IsDamaged)
+        {
+            IsComplete = true;
+        }
     }
     
     public override void Exit()

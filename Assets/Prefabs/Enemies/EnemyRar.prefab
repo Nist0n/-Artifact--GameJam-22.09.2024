@@ -1367,6 +1367,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5454852356519415712}
+  - component: {fileID: 7414705235175579644}
   m_Layer: 0
   m_Name: TakingDamage
   m_TagString: Untagged
@@ -1389,6 +1390,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8017778249081781162}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7414705235175579644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5213298361505165734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96fc99f6a35fc5b4d9ce68c315b27fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5247632565410185256
 GameObject:
   m_ObjectHideFlags: 0
@@ -1782,6 +1795,8 @@ GameObject:
   - component: {fileID: 3819684005564052173}
   - component: {fileID: 1881193058225024555}
   - component: {fileID: 3583416203823555181}
+  - component: {fileID: 3269687690991588966}
+  - component: {fileID: 3161928154012216556}
   m_Layer: 0
   m_Name: EnemyRar
   m_TagString: Untagged
@@ -1869,8 +1884,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 3583416203823555181}
+  animationController: {fileID: 3269687690991588966}
   animator: {fileID: 8313387261072760998}
+  IsDamaged: 0
   Running: {fileID: 6881686847211050768}
+  TakingDamage: {fileID: 7414705235175579644}
 --- !u!195 &3583416203823555181
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1893,6 +1911,40 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3269687690991588966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7014264877613494447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb93d8c775ac3d44a9e6c7c2fd9542a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!64 &3161928154012216556
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7014264877613494447}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8602427817694332075, guid: 6216e2aaeff19da48ac7d38bb3cf2040, type: 3}
 --- !u!1 &7261975007450516840
 GameObject:
   m_ObjectHideFlags: 0
@@ -2222,7 +2274,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8240264882700042796}
   - component: {fileID: 3094589046521816691}
-  - component: {fileID: 2568752773260073587}
   m_Layer: 0
   m_Name: MAW
   m_TagString: Untagged
@@ -2365,28 +2416,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.06371313, y: 0.17096138, z: 0.07255593}
     m_Extent: {x: 1.0109773, y: 1.2020569, z: 0.6957544}
   m_DirtyAABB: 0
---- !u!64 &2568752773260073587
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8623021360401516373}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8602427817694332075, guid: 6216e2aaeff19da48ac7d38bb3cf2040, type: 3}
 --- !u!1 &8816054396764010299
 GameObject:
   m_ObjectHideFlags: 0
