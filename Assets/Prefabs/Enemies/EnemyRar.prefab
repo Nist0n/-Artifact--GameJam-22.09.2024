@@ -1208,6 +1208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7043388165184658148}
+  - component: {fileID: 8304959401191214849}
   m_Layer: 0
   m_Name: Freezing
   m_TagString: Untagged
@@ -1230,6 +1231,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8017778249081781162}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8304959401191214849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4825248309935938142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21fc8a755f19c247968fdb073f8c0d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4890626978028733693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1886,9 +1899,13 @@ MonoBehaviour:
   navMeshAgent: {fileID: 3583416203823555181}
   animationController: {fileID: 3269687690991588966}
   animator: {fileID: 8313387261072760998}
+  Health: 0
+  Damage: 0
+  IsFreezed: 0
   IsDamaged: 0
   Running: {fileID: 6881686847211050768}
   TakingDamage: {fileID: 7414705235175579644}
+  Freeze: {fileID: 8304959401191214849}
 --- !u!195 &3583416203823555181
 NavMeshAgent:
   m_ObjectHideFlags: 0
