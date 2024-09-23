@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tower
   - Tower Camera
+  - Castle
   layers:
   - Default
   - TransparentFX

@@ -10,7 +10,7 @@ public class StateMachine
         {
             State?.Exit();
             State = newState;
-            State.Initialise();
+            State.Initialise(this);
             State.Enter();
         }
     }

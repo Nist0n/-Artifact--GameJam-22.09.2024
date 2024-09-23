@@ -1,13 +1,21 @@
 using Enemies;
 using UnityEngine;
+using UnityEngine.AI;
 
 public abstract class Core : MonoBehaviour
 {
+    public NavMeshAgent navMeshAgent;
+    
     public Animator animator;
 
     public StateMachine Machine;
 
     public EnemyState State => Machine.State;
+
+    protected void Set(EnemyState newState, bool forceReset = false)
+    {
+        Machine.Set(newState, forceReset);
+    }
 
     public void SetupInstances()
     {

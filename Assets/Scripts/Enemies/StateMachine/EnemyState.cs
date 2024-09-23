@@ -1,5 +1,6 @@
 using Enemies;
 using UnityEngine;
+using UnityEngine.AI;
 
 public abstract class EnemyState : MonoBehaviour
 {
@@ -13,9 +14,11 @@ public abstract class EnemyState : MonoBehaviour
 
     protected Animator animator => core.animator;
 
+    protected NavMeshAgent navMeshAgent => core.navMeshAgent;
+
     public StateMachine Machine;
 
-    public EnemyState parent;
+    public StateMachine parent;
 
     public EnemyState State => Machine.State;
 
@@ -26,6 +29,7 @@ public abstract class EnemyState : MonoBehaviour
 
     public void SetCore(Core _core)
     {
+        Machine = new StateMachine();
         core = _core;
     }
 
@@ -49,8 +53,9 @@ public abstract class EnemyState : MonoBehaviour
         State?.FixedDoBranch();
     }
     
-    public void Initialise()
+    public void Initialise(StateMachine _parent)
     {
+        parent = _parent;
         IsComplete = false;
         startTime = Time.time;
     }
