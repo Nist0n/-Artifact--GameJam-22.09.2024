@@ -29,4 +29,12 @@ public class AnimationController : EnemyState
         animator.SetFloat("x", _animInterpolX);
         animator.SetFloat("y", _animInterpolY);
     }
+    
+    public void Attacking()
+    {
+        _animInterpolX = Mathf.Lerp(_animInterpolX, 1f, Time.deltaTime * _timeMultiply);
+        _animInterpolY = Mathf.Lerp(_animInterpolY, 0f, Time.deltaTime * _timeMultiply);
+        animator.SetFloat("x", _animInterpolX);
+        animator.SetFloat("y", _animInterpolY);
+    }
 }
