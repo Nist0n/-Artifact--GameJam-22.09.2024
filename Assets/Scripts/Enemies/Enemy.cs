@@ -11,6 +11,7 @@ namespace Enemies
         public TakingDamageState TakingDamage;
         public FreezingState Freeze;
         public DeathState Death;
+        public AttackingState Attacking;
 
         private void Start()
         {
@@ -28,13 +29,20 @@ namespace Enemies
                 }
                 else
                 {
-                    if (IsDamaged)
+                    if (IsAttacking)
                     {
-                        Set(TakingDamage);
+                        Set(Attacking);
                     }
                     else
                     {
-                        Set(Running);
+                        if (IsDamaged)
+                        {
+                            Set(TakingDamage);
+                        }
+                        else
+                        {
+                            Set(Running);
+                        }
                     }
                 }
             }
@@ -81,6 +89,14 @@ namespace Enemies
             IsFreezed = true;
             yield return new WaitForSeconds(2f);
             IsFreezed = false;
+        }
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Castle"))
+            {
+                IsAttacking = true;
+            }
         }
     }
 }
