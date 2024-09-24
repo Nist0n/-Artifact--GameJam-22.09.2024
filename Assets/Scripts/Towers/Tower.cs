@@ -3,26 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using Enemies;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Towers
 {
     public class Tower : MonoBehaviour
     {
         [SerializeField] protected int damage;
-        [SerializeField] private float attackRange;
         [SerializeField] private float fireRate; // Time between shots (in seconds)
 
         [SerializeField] private GameObject projectilePrefab;
 
+        [SerializeField] private TowerCamera towerCameraComp;
+        
         public Camera towerCamera;
 
         private AttackType _attackType;
-        protected GameObject CurrentTarget;
+        protected GameObject CurrentAutoTarget;
 
         private bool _canShoot = true;
+        public bool piloted = false;
 
         [SerializeField] private List<Collider> collidersInRadius;
 
+        public float attackRange;
+        
         private void Update()
         {
             collidersInRadius = Physics.OverlapSphere(transform.position, attackRange).ToList();
@@ -58,24 +63,41 @@ namespace Towers
                     }
                 }
                 
-                CurrentTarget = closestEnemy;
+                CurrentAutoTarget = closestEnemy;
                 
                 if (_canShoot)
                 {
-                    StartCoroutine(Shoot(transform.position, CurrentTarget.transform.position,
-                        CurrentTarget.GetComponent<Enemy>()));
+                    if (!piloted)
+                    {
+                        // Another coroutine to boost tower stats for a short period of time
+                        StartCoroutine(Shoot(transform.position, CurrentAutoTarget.transform.position,
+                            CurrentAutoTarget.GetComponent<Enemy>())); 
+                    }
                 }
             }
             
-            if (Input.GetMouseButtonDown(0)) // Player shooting
+            if (Input.GetMouseButton(0)) // Player shooting
             {
-
+                if (_canShoot && piloted)
+                {
+                    var enemyPos = towerCameraComp.currentTarget.transform.position;
+                    var position = transform.position;
+                    
+                    float distance = Vector3.Distance(position, enemyPos);
+                    if (distance > attackRange)
+                    {
+                        return;
+                    }
+                    
+                    StartCoroutine(Shoot(position, enemyPos,
+                        towerCameraComp.currentTarget.GetComponent<Enemy>()));
+                }
             }
         }
 
         private void ResetVariables()
         {
-            CurrentTarget = null;
+            CurrentAutoTarget = null;
             _canShoot = true;
             StopAllCoroutines();
         }
@@ -118,9 +140,9 @@ namespace Towers
             Projectile projectile = Instantiate(projectilePrefab, projectilePos, Quaternion.identity).GetComponent<Projectile>();
             projectile.damage = damage;
             
-            if (CurrentTarget is not null)
+            if (CurrentAutoTarget is not null)
             {
-                projectile.CurrentTarget = CurrentTarget;
+                projectile.CurrentAutoTarget = CurrentAutoTarget;
             }
 
             yield return new WaitForSeconds(fireRate);

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Enemies
 {
@@ -12,7 +11,7 @@ namespace Enemies
         public FreezingState Freeze;
         public DeathState Death;
         public AttackingState Attacking;
-
+        
         private void Start()
         {
             SetupInstances();
