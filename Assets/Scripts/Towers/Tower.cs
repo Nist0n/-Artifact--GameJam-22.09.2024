@@ -9,7 +9,6 @@ namespace Towers
     public class Tower : MonoBehaviour
     {
         [SerializeField] protected int damage;
-        [SerializeField] private float attackRange;
         [SerializeField] private float fireRate; // Time between shots (in seconds)
 
         [SerializeField] private GameObject projectilePrefab;
@@ -23,6 +22,8 @@ namespace Towers
 
         [SerializeField] private List<Collider> collidersInRadius;
 
+        public float attackRange;
+        
         private void Update()
         {
             collidersInRadius = Physics.OverlapSphere(transform.position, attackRange).ToList();
