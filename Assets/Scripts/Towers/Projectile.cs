@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Enemies;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace Towers
     public class Projectile : Tower
     {
         public float projectileSpeed;
+        [SerializeField] private GameObject hit;
 
         private void Update()
         {
@@ -26,6 +28,13 @@ namespace Towers
         {
             Enemy enemy = CurrentTarget.GetComponent<Enemy>();
             enemy.ReceiveDamageActivate();
+            StartCoroutine(ActivateHit());
+        }
+
+        private IEnumerator ActivateHit()
+        {
+            hit.SetActive(true);
+            yield return new WaitForSeconds(0.27f);
             Destroy(gameObject);
         }
     }
