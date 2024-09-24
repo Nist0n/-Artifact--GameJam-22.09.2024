@@ -33,50 +33,40 @@ namespace Towers
                 return;
             }
 
-            int enemyCount = 0;
+            List<GameObject> enemies = new List<GameObject>();
             foreach (var col in collidersInRadius)
             {
                 if (col.gameObject.CompareTag("Enemy"))
                 {
-                    enemyCount++;
+                    enemies.Add(col.gameObject);
                 }
             }
 
-            if (enemyCount == 0)
+            if (enemies.Count > 0)
             {
-                ResetVariables();
-                return;
-            }
-
-            float minDistance = attackRange;
-            foreach (var colliderInRadius in collidersInRadius)
-            {
-                if (colliderInRadius.gameObject.CompareTag("Enemy"))
+                float minDistance = attackRange;
+                GameObject closestEnemy = enemies[0];
+                foreach (var enemy in enemies)
                 {
-                    var enemy = colliderInRadius.gameObject;
-                    var towerPos = transform.position;
-                    var enemyPos = enemy.transform.position;
-                    var distance = Vector3.Distance(towerPos, enemyPos);
-
-                    var closestEnemy = enemy;
+                    Vector3 enemyPos = enemy.transform.position;
+                    float distance = Vector3.Distance(transform.position, enemyPos);
+                    
                     if (distance < minDistance)
                     {
                         minDistance = distance;
                         closestEnemy = enemy;
                     }
-                    
-                    Debug.Log(closestEnemy);
-                    Debug.Log(minDistance);
-                    CurrentTarget = closestEnemy;
+                }
+                
+                CurrentTarget = closestEnemy;
+                
+                if (_canShoot)
+                {
+                    StartCoroutine(Shoot(transform.position, CurrentTarget.transform.position,
+                        CurrentTarget.GetComponent<Enemy>()));
                 }
             }
             
-            if (_canShoot)
-            {
-                StartCoroutine(Shoot(transform.position, CurrentTarget.transform.position,
-                    CurrentTarget.GetComponent<Enemy>()));
-            }
-
             if (Input.GetMouseButtonDown(0)) // Player shooting
             {
 
