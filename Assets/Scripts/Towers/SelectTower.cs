@@ -6,6 +6,7 @@ namespace Towers
     public class SelectTower : MonoBehaviour
     {
         private Camera _mainCamera;
+        private Tower _currentTower;
         
         private void Awake()
         {
@@ -20,7 +21,8 @@ namespace Towers
                 {
                     return;
                 }
-                
+
+                _currentTower.piloted = false;
                 DisableAllCameras();
                 _mainCamera.enabled = true;
             }
@@ -46,6 +48,8 @@ namespace Towers
                         DisableAllCameras();
 
                         tower.towerCamera.enabled = true;
+                        tower.piloted = true;
+                        _currentTower = tower;
                     }
                 }
             }

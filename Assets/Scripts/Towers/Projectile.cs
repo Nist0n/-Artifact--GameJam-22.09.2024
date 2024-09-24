@@ -12,13 +12,13 @@ namespace Towers
 
         private void Update()
         {
-            if (!CurrentTarget)
+            if (!CurrentAutoTarget)
             {
                 Destroy(gameObject);
                 return;
             }
 
-            var position = CurrentTarget.transform.position;
+            var position = CurrentAutoTarget.transform.position;
             Vector3 moveProjectile = 
                 Vector3.MoveTowards(transform.position, position, projectileSpeed * Time.deltaTime);
             transform.position = moveProjectile;
@@ -26,7 +26,7 @@ namespace Towers
 
         private void OnTriggerEnter(Collider other)
         {
-            Enemy enemy = CurrentTarget.GetComponent<Enemy>();
+            Enemy enemy = CurrentAutoTarget.GetComponent<Enemy>();
             enemy.ReceiveDamageActivate();
             StartCoroutine(ActivateHit());
         }

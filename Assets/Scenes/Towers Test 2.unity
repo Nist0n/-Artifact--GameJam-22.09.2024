@@ -154,11 +154,6 @@ Transform:
   - {fileID: 1071943328}
   m_Father: {fileID: 637718856}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &116886748 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8560016364133692633, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-  m_PrefabInstance: {fileID: 305794737}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &157331520
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,14 +489,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1158741820204909890, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-      propertyPath: attackRange
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1158741820204909890, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-      propertyPath: projectilePrefab
-      value: 
-      objectReference: {fileID: 1104144673388554703, guid: 2838955df129f0a4b8f9628c4faa7b28, type: 3}
     - target: {fileID: 2749078221014681615, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
       propertyPath: m_LocalPosition.x
       value: 604.39
@@ -543,29 +530,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4086545843875242751, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-      propertyPath: tower
-      value: 
-      objectReference: {fileID: 116886748}
-    - target: {fileID: 4086545843875242751, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
       propertyPath: reticle
       value: 
       objectReference: {fileID: 1150404450}
-    - target: {fileID: 4086545843875242751, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-      propertyPath: camComponent
-      value: 
-      objectReference: {fileID: 1916769269}
-    - target: {fileID: 4086545843875242751, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-      propertyPath: sphereRadius
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4086545843875242751, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-      propertyPath: _activeReticle
-      value: 
-      objectReference: {fileID: 1150404450}
-    - target: {fileID: 4086545843875242751, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-      propertyPath: crosshairRadius
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5593291977395259794, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
       propertyPath: m_Name
       value: TestTower
@@ -1784,7 +1751,6 @@ MonoBehaviour:
   Freeze: {fileID: 0}
   Death: {fileID: 0}
   Attacking: {fileID: 0}
-  reticle: {fileID: 0}
 --- !u!1 &830034785
 GameObject:
   m_ObjectHideFlags: 0
@@ -4553,11 +4519,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1913536432}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!20 &1916769269 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1794026979955365443, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-  m_PrefabInstance: {fileID: 305794737}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1924170191
 GameObject:
   m_ObjectHideFlags: 0
