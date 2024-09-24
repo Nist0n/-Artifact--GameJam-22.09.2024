@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Towers
 {
@@ -8,7 +10,7 @@ namespace Towers
         [SerializeField] private Camera camComponent;
         
         [SerializeField] private float turnSpeed = 4.0f;
-        [SerializeField] private GameObject target;
+        [SerializeField] private GameObject tower;
         private float _targetDistance;
         private const float MinTurnAngle = -90.0f;
         private float _maxTurnAngle;
@@ -18,21 +20,98 @@ namespace Towers
 
         public GameObject currentTarget;
 
-        [SerializeField] private float maxDistance;
-        [SerializeField] private float searchRadius;
-        [SerializeField] private float sphereRadius;
+        private float _searchRadius;
+        [SerializeField] private float crosshairRadius;
 
         private Vector3 _sphereGizmoPoint;
-        
+
+        [SerializeField] private float minScale = 0.2f;
+        [SerializeField] private float maxScale = 3f;
+        [SerializeField] private float maxScaleAtDistance = 2;
+        [SerializeField] private float minScaleAtDistance = 20;
+
+        [SerializeField] private Image reticle;
+
+        [SerializeField] private List<Collider> colliders;
+
         private void Start()
         {
+            _searchRadius = GetComponentInParent<Tower>().attackRange + 5;
             _camTransform = transform;
             var position = _camTransform.position;
-            _targetDistance = Vector3.Distance(position, target.transform.position);
+            _targetDistance = Vector3.Distance(position, tower.transform.position);
             camComponent = GetComponent<Camera>();
         }
         
         private void Update()
+        {
+            MoveCamera();
+            
+            Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+            Ray ray = camComponent.ScreenPointToRay(center);
+            RaycastHit[] raycastHits = Physics.SphereCastAll(ray, crosshairRadius, _searchRadius);
+            
+            colliders = Physics.OverlapSphere(tower.transform.position, _searchRadius).ToList();
+            List<GameObject> enemies = new();
+            foreach (var col in colliders)
+            {
+                GameObject colliderObject = col.gameObject;
+                _sphereGizmoPoint = colliderObject.transform.position;
+
+                if (colliderObject.CompareTag("Enemy"))
+                {
+                    enemies.Add(colliderObject);
+                }
+            }
+
+            if (raycastHits.Length == 0)
+            {
+                return;
+            }
+            
+            List<GameObject> hitEnemies = new();
+            foreach (var hit in raycastHits)
+            {
+                if (enemies.Contains(hit.collider.gameObject))
+                {
+                    hitEnemies.Add(hit.collider.gameObject);
+                }
+            }
+
+            if (hitEnemies.Count > 0)
+            {
+                GameObject closestEnemyToCenter = hitEnemies[0];
+                float minDistance = crosshairRadius * 2; // Diameter
+                foreach (var enemyHit in hitEnemies)
+                {
+                    Vector3 screenPos = camComponent.WorldToScreenPoint(enemyHit.transform.position);
+                    float distance = Vector3.Distance(screenPos, center);
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        closestEnemyToCenter = enemyHit;
+                    }
+                }
+
+                currentTarget = closestEnemyToCenter;
+                var targetPos = currentTarget.transform.position;
+                Vector3 imagePos = camComponent.WorldToScreenPoint(targetPos);
+
+                float worldDistance = Vector3.Distance(_camTransform.position, targetPos);
+                float distanceT = Mathf.InverseLerp(maxScaleAtDistance, minScaleAtDistance, worldDistance);
+                float scale = Mathf.Lerp(minScale, maxScale, distanceT);
+                
+                reticle.rectTransform.transform.position = imagePos;
+                reticle.rectTransform.localScale = new Vector3(scale, scale, scale);
+                reticle.GetComponent<Image>().enabled = true;
+            }
+            else
+            {
+                reticle.GetComponent<Image>().enabled = false;
+            }
+        }
+
+        private void MoveCamera()
         {
             if (!camComponent.enabled)
             {
@@ -45,47 +124,13 @@ namespace Towers
             _rotX = Mathf.Clamp(_rotX, MinTurnAngle, _maxTurnAngle);
             
             _camTransform.eulerAngles = new Vector3(-_rotX, _camTransform.eulerAngles.y + y, 0);
-            _camTransform.position = target.transform.position - _camTransform.forward * _targetDistance - _camTransform.right + 2 * Vector3.up;
-
-            Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
-            // Ray ray = camComponent.ScreenPointToRay(center);
-            // if (Physics.SphereCast(ray, radius, out RaycastHit hit, maxDistance))
-            // {
-            //     _sphereGizmoPoint = hit.point;
-            //     if (hit.collider.gameObject.CompareTag("Enemy"))
-            //     {
-            //         GameObject hitEnemy = hit.collider.gameObject;
-            //         if (!enemies.Contains(hitEnemy))
-            //         {
-            //             enemies.Add(hitEnemy);
-            //         }
-            //     }
-            // }
-            Ray ray = camComponent.ScreenPointToRay(center);
-            RaycastHit[] raycastHits = Physics.SphereCastAll(ray, sphereRadius, maxDistance);
-            foreach (var raycastHit in raycastHits)
-            {
-                GameObject colliderObject = raycastHit.collider.gameObject;
-                _sphereGizmoPoint = raycastHit.point;
-
-                if (colliderObject.CompareTag("Enemy"))
-                {
-                    Collider[] colliders = Physics.OverlapSphere(target.transform.position, searchRadius);
-                    for (int i = 0; i < colliders.Length; ++i)
-                    {
-                        if (colliderObject == colliders[i].gameObject)
-                        {
-                            currentTarget = colliderObject;
-                        }
-                    }
-                }
-            }
+            _camTransform.position = tower.transform.position - _camTransform.forward * _targetDistance - _camTransform.right + 2 * Vector3.up;
         }
         
-        void OnDrawGizmos()
+        private void OnDrawGizmos()
         {
             Gizmos.color=Color.red;
-            Gizmos.DrawSphere(_sphereGizmoPoint, sphereRadius);
+            Gizmos.DrawWireSphere(_sphereGizmoPoint, crosshairRadius);
         }
     }
 }
