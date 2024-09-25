@@ -1,13 +1,20 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class GameConfig : MonoBehaviour
 {
     [SerializeField] private List<GameObject> enemiesTypes;
+    
+    [SerializeField] private TextMeshProUGUI timerText;
 
     public float GameTime;
+
+    private float _timeMinutes;
+    
+    private float _timeSeconds;
 
     public List<GameObject> EnemyList;
 
@@ -33,6 +40,9 @@ public class GameConfig : MonoBehaviour
     private void Update()
     {
         GameTime += Time.deltaTime;
+        
+        Timer();
+        
         GameBrain();
     }
 
@@ -84,5 +94,13 @@ public class GameConfig : MonoBehaviour
             var randEnemy = Random.Range(0, enemiesTypes.Count);
             _spawners[randSpawner].SetEnemies(enemiesTypes[randEnemy]);
         }
+    }
+
+    private void Timer()
+    {
+        _timeMinutes = Mathf.Floor(GameTime / 60);
+        if (_timeSeconds < 60) _timeSeconds += Time.deltaTime;
+        else _timeSeconds = 0;
+        timerText.text = $"Время: {_timeMinutes}:{_timeSeconds.ToString("00")}";
     }
 }
