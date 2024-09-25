@@ -33,6 +33,7 @@ namespace Towers
         [SerializeField] private Image reticle;
 
         [SerializeField] private List<Collider> colliders;
+        [SerializeField] private List<GameObject> hitEnemies;
 
         private void Start()
         {
@@ -48,30 +49,31 @@ namespace Towers
             MoveCamera();
             
             Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+            Debug.Log(center);
             Ray ray = camComponent.ScreenPointToRay(center);
-            RaycastHit[] raycastHits = Physics.SphereCastAll(ray, crosshairRadius, _searchRadius);
+            List<RaycastHit> raycastHits = Physics.SphereCastAll(ray, crosshairRadius, _searchRadius).ToList();
             
             colliders = Physics.OverlapSphere(tower.transform.position, _searchRadius).ToList();
             List<GameObject> enemies = new();
             foreach (var col in colliders)
             {
                 GameObject colliderObject = col.gameObject;
-                _sphereGizmoPoint = colliderObject.transform.position;
-
+                
                 if (colliderObject.CompareTag("Enemy"))
                 {
                     enemies.Add(colliderObject);
                 }
             }
 
-            if (raycastHits.Length == 0)
+            if (raycastHits.Count == 0)
             {
                 return;
             }
             
-            List<GameObject> hitEnemies = new();
+            hitEnemies = new();
             foreach (var hit in raycastHits)
             {
+                _sphereGizmoPoint = hit.point;
                 if (enemies.Contains(hit.collider.gameObject))
                 {
                     hitEnemies.Add(hit.collider.gameObject);
@@ -81,11 +83,15 @@ namespace Towers
             if (hitEnemies.Count > 0)
             {
                 GameObject closestEnemyToCenter = hitEnemies[0];
-                float minDistance = crosshairRadius * 2; // Diameter
+                float minDistance = 1000; // Diameter
                 foreach (var enemyHit in hitEnemies)
                 {
+                    RaycastHit hit = raycastHits.Find(x => x.collider.gameObject == enemyHit);
                     Vector3 screenPos = camComponent.WorldToScreenPoint(enemyHit.transform.position);
+                    
+                    screenPos.z = 0;
                     float distance = Vector3.Distance(screenPos, center);
+                    Debug.Log(screenPos);
                     if (distance < minDistance)
                     {
                         minDistance = distance;

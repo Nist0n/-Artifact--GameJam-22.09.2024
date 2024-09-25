@@ -75,9 +75,14 @@ namespace Towers
                     }
                 }
             }
-            
+
             if (Input.GetMouseButton(0)) // Player shooting
             {
+                if (!towerCameraComp.currentTarget)
+                {
+                    return;
+                }
+                
                 if (_canShoot && piloted)
                 {
                     var enemyPos = towerCameraComp.currentTarget.transform.position;
@@ -101,35 +106,6 @@ namespace Towers
             _canShoot = true;
             StopAllCoroutines();
         }
-
-        // private void OnTriggerEnter(Collider other)
-                    // {
-                    //     CurrentTarget = other.gameObject;
-                    // }
-                    //
-                    // private void OnTriggerStay(Collider other)
-                    // {
-                    //     // Maybe check for collider type
-                    //     Vector3 currentPos = transform.position;
-                    //     Vector3 enemyPos = other.transform.position;
-                    //     
-                    //     float distance = Vector3.Distance(currentPos, enemyPos);
-                    //     if (distance <= attackRange)
-                    //     {
-                    //         Enemy enemy = CurrentTarget.GetComponent<Enemy>();
-                    //         if (_canShoot)
-                    //         {
-                    //             StartCoroutine(Shoot(currentPos, enemyPos, enemy));
-                    //         }
-                    //     }
-                    // }
-                    //
-                    // private void OnTriggerExit(Collider other)
-                    // {
-                    //     CurrentTarget = null;
-                    //     _canShoot = true;
-                    //     StopAllCoroutines();
-                    // }
 
         private IEnumerator Shoot(Vector3 currentPos, Vector3 enemyPos, Enemy enemy)
         {
