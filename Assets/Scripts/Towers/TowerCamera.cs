@@ -49,7 +49,6 @@ namespace Towers
             MoveCamera();
             
             Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
-            Debug.Log(center);
             Ray ray = camComponent.ScreenPointToRay(center);
             List<RaycastHit> raycastHits = Physics.SphereCastAll(ray, crosshairRadius, _searchRadius).ToList();
             
