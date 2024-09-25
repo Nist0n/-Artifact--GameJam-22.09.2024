@@ -13,9 +13,17 @@ public class GameConfig : MonoBehaviour
 
     [SerializeField] private List<Spawner> _spawners;
 
-    private int _countOfUnits;
+    private float _previousCount = 10;
 
-    private bool IsFirstWaveStarted = false;
+    private float _percentAdvantage = 15;
+
+    private float _waveTime = 15f;
+
+    private float _countOfUnits;
+
+    private bool IsWaveStarted = false;
+
+    private bool IsBossSpawned = false;
 
     private void Start()
     {
@@ -40,20 +48,35 @@ public class GameConfig : MonoBehaviour
 
     private void GameBrain()
     {
-        if (GameTime > 15f && !IsFirstWaveStarted)
+        if (GameTime > 900 && !IsBossSpawned)
         {
-            _countOfUnits = Random.Range(10, 15);
+            StartCoroutine(_spawners[1].SpawnBoss());
+            IsWaveStarted = true;
+            IsBossSpawned = true;
+        }
+        
+        if (GameTime > _waveTime && !IsWaveStarted)
+        {
+            _percentAdvantage = Mathf.Round(_percentAdvantage *= 1.15f);
+            _countOfUnits = Random.Range(_previousCount, _percentAdvantage);
             GetSummoners(_countOfUnits);
             foreach (var spawner in _spawners)
             {
                 StartCoroutine(spawner.StartSpawn());
             }
 
-            IsFirstWaveStarted = true;
+            _previousCount = _percentAdvantage;
+
+            IsWaveStarted = true;
+
+            if (_waveTime < 75) _waveTime = 75;
+            else _waveTime += 75;
+
+            IsWaveStarted = false;
         }
     }
 
-    private void GetSummoners(int enemyCount)
+    private void GetSummoners(float enemyCount)
     {
         for (int i = 0; i < enemyCount; i++)
         {
