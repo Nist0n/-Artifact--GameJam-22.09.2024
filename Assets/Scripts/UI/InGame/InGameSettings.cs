@@ -10,7 +10,7 @@ public class InGameSettings : MonoBehaviour
     
     public void OpenSettings()
     {
-        GamePause.gameIsPaused = true;
+        GamePause.gameIsPaused = !GamePause.gameIsPaused;
         gamePaused.PauseGame();
         pauseButton.SetActive(false);
         background.SetActive(true);

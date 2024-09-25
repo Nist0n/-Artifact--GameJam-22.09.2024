@@ -9,7 +9,7 @@ public class ContinueGame : MonoBehaviour
 
     public void CloseSettings()
     {
-        GamePause.gameIsPaused = false;
+        GamePause.gameIsPaused = !GamePause.gameIsPaused;
         gamePaused.ResumeGame();
         pauseButton.SetActive(true);
         background.SetActive(false);

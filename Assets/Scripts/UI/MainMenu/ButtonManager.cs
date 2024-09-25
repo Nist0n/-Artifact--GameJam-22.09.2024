@@ -14,8 +14,8 @@ public class ButtonManager : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            settingsButtonsGroup.SetActive(false);
-            mainMenuButtonsGroup.SetActive(true);
+            settingsButtonsGroup.SetActive(!settingsButtonsGroup.activeSelf);
+            mainMenuButtonsGroup.SetActive(!mainMenuButtonsGroup.activeSelf);
         }
     }
 
