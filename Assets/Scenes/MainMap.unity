@@ -1800,6 +1800,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestTower
       objectReference: {fileID: 0}
+    - target: {fileID: 5593291977395259794, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2572,6 +2576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesTypes:
   - {fileID: 7306416952122180914, guid: dee0c1af7105f954eb310dad81da4a2e, type: 3}
+  timerText: {fileID: 0}
   GameTime: 0
   EnemyList: []
   _spawners: []
@@ -4612,6 +4617,10 @@ PrefabInstance:
     - target: {fileID: 5593291977395259794, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
       propertyPath: m_Name
       value: TestTower (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593291977395259794, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
