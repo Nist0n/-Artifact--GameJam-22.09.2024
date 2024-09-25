@@ -31,7 +31,6 @@ public class GameConfig : MonoBehaviour
     private void GetSpawners()
     {
         var spawn = GetComponentsInChildren<Spawner>();
-        Debug.Log(spawn.Length);
         foreach (var spawner in spawn)
         {
             Debug.Log(spawner);
@@ -41,7 +40,7 @@ public class GameConfig : MonoBehaviour
 
     private void GameBrain()
     {
-        if (GameTime > 3f && !IsFirstWaveStarted)
+        if (GameTime > 15f && !IsFirstWaveStarted)
         {
             _countOfUnits = Random.Range(10, 15);
             GetSummoners(_countOfUnits);
