@@ -21,7 +21,7 @@ public class ButtonManager : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("MainMap");
+        SceneManager.LoadScene("Pause");
     }
 
     public void QuitGame()

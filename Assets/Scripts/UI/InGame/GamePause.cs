@@ -14,7 +14,7 @@ public class GamePause : MonoBehaviour
         }
     }
 
-    void PauseGame()
+    public void PauseGame()
     {
         if (gameIsPaused)
         {
@@ -25,6 +25,4 @@ public class GamePause : MonoBehaviour
             Time.timeScale = 1;
         }
     }
-
-
 }
