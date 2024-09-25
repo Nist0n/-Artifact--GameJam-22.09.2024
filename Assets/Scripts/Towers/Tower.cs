@@ -71,7 +71,7 @@ namespace Towers
                     {
                         // Another coroutine to boost tower stats for a short period of time
                         StartCoroutine(Shoot(transform.position, CurrentAutoTarget.transform.position,
-                            CurrentAutoTarget.GetComponent<Enemy>())); 
+                            CurrentAutoTarget)); 
                     }
                 }
             }
@@ -94,8 +94,7 @@ namespace Towers
                         return;
                     }
                     
-                    StartCoroutine(Shoot(position, enemyPos,
-                        towerCameraComp.currentTarget.GetComponent<Enemy>()));
+                    StartCoroutine(Shoot(position, enemyPos, towerCameraComp.currentTarget));
                 }
             }
         }
@@ -107,7 +106,7 @@ namespace Towers
             StopAllCoroutines();
         }
 
-        private IEnumerator Shoot(Vector3 currentPos, Vector3 enemyPos, Enemy enemy)
+        private IEnumerator Shoot(Vector3 currentPos, Vector3 enemyPos, GameObject target)
         {
             _canShoot = false;
             
@@ -116,9 +115,9 @@ namespace Towers
             Projectile projectile = Instantiate(projectilePrefab, projectilePos, Quaternion.identity).GetComponent<Projectile>();
             projectile.damage = damage;
             
-            if (CurrentAutoTarget is not null)
+            if (target is not null)
             {
-                projectile.CurrentAutoTarget = CurrentAutoTarget;
+                projectile.CurrentAutoTarget = target;
             }
 
             yield return new WaitForSeconds(fireRate);
