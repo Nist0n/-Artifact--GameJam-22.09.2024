@@ -21,13 +21,11 @@ public class ButtonManager : MonoBehaviour
 
     public void PlayGame()
     {
-        Debug.Log("Workaet");
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("MainMap");
     }
 
     public void QuitGame()
     {
-        Debug.Log("Workaet");
         Application.Quit();
     }
 }

@@ -243,7 +243,7 @@ MonoBehaviour:
   SFXSource: {fileID: 360958045}
   music:
   - name: MainMenu
-    audio: {fileID: 8300000, guid: b0f11f23765a2f647a609b7cee8a302e, type: 3}
+    audio: {fileID: 8300000, guid: c31fb1ae842089346923bae6cdba9115, type: 3}
   - name: MainMenu2
     audio: {fileID: 8300000, guid: f299b99ed6c622b4996986c4e2af03d3, type: 3}
   sounds:
