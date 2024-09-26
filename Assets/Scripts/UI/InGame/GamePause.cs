@@ -10,33 +10,50 @@ public class GamePause : MonoBehaviour
     [SerializeField] GameObject background;
     [SerializeField] GameObject continueGameButton;
     [SerializeField] GameObject shopUI;
-    [SerializeField] CinemachineCamera camera;
+    [SerializeField] CinemachineCamera cameraMain;
+    [SerializeField] CinemachineCamera cameraShop;
 
     public static bool gameIsPaused;
 
     private void Update()
     {
+        StartCoroutine(ShopSwitch());
 
-
-        if (Input.GetKeyDown(KeyCode.B) && camera.IsLive && !gameIsPaused)
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-            Invoke("ShopSwitch", 1f);
+            if (gameIsPaused)
+            {
+                gameIsPaused = !gameIsPaused;
+                Time.timeScale = 0f;
+                pauseButton.SetActive(!pauseButton.activeSelf);
+                continueGameButton.SetActive(!continueGameButton.activeSelf);
+                background.SetActive(!background.activeSelf);
+            }
+            if (!gameIsPaused)
+            {
+                gameIsPaused = !gameIsPaused;
+                Time.timeScale = 1f;
+                pauseButton.SetActive(!pauseButton.activeSelf);
+                continueGameButton.SetActive(!continueGameButton.activeSelf);
+                background.SetActive(!background.activeSelf);
+            }
         }
-
+        
         if (pauseButton.activeSelf)
         {
             if (pauseButton.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name == "Selected")
             {
-                Invoke("OpenSettings", 0.2f);
+                Invoke("OpenSettings", 0.1f);
             }
 
         }
+
         if (continueGameButton.activeSelf)
         {
             if (continueGameButton.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name == "Selected")
             {
                 ResumeGame();
-                Invoke("CloseSettings", 0.2f);
+                Invoke("CloseSettings", 0.1f);
             }
         }
     }
@@ -57,16 +74,11 @@ public class GamePause : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void ShopSwitch()
-    {
-        pauseButton.SetActive(!pauseButton.activeSelf);
-        shopUI.SetActive(!shopUI.activeSelf);
-    }
-
     public void CloseSettings()
     {
         pauseButton.SetActive(true);
         background.SetActive(false);
+        continueGameButton.SetActive(false);
     }
 
     public void OpenSettings()
@@ -84,5 +96,21 @@ public class GamePause : MonoBehaviour
     {
         SceneManager.LoadScene("UI VLAD");
         ResumeGame();
+    }
+
+    IEnumerator ShopSwitch()
+    {
+        if (Input.GetKeyDown(KeyCode.B) && cameraMain.IsLive && !gameIsPaused)
+        {
+            pauseButton.SetActive(!pauseButton.activeSelf);
+            shopUI.SetActive(!shopUI.activeSelf);
+            yield return new WaitForSeconds(1f);
+        }
+        else if (Input.GetKeyDown(KeyCode.B) && cameraShop.IsLive && !gameIsPaused)
+        {
+            pauseButton.SetActive(!pauseButton.activeSelf);
+            shopUI.SetActive(!shopUI.activeSelf);
+            yield return new WaitForSeconds(1f);
+        }
     }
 }

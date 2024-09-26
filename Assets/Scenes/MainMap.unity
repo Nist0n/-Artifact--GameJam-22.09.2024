@@ -7128,7 +7128,8 @@ MonoBehaviour:
   background: {fileID: 220916812}
   continueGameButton: {fileID: 36637105}
   shopUI: {fileID: 1826320199}
-  camera: {fileID: 12805554}
+  cameraMain: {fileID: 12805554}
+  cameraShop: {fileID: 1112695003}
 --- !u!114 &804337114
 MonoBehaviour:
   m_ObjectHideFlags: 0
