@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Towers
 {
@@ -25,38 +26,68 @@ namespace Towers
         public bool piloted;
 
         [SerializeField] private List<Collider> collidersInRadius;
+
+        // [SerializeField] private GameConfig gameConfig;
+
+        public List<GameObject> enemiesInRange;
         
         private void Update()
         {
-            collidersInRadius = Physics.OverlapSphere(transform.position, attackRange).ToList();
+            // collidersInRadius = Physics.OverlapSphere(transform.position, attackRange).ToList();
+            //
+            // if (collidersInRadius.Count == 0)
+            // {
+            //     ResetVariables();
+            //     return;
+            // }
 
-            if (collidersInRadius.Count == 0)
+            enemiesInRange = new List<GameObject>();
+            // foreach (var col in collidersInRadius)
+            // {
+            //     if (col.gameObject.CompareTag("Enemy"))
+            //     {
+            //         enemies.Add(col.gameObject);
+            //     }
+            // }
+            if (GameConfig.Instance.EnemyList.Count == 0)
             {
                 ResetVariables();
                 return;
             }
-
-            List<GameObject> enemies = new List<GameObject>();
-            foreach (var col in collidersInRadius)
+            
+            foreach (var enem in GameConfig.Instance.EnemyList)
             {
-                if (col.gameObject.CompareTag("Enemy"))
+                if (enem)
                 {
-                    enemies.Add(col.gameObject);
+                    if (Vector3.SqrMagnitude(enem.transform.position - transform.position) < attackRange * attackRange)
+                    {
+                        if (!enemiesInRange.Contains(enem))
+                        {
+                            enemiesInRange.Add(enem);
+                        }
+                    } 
+                }
+                else
+                {
+                    if (enemiesInRange.Contains(enem))
+                    {
+                        enemiesInRange.Remove(enem);
+                    }
                 }
             }
-
-            if (enemies.Count > 0)
+            
+            if (enemiesInRange.Count > 0)
             {
-                float minDistance = attackRange;
-                GameObject closestEnemy = enemies[0];
-                foreach (var enemy in enemies)
+                float minDistanceSqr = attackRange * attackRange;
+                GameObject closestEnemy = enemiesInRange[0];
+                foreach (var enemy in enemiesInRange)
                 {
                     Vector3 enemyPos = enemy.transform.position;
-                    float distance = Vector3.Distance(transform.position, enemyPos);
+                    float distanceSqr = Vector3.SqrMagnitude(transform.position - enemyPos);
                     
-                    if (distance < minDistance)
+                    if (distanceSqr < minDistanceSqr)
                     {
-                        minDistance = distance;
+                        minDistanceSqr = distanceSqr;
                         closestEnemy = enemy;
                     }
                 }

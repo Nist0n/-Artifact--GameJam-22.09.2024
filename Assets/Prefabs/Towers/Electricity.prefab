@@ -130,12 +130,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  attackRange: 0
   fireRate: 0
+  attackRange: 0
   projectilePrefab: {fileID: 0}
+  towerCameraComp: {fileID: 0}
   towerCamera: {fileID: 0}
+  piloted: 0
   collidersInRadius: []
-  projectileSpeed: 5
+  gameConfig: {fileID: 0}
+  enemies: []
+  projectileSpeed: 10
   hit: {fileID: 5832448620156326253}
 --- !u!135 &4254048437315948290
 SphereCollider:
