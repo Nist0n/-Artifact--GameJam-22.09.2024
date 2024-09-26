@@ -4904,7 +4904,7 @@ PrefabInstance:
       objectReference: {fileID: 930643877}
     - target: {fileID: 2749078221014681615, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 527.23
+      value: 502.72
       objectReference: {fileID: 0}
     - target: {fileID: 2749078221014681615, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4912,7 +4912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2749078221014681615, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 281.53
+      value: 293.32
       objectReference: {fileID: 0}
     - target: {fileID: 2749078221014681615, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11614,6 +11614,7 @@ GameObject:
   - component: {fileID: 1404198600}
   - component: {fileID: 1404198599}
   - component: {fileID: 1404198598}
+  - component: {fileID: 1404198602}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Castle
@@ -11710,6 +11711,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1404198602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404198597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f264a5142f6bd6549b305f6f5f207d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &1410508629
 GameObject:
   m_ObjectHideFlags: 0
