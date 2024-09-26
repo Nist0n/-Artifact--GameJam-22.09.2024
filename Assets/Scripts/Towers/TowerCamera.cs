@@ -50,6 +50,11 @@ namespace Towers
         
         private void Update()
         {
+            if (Time.timeScale == 0) // If game is paused
+            {
+                return;
+            } 
+            
             if (!_currentCamera.IsLive)
             {
                 return;
@@ -82,7 +87,6 @@ namespace Towers
             
             if (raycastHits.Length == 0)
             {
-                
                 return;
             }
             
