@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using Unity.Cinemachine;
+using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 namespace Towers
 {
@@ -8,6 +10,8 @@ namespace Towers
         private Camera _mainCamera;
         private Tower _currentTower;
         
+        public CinemachineCamera mainCinemachineCamera;
+
         private void Awake()
         {
             _mainCamera = Camera.main;
@@ -15,19 +19,19 @@ namespace Towers
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                if (_mainCamera.enabled)
+                if (mainCinemachineCamera.IsLive)
                 {
                     return;
                 }
-
+                
                 _currentTower.piloted = false;
-                DisableAllCameras();
-                _mainCamera.enabled = true;
+                _currentTower.towerCamera.Priority = 0;
+                mainCinemachineCamera.Priority = 1;
             }
 
-            if (!_mainCamera.enabled)
+            if (!mainCinemachineCamera.IsLive)
             {
                 return;
             }
@@ -45,21 +49,13 @@ namespace Towers
                     if (hit.collider.gameObject.CompareTag("Tower")) // If clicking on a tower
                     {
                         Tower tower = hit.collider.gameObject.GetComponent<Tower>();
-                        DisableAllCameras();
-
-                        tower.towerCamera.enabled = true;
-                        tower.piloted = true;
+                        
                         _currentTower = tower;
+                        tower.towerCamera.Priority = 1;
+                        mainCinemachineCamera.Priority = 0;
+                        tower.piloted = true;
                     }
                 }
-            }
-        }
-
-        private void DisableAllCameras()
-        {
-            foreach (var cam in Camera.allCameras)
-            {
-                cam.enabled = false;
             }
         }
     }

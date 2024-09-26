@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Enemies;
+using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Towers
 {
@@ -11,22 +10,21 @@ namespace Towers
     {
         [SerializeField] protected int damage;
         [SerializeField] private float fireRate; // Time between shots (in seconds)
+        public float attackRange;
 
         [SerializeField] private GameObject projectilePrefab;
 
-        [SerializeField] private TowerCamera towerCameraComp;
+        public TowerCamera towerCameraComp;
         
-        public Camera towerCamera;
+        public CinemachineCamera towerCamera;
 
         private AttackType _attackType;
         protected GameObject CurrentAutoTarget;
 
         private bool _canShoot = true;
-        public bool piloted = false;
+        public bool piloted;
 
         [SerializeField] private List<Collider> collidersInRadius;
-
-        public float attackRange;
         
         private void Update()
         {

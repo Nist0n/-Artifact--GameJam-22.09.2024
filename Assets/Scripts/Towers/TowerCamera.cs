@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +8,6 @@ namespace Towers
 {
     public class TowerCamera : MonoBehaviour
     {
-        [SerializeField] private Camera camComponent;
-        
         [SerializeField] private float turnSpeed = 4.0f;
         [SerializeField] private GameObject tower;
         private float _targetDistance;
@@ -35,13 +34,18 @@ namespace Towers
         [SerializeField] private List<Collider> colliders;
         [SerializeField] private List<GameObject> hitEnemies;
 
+        private Camera _mainCamera;
+        private CinemachineCamera _currentCamera;
+        
         private void Start()
         {
             _searchRadius = GetComponentInParent<Tower>().attackRange + 5;
             _camTransform = transform;
             var position = _camTransform.position;
             _targetDistance = Vector3.Distance(position, tower.transform.position);
-            camComponent = GetComponent<Camera>();
+            
+            _mainCamera = Camera.main;
+            _currentCamera = GetComponent<CinemachineCamera>();
         }
         
         private void Update()
@@ -49,7 +53,7 @@ namespace Towers
             MoveCamera();
             
             Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
-            Ray ray = camComponent.ScreenPointToRay(center);
+            Ray ray = _mainCamera.ScreenPointToRay(center);
             List<RaycastHit> raycastHits = Physics.SphereCastAll(ray, crosshairRadius, _searchRadius).ToList();
             
             colliders = Physics.OverlapSphere(tower.transform.position, _searchRadius).ToList();
@@ -86,11 +90,10 @@ namespace Towers
                 foreach (var enemyHit in hitEnemies)
                 {
                     RaycastHit hit = raycastHits.Find(x => x.collider.gameObject == enemyHit);
-                    Vector3 screenPos = camComponent.WorldToScreenPoint(enemyHit.transform.position);
+                    Vector3 screenPos = _mainCamera.WorldToScreenPoint(enemyHit.transform.position);
                     
                     screenPos.z = 0;
                     float distance = Vector3.Distance(screenPos, center);
-                    Debug.Log(screenPos);
                     if (distance < minDistance)
                     {
                         minDistance = distance;
@@ -100,7 +103,7 @@ namespace Towers
 
                 currentTarget = closestEnemyToCenter;
                 var targetPos = currentTarget.transform.position;
-                Vector3 imagePos = camComponent.WorldToScreenPoint(targetPos);
+                Vector3 imagePos = _mainCamera.WorldToScreenPoint(targetPos);
 
                 float worldDistance = Vector3.Distance(_camTransform.position, targetPos);
                 float distanceT = Mathf.InverseLerp(maxScaleAtDistance, minScaleAtDistance, worldDistance);
@@ -108,17 +111,25 @@ namespace Towers
                 
                 reticle.rectTransform.transform.position = imagePos;
                 reticle.rectTransform.localScale = new Vector3(scale, scale, scale);
-                reticle.GetComponent<Image>().enabled = true;
+
+                if (_currentCamera.IsLive)
+                {
+                    reticle.GetComponent<Image>().enabled = true;
+                }
+                else
+                {
+                    DisableImage();
+                }
             }
             else
             {
-                reticle.GetComponent<Image>().enabled = false;
+                DisableImage();
             }
         }
 
         private void MoveCamera()
         {
-            if (!camComponent.enabled)
+            if (!_currentCamera.IsLive)
             {
                 return;
             }
@@ -128,8 +139,13 @@ namespace Towers
             
             _rotX = Mathf.Clamp(_rotX, MinTurnAngle, _maxTurnAngle);
             
-            _camTransform.eulerAngles = new Vector3(-_rotX, _camTransform.eulerAngles.y + y, 0);
-            _camTransform.position = tower.transform.position - _camTransform.forward * _targetDistance - _camTransform.right + 2 * Vector3.up;
+            tower.transform.eulerAngles = new Vector3(-_rotX, _camTransform.eulerAngles.y + y, 0);
+            // _camTransform.position = tower.transform.position - _camTransform.forward * _targetDistance - _camTransform.right + 2 * Vector3.up;
+        }
+
+        public void DisableImage()
+        {
+            reticle.GetComponent<Image>().enabled = false;
         }
         
         private void OnDrawGizmos()
