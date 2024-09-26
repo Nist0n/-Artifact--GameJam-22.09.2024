@@ -25,10 +25,6 @@ namespace Towers
         private bool _canShoot = true;
         public bool piloted;
 
-        [SerializeField] private List<Collider> collidersInRadius;
-
-        // [SerializeField] private GameConfig gameConfig;
-
         public List<GameObject> enemiesInRange;
         
         private void Update()

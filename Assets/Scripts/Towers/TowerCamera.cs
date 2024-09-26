@@ -82,11 +82,13 @@ namespace Towers
 
             if (enemies.Count == 0)
             {
+                DisableImage();
                 return;
             }
             
             if (raycastHits.Length == 0)
             {
+                DisableImage();
                 return;
             }
             
@@ -133,26 +135,16 @@ namespace Towers
                     reticle.GetComponent<Image>().enabled = true;
                 }
             }
-            else
-            {
-                DisableImage();
-            }
         }
 
         private void MoveCamera()
         {
-            if (!_currentCamera.IsLive)
-            {
-                return;
-            }
-            
             float y = Input.GetAxis("Mouse X") * turnSpeed;
             _rotX += Input.GetAxis("Mouse Y") * turnSpeed;
             
             _rotX = Mathf.Clamp(_rotX, MinTurnAngle, _maxTurnAngle);
             
             tower.transform.eulerAngles = new Vector3(-_rotX, _camTransform.eulerAngles.y + y, 0);
-            // _camTransform.position = tower.transform.position - _camTransform.forward * _targetDistance - _camTransform.right + 2 * Vector3.up;
         }
 
         public void DisableImage()
