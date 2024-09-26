@@ -22,6 +22,8 @@ public abstract class EnemyState : MonoBehaviour
 
     protected NavMeshAgent navMeshAgent => core.navMeshAgent;
 
+    protected GameObject soul => core.Soul;
+
     protected AnimationController animationController => core.animationController;
 
     public StateMachine Machine;

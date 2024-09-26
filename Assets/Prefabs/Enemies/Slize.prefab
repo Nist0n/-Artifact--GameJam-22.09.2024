@@ -1750,6 +1750,7 @@ MonoBehaviour:
   Damage: 0
   IsFreezed: 0
   IsAttacking: 0
+  Soul: {fileID: 1277085015814301893, guid: ff37baff706d86848addca8e6f134b91, type: 3}
   IsDamaged: 0
   Running: {fileID: 2078712706655089084}
   TakingDamage: {fileID: 6067134247834089327}
@@ -2146,7 +2147,7 @@ Transform:
   m_GameObject: {fileID: 8285031149877718258}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.533264, y: 1.2359987, z: -14.140259}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

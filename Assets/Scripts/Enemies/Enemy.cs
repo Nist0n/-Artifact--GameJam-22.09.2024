@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Enemies
@@ -49,7 +50,7 @@ namespace Enemies
             if (Health <= 0)
             {
                 Set(Death);
-                Invoke("KillEnemy", 1.5f);
+                Invoke("KillEnemy", 1f);
             }
             
             State.DoBranch();
