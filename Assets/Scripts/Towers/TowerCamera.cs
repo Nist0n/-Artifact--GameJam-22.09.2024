@@ -36,16 +36,20 @@ namespace Towers
 
         private Camera _mainCamera;
         private CinemachineCamera _currentCamera;
+
+        private Tower _towerComp;
         
         private void Start()
         {
-            _searchRadius = GetComponentInParent<Tower>().attackRange + 5;
+            _searchRadius = GetComponentInParent<Tower>().attackRange;
             _camTransform = transform;
             var position = _camTransform.position;
             _targetDistance = Vector3.Distance(position, tower.transform.position);
             
             _mainCamera = Camera.main;
             _currentCamera = GetComponent<CinemachineCamera>();
+
+            _towerComp = gameObject.GetComponentInParent<Tower>();
         }
         
         private void Update()
@@ -54,19 +58,19 @@ namespace Towers
             
             Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
             Ray ray = _mainCamera.ScreenPointToRay(center);
-            List<RaycastHit> raycastHits = Physics.SphereCastAll(ray, crosshairRadius, _searchRadius).ToList();
+            List<RaycastHit> raycastHits = Physics.SphereCastAll(ray, crosshairRadius, _searchRadius + 5).ToList();
             
-            colliders = Physics.OverlapSphere(tower.transform.position, _searchRadius).ToList();
-            List<GameObject> enemies = new();
-            foreach (var col in colliders)
-            {
-                GameObject colliderObject = col.gameObject;
-                
-                if (colliderObject.CompareTag("Enemy"))
-                {
-                    enemies.Add(colliderObject);
-                }
-            }
+            // colliders = Physics.OverlapSphere(tower.transform.position, _searchRadius).ToList();
+            List<GameObject> enemies = _towerComp.enemiesInRange;
+            // foreach (var enem in GameConfig.Instance.EnemyList)
+            // {
+            //     GameObject colliderObject = col.gameObject;
+            //     
+            //     if (colliderObject.CompareTag("Enemy"))
+            //     {
+            //         enemies.Add(colliderObject);
+            //     }
+            // }
 
             if (raycastHits.Count == 0)
             {
@@ -86,17 +90,16 @@ namespace Towers
             if (hitEnemies.Count > 0)
             {
                 GameObject closestEnemyToCenter = hitEnemies[0];
-                float minDistance = 1000; // Diameter
+                float minDistanceSqr = 1000 * 1000; // Random value squared
                 foreach (var enemyHit in hitEnemies)
                 {
-                    RaycastHit hit = raycastHits.Find(x => x.collider.gameObject == enemyHit);
                     Vector3 screenPos = _mainCamera.WorldToScreenPoint(enemyHit.transform.position);
                     
                     screenPos.z = 0;
-                    float distance = Vector3.Distance(screenPos, center);
-                    if (distance < minDistance)
+                    float distanceSqr = Vector3.SqrMagnitude(screenPos - center);
+                    if (distanceSqr < minDistanceSqr)
                     {
-                        minDistance = distance;
+                        minDistanceSqr = distanceSqr;
                         closestEnemyToCenter = enemyHit;
                     }
                 }
@@ -110,7 +113,7 @@ namespace Towers
                 float scale = Mathf.Lerp(minScale, maxScale, distanceT);
                 
                 reticle.rectTransform.transform.position = imagePos;
-                reticle.rectTransform.localScale = new Vector3(scale, scale, scale);
+                // reticle.rectTransform.localScale = new Vector3(scale, scale, scale);
 
                 if (_currentCamera.IsLive)
                 {

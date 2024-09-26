@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
             StartCoroutine(SpawnEnemy(enemy));
             var temp = Instantiate(bubble, _transformBubble, Quaternion.identity, transform);
             var randTime = Random.Range(2, 7f);
-            yield return new WaitForSeconds(randTime);
+            yield return new WaitForSeconds(randTime + 3f);
             Destroy(temp);
         }
         _enemies.Clear();
@@ -42,7 +42,7 @@ public class Spawner : MonoBehaviour
     private IEnumerator SpawnEnemy(GameObject enemy)
     {
         yield return new WaitForSeconds(3.75f);
-        var temp = Instantiate(enemy, transform.position, Quaternion.identity, transform);
+        var temp = Instantiate(enemy, transform.position, Quaternion.identity);
         _gameConfig.EnemyList.Add(temp);
     }
 

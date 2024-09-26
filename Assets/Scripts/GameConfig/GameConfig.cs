@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class GameConfig : MonoBehaviour
 {
+    public static GameConfig Instance;
+    
     [SerializeField] private List<GameObject> enemiesTypes;
     
     [SerializeField] private TextMeshProUGUI timerText;
@@ -31,6 +34,18 @@ public class GameConfig : MonoBehaviour
     private bool IsWaveStarted = false;
 
     private bool IsBossSpawned = false;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
