@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMap.unity
     guid: 2b13ecf4979b4e34b9b312842215723d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/VladMaterials/UI VLAD.unity
     guid: 16dd80e8c29f7cd42913c3ac07c26813
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/VladMaterials/Pause.unity
     guid: d47914b43f553e24088d03f02fd08799
   m_configObjects:

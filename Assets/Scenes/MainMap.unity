@@ -316,7 +316,6 @@ GameObject:
   - component: {fileID: 36637110}
   - component: {fileID: 36637109}
   - component: {fileID: 36637112}
-  - component: {fileID: 36637111}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -508,20 +507,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &36637111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 36637105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a205aaa06bbb2ac4094a1f43fb4edbcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseButton: {fileID: 1512829652}
-  background: {fileID: 220916812}
 --- !u!114 &36637112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3253,7 +3238,6 @@ GameObject:
   - component: {fileID: 393030510}
   - component: {fileID: 393030514}
   - component: {fileID: 393030512}
-  - component: {fileID: 393030515}
   - component: {fileID: 393030513}
   m_Layer: 5
   m_Name: QuitToMenuButton
@@ -3457,19 +3441,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 393030510}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &393030515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 393030508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd3bc69fd401aef44a6b8f7700b45390, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+      m_Calls:
+      - m_Target: {fileID: 804337113}
+        m_TargetAssemblyTypeName: GamePause, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &409116721
 GameObject:
   m_ObjectHideFlags: 0
@@ -7139,7 +7123,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseButton: {fileID: 1512829652}
   background: {fileID: 220916812}
-  canvasUI: {fileID: 804337112}
+  continueGameButton: {fileID: 36637105}
+  shopUI: {fileID: 1826320199}
+  camera: {fileID: 12805554}
 --- !u!114 &804337114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7217,6 +7203,7 @@ RectTransform:
   m_Children:
   - {fileID: 1512829653}
   - {fileID: 220916813}
+  - {fileID: 1826320200}
   - {fileID: 695848093}
   - {fileID: 812701638}
   - {fileID: 1540188260}
@@ -12165,7 +12152,6 @@ GameObject:
   - component: {fileID: 1512829657}
   - component: {fileID: 1512829656}
   - component: {fileID: 1512829655}
-  - component: {fileID: 1512829654}
   m_Layer: 5
   m_Name: PauseButton
   m_TagString: Untagged
@@ -12194,20 +12180,6 @@ RectTransform:
   m_AnchoredPosition: {x: 135.9748, y: -135.9748}
   m_SizeDelta: {x: 71.95, y: 71.95}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1512829654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1512829652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 881be5d6495637a44b52105ada52a048, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseButton: {fileID: 1512829652}
-  background: {fileID: 220916812}
 --- !u!114 &1512829655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14486,6 +14458,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1826320199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1826320200}
+  m_Layer: 5
+  m_Name: ShopUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1826320200
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826320199}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 804337117}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1847691403
 GameObject:
   m_ObjectHideFlags: 0
