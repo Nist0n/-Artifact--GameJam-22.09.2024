@@ -78,7 +78,7 @@ public class GamePause : MonoBehaviour
         background.SetActive(true);
     }
 
-    private void EscapeSettings
+    // private void EscapeSettings
 
     public void Quit()
     {

@@ -11,6 +11,7 @@ namespace Towers
         private Tower _currentTower;
         
         public CinemachineCamera mainCinemachineCamera;
+        public CinemachineCamera shopCinemachineCamera;
 
         private void Awake()
         {
@@ -31,11 +32,28 @@ namespace Towers
                 mainCinemachineCamera.Priority = 1;
             }
 
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                if (shopCinemachineCamera.IsLive)
+                {
+                    shopCinemachineCamera.Priority = 0;
+                    mainCinemachineCamera.Priority = 1;
+                }
+                else
+                {
+                    if (mainCinemachineCamera.IsLive)
+                    {
+                        mainCinemachineCamera.Priority = 0;
+                        shopCinemachineCamera.Priority = 1;
+                    }
+                }
+            }
+            
             if (!mainCinemachineCamera.IsLive)
             {
                 return;
             }
-            
+
             if (Input.GetMouseButtonDown(0))
             {
                 if (EventSystem.current.IsPointerOverGameObject()) // If clicking on UI
