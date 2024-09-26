@@ -629,22 +629,6 @@ PrefabInstance:
       propertyPath: reticle
       value: 
       objectReference: {fileID: 1150404450}
-    - target: {fileID: 1158741820204909890, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-      propertyPath: enemiesInRange.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1158741820204909890, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-      propertyPath: 'enemiesInRange.Array.data[0]'
-      value: 
-      objectReference: {fileID: 741961822}
-    - target: {fileID: 1158741820204909890, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-      propertyPath: 'enemiesInRange.Array.data[1]'
-      value: 
-      objectReference: {fileID: 1692901781}
-    - target: {fileID: 1158741820204909890, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-      propertyPath: 'enemiesInRange.Array.data[2]'
-      value: 
-      objectReference: {fileID: 1996626042}
     - target: {fileID: 2749078221014681615, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2634.3901

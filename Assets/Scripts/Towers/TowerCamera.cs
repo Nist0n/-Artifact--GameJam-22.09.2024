@@ -10,7 +10,6 @@ namespace Towers
     {
         [SerializeField] private float turnSpeed = 4.0f;
         [SerializeField] private GameObject tower;
-        private float _targetDistance;
         private const float MinTurnAngle = -90.0f;
         private float _maxTurnAngle;
         private float _rotX;
@@ -31,7 +30,6 @@ namespace Towers
 
         [SerializeField] private Image reticle;
 
-        [SerializeField] private List<Collider> colliders;
         [SerializeField] private List<GameObject> hitEnemies;
 
         private Camera _mainCamera;
@@ -43,8 +41,6 @@ namespace Towers
         {
             _searchRadius = GetComponentInParent<Tower>().attackRange;
             _camTransform = transform;
-            var position = _camTransform.position;
-            _targetDistance = Vector3.Distance(position, tower.transform.position);
             
             _mainCamera = Camera.main;
             _currentCamera = GetComponent<CinemachineCamera>();
@@ -54,12 +50,19 @@ namespace Towers
         
         private void Update()
         {
+            if (!_currentCamera.IsLive)
+            {
+                return;
+            }
+            
             MoveCamera();
             
             Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
             Ray ray = _mainCamera.ScreenPointToRay(center);
-            List<RaycastHit> raycastHits = Physics.SphereCastAll(ray, crosshairRadius, _searchRadius + 5).ToList();
-            
+            RaycastHit[] raycastHits = new RaycastHit[1000];
+            // int size = Physics.SphereCastNonAlloc(ray, crosshairRadius, raycastHits, _searchRadius + 5, 1 << 3);
+            int size = Physics.SphereCastNonAlloc(tower.transform.position, crosshairRadius, ray.direction, raycastHits,
+                _searchRadius + 3, 1 << 3);
             // colliders = Physics.OverlapSphere(tower.transform.position, _searchRadius).ToList();
             List<GameObject> enemies = _towerComp.enemiesInRange;
             // foreach (var enem in GameConfig.Instance.EnemyList)
@@ -72,18 +75,24 @@ namespace Towers
             //     }
             // }
 
-            if (raycastHits.Count == 0)
+            if (enemies.Count == 0)
             {
                 return;
             }
             
-            hitEnemies = new();
-            foreach (var hit in raycastHits)
+            if (raycastHits.Length == 0)
             {
-                _sphereGizmoPoint = hit.point;
-                if (enemies.Contains(hit.collider.gameObject))
+                
+                return;
+            }
+            
+            hitEnemies = new();
+            for (int i = 0; i < size; ++i)
+            {
+                _sphereGizmoPoint = raycastHits[i].point;
+                if (enemies.Contains(raycastHits[i].collider.gameObject))
                 {
-                    hitEnemies.Add(hit.collider.gameObject);
+                    hitEnemies.Add(raycastHits[i].collider.gameObject);
                 }
             }
 
@@ -118,10 +127,6 @@ namespace Towers
                 if (_currentCamera.IsLive)
                 {
                     reticle.GetComponent<Image>().enabled = true;
-                }
-                else
-                {
-                    DisableImage();
                 }
             }
             else

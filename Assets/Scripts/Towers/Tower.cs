@@ -33,22 +33,7 @@ namespace Towers
         
         private void Update()
         {
-            // collidersInRadius = Physics.OverlapSphere(transform.position, attackRange).ToList();
-            //
-            // if (collidersInRadius.Count == 0)
-            // {
-            //     ResetVariables();
-            //     return;
-            // }
-
             enemiesInRange = new List<GameObject>();
-            // foreach (var col in collidersInRadius)
-            // {
-            //     if (col.gameObject.CompareTag("Enemy"))
-            //     {
-            //         enemies.Add(col.gameObject);
-            //     }
-            // }
             if (GameConfig.Instance.EnemyList.Count == 0)
             {
                 ResetVariables();
