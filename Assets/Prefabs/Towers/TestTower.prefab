@@ -129,7 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e4380fe62c6b849954e645d081394f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camComponent: {fileID: 0}
   turnSpeed: 4
   tower: {fileID: 8560016364133692633}
   currentTarget: {fileID: 0}
