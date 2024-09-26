@@ -1338,6 +1338,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuButtonsGroup: {fileID: 1532125309}
   settingsButtonsGroup: {fileID: 232733838}
+  playGameButton: {fileID: 331084007}
+  quitButton: {fileID: 652158371}
 --- !u!114 &603684598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8976,6 +8978,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuButtonsGroup: {fileID: 1532125309}
   settingsButtonsGroup: {fileID: 232733838}
+  playGameButton: {fileID: 331084007}
+  quitButton: {fileID: 652158371}
 --- !u!114 &2059700875
 MonoBehaviour:
   m_ObjectHideFlags: 0

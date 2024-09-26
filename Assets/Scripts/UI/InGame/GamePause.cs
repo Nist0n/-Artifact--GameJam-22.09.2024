@@ -1,3 +1,4 @@
+using Towers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,10 +9,23 @@ public class GamePause : MonoBehaviour
     [SerializeField] GameObject canvasUI;
 
     public static bool gameIsPaused;
+    private Tower _isPiloted;
+
+    private void Start()
+    {
+    }
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameIsPaused = !gameIsPaused;
+            PauseGame();
+            pauseButton.SetActive(!pauseButton.activeSelf);
+            background.SetActive(!background.activeSelf);
+        }
+
+        if (Input.GetKeyDown(KeyCode.B) && _isPiloted.piloted == false)
         {
             gameIsPaused = !gameIsPaused;
             PauseGame();
