@@ -1,3 +1,4 @@
+using System.Collections;
 using Towers;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -15,13 +16,7 @@ public class GamePause : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            gameIsPaused = !gameIsPaused;
-            PauseGame();
-            pauseButton.SetActive(!pauseButton.activeSelf);
-            background.SetActive(!background.activeSelf);
-        }
+
 
         if (Input.GetKeyDown(KeyCode.B) && camera.IsLive && !gameIsPaused)
         {
@@ -36,11 +31,11 @@ public class GamePause : MonoBehaviour
             }
 
         }
-        if (background.activeSelf)
+        if (continueGameButton.activeSelf)
         {
             if (continueGameButton.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name == "Selected")
             {
-                Debug.Log("Workaet");
+                ResumeGame();
                 Invoke("CloseSettings", 0.2f);
             }
         }
@@ -68,21 +63,22 @@ public class GamePause : MonoBehaviour
         shopUI.SetActive(!shopUI.activeSelf);
     }
 
+    public void CloseSettings()
+    {
+        pauseButton.SetActive(true);
+        background.SetActive(false);
+    }
+
     public void OpenSettings()
     {
         gameIsPaused = !gameIsPaused;
         PauseGame();
         pauseButton.SetActive(false);
+        continueGameButton.SetActive(true);
         background.SetActive(true);
     }
 
-    public void CloseSettings()
-    {
-        Debug.Log("Workaet2");
-        ResumeGame();
-        pauseButton.SetActive(true);
-        background.SetActive(false);
-    }
+    private void EscapeSettings
 
     public void Quit()
     {

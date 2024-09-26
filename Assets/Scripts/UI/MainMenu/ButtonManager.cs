@@ -17,6 +17,7 @@ public class ButtonManager : MonoBehaviour
         {
             settingsButtonsGroup.SetActive(!settingsButtonsGroup.activeSelf);
             mainMenuButtonsGroup.SetActive(!mainMenuButtonsGroup.activeSelf);
+
         }
     }
 
