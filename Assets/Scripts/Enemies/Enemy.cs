@@ -75,6 +75,11 @@ namespace Enemies
         {
             StartCoroutine(ReceiveDamage());
         }
+
+        public void AttackCastle()
+        {
+            GameObject.FindGameObjectWithTag("Castle").GetComponent<CastleHealth>().ReceiveDamage(Damage);
+        }
         
         private IEnumerator ReceiveDamage()
         {

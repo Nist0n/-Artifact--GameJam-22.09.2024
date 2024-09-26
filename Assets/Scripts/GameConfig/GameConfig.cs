@@ -29,6 +29,8 @@ public class GameConfig : MonoBehaviour
 
     private float _waveTime = 15f;
 
+    public bool GameIsOverByLose = false;
+
     private float _countOfUnits;
 
     private bool IsWaveStarted = false;
@@ -87,6 +89,8 @@ public class GameConfig : MonoBehaviour
             GetSummoners(_countOfUnits);
             foreach (var spawner in _spawners)
             {
+                spawner.MaxTimeToSpawn *= 0.89f;
+                spawner.MinTimeToSpawn *= 0.92f;
                 StartCoroutine(spawner.StartSpawn());
             }
 
