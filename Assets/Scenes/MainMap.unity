@@ -8587,6 +8587,7 @@ GameObject:
   - component: {fileID: 461779441}
   - component: {fileID: 461779440}
   - component: {fileID: 461779439}
+  - component: {fileID: 461779442}
   m_Layer: 5
   m_Name: TowerButton_5
   m_TagString: Untagged
@@ -8698,6 +8699,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461779437}
   m_CullTransparentMesh: 1
+--- !u!95 &461779442
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461779437}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6b1b5991158ea1145a53311f595e77f3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &468580373
 GameObject:
   m_ObjectHideFlags: 0
@@ -13899,6 +13922,7 @@ MonoBehaviour:
   - {fileID: 461779439}
   - {fileID: 2039223853}
   shopButtonsAnimator: {fileID: 969042570}
+  animationDuration: 0.2
   gameIsPaused: 0
 --- !u!114 &804337114
 MonoBehaviour:
@@ -16866,19 +16890,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 969042568}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 804337113}
-        m_TargetAssemblyTypeName: GamePause, Assembly-CSharp
-        m_MethodName: SelectedTower
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &969042568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24845,7 +24857,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 15083d6ea6c969442ac3a5cdfdc36a0d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -28940,7 +28952,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4b25b1cf5548f434f95949000c0d5fdc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -29951,6 +29963,7 @@ GameObject:
   - component: {fileID: 1694470525}
   - component: {fileID: 1694470524}
   - component: {fileID: 1694470523}
+  - component: {fileID: 1694470526}
   m_Layer: 5
   m_Name: TowerButton_4
   m_TagString: Untagged
@@ -30062,6 +30075,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694470521}
   m_CullTransparentMesh: 1
+--- !u!95 &1694470526
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694470521}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 93e81ad7f8466d64ca68468f16eb9051, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1706702842
 GameObject:
   m_ObjectHideFlags: 0
@@ -35186,6 +35221,7 @@ GameObject:
   - component: {fileID: 1953454643}
   - component: {fileID: 1953454642}
   - component: {fileID: 1953454641}
+  - component: {fileID: 1953454644}
   m_Layer: 5
   m_Name: TowerButton_3
   m_TagString: Untagged
@@ -35297,6 +35333,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953454639}
   m_CullTransparentMesh: 1
+--- !u!95 &1953454644
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953454639}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a21744d565e333e43976d9c816a4ab52, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1965085467
 GameObject:
   m_ObjectHideFlags: 0
@@ -35418,6 +35476,7 @@ GameObject:
   - component: {fileID: 1966023131}
   - component: {fileID: 1966023130}
   - component: {fileID: 1966023129}
+  - component: {fileID: 1966023132}
   m_Layer: 5
   m_Name: TowerButton_2
   m_TagString: Untagged
@@ -35490,19 +35549,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1966023130}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1966023130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35541,6 +35588,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966023127}
   m_CullTransparentMesh: 1
+--- !u!95 &1966023132
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966023127}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f4c9a69a5fa915842b37139235c456eb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1969917146
 GameObject:
   m_ObjectHideFlags: 0
@@ -36827,6 +36896,7 @@ GameObject:
   - component: {fileID: 2039223855}
   - component: {fileID: 2039223854}
   - component: {fileID: 2039223853}
+  - component: {fileID: 2039223856}
   m_Layer: 5
   m_Name: TowerButton_6
   m_TagString: Untagged
@@ -36938,6 +37008,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039223851}
   m_CullTransparentMesh: 1
+--- !u!95 &2039223856
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039223851}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 41b64b689af560040bc17d034b71c287, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2049576913
 GameObject:
   m_ObjectHideFlags: 0
