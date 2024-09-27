@@ -60,6 +60,12 @@ public class GameConfig : MonoBehaviour
 
     private void Update()
     {
+        if (GameIsOverByLose)
+        {
+            GameLost();
+            return;
+        }
+        
         GameTime += Time.deltaTime;
         
         Timer();
@@ -106,11 +112,6 @@ public class GameConfig : MonoBehaviour
             else _waveTime += 75;
 
             IsWaveStarted = false;
-        }
-
-        if (GameIsOverByLose)
-        {
-            GameLost();
         }
     }
 

@@ -28,7 +28,9 @@ namespace Enemies
                 if (GameConfig.Instance.GameIsOverByLose)
                 {
                     Set(Celebrating);
+                    return;
                 }
+                
                 if (IsFreezed)
                 {
                     Set(Freeze);
