@@ -49,7 +49,7 @@ namespace Towers
         
         private void Update()
         {
-            if (Time.timeScale == 0) // If game is paused
+            if (GamePause.Instance.gameIsPaused) // If game is paused
             {
                 return;
             } 
