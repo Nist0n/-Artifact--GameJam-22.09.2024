@@ -35,22 +35,11 @@ public class GamePause : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Escape))
         {
-            if (gameIsPaused)
-            {
-                gameIsPaused = !gameIsPaused;
-                Time.timeScale = 0f;
-                pauseButton.SetActive(!pauseButton.activeSelf);
-                continueGameButton.SetActive(!continueGameButton.activeSelf);
-                background.SetActive(!background.activeSelf);
-            }
-            if (!gameIsPaused)
-            {
-                gameIsPaused = !gameIsPaused;
-                Time.timeScale = 1f;
-                pauseButton.SetActive(!pauseButton.activeSelf);
-                continueGameButton.SetActive(!continueGameButton.activeSelf);
-                background.SetActive(!background.activeSelf);
-            }
+            gameIsPaused = !gameIsPaused;
+            PauseGame();
+            pauseButton.SetActive(!pauseButton.activeSelf);
+            continueGameButton.SetActive(!continueGameButton.activeSelf);
+            background.SetActive(!background.activeSelf);
         }
         
         if (pauseButton.activeSelf)
