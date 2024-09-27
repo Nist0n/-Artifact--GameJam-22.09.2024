@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GamePause : MonoBehaviour
 {
+    public static GamePause Instance;
+    
     [SerializeField] GameObject pauseButton;
     [SerializeField] GameObject background;
     [SerializeField] GameObject continueGameButton;
@@ -13,8 +15,20 @@ public class GamePause : MonoBehaviour
     [SerializeField] CinemachineCamera cameraMain;
     [SerializeField] CinemachineCamera cameraShop;
 
-    public static bool gameIsPaused;
+    public bool gameIsPaused;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
     private void Update()
     {
         StartCoroutine(ShopSwitch());
@@ -43,7 +57,7 @@ public class GamePause : MonoBehaviour
         {
             if (pauseButton.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name == "Selected")
             {
-                Invoke("OpenSettings", 0.1f);
+                Invoke("OpenSettings", 0.01f);
             }
 
         }
@@ -53,7 +67,7 @@ public class GamePause : MonoBehaviour
             if (continueGameButton.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name == "Selected")
             {
                 ResumeGame();
-                Invoke("CloseSettings", 0.1f);
+                Invoke("CloseSettings", 0.01f);
             }
         }
     }
