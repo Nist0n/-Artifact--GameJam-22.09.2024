@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using TMPro;
+using Unity.Cinemachine;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,6 +13,9 @@ public class GameConfig : MonoBehaviour
     [SerializeField] private List<GameObject> enemiesTypes;
     
     [SerializeField] private TextMeshProUGUI timerText;
+
+    [SerializeField] private CinemachineCamera loseCinemachineCamera;
+    
 
     public float GameTime;
 
@@ -103,6 +107,11 @@ public class GameConfig : MonoBehaviour
 
             IsWaveStarted = false;
         }
+
+        if (GameIsOverByLose)
+        {
+            GameLost();
+        }
     }
 
     private void GetSummoners(float enemyCount)
@@ -121,5 +130,10 @@ public class GameConfig : MonoBehaviour
         if (_timeSeconds < 60) _timeSeconds += Time.deltaTime;
         else _timeSeconds = 0;
         timerText.text = $"Время: {_timeMinutes}:{_timeSeconds.ToString("00")}";
+    }
+
+    private void GameLost()
+    {
+        loseCinemachineCamera.Priority = 2;
     }
 }

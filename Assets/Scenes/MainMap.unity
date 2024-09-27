@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 12805555}
   - component: {fileID: 12805554}
   m_Layer: 0
-  m_Name: CinemachineCamera
+  m_Name: MainCinemachineCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11842,6 +11842,7 @@ MonoBehaviour:
   shopUI: {fileID: 1826320199}
   cameraMain: {fileID: 12805554}
   cameraShop: {fileID: 1112695003}
+  gameIsPaused: 0
 --- !u!114 &804337114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13701,6 +13702,7 @@ MonoBehaviour:
   enemiesTypes:
   - {fileID: 7306416952122180914, guid: dee0c1af7105f954eb310dad81da4a2e, type: 3}
   timerText: {fileID: 812701639}
+  loseCinemachineCamera: {fileID: 2051529544}
   GameTime: 0
   EnemyList: []
   _spawners: []
@@ -20797,7 +20799,7 @@ GameObject:
   - component: {fileID: 1404198598}
   - component: {fileID: 1404198602}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Castle
   m_TagString: Castle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23253,7 +23255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1540188260
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29720,6 +29722,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051512485}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2051529543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2051529545}
+  - component: {fileID: 2051529544}
+  m_Layer: 0
+  m_Name: LoseCinemachineCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2051529544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051529543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Priority:
+    Enabled: 0
+    m_Value: 0
+  OutputChannel: 1
+  StandbyUpdate: 2
+  m_StreamingVersion: 20230301
+  m_LegacyPriority: 0
+  Target:
+    TrackingTarget: {fileID: 0}
+    LookAtTarget: {fileID: 0}
+    CustomLookAtTarget: 0
+  Lens:
+    FieldOfView: 60.000004
+    OrthographicSize: 5
+    NearClipPlane: 0.3
+    FarClipPlane: 394.5
+    Dutch: 0
+    ModeOverride: 0
+    PhysicalProperties:
+      GateFit: 2
+      SensorSize: {x: 21.946, y: 16.002}
+      LensShift: {x: 0, y: 0}
+      FocusDistance: 10
+      Iso: 200
+      ShutterSpeed: 0.005
+      Aperture: 16
+      BladeCount: 5
+      Curvature: {x: 2, y: 11}
+      BarrelClipping: 0.25
+      Anamorphism: 0
+  BlendHint: 0
+--- !u!4 &2051529545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051529543}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.3547586, y: -0.39370355, z: 0.16893235, w: -0.8310269}
+  m_LocalPosition: {x: 525.26056, y: 11.786644, z: 163.92107}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2061934135
 GameObject:
   m_ObjectHideFlags: 0
@@ -31572,3 +31649,4 @@ SceneRoots:
   - {fileID: 2000104255}
   - {fileID: 12805555}
   - {fileID: 1112695004}
+  - {fileID: 2051529545}
