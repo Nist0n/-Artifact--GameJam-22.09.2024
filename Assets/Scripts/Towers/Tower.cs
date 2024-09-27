@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -25,6 +24,9 @@ namespace Towers
         private bool _canShoot = true;
         public bool piloted;
 
+        [SerializeField] private float buffDuration;
+        public bool isPowered;
+        
         public List<GameObject> enemiesInRange;
         
         private void Update()
@@ -139,8 +141,34 @@ namespace Towers
             Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(transform.position, attackRange);
         }
+
+        public void EmpowerTower()
+        {
+            if (isPowered)
+            {
+                return;
+            }
+            
+            StartCoroutine(Buff());
+            StartCoroutine(PowerCooldown());
+        }
+
+        private IEnumerator Buff()
+        {
+            float prev = fireRate;
+            fireRate *= 0.7f;
+            yield return new WaitForSeconds(buffDuration);
+            fireRate = prev;
+        }
+
+        private IEnumerator PowerCooldown()
+        {
+            isPowered = true;
+            yield return new WaitForSeconds(60f);
+            isPowered = false;
+        }
     }
-    
+
     enum AttackType
     {
         
