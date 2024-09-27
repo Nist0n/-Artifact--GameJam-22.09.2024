@@ -3,12 +3,6 @@ using UnityEngine;
 
 public class AmberBomb : ActiveAbility
 {
-    private void Start()
-    {
-        Timer = 45f;
-        //Cost = 
-    }
-
     private void Update()
     {
         CheckAbilityCooldown();
@@ -25,5 +19,10 @@ public class AmberBomb : ActiveAbility
                 AbilityCooldown = 0;
             }
         }
+    }
+
+    public void ActivateAbility(Vector3 pos)
+    {
+        IsAbilityUsed = true;
     }
 }
