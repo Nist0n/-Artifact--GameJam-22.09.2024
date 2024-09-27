@@ -9,13 +9,17 @@ public class AbilitiesSlots : MonoBehaviour
     public List<GameObject> Abilities = new List<GameObject>(3);
     
     [SerializeField] private List<RectTransform> _screenPositions;
+
+    public GameObject Ability;
     
+    [ContextMenu("CheckForAbility")]
     public void CheckForActiveAbility()
     {
         foreach (GameObject ability in Abilities)
         {
-            if (ability.GetComponent<ActiveAbility>())
+            if (ability.name == "AmberBomb")
             {
+                Ability = ability;
                 HasActiveAbility = true;
             }
         }

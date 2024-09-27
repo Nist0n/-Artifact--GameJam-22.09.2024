@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 4500373888269952220}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.266674, y: -1.576844, z: 2.5694664}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsAbilityUsed: 0
-  AbilityCooldown: 0
+  AbilityCooldown: 45
   Timer: 0
-  RangeOfAction: 0
-  ActionCollider: {fileID: 0}
+  RangeOfAction: 3
+  ActionCollider: {fileID: 4883840351844022898, guid: 6b3bad0252566754f8bcfbb871d41eb5, type: 3}
   ActionRadius: {fileID: 0}
   Cost: 0
