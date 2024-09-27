@@ -11,6 +11,8 @@ public abstract class ActiveAbility : MonoBehaviour
     public float RangeOfAction;
 
     public GameObject ActionCollider;
+    
+    public GameObject ActionRadius;
 
     public float Cost;
 }

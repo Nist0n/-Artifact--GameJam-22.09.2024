@@ -21,8 +21,8 @@ public class AmberBomb : ActiveAbility
         }
     }
 
-    public void ActivateAbility(Vector3 pos)
+    public void ActivateAbilityRadius(Vector3 pos)
     {
-        IsAbilityUsed = true;
+        ActionRadius.transform.position = pos;
     }
 }
