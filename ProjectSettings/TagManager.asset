@@ -8,6 +8,7 @@ TagManager:
   - Tower Camera
   - Castle
   - Enemy
+  - Range
   layers:
   - Default
   - TransparentFX

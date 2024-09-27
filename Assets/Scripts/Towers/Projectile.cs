@@ -27,7 +27,7 @@ namespace Towers
         private void OnTriggerEnter(Collider other)
         {
             Enemy enemy = CurrentAutoTarget.GetComponent<Enemy>();
-            enemy.ReceiveDamageActivate();
+            enemy.ReceiveDamageActivate(damage);
             StartCoroutine(ActivateHit());
         }
 

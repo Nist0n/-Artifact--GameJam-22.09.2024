@@ -79,9 +79,9 @@ namespace Enemies
             StartCoroutine(FreezeEnemy());
         }
         
-        public void ReceiveDamageActivate()
+        public void ReceiveDamageActivate(float damage)
         {
-            StartCoroutine(ReceiveDamage());
+            StartCoroutine(ReceiveDamage(damage));
         }
 
         public void AttackCastle()
@@ -89,10 +89,10 @@ namespace Enemies
             GameObject.FindGameObjectWithTag("Castle").GetComponent<CastleHealth>().ReceiveDamage(Damage);
         }
         
-        private IEnumerator ReceiveDamage()
+        private IEnumerator ReceiveDamage(float damage)
         {
             IsDamaged = true;
-            Health -= 5;
+            Health -= damage;
             yield return new WaitForSeconds(0.1f);
             IsDamaged = false;
         }

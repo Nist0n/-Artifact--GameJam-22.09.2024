@@ -8,15 +8,24 @@ public class AmberBomb : ActiveAbility
         CheckAbilityCooldown();
     }
 
+    public void ActivateAbility(Vector3 pos)
+    {
+        if (!IsAbilityUsed)
+        {
+            Instantiate(ActionCollider, pos, Quaternion.identity);
+            IsAbilityUsed = true;
+        }
+    }
+
     private void CheckAbilityCooldown()
     {
         if (IsAbilityUsed)
         {
-            AbilityCooldown += Time.deltaTime;
-            if (AbilityCooldown > Timer)
+            Timer += Time.deltaTime;
+            if (Timer > AbilityCooldown)
             {
                 IsAbilityUsed = false;
-                AbilityCooldown = 0;
+                Timer = 0;
             }
         }
     }

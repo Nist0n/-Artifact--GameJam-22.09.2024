@@ -7,6 +7,9 @@ namespace Towers
 {
     public class TowerCamera : MonoBehaviour
     {
+        private GameObject _abilityRange;
+        private AbilitiesSlots _abilities;
+        [SerializeField] private bool _isAbilityActived = false;
         [SerializeField] private float turnSpeed = 4.0f;
         [SerializeField] private GameObject tower;
         private const float MinTurnAngle = -90.0f;
@@ -38,6 +41,8 @@ namespace Towers
         
         private void Start()
         {
+            _abilityRange = GameObject.FindGameObjectWithTag("Range");
+            _abilities = GetComponentInParent<AbilitiesSlots>();
             _searchRadius = GetComponentInParent<Tower>().attackRange;
             _camTransform = transform;
             
@@ -65,6 +70,37 @@ namespace Towers
             Ray ray = _mainCamera.ViewportPointToRay(new Vector3 (0.5f, 0.5f, 0));;
             
             RaycastHit[] raycastHits = new RaycastHit[1000];
+            
+            if (_isAbilityActived)
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    _isAbilityActived = false;
+                    _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<AmberBomb>().RangeOfAction;
+                    _abilityRange.transform.position = new Vector3(1000f, 1000f, 1000f);
+                    return;
+                }
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, _searchRadius + 7, 1 << 0)) _abilities.Ability.GetComponent<AmberBomb>().ActivateAbilityRadius(hit.point);
+                if (Input.GetKey(KeyCode.E))
+                {
+                    _abilities.Ability.GetComponent<AmberBomb>().ActivateAbility(hit.point);
+                    _isAbilityActived = false;
+                    _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<AmberBomb>().RangeOfAction;
+                    _abilityRange.transform.position = new Vector3(1000f, 1000f, 1000f);
+                }
+                return;
+            }
+            
+            if (Input.GetMouseButton(1) && !_isAbilityActived)
+            {
+                if (_abilities.HasActiveAbility && !_abilities.Ability.GetComponent<AmberBomb>().IsAbilityUsed)
+                {
+                    _abilityRange.transform.localScale *= _abilities.Ability.GetComponent<AmberBomb>().RangeOfAction;
+                    _abilities.Ability.GetComponent<AmberBomb>().ActionRadius = _abilityRange;
+                    _isAbilityActived = true;
+                }
+            }
 
             int size = Physics.SphereCastNonAlloc(tower.transform.position, crosshairRadius, ray.direction, raycastHits,
                 _searchRadius + 3, 1 << 3);
