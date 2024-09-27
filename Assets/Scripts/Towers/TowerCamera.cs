@@ -65,6 +65,7 @@ namespace Towers
             Ray ray = _mainCamera.ViewportPointToRay(new Vector3 (0.5f, 0.5f, 0));;
             
             RaycastHit[] raycastHits = new RaycastHit[1000];
+
             int size = Physics.SphereCastNonAlloc(tower.transform.position, crosshairRadius, ray.direction, raycastHits,
                 _searchRadius + 3, 1 << 3);
             
