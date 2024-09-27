@@ -27,7 +27,7 @@ public class GameConfig : MonoBehaviour
 
     private float _percentAdvantage = 15;
 
-    private float _waveTime = 15f;
+    private float _waveTime = 0f;
 
     public bool GameIsOverByLose = false;
 
