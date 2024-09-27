@@ -10,7 +10,7 @@ public class AttackingState : EnemyState
     public override void Do()
     {
         animationController.Attacking();
-        if (!IsAttacking)
+        if (!IsAttacking || GameConfig.Instance.GameIsOverByLose)
         {
             IsComplete = true;
         }
