@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Towers
 {
     public class Tower : MonoBehaviour
     {
-        [SerializeField] protected int damage;
-        [SerializeField] private float fireRate; // Time between shots (in seconds)
+        public int damage;
+        public float fireRate; // Time between shots (in seconds)
         public float attackRange;
 
         [SerializeField] private GameObject projectilePrefab;
@@ -24,10 +23,24 @@ namespace Towers
         private bool _canShoot = true;
         public bool piloted;
 
-        [SerializeField] private float buffDuration;
+        public float buffDuration;
         public bool isPowered;
         
         public List<GameObject> enemiesInRange;
+
+        public float buffedFireRate;
+        
+        private int _initialDamage;
+        private float _initialFireRate;
+        private float _initialAttackRange;
+        
+        private void Start()
+        {
+            _initialDamage = damage;
+            _initialFireRate = fireRate;
+            _initialAttackRange = attackRange;
+            buffedFireRate = fireRate * 0.7f;
+        }
         
         private void Update()
         {
@@ -81,7 +94,7 @@ namespace Towers
                 {
                     if (!piloted)
                     {
-                        // Another coroutine to boost tower stats for a short period of time
+                        SuppressTower();
                         StartCoroutine(Shoot(transform.position, CurrentAutoTarget.transform.position,
                             CurrentAutoTarget)); 
                     }
@@ -100,12 +113,13 @@ namespace Towers
                     var enemyPos = towerCameraComp.currentTarget.transform.position;
                     var position = transform.position;
                     
-                    float distance = Vector3.Distance(position, enemyPos);
-                    if (distance > attackRange)
+                    float sqrDistance = Vector3.SqrMagnitude(position - enemyPos);
+                    if (sqrDistance > attackRange * attackRange)
                     {
                         return;
                     }
                     
+                    ResetTowerStats();
                     StartCoroutine(Shoot(position, enemyPos, towerCameraComp.currentTarget));
                 }
             }
@@ -150,22 +164,34 @@ namespace Towers
             }
             
             StartCoroutine(Buff());
-            StartCoroutine(PowerCooldown());
+            StartCoroutine(BuffCooldown());
         }
 
         private IEnumerator Buff()
         {
             float prev = fireRate;
-            fireRate *= 0.7f;
+            fireRate = buffedFireRate;
             yield return new WaitForSeconds(buffDuration);
             fireRate = prev;
         }
 
-        private IEnumerator PowerCooldown()
+        private IEnumerator BuffCooldown()
         {
             isPowered = true;
             yield return new WaitForSeconds(60f);
             isPowered = false;
+        }
+
+        public void ResetTowerStats()
+        {
+            damage = _initialDamage;
+            fireRate = _initialFireRate;
+        }
+
+        public void SuppressTower()
+        {
+            damage = _initialDamage / 2;
+            fireRate = _initialFireRate * 2;
         }
     }
 
