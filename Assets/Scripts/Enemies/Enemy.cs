@@ -82,9 +82,9 @@ namespace Enemies
             Destroy(this.gameObject);
         }
 
-        public void FreezeEnemyActivate()
+        public void FreezeEnemyActivate(float freezeTime)
         {
-            StartCoroutine(FreezeEnemy());
+            StartCoroutine(FreezeEnemy(freezeTime));
         }
         
         public void ReceiveDamageActivate(float damage)
@@ -105,10 +105,10 @@ namespace Enemies
             IsDamaged = false;
         }
         
-        private IEnumerator FreezeEnemy()
+        private IEnumerator FreezeEnemy(float freezeTime)
         {
             IsFreezed = true;
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(freezeTime);
             IsFreezed = false;
         }
         
