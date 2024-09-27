@@ -3,19 +3,35 @@ using Towers;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GamePause : MonoBehaviour
 {
     public static GamePause Instance;
-    
+
     [SerializeField] GameObject pauseButton;
     [SerializeField] GameObject background;
     [SerializeField] GameObject continueGameButton;
     [SerializeField] GameObject shopUI;
+
     [SerializeField] CinemachineCamera cameraMain;
     [SerializeField] CinemachineCamera cameraShop;
 
+    public Button[] towerButtons;
+
+    public Animator shopButtonsAnimator;
+
+    private int selectedTowerIndex = -1;
+
     public bool gameIsPaused;
+
+    private void Start()
+    {
+        foreach (Button button in towerButtons)
+        {
+            button.onClick.AddListener(() => OnTowerSelected(button));
+        }
+    }
 
     private void Awake()
     {
@@ -28,7 +44,7 @@ public class GamePause : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
     private void Update()
     {
         StartCoroutine(ShopSwitch());
@@ -41,7 +57,7 @@ public class GamePause : MonoBehaviour
             continueGameButton.SetActive(!continueGameButton.activeSelf);
             background.SetActive(!background.activeSelf);
         }
-        
+
         if (pauseButton.activeSelf)
         {
             if (pauseButton.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name == "Selected")
@@ -72,6 +88,7 @@ public class GamePause : MonoBehaviour
             Time.timeScale = 1;
         }
     }
+
     public void ResumeGame()
     {
         Time.timeScale = 1;
@@ -93,16 +110,69 @@ public class GamePause : MonoBehaviour
         background.SetActive(true);
     }
 
-    // private void EscapeSettings
-
     public void Quit()
     {
         SceneManager.LoadScene("UI VLAD");
         ResumeGame();
     }
 
-    IEnumerator ShopSwitch()
+    private void OnTowerSelected(Button selectedButton)
     {
+        foreach (Button button in towerButtons)
+        {
+            button.interactable = false;
+        }
+
+        selectedTowerIndex = System.Array.IndexOf(towerButtons, selectedButton);
+        shopButtonsAnimator.SetTrigger("SelectTower");
+
+        StartCoroutine(ShowUpgradeSlots(selectedButton));
+    }
+
+    IEnumerator ShowUpgradeSlots(Button selectedButton)
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        Transform tower = selectedButton.transform;
+        for (int i = 0; i < tower.childCount; i++)
+        {
+            Transform slot = tower.GetChild(i);
+            slot.gameObject.SetActive(true);
+
+            Button slotButton = slot.GetComponent<Button>();
+            int slotIndex = i;
+            slotButton.onClick.AddListener(() => OnUpgradeSlotSelected(slotButton, slotIndex));
+        }
+    }
+
+    private void OnUpgradeSlotSelected(Button selectedSlot, int slotIndex)
+    {
+        Transform slotTransform = selectedSlot.transform;
+        for (int i = 0; i < slotTransform.childCount; i++)
+        {
+            Transform upgrade = slotTransform.GetChild(i);
+            upgrade.gameObject.SetActive(true);
+
+            Button upgradeButton = upgrade.GetComponent<Button>();
+            int upgradeIndex = i;
+            upgradeButton.onClick.AddListener(() => OnAbilitySelected(selectedSlot, upgradeButton, upgradeIndex));
+        }
+    }
+
+    private void OnAbilitySelected(Button selectedSlot, Button chosenUpgrade, int upgradeIndex)
+    {
+        for (int i = 0; i < selectedSlot.transform.childCount; i++)
+        {
+            selectedSlot.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+        Image slotImage = selectedSlot.GetComponent<Image>();
+        Image upgradeImage = chosenUpgrade.GetComponent<Image>();
+        slotImage.sprite = upgradeImage.sprite;
+    }
+
+   IEnumerator ShopSwitch()
+   {
         if (Input.GetKeyDown(KeyCode.B) && cameraMain.IsLive && !gameIsPaused)
         {
             pauseButton.SetActive(!pauseButton.activeSelf);
@@ -115,5 +185,6 @@ public class GamePause : MonoBehaviour
             shopUI.SetActive(!shopUI.activeSelf);
             yield return new WaitForSeconds(1f);
         }
-    }
+   }
 }
+
