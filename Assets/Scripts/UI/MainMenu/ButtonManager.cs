@@ -31,8 +31,8 @@ public class ButtonManager : MonoBehaviour
 
     private IEnumerator ChangeCamera()
     {
-        sphereCamera.Priority = 1;
-        canvas.GetComponent<Canvas>().enabled = false;
+        // sphereCamera.Priority = 1;
+        // canvas.GetComponent<Canvas>().enabled = false;
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("MainMap");
     }

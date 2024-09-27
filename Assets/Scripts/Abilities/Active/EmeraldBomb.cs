@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class AmberBomb : ActiveAbility
+public class EmeraldBomb : ActiveAbility
 {
     private void Update()
     {

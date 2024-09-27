@@ -15,6 +15,8 @@ public abstract class Core : MonoBehaviour
 
     public float Health;
 
+    public float MaxHealth;
+
     public float Damage;
 
     public bool IsFreezed = false;

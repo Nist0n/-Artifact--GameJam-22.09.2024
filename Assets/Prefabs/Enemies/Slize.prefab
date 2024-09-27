@@ -1835,10 +1835,12 @@ MonoBehaviour:
   navMeshAgent: {fileID: 3300995936046839246}
   animationController: {fileID: 3005919790545713870}
   animator: {fileID: 2128716366485521467}
-  Health: 10
+  Health: 0
+  MaxHealth: 15
   Damage: 5
   IsFreezed: 0
   IsAttacking: 0
+  IsCelebrating: 0
   Soul: {fileID: 1277085015814301893, guid: ff37baff706d86848addca8e6f134b91, type: 3}
   IsDamaged: 0
   Running: {fileID: 2078712706655089084}

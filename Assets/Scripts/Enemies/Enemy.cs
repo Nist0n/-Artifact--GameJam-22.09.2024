@@ -17,12 +17,15 @@ namespace Enemies
         
         private void Start()
         {
+            Health = MaxHealth;
             SetupInstances();
             Set(Running);
         }
 
         private void Update()
         {
+            Health = Mathf.Clamp(Health, 0, MaxHealth);
+            
             if (State.IsComplete)
             {
                 if (GameConfig.Instance.GameIsOverByLose)
@@ -62,6 +65,11 @@ namespace Enemies
             }
             
             State.DoBranch();
+        }
+
+        public void HealHP(float heal)
+        {
+            Health += heal;
         }
 
         private void FixedUpdate()

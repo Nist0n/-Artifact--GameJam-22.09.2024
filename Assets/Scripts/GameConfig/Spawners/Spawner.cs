@@ -45,7 +45,7 @@ public class Spawner : MonoBehaviour
     private IEnumerator SpawnEnemy(GameObject enemy)
     {
         yield return new WaitForSeconds(3.75f);
-        var temp = Instantiate(enemy, transform.position, Quaternion.identity);
+        var temp = Instantiate(enemy, transform.position, Quaternion.identity, transform);
         _gameConfig.EnemyList.Add(temp);
     }
 

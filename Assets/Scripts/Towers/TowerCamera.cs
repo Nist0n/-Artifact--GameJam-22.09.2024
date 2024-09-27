@@ -76,17 +76,17 @@ namespace Towers
                 if (Input.GetMouseButton(0))
                 {
                     _isAbilityActived = false;
-                    _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<AmberBomb>().RangeOfAction;
+                    _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction;
                     _abilityRange.transform.position = new Vector3(1000f, 1000f, 1000f);
                     return;
                 }
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, _searchRadius + 7, 1 << 0)) _abilities.Ability.GetComponent<AmberBomb>().ActivateAbilityRadius(hit.point);
+                if (Physics.Raycast(ray, out hit, _searchRadius + 7, 1 << 0)) _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbilityRadius(hit.point);
                 if (Input.GetKey(KeyCode.E))
                 {
-                    _abilities.Ability.GetComponent<AmberBomb>().ActivateAbility(hit.point);
+                    _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbility(hit.point);
                     _isAbilityActived = false;
-                    _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<AmberBomb>().RangeOfAction;
+                    _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction;
                     _abilityRange.transform.position = new Vector3(1000f, 1000f, 1000f);
                 }
                 return;
@@ -94,10 +94,10 @@ namespace Towers
             
             if (Input.GetMouseButton(1) && !_isAbilityActived)
             {
-                if (_abilities.HasActiveAbility && !_abilities.Ability.GetComponent<AmberBomb>().IsAbilityUsed)
+                if (_abilities.HasActiveAbility && !_abilities.Ability.GetComponent<ActiveAbility>().IsAbilityUsed)
                 {
-                    _abilityRange.transform.localScale *= _abilities.Ability.GetComponent<AmberBomb>().RangeOfAction;
-                    _abilities.Ability.GetComponent<AmberBomb>().ActionRadius = _abilityRange;
+                    _abilityRange.transform.localScale *= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction;
+                    _abilities.Ability.GetComponent<ActiveAbility>().ActionRadius = _abilityRange;
                     _isAbilityActived = true;
                 }
             }

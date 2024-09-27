@@ -15,4 +15,31 @@ public abstract class ActiveAbility : MonoBehaviour
     public GameObject ActionRadius;
 
     public float Cost;
+
+    public void ActivateAbility(Vector3 pos)
+    {
+        if (!IsAbilityUsed)
+        {
+            Instantiate(ActionCollider, pos, Quaternion.identity);
+            IsAbilityUsed = true;
+        }
+    }
+    
+    public void ActivateAbilityRadius(Vector3 pos)
+    {
+        ActionRadius.transform.position = pos;
+    }
+    
+    protected void CheckAbilityCooldown()
+    {
+        if (IsAbilityUsed)
+        {
+            Timer += Time.deltaTime;
+            if (Timer > AbilityCooldown)
+            {
+                IsAbilityUsed = false;
+                Timer = 0;
+            }
+        }
+    }
 }

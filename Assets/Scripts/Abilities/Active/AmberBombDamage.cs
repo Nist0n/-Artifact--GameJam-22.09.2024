@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class AmberBombDamage : MonoBehaviour
 {
+    [SerializeField] private float destroyTime;
+    
     private float _lastAttackTime;
 
-    private float _damage = 3;
+    [SerializeField] private float damage;
 
     private void Start()
     {
-        Destroy(gameObject, 7);
+        Destroy(gameObject, destroyTime);
     }
 
     private void OnTriggerStay(Collider other)
@@ -19,7 +21,7 @@ public class AmberBombDamage : MonoBehaviour
         {
             if (Time.time - _lastAttackTime < 1) return;
             
-            other.GetComponent<Enemy>().ReceiveDamageActivate(_damage);
+            other.GetComponent<Enemy>().ReceiveDamageActivate(damage);
             
             _lastAttackTime = Time.time;
         }

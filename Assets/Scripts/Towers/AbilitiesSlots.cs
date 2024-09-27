@@ -17,11 +17,8 @@ public class AbilitiesSlots : MonoBehaviour
     {
         foreach (GameObject ability in Abilities)
         {
-            if (ability.name == "AmberBomb")
-            {
-                Ability = ability;
-                HasActiveAbility = true;
-            }
+            Ability = ability;
+            HasActiveAbility = true;
         }
     }
 }
