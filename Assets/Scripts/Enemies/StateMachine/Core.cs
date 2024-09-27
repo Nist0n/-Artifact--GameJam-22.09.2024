@@ -21,6 +21,8 @@ public abstract class Core : MonoBehaviour
 
     public bool IsAttacking = false;
 
+    public bool IsCelebrating;
+
     public GameObject Soul;
 
     public EnemyState State => Machine.State;

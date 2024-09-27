@@ -18,7 +18,7 @@ namespace Towers
                 return;
             }
 
-            var position = CurrentAutoTarget.transform.position;
+            var position = CurrentAutoTarget.GetComponentInChildren<EnemyTarget>().transform.position;
             Vector3 moveProjectile = 
                 Vector3.MoveTowards(transform.position, position, projectileSpeed * Time.deltaTime);
             transform.position = moveProjectile;

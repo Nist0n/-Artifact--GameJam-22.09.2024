@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using TMPro;
+using Unity.Cinemachine;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,6 +13,9 @@ public class GameConfig : MonoBehaviour
     [SerializeField] private List<GameObject> enemiesTypes;
     
     [SerializeField] private TextMeshProUGUI timerText;
+
+    [SerializeField] private CinemachineCamera loseCinemachineCamera;
+    
 
     public float GameTime;
 
@@ -27,7 +31,9 @@ public class GameConfig : MonoBehaviour
 
     private float _percentAdvantage = 15;
 
-    private float _waveTime = 15f;
+    private float _waveTime = 0f;
+
+    public bool GameIsOverByLose = false;
 
     private float _countOfUnits;
 
@@ -54,6 +60,12 @@ public class GameConfig : MonoBehaviour
 
     private void Update()
     {
+        if (GameIsOverByLose)
+        {
+            GameLost();
+            return;
+        }
+        
         GameTime += Time.deltaTime;
         
         Timer();
@@ -87,6 +99,8 @@ public class GameConfig : MonoBehaviour
             GetSummoners(_countOfUnits);
             foreach (var spawner in _spawners)
             {
+                spawner.MaxTimeToSpawn *= 0.89f;
+                spawner.MinTimeToSpawn *= 0.92f;
                 StartCoroutine(spawner.StartSpawn());
             }
 
@@ -117,5 +131,10 @@ public class GameConfig : MonoBehaviour
         if (_timeSeconds < 60) _timeSeconds += Time.deltaTime;
         else _timeSeconds = 0;
         timerText.text = $"Время: {_timeMinutes}:{_timeSeconds.ToString("00")}";
+    }
+
+    private void GameLost()
+    {
+        loseCinemachineCamera.Priority = 2;
     }
 }

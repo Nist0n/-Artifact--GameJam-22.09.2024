@@ -12,6 +12,10 @@ public class Spawner : MonoBehaviour
     
     private GameConfig _gameConfig;
 
+    public float MaxTimeToSpawn = 4;
+
+    public float MinTimeToSpawn = 2;
+
     [SerializeField] private List<GameObject> _enemies;
 
     private void Start()
@@ -26,10 +30,9 @@ public class Spawner : MonoBehaviour
         foreach (var enemy in _enemies)
         {
             StartCoroutine(SpawnEnemy(enemy));
-            var temp = Instantiate(bubble, _transformBubble, Quaternion.identity, transform);
-            var randTime = Random.Range(2, 7f);
-            yield return new WaitForSeconds(randTime + 3f);
-            Destroy(temp);
+            Instantiate(bubble, _transformBubble, Quaternion.identity, transform);
+            var randTime = Random.Range(MinTimeToSpawn, MaxTimeToSpawn);
+            yield return new WaitForSeconds(randTime);
         }
         _enemies.Clear();
     }
