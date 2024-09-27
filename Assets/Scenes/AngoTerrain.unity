@@ -957,6 +957,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Souls
       objectReference: {fileID: 0}
+    - target: {fileID: 5136090547316813148, guid: f6f541d602abd7446a830856c99826ea, type: 3}
+      propertyPath: currentSouls
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8201021607679215863, guid: f6f541d602abd7446a830856c99826ea, type: 3}
       propertyPath: m_text
       value: "\u0414\u0443\u0448:"

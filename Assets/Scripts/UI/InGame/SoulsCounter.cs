@@ -10,13 +10,12 @@ public class SoulsCounter : MonoBehaviour
     [SerializeField] private string NewText;
     public int currentSouls = 0;
 
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.S)) {
-            AddSouls();
-        }
-    }
     public void AddSouls() {
         currentSouls++;
+        UpdateSouls();
+    }
+    public void DecreaseSouls() {
+        currentSouls--;
         UpdateSouls();
     }
     public void UpdateSouls() {
