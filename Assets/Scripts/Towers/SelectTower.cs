@@ -72,6 +72,8 @@ namespace Towers
                         tower.towerCamera.Priority = 1;
                         mainCinemachineCamera.Priority = 0;
                         tower.piloted = true;
+                        
+                        tower.EmpowerTower();
                     }
                 }
             }

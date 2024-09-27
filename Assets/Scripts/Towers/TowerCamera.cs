@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
@@ -63,7 +62,7 @@ namespace Towers
             MoveCamera();
             
             Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
-            Ray ray = _mainCamera.ScreenPointToRay(center);
+            Ray ray = _mainCamera.ViewportPointToRay(new Vector3 (0.5f, 0.5f, 0));;
             RaycastHit[] raycastHits = new RaycastHit[1000];
             // int size = Physics.SphereCastNonAlloc(ray, crosshairRadius, raycastHits, _searchRadius + 5, 1 << 3);
             int size = Physics.SphereCastNonAlloc(tower.transform.position, crosshairRadius, ray.direction, raycastHits,
@@ -82,13 +81,11 @@ namespace Towers
 
             if (enemies.Count == 0)
             {
-                DisableImage();
                 return;
             }
             
             if (raycastHits.Length == 0)
             {
-                DisableImage();
                 return;
             }
             
@@ -134,6 +131,10 @@ namespace Towers
                 {
                     reticle.GetComponent<Image>().enabled = true;
                 }
+            }
+            else
+            {
+                DisableImage();
             }
         }
 
