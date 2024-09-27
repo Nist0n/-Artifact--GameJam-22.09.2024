@@ -63,21 +63,12 @@ namespace Towers
             
             Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
             Ray ray = _mainCamera.ViewportPointToRay(new Vector3 (0.5f, 0.5f, 0));;
+            
             RaycastHit[] raycastHits = new RaycastHit[1000];
-            // int size = Physics.SphereCastNonAlloc(ray, crosshairRadius, raycastHits, _searchRadius + 5, 1 << 3);
             int size = Physics.SphereCastNonAlloc(tower.transform.position, crosshairRadius, ray.direction, raycastHits,
                 _searchRadius + 3, 1 << 3);
-            // colliders = Physics.OverlapSphere(tower.transform.position, _searchRadius).ToList();
+            
             List<GameObject> enemies = _towerComp.enemiesInRange;
-            // foreach (var enem in GameConfig.Instance.EnemyList)
-            // {
-            //     GameObject colliderObject = col.gameObject;
-            //     
-            //     if (colliderObject.CompareTag("Enemy"))
-            //     {
-            //         enemies.Add(colliderObject);
-            //     }
-            // }
 
             if (enemies.Count == 0)
             {
@@ -117,12 +108,12 @@ namespace Towers
                 }
 
                 currentTarget = closestEnemyToCenter;
-                var targetPos = currentTarget.transform.position;
+                var targetPos = currentTarget.GetComponentInChildren<EnemyTarget>().transform.position;
                 Vector3 imagePos = _mainCamera.WorldToScreenPoint(targetPos);
 
-                float worldDistance = Vector3.Distance(_camTransform.position, targetPos);
-                float distanceT = Mathf.InverseLerp(maxScaleAtDistance, minScaleAtDistance, worldDistance);
-                float scale = Mathf.Lerp(minScale, maxScale, distanceT);
+                // float worldDistance = Vector3.Distance(_camTransform.position, targetPos);
+                // float distanceT = Mathf.InverseLerp(maxScaleAtDistance, minScaleAtDistance, worldDistance);
+                // float scale = Mathf.Lerp(minScale, maxScale, distanceT);
                 
                 reticle.rectTransform.transform.position = imagePos;
                 // reticle.rectTransform.localScale = new Vector3(scale, scale, scale);
