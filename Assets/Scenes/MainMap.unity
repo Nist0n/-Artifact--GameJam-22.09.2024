@@ -8600,14 +8600,6 @@ PrefabInstance:
       propertyPath: reticle
       value: 
       objectReference: {fileID: 695848094}
-    - target: {fileID: 1158741820204909890, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-      propertyPath: damage
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1158741820204909890, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
-      propertyPath: gameConfig
-      value: 
-      objectReference: {fileID: 930643877}
     - target: {fileID: 2749078221014681615, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
       propertyPath: m_LocalPosition.x
       value: 502.72
