@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Enemies.StateMachine;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ namespace Enemies
         public FreezingState Freeze;
         public DeathState Death;
         public AttackingState Attacking;
+        public CelebratingState Celebrating;
         
         private void Start()
         {
@@ -23,6 +25,10 @@ namespace Enemies
         {
             if (State.IsComplete)
             {
+                if (GameConfig.Instance.GameIsOverByLose)
+                {
+                    Set(Celebrating);
+                }
                 if (IsFreezed)
                 {
                     Set(Freeze);
