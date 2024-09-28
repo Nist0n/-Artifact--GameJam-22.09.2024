@@ -135,7 +135,7 @@ public class GamePause : MonoBehaviour
         }
     }
 
-    void OnTowerSelected(Button selectedButton)
+    private void OnTowerSelected(Button selectedButton)
     {
         int towerIndex = System.Array.IndexOf(towerButtons, selectedButton); // Получаем индекс выбранной башни
 
@@ -191,9 +191,9 @@ public class GamePause : MonoBehaviour
     }
 
     // Метод для выбора слота улучшений
-    void OnUpgradeSlotSelected(Button selectedSlot, int slotIndex)
+    private void OnUpgradeSlotSelected(Button selectedSlot, int slotIndex)
     {
-        // Находим два дочерних объекта внутри слота, которые представляют собой кнопки улучшений
+        // Находим дочерние объекты внутри слота, которые представляют собой кнопки улучшений
         for (int i = 0; i < selectedSlot.transform.childCount; i++)
         {
             Transform upgrade = selectedSlot.transform.GetChild(i); // Получаем улучшение
@@ -207,7 +207,7 @@ public class GamePause : MonoBehaviour
     }
 
     // Метод для выбора улучшения
-    void OnAbilitySelected(Button selectedSlot, Button chosenUpgrade, int upgradeIndex)
+    private void OnAbilitySelected(Button selectedSlot, Button chosenUpgrade, int upgradeIndex)
     {
         // Скрываем все улучшения после выбора
         for (int i = 0; i < selectedSlot.transform.childCount; i++)
@@ -256,7 +256,7 @@ public class GamePause : MonoBehaviour
         selectedTowerIndex = -1;
     }
 
-    void DisableSlotWithoutChangingAppearance(Button slotButton)
+    private void DisableSlotWithoutChangingAppearance(Button slotButton)
     {
         ColorBlock colors = slotButton.colors;
         colors.disabledColor = colors.normalColor;
