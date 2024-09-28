@@ -13,6 +13,7 @@ public class GamePause : MonoBehaviour
     [SerializeField] GameObject background;
     [SerializeField] GameObject continueGameButton;
     [SerializeField] GameObject shopUI;
+    [SerializeField] private BuyingSystem buyingSystem;
 
     [SerializeField] CinemachineCamera cameraMain;
     [SerializeField] CinemachineCamera cameraShop;
@@ -163,6 +164,8 @@ public class GamePause : MonoBehaviour
             // Запускаем анимацию для выбранной башни
             Animator towerAnimator = towerAnimators[towerIndex]; // Берём аниматор выбранной башни
             towerAnimator.SetTrigger("SelectTower");
+            
+            buyingSystem.GetTowerIndex(selectedTowerIndex);
 
             // Показываем слоты для улучшений после анимации
             StartCoroutine(ShowUpgradeSlots(selectedButton));
@@ -193,6 +196,8 @@ public class GamePause : MonoBehaviour
     // Метод для выбора слота улучшений
     private void OnUpgradeSlotSelected(Button selectedSlot, int slotIndex)
     {
+        buyingSystem.GetButtonsUpgrade(selectedSlot);
+        buyingSystem.SetRandomActiveAbilities();
         // Находим дочерние объекты внутри слота, которые представляют собой кнопки улучшений
         for (int i = 0; i < selectedSlot.transform.childCount; i++)
         {
@@ -200,7 +205,7 @@ public class GamePause : MonoBehaviour
             upgrade.gameObject.SetActive(true); // Показываем кнопки с улучшениями
 
             // Привязываем выбор улучшения к кнопке
-            Button upgradeButton = upgrade.GetComponent<Button>();
+            Button upgradeButton = upgrade.transform.GetChild(0).GetComponent<Button>();
             int upgradeIndex = i;
             upgradeButton.onClick.AddListener(() => OnAbilitySelected(selectedSlot, upgradeButton, upgradeIndex));
         }
@@ -209,6 +214,8 @@ public class GamePause : MonoBehaviour
     // Метод для выбора улучшения
     private void OnAbilitySelected(Button selectedSlot, Button chosenUpgrade, int upgradeIndex)
     {
+        buyingSystem.SetAbilityOnTower(chosenUpgrade);
+        buyingSystem.ResetLists();
         // Скрываем все улучшения после выбора
         for (int i = 0; i < selectedSlot.transform.childCount; i++)
         {
