@@ -3,12 +3,19 @@ using System.Collections;
 using Enemies.StateMachine;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace Enemies
 {
     public class Enemy : Core
     {
+        [SerializeField] private Image back;
+        
+        [SerializeField] private Image front;
+
+        private float _lerpTimer;
+        
         public RunningState Running;
         public TakingDamageState TakingDamage;
         public FreezingState Freeze;
@@ -64,7 +71,12 @@ namespace Enemies
                 Set(Death);
                 Invoke("KillEnemy", 1f);
             }
-            
+
+            if (front.color.a != 0)
+            {
+                UpdateHpBar();
+            }
+
             State.DoBranch();
         }
 
@@ -102,6 +114,8 @@ namespace Enemies
         {
             IsDamaged = true;
             Health -= damage;
+            StartCoroutine(ShowHpBar());
+            _lerpTimer = 0;
             yield return new WaitForSeconds(0.1f);
             IsDamaged = false;
         }
@@ -118,6 +132,45 @@ namespace Enemies
             if (other.gameObject.CompareTag("Castle"))
             {
                 IsAttacking = true;
+            }
+        }
+
+        private IEnumerator ShowHpBar()
+        {
+            if (front.color.a == 0)
+            {
+                front.color = Color.red;
+                back.color = Color.white;
+                yield return new WaitForSeconds(3f);
+                front.color = Color.clear;
+                back.color = Color.clear;
+            }
+        }
+        
+        private void UpdateHpBar()
+        {
+            float fillFrontBar = front.fillAmount;
+            float fillBackBar = back.fillAmount;
+            float hFraction = Health / MaxHealth;
+
+            if (fillBackBar > hFraction)
+            {
+                front.fillAmount = hFraction;
+                back.color = Color.white;
+                _lerpTimer += Time.deltaTime;
+                float percentComplete = _lerpTimer / 3;
+                percentComplete *= percentComplete;
+                back.fillAmount = Mathf.Lerp(fillBackBar, hFraction, percentComplete);
+            }
+            
+            if (fillFrontBar < hFraction)
+            {
+                back.color = Color.green;
+                back.fillAmount = hFraction;
+                _lerpTimer += Time.deltaTime;
+                float percentComplete = _lerpTimer / 3;
+                percentComplete *= percentComplete;
+                front.fillAmount = Mathf.Lerp(fillFrontBar, back.fillAmount, percentComplete);
             }
         }
     }

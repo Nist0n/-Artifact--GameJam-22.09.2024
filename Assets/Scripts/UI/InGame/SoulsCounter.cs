@@ -66,7 +66,7 @@ public class SoulsCounter : MonoBehaviour
 
         if (fillFrontBar < hFraction)
         {
-            backBar.color = Color.green;
+            backBar.color = Color.magenta;
             backBar.fillAmount = hFraction;
             _lerpTimer += Time.deltaTime;
             float percentComplete = _lerpTimer / _chipSpeed;
