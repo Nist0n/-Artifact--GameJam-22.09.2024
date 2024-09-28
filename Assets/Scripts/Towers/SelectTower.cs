@@ -38,7 +38,7 @@ namespace Towers
                 mainCinemachineCamera.Priority = 1;
             }
 
-            if (Input.GetKeyDown(KeyCode.B) && !_isSwitching && !GamePause.Instance.gameIsPaused)
+            if (Input.GetKeyDown(KeyCode.B) && !_isSwitching && !GamePause.Instance.gameIsPaused && (mainCinemachineCamera.IsLive || shopCinemachineCamera.IsLive))
             {
                 StartCoroutine(ShopCameraSwap());
             }

@@ -30,11 +30,11 @@ public class GamePause : MonoBehaviour
 
     private void Start()
     {
-        // Отключаем все слоты и улучшения в начале игры
-        foreach (Button button in towerButtons)
-        {
+         // Отключаем все слоты и улучшения в начале игры
+         foreach (Button button in towerButtons)
+         {
             button.onClick.AddListener(() => OnTowerSelected(button));
-        }
+         }
     }
 
     private void Awake()
