@@ -53,11 +53,6 @@ public class GamePause : MonoBehaviour
 
     private void Update()
     {
-        if (!_isSwitching && (Input.GetKeyDown(KeyCode.B)))
-        {
-            StartCoroutine(ShopSwitch());
-        }
-
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             gameIsPaused = !gameIsPaused;
@@ -126,33 +121,7 @@ public class GamePause : MonoBehaviour
         ResumeGame();
     }
 
-    IEnumerator ShopSwitch()
-    {
-        if (_isSwitching)
-        {
-            yield break;
-        }
-
-        _isSwitching = true;
-
-        if (cameraMain.IsLive && !gameIsPaused)
-        {
-            yield return new WaitForSeconds(0.5f);
-            Debug.Log("Main");
-            pauseButton.SetActive(false);
-            shopUI.SetActive(true);
-        }
-
-        else if (cameraShop.IsLive && !gameIsPaused)
-        {
-            yield return new WaitForSeconds(0.5f);
-            Debug.Log("Shop");
-            pauseButton.SetActive(true);
-            shopUI.SetActive(false); 
-        }
-
-        _isSwitching = false;
-    }
+    
 
     private void OnTowerSelected(Button selectedButton)
     {

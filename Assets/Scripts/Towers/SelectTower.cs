@@ -14,6 +14,9 @@ namespace Towers
         public CinemachineCamera mainCinemachineCamera;
         public CinemachineCamera shopCinemachineCamera;
 
+        [SerializeField] GameObject pauseButton;
+        [SerializeField] GameObject shopUI;
+
         private bool _isSwitching = false;
 
         private void Awake()
@@ -35,7 +38,7 @@ namespace Towers
                 mainCinemachineCamera.Priority = 1;
             }
 
-            if (Input.GetKeyDown(KeyCode.B) && !_isSwitching)
+            if (Input.GetKeyDown(KeyCode.B) && !_isSwitching && !GamePause.Instance.gameIsPaused)
             {
                 StartCoroutine(ShopCameraSwap());
             }
@@ -90,7 +93,16 @@ namespace Towers
             }
 
             yield return new WaitForSeconds(1f);
+            StartCoroutine(ShopSwitch());
+
             _isSwitching = false;
+        }
+
+        IEnumerator ShopSwitch()
+        {
+            yield return null;
+            pauseButton.SetActive(!pauseButton.activeSelf);
+            shopUI.SetActive(!pauseButton.activeSelf);
         }
     }
 }
