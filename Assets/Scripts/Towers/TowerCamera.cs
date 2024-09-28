@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Enemies;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,7 @@ namespace Towers
         private Transform _camTransform;
 
         public GameObject currentTarget;
+        public GameObject previousTarget;
 
         private float _searchRadius;
         [SerializeField] private float crosshairRadius;
@@ -106,7 +108,7 @@ namespace Towers
             }
 
             int size = Physics.SphereCastNonAlloc(tower.transform.position, crosshairRadius, ray.direction, raycastHits,
-                _searchRadius + 3, 1 << 3);
+                _searchRadius + 100);
             
             List<GameObject> enemies = _towerComp.enemiesInRange;
 
@@ -148,7 +150,15 @@ namespace Towers
                     }
                 }
 
+               // previousTarget = currentTarget;
+
                 currentTarget = closestEnemyToCenter;
+
+                //if (currentTarget != previousTarget || currentTarget.GetComponent<Enemy>().Health <= 0)
+                //{
+                 //   DisableImage();
+                //}
+
                 var targetPos = currentTarget.GetComponentInChildren<EnemyTarget>().transform.position;
                 Vector3 imagePos = _mainCamera.WorldToScreenPoint(targetPos);
 
@@ -162,6 +172,10 @@ namespace Towers
                 if (_currentCamera.IsLive)
                 {
                     reticle.GetComponent<Image>().enabled = true;
+                }
+                else
+                {
+                    DisableImage();
                 }
             }
             else
