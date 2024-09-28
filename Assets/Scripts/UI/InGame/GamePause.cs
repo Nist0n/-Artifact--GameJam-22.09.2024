@@ -35,6 +35,8 @@ public class GamePause : MonoBehaviour
         {
             button.onClick.AddListener(() => OnTowerSelected(button));
         }
+
+        Time.timeScale = 3f;
     }
 
     private void Awake()
