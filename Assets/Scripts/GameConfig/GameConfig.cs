@@ -74,7 +74,7 @@ public class GameConfig : MonoBehaviour
     }
 
     private void GetSpawners()
-    {
+    {   
         var spawn = GetComponentsInChildren<Spawner>();
         foreach (var spawner in spawn)
         {
@@ -94,6 +94,7 @@ public class GameConfig : MonoBehaviour
         
         if (GameTime > _waveTime && !IsWaveStarted)
         {
+            AudioManager.instance.PlaySFX("SpawnMobs");
             _percentAdvantage = Mathf.Round(_percentAdvantage *= 1.15f);
             _countOfUnits = Random.Range(_previousCount, _percentAdvantage);
             GetSummoners(_countOfUnits);

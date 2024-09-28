@@ -4266,6 +4266,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 241120360548077020, guid: 856b5a4f232b880448958da0f8f953b2, type: 3}
+      propertyPath: sounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 241120360548077020, guid: 856b5a4f232b880448958da0f8f953b2, type: 3}
+      propertyPath: sounds.Array.data[2].name
+      value: SpawnMobs
+      objectReference: {fileID: 0}
+    - target: {fileID: 241120360548077020, guid: 856b5a4f232b880448958da0f8f953b2, type: 3}
+      propertyPath: sounds.Array.data[2].audio
+      value: 
+      objectReference: {fileID: 8300000, guid: dc660539084acf34faaa4f09ca99ac74, type: 3}
     - target: {fileID: 814764548772143504, guid: 856b5a4f232b880448958da0f8f953b2, type: 3}
       propertyPath: SFXSlider
       value: 
