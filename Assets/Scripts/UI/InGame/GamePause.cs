@@ -29,7 +29,7 @@ public class GamePause : MonoBehaviour
 
     private void Start()
     {
-        // Отключаем все слоты и улучшения в начале игры
+        // РћС‚РєР»СЋС‡Р°РµРј РІСЃРµ СЃР»РѕС‚С‹ Рё СѓР»СѓС‡С€РµРЅРёСЏ РІ РЅР°С‡Р°Р»Рµ РёРіСЂС‹
         foreach (Button button in towerButtons)
         {
             button.onClick.AddListener(() => OnTowerSelected(button));
@@ -137,121 +137,121 @@ public class GamePause : MonoBehaviour
 
     void OnTowerSelected(Button selectedButton)
     {
-        int towerIndex = System.Array.IndexOf(towerButtons, selectedButton); // Получаем индекс выбранной башни
+        int towerIndex = System.Array.IndexOf(towerButtons, selectedButton); // РџРѕР»СѓС‡Р°РµРј РёРЅРґРµРєСЃ РІС‹Р±СЂР°РЅРЅРѕР№ Р±Р°С€РЅРё
 
         if (towerSelected && selectedTowerIndex == towerIndex)
         {
-            // Если башня уже выбрана и мы нажимаем на нее повторно — снимаем выбор и возвращаем все кнопки
+            // Р•СЃР»Рё Р±Р°С€РЅСЏ СѓР¶Рµ РІС‹Р±СЂР°РЅР° Рё РјС‹ РЅР°Р¶РёРјР°РµРј РЅР° РЅРµРµ РїРѕРІС‚РѕСЂРЅРѕ вЂ” СЃРЅРёРјР°РµРј РІС‹Р±РѕСЂ Рё РІРѕР·РІСЂР°С‰Р°РµРј РІСЃРµ РєРЅРѕРїРєРё
             StartCoroutine(ResetTowerSelection());
         }
         else
         {
-            // Отключаем все башни, кроме выбранной, и скрываем их
+            // РћС‚РєР»СЋС‡Р°РµРј РІСЃРµ Р±Р°С€РЅРё, РєСЂРѕРјРµ РІС‹Р±СЂР°РЅРЅРѕР№, Рё СЃРєСЂС‹РІР°РµРј РёС…
             foreach (Button button in towerButtons)
             {
-                button.gameObject.SetActive(false); // Скрываем все башни
+                button.gameObject.SetActive(false); // РЎРєСЂС‹РІР°РµРј РІСЃРµ Р±Р°С€РЅРё
             }
 
-            // Активируем только выбранную башню
+            // РђРєС‚РёРІРёСЂСѓРµРј С‚РѕР»СЊРєРѕ РІС‹Р±СЂР°РЅРЅСѓСЋ Р±Р°С€РЅСЋ
             selectedButton.gameObject.SetActive(true);
-            selectedButton.interactable = true; // Оставляем её интерактивной для повторного выбора
+            selectedButton.interactable = true; // РћСЃС‚Р°РІР»СЏРµРј РµС‘ РёРЅС‚РµСЂР°РєС‚РёРІРЅРѕР№ РґР»СЏ РїРѕРІС‚РѕСЂРЅРѕРіРѕ РІС‹Р±РѕСЂР°
 
-            // Запоминаем индекс выбранной башни
+            // Р—Р°РїРѕРјРёРЅР°РµРј РёРЅРґРµРєСЃ РІС‹Р±СЂР°РЅРЅРѕР№ Р±Р°С€РЅРё
             selectedTowerIndex = towerIndex;
             towerSelected = true;
 
-            // Запускаем анимацию для выбранной башни
-            Animator towerAnimator = towerAnimators[towerIndex]; // Берём аниматор выбранной башни
+            // Р—Р°РїСѓСЃРєР°РµРј Р°РЅРёРјР°С†РёСЋ РґР»СЏ РІС‹Р±СЂР°РЅРЅРѕР№ Р±Р°С€РЅРё
+            Animator towerAnimator = towerAnimators[towerIndex]; // Р‘РµСЂС‘Рј Р°РЅРёРјР°С‚РѕСЂ РІС‹Р±СЂР°РЅРЅРѕР№ Р±Р°С€РЅРё
             towerAnimator.SetTrigger("SelectTower");
 
-            // Показываем слоты для улучшений после анимации
+            // РџРѕРєР°Р·С‹РІР°РµРј СЃР»РѕС‚С‹ РґР»СЏ СѓР»СѓС‡С€РµРЅРёР№ РїРѕСЃР»Рµ Р°РЅРёРјР°С†РёРё
             StartCoroutine(ShowUpgradeSlots(selectedButton));
         }
     }
 
     IEnumerator ShowUpgradeSlots(Button selectedButton)
     {
-        yield return new WaitForSeconds(animationDuration); // Ждем окончания анимации
+        yield return new WaitForSeconds(animationDuration); // Р–РґРµРј РѕРєРѕРЅС‡Р°РЅРёСЏ Р°РЅРёРјР°С†РёРё
 
-        // Находим все слоты внутри выбранной башни (слоты — это дочерние объекты башни)
+        // РќР°С…РѕРґРёРј РІСЃРµ СЃР»РѕС‚С‹ РІРЅСѓС‚СЂРё РІС‹Р±СЂР°РЅРЅРѕР№ Р±Р°С€РЅРё (СЃР»РѕС‚С‹ вЂ” СЌС‚Рѕ РґРѕС‡РµСЂРЅРёРµ РѕР±СЉРµРєС‚С‹ Р±Р°С€РЅРё)
         Transform tower = selectedButton.transform;
         for (int i = 0; i < tower.childCount; i++)
         {
-            Transform slot = tower.GetChild(i); // Получаем слот
-            slot.gameObject.SetActive(true); // Показываем слот
+            Transform slot = tower.GetChild(i); // РџРѕР»СѓС‡Р°РµРј СЃР»РѕС‚
+            slot.gameObject.SetActive(true); // РџРѕРєР°Р·С‹РІР°РµРј СЃР»РѕС‚
 
-            // Проверяем наличие компонента Button на слоте
+            // РџСЂРѕРІРµСЂСЏРµРј РЅР°Р»РёС‡РёРµ РєРѕРјРїРѕРЅРµРЅС‚Р° Button РЅР° СЃР»РѕС‚Рµ
             Button slotButton = slot.GetComponent<Button>();
-            if (slotButton != null && slotButton.interactable) // Слот не должен быть уже выбранным
+            if (slotButton != null && slotButton.interactable) // РЎР»РѕС‚ РЅРµ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СѓР¶Рµ РІС‹Р±СЂР°РЅРЅС‹Рј
             {
-                int slotIndex = i; // Копия для корректной работы замыкания
+                int slotIndex = i; // РљРѕРїРёСЏ РґР»СЏ РєРѕСЂСЂРµРєС‚РЅРѕР№ СЂР°Р±РѕС‚С‹ Р·Р°РјС‹РєР°РЅРёСЏ
                 slotButton.onClick.AddListener(() => OnUpgradeSlotSelected(slotButton, slotIndex));
             }
         }
     }
 
-    // Метод для выбора слота улучшений
+    // РњРµС‚РѕРґ РґР»СЏ РІС‹Р±РѕСЂР° СЃР»РѕС‚Р° СѓР»СѓС‡С€РµРЅРёР№
     void OnUpgradeSlotSelected(Button selectedSlot, int slotIndex)
     {
-        // Находим два дочерних объекта внутри слота, которые представляют собой кнопки улучшений
+        // РќР°С…РѕРґРёРј РґРІР° РґРѕС‡РµСЂРЅРёС… РѕР±СЉРµРєС‚Р° РІРЅСѓС‚СЂРё СЃР»РѕС‚Р°, РєРѕС‚РѕСЂС‹Рµ РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‚ СЃРѕР±РѕР№ РєРЅРѕРїРєРё СѓР»СѓС‡С€РµРЅРёР№
         for (int i = 0; i < selectedSlot.transform.childCount; i++)
         {
-            Transform upgrade = selectedSlot.transform.GetChild(i); // Получаем улучшение
-            upgrade.gameObject.SetActive(true); // Показываем кнопки с улучшениями
+            Transform upgrade = selectedSlot.transform.GetChild(i); // РџРѕР»СѓС‡Р°РµРј СѓР»СѓС‡С€РµРЅРёРµ
+            upgrade.gameObject.SetActive(true); // РџРѕРєР°Р·С‹РІР°РµРј РєРЅРѕРїРєРё СЃ СѓР»СѓС‡С€РµРЅРёСЏРјРё
 
-            // Привязываем выбор улучшения к кнопке
+            // РџСЂРёРІСЏР·С‹РІР°РµРј РІС‹Р±РѕСЂ СѓР»СѓС‡С€РµРЅРёСЏ Рє РєРЅРѕРїРєРµ
             Button upgradeButton = upgrade.GetComponent<Button>();
             int upgradeIndex = i;
             upgradeButton.onClick.AddListener(() => OnAbilitySelected(selectedSlot, upgradeButton, upgradeIndex));
         }
     }
 
-    // Метод для выбора улучшения
+    // РњРµС‚РѕРґ РґР»СЏ РІС‹Р±РѕСЂР° СѓР»СѓС‡С€РµРЅРёСЏ
     void OnAbilitySelected(Button selectedSlot, Button chosenUpgrade, int upgradeIndex)
     {
-        // Скрываем все улучшения после выбора
+        // РЎРєСЂС‹РІР°РµРј РІСЃРµ СѓР»СѓС‡С€РµРЅРёСЏ РїРѕСЃР»Рµ РІС‹Р±РѕСЂР°
         for (int i = 0; i < selectedSlot.transform.childCount; i++)
         {
             selectedSlot.transform.GetChild(i).gameObject.SetActive(false);
         }
 
-        // Меняем иконку слота на иконку выбранного улучшения
+        // РњРµРЅСЏРµРј РёРєРѕРЅРєСѓ СЃР»РѕС‚Р° РЅР° РёРєРѕРЅРєСѓ РІС‹Р±СЂР°РЅРЅРѕРіРѕ СѓР»СѓС‡С€РµРЅРёСЏ
         Image slotImage = selectedSlot.GetComponent<Image>();
         Image upgradeImage = chosenUpgrade.GetComponent<Image>();
         slotImage.sprite = upgradeImage.sprite;
 
         DisableSlotWithoutChangingAppearance(selectedSlot);
 
-        Debug.Log("Выбрано улучшение: " + upgradeIndex + " для слота: " + selectedSlot.name);
+        Debug.Log("Р’С‹Р±СЂР°РЅРѕ СѓР»СѓС‡С€РµРЅРёРµ: " + upgradeIndex + " РґР»СЏ СЃР»РѕС‚Р°: " + selectedSlot.name);
     }
 
-    // Метод для сброса выбора башни и возврата интерфейса к начальному состоянию
+    // РњРµС‚РѕРґ РґР»СЏ СЃР±СЂРѕСЃР° РІС‹Р±РѕСЂР° Р±Р°С€РЅРё Рё РІРѕР·РІСЂР°С‚Р° РёРЅС‚РµСЂС„РµР№СЃР° Рє РЅР°С‡Р°Р»СЊРЅРѕРјСѓ СЃРѕСЃС‚РѕСЏРЅРёСЋ
     IEnumerator ResetTowerSelection()
     {
-        // Скрываем слоты и сбрасываем выбранную башню
+        // РЎРєСЂС‹РІР°РµРј СЃР»РѕС‚С‹ Рё СЃР±СЂР°СЃС‹РІР°РµРј РІС‹Р±СЂР°РЅРЅСѓСЋ Р±Р°С€РЅСЋ
         if (selectedTowerIndex != -1)
         {
             Transform tower = towerButtons[selectedTowerIndex].transform;
             for (int i = 0; i < tower.childCount; i++)
             {
                 Transform slot = tower.GetChild(i);
-                slot.gameObject.SetActive(false); // Скрываем все слоты
+                slot.gameObject.SetActive(false); // РЎРєСЂС‹РІР°РµРј РІСЃРµ СЃР»РѕС‚С‹
             }
 
-            // Возвращаем анимацию башни на место
-            Animator towerAnimator = towerAnimators[selectedTowerIndex]; // Берём аниматор текущей выбранной башни
+            // Р’РѕР·РІСЂР°С‰Р°РµРј Р°РЅРёРјР°С†РёСЋ Р±Р°С€РЅРё РЅР° РјРµСЃС‚Рѕ
+            Animator towerAnimator = towerAnimators[selectedTowerIndex]; // Р‘РµСЂС‘Рј Р°РЅРёРјР°С‚РѕСЂ С‚РµРєСѓС‰РµР№ РІС‹Р±СЂР°РЅРЅРѕР№ Р±Р°С€РЅРё
             towerAnimator.SetTrigger("DeselectTower");
         }
 
         yield return new WaitForSeconds(animationDuration);
-        // Возвращаем все башни в исходное состояние
+        // Р’РѕР·РІСЂР°С‰Р°РµРј РІСЃРµ Р±Р°С€РЅРё РІ РёСЃС…РѕРґРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
         foreach (Button button in towerButtons)
         {
             button.gameObject.SetActive(true);
             button.interactable = true;
         }
 
-        // Сбрасываем выбор башни
+        // РЎР±СЂР°СЃС‹РІР°РµРј РІС‹Р±РѕСЂ Р±Р°С€РЅРё
         towerSelected = false;
         selectedTowerIndex = -1;
     }
