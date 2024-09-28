@@ -1836,6 +1836,8 @@ MonoBehaviour:
   animationController: {fileID: 3005919790545713870}
   animator: {fileID: 2128716366485521467}
   Health: 0
+  DroppedCoinsMax: 10
+  DroppedCoinsMin: 25
   MaxHealth: 15
   Damage: 5
   IsFreezed: 0

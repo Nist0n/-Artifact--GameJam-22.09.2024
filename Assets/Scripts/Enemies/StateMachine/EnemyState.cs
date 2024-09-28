@@ -14,6 +14,10 @@ public abstract class EnemyState : MonoBehaviour
 
     protected bool IsDamaged => core.IsDamaged;
 
+    protected float DroppedCoinsMin => core.DroppedCoinsMin;
+    
+    protected float DroppedCoinsMax => core.DroppedCoinsMax;
+
     protected bool IsAttacking => core.IsAttacking;
 
     protected bool IsFreezed => core.IsFreezed;

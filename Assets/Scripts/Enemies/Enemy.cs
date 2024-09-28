@@ -3,6 +3,7 @@ using System.Collections;
 using Enemies.StateMachine;
 using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Enemies
 {

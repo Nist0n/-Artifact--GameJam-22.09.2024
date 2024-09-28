@@ -15,7 +15,6 @@ public class GameConfig : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
 
     [SerializeField] private CinemachineCamera loseCinemachineCamera;
-    
 
     public float GameTime;
 

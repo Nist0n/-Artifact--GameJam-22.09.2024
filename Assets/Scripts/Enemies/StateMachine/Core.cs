@@ -15,6 +15,10 @@ public abstract class Core : MonoBehaviour
 
     public float Health;
 
+    public float DroppedCoinsMax;
+    
+    public float DroppedCoinsMin;
+
     public float MaxHealth;
 
     public float Damage;
