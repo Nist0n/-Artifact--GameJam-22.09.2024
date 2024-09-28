@@ -54,10 +54,10 @@ namespace Towers
         
         private void Update()
         {
-            if (GamePause.Instance.gameIsPaused) // If game is paused
+            /*(if (GamePause.Instance.gameIsPaused) // If game is paused
             {
                 return;
-            } 
+            } */
             
             if (!_currentCamera.IsLive)
             {
@@ -73,6 +73,7 @@ namespace Towers
             
             if (_isAbilityActived)
             {
+                reticle.enabled = false;
                 if (Input.GetMouseButton(0))
                 {
                     _isAbilityActived = false;
@@ -96,9 +97,11 @@ namespace Towers
             {
                 if (_abilities.HasActiveAbility && !_abilities.Ability.GetComponent<ActiveAbility>().IsAbilityUsed)
                 {
+                    reticle.enabled = false;
                     _abilityRange.transform.localScale *= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction;
                     _abilities.Ability.GetComponent<ActiveAbility>().ActionRadius = _abilityRange;
                     _isAbilityActived = true;
+                    return;
                 }
             }
 
