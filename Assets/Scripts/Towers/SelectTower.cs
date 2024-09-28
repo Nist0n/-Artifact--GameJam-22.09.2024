@@ -1,4 +1,5 @@
-﻿using Unity.Cinemachine;
+﻿using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
@@ -12,6 +13,8 @@ namespace Towers
         
         public CinemachineCamera mainCinemachineCamera;
         public CinemachineCamera shopCinemachineCamera;
+
+        private bool _isSwitching = false;
 
         private void Awake()
         {
@@ -32,21 +35,9 @@ namespace Towers
                 mainCinemachineCamera.Priority = 1;
             }
 
-            if (Input.GetKeyDown(KeyCode.B))
+            if (Input.GetKeyDown(KeyCode.B) && !_isSwitching)
             {
-                if (shopCinemachineCamera.IsLive)
-                {
-                    shopCinemachineCamera.Priority = 0;
-                    mainCinemachineCamera.Priority = 1;
-                }
-                else
-                {
-                    if (mainCinemachineCamera.IsLive)
-                    {
-                        mainCinemachineCamera.Priority = 0;
-                        shopCinemachineCamera.Priority = 1;
-                    }
-                }
+                StartCoroutine(ShopCameraSwap());
             }
             
             if (!mainCinemachineCamera.IsLive)
@@ -77,6 +68,29 @@ namespace Towers
                     }
                 }
             }
+        }
+        IEnumerator ShopCameraSwap()
+        {
+            if (_isSwitching)
+            {
+                yield break;
+            }
+
+            _isSwitching = true;
+
+            if (shopCinemachineCamera.IsLive)
+            {
+                shopCinemachineCamera.Priority = 0;
+                mainCinemachineCamera.Priority = 1;
+            }
+            else if (mainCinemachineCamera.IsLive)
+            {
+                mainCinemachineCamera.Priority = 0;
+                shopCinemachineCamera.Priority = 1;
+            }
+
+            yield return new WaitForSeconds(1f);
+            _isSwitching = false;
         }
     }
 }

@@ -28,6 +28,8 @@ public class GamePause : MonoBehaviour
 
     public bool gameIsPaused;
 
+    private bool _isSwitching = false;
+
     private void Start()
     {
         // Отключаем все слоты и улучшения в начале игры
@@ -35,8 +37,6 @@ public class GamePause : MonoBehaviour
         {
             button.onClick.AddListener(() => OnTowerSelected(button));
         }
-
-        Time.timeScale = 3f;
     }
 
     private void Awake()
@@ -53,7 +53,10 @@ public class GamePause : MonoBehaviour
 
     private void Update()
     {
-        StartCoroutine(ShopSwitch());
+        if (!_isSwitching && (Input.GetKeyDown(KeyCode.B)))
+        {
+            StartCoroutine(ShopSwitch());
+        }
 
         if (Input.GetKeyUp(KeyCode.Escape))
         {
@@ -125,18 +128,30 @@ public class GamePause : MonoBehaviour
 
     IEnumerator ShopSwitch()
     {
-        if (Input.GetKeyDown(KeyCode.B) && cameraMain.IsLive && !gameIsPaused)
+        if (_isSwitching)
         {
-            pauseButton.SetActive(!pauseButton.activeSelf);
-            shopUI.SetActive(!shopUI.activeSelf);
-            yield return new WaitForSeconds(1f);
+            yield break;
         }
-        else if (Input.GetKeyDown(KeyCode.B) && cameraShop.IsLive && !gameIsPaused)
+
+        _isSwitching = true;
+
+        if (cameraMain.IsLive && !gameIsPaused)
         {
-            pauseButton.SetActive(!pauseButton.activeSelf);
-            shopUI.SetActive(!shopUI.activeSelf);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
+            Debug.Log("Main");
+            pauseButton.SetActive(false);
+            shopUI.SetActive(true);
         }
+
+        else if (cameraShop.IsLive && !gameIsPaused)
+        {
+            yield return new WaitForSeconds(0.5f);
+            Debug.Log("Shop");
+            pauseButton.SetActive(true);
+            shopUI.SetActive(false); 
+        }
+
+        _isSwitching = false;
     }
 
     private void OnTowerSelected(Button selectedButton)
