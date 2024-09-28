@@ -2669,6 +2669,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCinemachineCamera: {fileID: 12805554}
   shopCinemachineCamera: {fileID: 1112695003}
+  pauseButton: {fileID: 1512829652}
+  shopUI: {fileID: 1826320199}
 --- !u!114 &117611334
 MonoBehaviour:
   m_ObjectHideFlags: 0

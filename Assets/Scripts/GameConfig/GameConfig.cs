@@ -78,7 +78,6 @@ public class GameConfig : MonoBehaviour
         var spawn = GetComponentsInChildren<Spawner>();
         foreach (var spawner in spawn)
         {
-            Debug.Log(spawner);
             _spawners.Add(spawner);
         }
     }
