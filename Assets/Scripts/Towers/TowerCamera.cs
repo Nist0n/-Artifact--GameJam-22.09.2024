@@ -27,17 +27,12 @@ namespace Towers
 
         private Vector3 _sphereGizmoPoint;
 
-        [SerializeField] private float minScale = 0.2f;
-        [SerializeField] private float maxScale = 3f;
-        [SerializeField] private float maxScaleAtDistance = 2;
-        [SerializeField] private float minScaleAtDistance = 20;
-
         [SerializeField] private Image reticle;
 
         [SerializeField] private List<GameObject> hitEnemies;
 
         private Camera _mainCamera;
-        private CinemachineCamera _currentCamera;
+        [SerializeField] private CinemachineCamera _currentCamera;
 
         private Tower _towerComp;
         
@@ -61,10 +56,10 @@ namespace Towers
                 return;
             } */
             
-            if (!_currentCamera.IsLive)
-            {
-                return;
-            }
+            // if (!_currentCamera.IsLive)
+            // {
+            //     return;
+            // }
             
             MoveCamera();
             
@@ -162,14 +157,9 @@ namespace Towers
                 var targetPos = currentTarget.GetComponentInChildren<EnemyTarget>().transform.position;
                 Vector3 imagePos = _mainCamera.WorldToScreenPoint(targetPos);
 
-                // float worldDistance = Vector3.Distance(_camTransform.position, targetPos);
-                // float distanceT = Mathf.InverseLerp(maxScaleAtDistance, minScaleAtDistance, worldDistance);
-                // float scale = Mathf.Lerp(minScale, maxScale, distanceT);
-                
                 reticle.rectTransform.transform.position = imagePos;
-                // reticle.rectTransform.localScale = new Vector3(scale, scale, scale);
 
-                if (_currentCamera.IsLive)
+                if (_currentCamera.Priority > 0)
                 {
                     reticle.GetComponent<Image>().enabled = true;
                 }
@@ -186,6 +176,11 @@ namespace Towers
 
         private void MoveCamera()
         {
+            if (!_currentCamera.IsLive)
+            {
+                return;
+            }
+            
             float y = Input.GetAxis("Mouse X") * turnSpeed;
             _rotX += Input.GetAxis("Mouse Y") * turnSpeed;
             
