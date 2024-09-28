@@ -7,9 +7,9 @@ public class SoulsCounter : MonoBehaviour
 {
     public static SoulsCounter Instance;
     
-    [SerializeField] private float nightmares;
+    public float Nightmares;
     
-    [SerializeField] private float dreams;
+    public float Dreams;
     
     [SerializeField] private TextMeshProUGUI text;
     
@@ -37,10 +37,10 @@ public class SoulsCounter : MonoBehaviour
 
     private void Update()
     {
-        if (nightmares >= 100)
+        if (Nightmares >= 100)
         {
             RemoveNightmares(100);
-            dreams++;
+            Dreams++;
         }
         
         UpdateHpBar();
@@ -50,9 +50,9 @@ public class SoulsCounter : MonoBehaviour
     {
         float fillFrontBar = frontBar.fillAmount;
         float fillBackBar = backBar.fillAmount;
-        float hFraction = nightmares / 100;
+        float hFraction = Nightmares / 100;
         
-        text.text = $"{newText}{dreams.ToString()}";
+        text.text = $"{newText}{Dreams.ToString()}";
 
         if (fillBackBar > hFraction)
         {
@@ -77,13 +77,13 @@ public class SoulsCounter : MonoBehaviour
     
     public void AddNightmares(float count) 
     {
-        nightmares += count;
+        Nightmares += count;
         _lerpTimer = 0f;
     }
 
     private void RemoveNightmares(float count)
     {
-        nightmares -= count;
+        Nightmares -= count;
         _lerpTimer = 0f;
     }
 }

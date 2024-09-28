@@ -8,7 +8,7 @@ public class RunningState : EnemyState
     public override void Enter()
     {
         _target = GameObject.FindGameObjectWithTag("Castle").transform;
-        navMeshAgent.speed = 1;
+        navMeshAgent.speed = 2;
     }
     
     public override void Do()

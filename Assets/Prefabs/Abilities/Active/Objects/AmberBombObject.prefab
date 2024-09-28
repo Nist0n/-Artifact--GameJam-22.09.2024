@@ -67,13 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80e6192045c4e0d46a73c45601ee2056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsAbilityUsed: 0
-  AbilityCooldown: 0
-  Timer: 0
-  RangeOfAction: 0
-  ActionCollider: {fileID: 0}
-  ActionRadius: {fileID: 0}
-  Cost: 0
+  destroyTime: 7
+  damage: 4
 --- !u!1001 &368964100755617605
 PrefabInstance:
   m_ObjectHideFlags: 0

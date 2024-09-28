@@ -181,34 +181,78 @@ public class GamePause : MonoBehaviour
     // Метод для выбора слота улучшений
     private void OnUpgradeSlotSelected(Button selectedSlot, int slotIndex)
     {
-        if (selectedSlot.CompareTag("Active"))
+        if (selectedSlot.transform.GetChild(0).gameObject.activeSelf)
         {
-            buyingSystem.GetButtonsUpgrade(selectedSlot);
-            buyingSystem.SetRandomActiveAbilities();
+            for (int i = 0; i < selectedSlot.transform.childCount; i++)
+            {
+                selectedSlot.transform.GetChild(i).gameObject.SetActive(false);
+            }
         }
         else
         {
-            buyingSystem.GetButtonsUpgrade(selectedSlot);
-            buyingSystem.SetRandomPassiveAbilities();
-        }
-        // Находим дочерние объекты внутри слота, которые представляют собой кнопки улучшений
-        for (int i = 0; i < selectedSlot.transform.childCount; i++)
-        {
-            Transform upgrade = selectedSlot.transform.GetChild(i); // Получаем улучшение
-            upgrade.gameObject.SetActive(true); // Показываем кнопки с улучшениями
+            if (!selectedSlot.GetComponent<ButtonFreezed>().Isfreezed)
+            {
+                if (selectedSlot.CompareTag("Active"))
+                {
+                    buyingSystem.GetButtonsUpgrade(selectedSlot);
+                    buyingSystem.SetRandomActiveAbilities();
+                }
+                else
+                {
+                    buyingSystem.GetButtonsUpgrade(selectedSlot);
+                    buyingSystem.SetRandomPassiveAbilities();
+                }
+            }
+            
+            // Находим дочерние объекты внутри слота, которые представляют собой кнопки улучшений
+            for (int i = 0; i < selectedSlot.transform.childCount; i++)
+            {
+                Transform upgrade = selectedSlot.transform.GetChild(i); // Получаем улучшение
+                upgrade.gameObject.SetActive(true); // Показываем кнопки с улучшениями
 
-            // Привязываем выбор улучшения к кнопке
-            Button upgradeButton = upgrade.transform.GetChild(0).GetComponent<Button>();
-            int upgradeIndex = i;
-            upgradeButton.onClick.AddListener(() => OnAbilitySelected(selectedSlot, upgradeButton, upgradeIndex));
+                // Привязываем выбор улучшения к кнопке
+                Button upgradeButton = upgrade.transform.GetChild(0).GetComponent<Button>();
+                int upgradeIndex = i;
+                upgradeButton.onClick.AddListener(() => OnAbilitySelected(selectedSlot, upgradeButton, upgradeIndex));
+            }
+
+            selectedSlot.GetComponent<ButtonFreezed>().Isfreezed = true;
         }
     }
 
     // Метод для выбора улучшения
     private void OnAbilitySelected(Button selectedSlot, Button chosenUpgrade, int upgradeIndex)
     {
-        buyingSystem.SetAbilityOnTower(chosenUpgrade);
-        buyingSystem.ResetLists();
+        if (selectedSlot.CompareTag("Active"))
+        {
+            float tempCost = chosenUpgrade.gameObject.GetComponent<ActiveAbility>().Cost;
+            
+            if (tempCost <= SoulsCounter.Instance.Dreams)
+            {
+                buyingSystem.SetAbilityOnTower(chosenUpgrade);
+                buyingSystem.ResetLists();
+                SoulsCounter.Instance.Dreams -= tempCost;
+            }
+            else
+            {
+                return;
+            }
+        }
+        else
+        {
+            float tempCost = chosenUpgrade.gameObject.GetComponent<PassiveAbilities>().Cost;
+            
+            if (tempCost <= SoulsCounter.Instance.Dreams)
+            {
+                buyingSystem.SetAbilityOnTower(chosenUpgrade);
+                buyingSystem.ResetLists();
+                SoulsCounter.Instance.Dreams -= tempCost;
+            }
+            else
+            {
+                return;
+            }
+        }
         // Скрываем все улучшения после выбора
         for (int i = 0; i < selectedSlot.transform.childCount; i++)
         {

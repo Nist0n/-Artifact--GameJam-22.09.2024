@@ -57,7 +57,7 @@ MonoBehaviour:
   RangeOfAction: 5
   ActionCollider: {fileID: 4883840351844022898, guid: b5e9ef341db43924292a519ebe3fc783, type: 3}
   ActionRadius: {fileID: 0}
-  Cost: 0
+  Cost: 3
 --- !u!114 &-4586173977043993368
 MonoBehaviour:
   m_ObjectHideFlags: 0

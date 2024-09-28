@@ -7,7 +7,7 @@ public class DeathState : EnemyState
     public override void Enter()
     {
         navMeshAgent.speed = 0;
-        SoulsCounter.Instance.AddNightmares(1);
+        SoulsCounter.Instance.AddNightmares(Mathf.Round(Random.Range(DroppedCoinsMin, DroppedCoinsMax)));
         Instantiate(soul, transform.position, quaternion.identity);
     }
     
