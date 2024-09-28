@@ -10,7 +10,7 @@ namespace Towers
     {
         private Camera _mainCamera;
         private Tower _currentTower;
-        
+
         public CinemachineCamera mainCinemachineCamera;
         public CinemachineCamera shopCinemachineCamera;
 
@@ -33,6 +33,7 @@ namespace Towers
                     return;
                 }
                 
+                _currentTower.GetComponent<AbilitiesSlots>().HideAbilities();
                 _currentTower.piloted = false;
                 _currentTower.towerCamera.Priority = 0;
                 mainCinemachineCamera.Priority = 1;
@@ -61,6 +62,8 @@ namespace Towers
                     if (hit.collider.gameObject.CompareTag("Tower")) // If clicking on a tower
                     {
                         Tower tower = hit.collider.gameObject.GetComponent<Tower>();
+                        
+                        tower.gameObject.GetComponent<AbilitiesSlots>().SetAbilitiesImages();
                         
                         _currentTower = tower;
                         tower.towerCamera.Priority = 1;

@@ -208,13 +208,11 @@ MonoBehaviour:
   turnSpeed: 4
   tower: {fileID: 8560016364133692633}
   currentTarget: {fileID: 0}
-  crosshairRadius: 4
-  minScale: 0.2
-  maxScale: 3
-  maxScaleAtDistance: 2
-  minScaleAtDistance: 20
+  previousTarget: {fileID: 0}
+  crosshairRadius: 130
   reticle: {fileID: 7076527651015202723}
   hitEnemies: []
+  _currentCamera: {fileID: 0}
 --- !u!1 &5593291977395259794
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,9 +309,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee090a920dd8304d9a28ad67364b41f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilitiesObject: {fileID: 0}
   HasActiveAbility: 0
   Abilities: []
-  _screenPositions: []
+  imagePositions: []
   Ability: {fileID: 0}
 --- !u!1 &7801000843874872880
 GameObject:
