@@ -5,10 +5,7 @@ public class AnimationController : EnemyState
     private float _animInterpolX;
     private float _animInterpolY;
     private readonly float _timeMultiply = 5;
-    private bool first = true;
-    private bool second;
-    private bool third;
-    
+
     public void Run()
     {
         _animInterpolX = Mathf.Lerp(_animInterpolX, 0f, Time.deltaTime * _timeMultiply);

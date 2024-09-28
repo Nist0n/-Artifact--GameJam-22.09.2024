@@ -223,7 +223,7 @@ MonoBehaviour:
       type: {class: URPDefaultVolumeProfileSettings, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:
         m_Version: 0
-        m_VolumeProfile: {fileID: 11400000, guid: 17ecb3a6b8224b64dbc7901a632c8097, type: 2}
+        m_VolumeProfile: {fileID: 11400000, guid: 91074103e9fb3694b8ac0e3f547f51e2, type: 2}
     - rid: 6852985685364965385
       type: {class: RenderGraphSettings, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.Runtime}
       data:

@@ -28,8 +28,6 @@ public class GamePause : MonoBehaviour
 
     public bool gameIsPaused;
 
-    private bool _isSwitching = false;
-
     private void Start()
     {
         // Отключаем все слоты и улучшения в начале игры
@@ -183,8 +181,16 @@ public class GamePause : MonoBehaviour
     // Метод для выбора слота улучшений
     private void OnUpgradeSlotSelected(Button selectedSlot, int slotIndex)
     {
-        buyingSystem.GetButtonsUpgrade(selectedSlot);
-        buyingSystem.SetRandomActiveAbilities();
+        if (selectedSlot.CompareTag("Active"))
+        {
+            buyingSystem.GetButtonsUpgrade(selectedSlot);
+            buyingSystem.SetRandomActiveAbilities();
+        }
+        else
+        {
+            buyingSystem.GetButtonsUpgrade(selectedSlot);
+            buyingSystem.SetRandomPassiveAbilities();
+        }
         // Находим дочерние объекты внутри слота, которые представляют собой кнопки улучшений
         for (int i = 0; i < selectedSlot.transform.childCount; i++)
         {

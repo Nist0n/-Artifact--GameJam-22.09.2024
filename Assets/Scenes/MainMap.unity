@@ -118,6 +118,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &3239179 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5593291977395259794, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
+  m_PrefabInstance: {fileID: 148946466}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7814994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3887,7 +3892,7 @@ GameObject:
   - component: {fileID: 178002591}
   m_Layer: 5
   m_Name: Slot_1
-  m_TagString: Untagged
+  m_TagString: Active
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4228,7 +4233,7 @@ GameObject:
   - component: {fileID: 193009331}
   m_Layer: 5
   m_Name: Slot_1
-  m_TagString: Untagged
+  m_TagString: Active
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4446,6 +4451,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198869316}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &202762774 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5593291977395259794, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
+  m_PrefabInstance: {fileID: 1116832590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &208273606
 GameObject:
   m_ObjectHideFlags: 0
@@ -10870,7 +10880,7 @@ GameObject:
   - component: {fileID: 656283064}
   m_Layer: 5
   m_Name: Slot_1
-  m_TagString: Untagged
+  m_TagString: Active
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12046,6 +12056,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 715499653}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &718825029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5593291977395259794, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
+  m_PrefabInstance: {fileID: 7814994}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &722862322
 GameObject:
   m_ObjectHideFlags: 0
@@ -16918,6 +16933,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984009863}
   m_CullTransparentMesh: 1
+--- !u!1 &987507122 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5593291977395259794, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
+  m_PrefabInstance: {fileID: 2088315390}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1011850420
 GameObject:
   m_ObjectHideFlags: 0
@@ -18615,6 +18635,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078069990}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1079024518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5593291977395259794, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
+  m_PrefabInstance: {fileID: 1968663981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1080279421
 GameObject:
   m_ObjectHideFlags: 0
@@ -21114,7 +21139,7 @@ GameObject:
   - component: {fileID: 1194845578}
   m_Layer: 5
   m_Name: Slot_1
-  m_TagString: Untagged
+  m_TagString: Active
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29756,7 +29781,7 @@ GameObject:
   - component: {fileID: 1764290014}
   m_Layer: 5
   m_Name: Slot_1
-  m_TagString: Untagged
+  m_TagString: Active
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31223,12 +31248,12 @@ MonoBehaviour:
   - {fileID: 4500373888269952220, guid: a35cce8f96542bb429661747b0b75d69, type: 3}
   - {fileID: 4500373888269952220, guid: eb469f6ebb51fc646bbbabafd0ad6faa, type: 3}
   towerList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1079024518}
+  - {fileID: 202762774}
+  - {fileID: 718825029}
+  - {fileID: 987507122}
+  - {fileID: 3239179}
+  - {fileID: 2122246745}
   passiveAbilities: []
   randomAbilities: []
   objectsForRandomAbilities: []
@@ -32902,7 +32927,7 @@ GameObject:
   - component: {fileID: 1916991382}
   m_Layer: 5
   m_Name: Slot_1
-  m_TagString: Untagged
+  m_TagString: Active
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37476,6 +37501,11 @@ RectTransform:
   m_AnchoredPosition: {x: 150, y: -150.00003}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2122246745 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5593291977395259794, guid: 8a06e2a2fe02c5e4ebe9b79859a93796, type: 3}
+  m_PrefabInstance: {fileID: 1063529690}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2137307052
 GameObject:
   m_ObjectHideFlags: 0

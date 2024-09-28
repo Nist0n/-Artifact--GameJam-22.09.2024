@@ -33,6 +33,17 @@ public class BuyingSystem : MonoBehaviour
                 objectsForRandomAbilities[i].transform);
         }
     }
+    
+    public void SetRandomPassiveAbilities()
+    {
+        RandomGetPassiveAbilities();
+        
+        for (int i = 0; i < objectsForRandomAbilities.Count; i++)
+        {
+            Instantiate(randomAbilities[i], objectsForRandomAbilities[i].transform.position, Quaternion.identity,
+                objectsForRandomAbilities[i].transform);
+        }
+    }
 
     public void ResetLists()
     {

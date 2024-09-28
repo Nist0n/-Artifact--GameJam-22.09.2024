@@ -9,6 +9,7 @@ TagManager:
   - Castle
   - Enemy
   - Range
+  - Active
   layers:
   - Default
   - TransparentFX
