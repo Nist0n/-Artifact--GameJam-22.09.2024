@@ -73,7 +73,7 @@ namespace Towers
             
             if (_isAbilityActived)
             {
-                reticle.enabled = false;
+                DisableImage();
                 if (Input.GetMouseButton(0))
                 {
                     _isAbilityActived = false;
@@ -97,7 +97,7 @@ namespace Towers
             {
                 if (_abilities.HasActiveAbility && !_abilities.Ability.GetComponent<ActiveAbility>().IsAbilityUsed)
                 {
-                    reticle.enabled = false;
+                    DisableImage();
                     _abilityRange.transform.localScale *= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction;
                     _abilities.Ability.GetComponent<ActiveAbility>().ActionRadius = _abilityRange;
                     _isAbilityActived = true;
@@ -112,6 +112,7 @@ namespace Towers
 
             if (enemies.Count == 0)
             {
+                DisableImage();
                 return;
             }
             

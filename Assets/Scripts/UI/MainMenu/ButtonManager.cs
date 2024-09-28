@@ -26,13 +26,14 @@ public class ButtonManager : MonoBehaviour
 
     public void PlayGame()
     {
-        StartCoroutine(ChangeCamera());
+        SceneManager.LoadScene("MainMap");
+        // StartCoroutine(ChangeCamera());
     }
 
     private IEnumerator ChangeCamera()
     {
-        // sphereCamera.Priority = 1;
-        // canvas.GetComponent<Canvas>().enabled = false;
+        sphereCamera.Priority = 1;
+        canvas.GetComponent<Canvas>().enabled = false;
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("MainMap");
     }
