@@ -16,7 +16,7 @@ public class Victory : MonoBehaviour
         if(timer > 0) timer -= Time.deltaTime;
         if (gameConfig.EnemyList.Count <= 0 && GameRun && timer < 0) {
             GameRun = false;
-            VictoryMode();
+            VictoryMode();  
         }
     }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CastleHealth : MonoBehaviour
 {
-    [SerializeField] private float health;
+    public float health;
 
     private float _maxHealth = 100;
 
