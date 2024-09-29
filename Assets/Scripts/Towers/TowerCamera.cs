@@ -35,9 +35,17 @@ namespace Towers
         [SerializeField] private CinemachineCamera _currentCamera;
 
         private Tower _towerComp;
+
+        // Добавляем ссылки на AudioListener
+        public AudioListener mainCameraListener; // AudioListener на главной камере
+        public AudioListener towerAudioListener; // AudioListener на башне
+        public GameObject _audio;
         
         private void Start()
         {
+            // Изначально включаем AudioListener на главной камере
+            ActivateMainCameraListener();
+
             _abilityRange = GameObject.FindGameObjectWithTag("Range");
             _abilities = GetComponentInParent<AbilitiesSlots>();
             _searchRadius = GetComponentInParent<Tower>().attackRange;
@@ -55,12 +63,24 @@ namespace Towers
             {
                 return;
             } */
-            
+
             // if (!_currentCamera.IsLive)
             // {
             //     return;
             // }
-            
+
+            // Проверяем, активна ли камера для башни
+            if (_currentCamera.IsLive)
+            {
+                // Если камера активна, переключаемся на башню
+                ActivateTowerListener();
+            }
+            else
+            {
+                // Если камера не активна, включаем AudioListener на главной камере
+                ActivateMainCameraListener();
+            }
+
             MoveCamera();
             
             Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
@@ -178,6 +198,26 @@ namespace Towers
             }
         }
 
+        // Метод для активации AudioListener на башне
+        private void ActivateTowerListener()
+        {
+            if (!towerAudioListener.enabled)
+            {
+                towerAudioListener.enabled = true;
+                mainCameraListener.enabled = false;
+            }
+        }
+
+        // Метод для активации AudioListener на главной камере
+        private void ActivateMainCameraListener()
+        {
+            if (!mainCameraListener.enabled)
+            {
+                mainCameraListener.enabled = true;
+                towerAudioListener.enabled = false;
+            }
+        }
+
         private void MoveCamera()
         {
             if (!_currentCamera.IsLive)
@@ -193,6 +233,7 @@ namespace Towers
             _rotX = Mathf.Clamp(_rotX, MinTurnAngle, _maxTurnAngle);
             
             tower.transform.eulerAngles = new Vector3(-_rotX, _camTransform.eulerAngles.y + y, 0);
+            _audio.transform.eulerAngles = tower.transform.eulerAngles;
         }
 
         public void DisableImage()
