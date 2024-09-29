@@ -1616,12 +1616,16 @@ MonoBehaviour:
   navMeshAgent: {fileID: 1009576744163202219}
   animationController: {fileID: 7856669874778829936}
   animator: {fileID: 8115875886227784237}
+  AudioSource: {fileID: -4563725434953899105}
+  Speed: 0
+  Slowness: 0.6
   Health: 0
   DroppedCoinsMax: 10
   DroppedCoinsMin: 25
   MaxHealth: 15
   Damage: 5
   IsFreezed: 0
+  IsSlowness: 0
   IsAttacking: 0
   IsCelebrating: 0
   Soul: {fileID: 1277085015814301893, guid: ff37baff706d86848addca8e6f134b91, type: 3}
@@ -1634,6 +1638,7 @@ MonoBehaviour:
   Death: {fileID: 6141844724278041469}
   Attacking: {fileID: 4083316137103589690}
   Celebrating: {fileID: 297790631397135720}
+  Slow: {fileID: 0}
 --- !u!95 &8115875886227784237
 Animator:
   serializedVersion: 7
@@ -1740,9 +1745,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1775,7 +1780,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

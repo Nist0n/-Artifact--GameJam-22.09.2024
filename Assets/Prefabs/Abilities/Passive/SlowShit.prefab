@@ -68,10 +68,11 @@ MonoBehaviour:
   tower: {fileID: 0}
   ActiveAbil: {fileID: 0}
   floatingTps: {fileID: 8747991601407759124, guid: 5caacb7c4542dfa45b23c93cb6eb3589, type: 3}
-  speedBoom: {fileID: 5611277617029808608, guid: 727eee4e4e3363145b4742646b1ae8aa, type: 3}
+  speedBoom: {fileID: 8998191890907703917, guid: 727eee4e4e3363145b4742646b1ae8aa, type: 3}
   slowShit: {fileID: 636518294878402089}
   damageBoost: {fileID: 5723442498969030102, guid: 753921215f0b55d4897ff446d7e4ee2b, type: 3}
   fireBoost: {fileID: -7384307690221723814, guid: f622b9a36f00bb94ca71e1e5482d5717, type: 3}
+  rangeGiga: {fileID: -1256630095168027048, guid: c2ae51ea8901fea429c22449838835be, type: 3}
 --- !u!222 &485673535424991497
 CanvasRenderer:
   m_ObjectHideFlags: 0

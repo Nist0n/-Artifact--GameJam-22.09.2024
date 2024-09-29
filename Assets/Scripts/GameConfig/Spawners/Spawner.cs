@@ -50,8 +50,10 @@ public class Spawner : MonoBehaviour
         _gameConfig.EnemyList.Add(temp);
     }
 
-    public IEnumerator SpawnBoss()
+    public IEnumerator SpawnBoss(GameObject boss)
     {
+        var temp = Instantiate(boss, transform.position, Quaternion.identity, transform);
+        _gameConfig.EnemyList.Add(temp);
         yield return new WaitForSeconds(1f);
     }
 }

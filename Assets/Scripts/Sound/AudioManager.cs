@@ -2,6 +2,7 @@ using Audio;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using static Unity.VisualScripting.Member;
 
 public class AudioManager : MonoBehaviour
 {
@@ -56,10 +57,11 @@ public class AudioManager : MonoBehaviour
 
         if (matchingSounds.Count > 0)
         {
+            Debug.Log("Workat PlayRandomSoundByName");
             int randomIndex = Random.Range(0, matchingSounds.Count);
             Sound randomSound = matchingSounds[randomIndex];
 
-            source.Play();
+            source.PlayOneShot(randomSound.audio);
         }
     }
 
@@ -69,11 +71,24 @@ public class AudioManager : MonoBehaviour
 
         if (matchingSounds.Count > 0)
         {
+            Debug.Log("Workat PlayWalkSound");
             int randomIndex = Random.Range(0, matchingSounds.Count);
             Sound randomSound = matchingSounds[randomIndex];
 
+            source.clip = randomSound.audio;
             source.loop = true;
             source.Play();
+        }
+    }
+
+    public void PlayLocalSound(string soundName,AudioSource source)
+    {
+        Sound s = sounds.Find(sound => sound.name == soundName);
+
+        if (s != null)
+        {
+            Debug.Log("Workat PlayLocalSound");
+            source.PlayOneShot(s.audio);
         }
     }
 

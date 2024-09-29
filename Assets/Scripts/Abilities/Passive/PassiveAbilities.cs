@@ -18,6 +18,8 @@ public class PassiveAbilities : MonoBehaviour
     [SerializeField] private DamageBoost damageBoost;
     
     [SerializeField] private FireBoost fireBoost;
+    
+    [SerializeField] private RangeGiga rangeGiga;
 
     public void SetTower(Tower tower)
     {
@@ -49,6 +51,11 @@ public class PassiveAbilities : MonoBehaviour
         if (name.Contains("FireBoost"))
         {
             return fireBoost.Cost;
+        }
+        
+        if (name.Contains("RangeGiga"))
+        {
+            return rangeGiga.Cost;
         }
 
         return 0;

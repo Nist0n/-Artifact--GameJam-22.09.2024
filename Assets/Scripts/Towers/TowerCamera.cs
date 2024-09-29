@@ -35,9 +35,15 @@ namespace Towers
         [SerializeField] private CinemachineCamera _currentCamera;
 
         private Tower _towerComp;
+
+        public AudioListener mainCameraListener;
+        public AudioListener towerAudioListener; 
+        public GameObject _audio;
         
         private void Start()
         {
+            ActivateMainCameraListener();
+
             _abilityRange = GameObject.FindGameObjectWithTag("Range");
             _abilities = GetComponentInParent<AbilitiesSlots>();
             _searchRadius = GetComponentInParent<Tower>().attackRange;
@@ -55,12 +61,22 @@ namespace Towers
             {
                 return;
             } */
-            
+
             // if (!_currentCamera.IsLive)
             // {
             //     return;
             // }
-            
+
+
+            if (_currentCamera.IsLive)
+            {
+                ActivateTowerListener();
+            }
+            else
+            {
+                ActivateMainCameraListener();
+            }
+
             MoveCamera();
             
             Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
@@ -178,6 +194,24 @@ namespace Towers
             }
         }
 
+        private void ActivateTowerListener()
+        {
+            if (!towerAudioListener.enabled)
+            {
+                towerAudioListener.enabled = true;
+                mainCameraListener.enabled = false;
+            }
+        }
+
+        private void ActivateMainCameraListener()
+        {
+            if (!mainCameraListener.enabled)
+            {
+                mainCameraListener.enabled = true;
+                towerAudioListener.enabled = false;
+            }
+        }
+
         private void MoveCamera()
         {
             if (!_currentCamera.IsLive)
@@ -193,6 +227,7 @@ namespace Towers
             _rotX = Mathf.Clamp(_rotX, MinTurnAngle, _maxTurnAngle);
             
             tower.transform.eulerAngles = new Vector3(-_rotX, _camTransform.eulerAngles.y + y, 0);
+            _audio.transform.eulerAngles = tower.transform.eulerAngles;
         }
 
         public void DisableImage()

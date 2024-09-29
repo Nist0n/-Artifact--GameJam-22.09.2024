@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,6 +7,8 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -14,6 +17,8 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] private GameObject settingsButtonsGroup;
     
     [SerializeField] private CinemachineCamera sphereCamera;
+    [SerializeField] private Volume volume;
+    private VolumeProfile _volumeProfile;
 
     private void Update()
     {
@@ -26,15 +31,21 @@ public class ButtonManager : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("MainMap");
-        // StartCoroutine(ChangeCamera());
+        // SceneManager.LoadScene("MainMap");
+        StartCoroutine(ChangeCamera());
     }
 
     private IEnumerator ChangeCamera()
     {
-        sphereCamera.Priority = 1;
         canvas.GetComponent<Canvas>().enabled = false;
-        yield return new WaitForSeconds(2f);
+        _volumeProfile = volume.profile;
+        _volumeProfile.TryGet(out DepthOfField dpf);
+        dpf.active = false;
+        _volumeProfile.TryGet(out Vignette vignette);
+        vignette.intensity = new ClampedFloatParameter(0.6f, 0f, 1f, true);
+        sphereCamera.Priority = 2;
+        
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("MainMap");
     }
     

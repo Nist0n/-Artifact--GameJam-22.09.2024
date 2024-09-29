@@ -13,7 +13,7 @@ public class RunningState : EnemyState
     
     public override void Do()
     {
-        AudioManager.instance.PlayWalkSound("", AudioSource);
+        AudioManager.instance.PlayWalkSound("WalkEnemy", AudioSource);
         navMeshAgent.destination = _target.position;
         animationController.Run();
         if (IsDamaged || IsAttacking || GameConfig.Instance.GameIsOverByLose || IsFreezed)
