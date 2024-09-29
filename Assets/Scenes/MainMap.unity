@@ -2349,7 +2349,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117611328}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &117611330
 Camera:
   m_ObjectHideFlags: 0
@@ -10857,6 +10857,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 644297161}
+  - component: {fileID: 644297162}
   m_Layer: 0
   m_Name: Parts
   m_TagString: Untagged
@@ -10914,6 +10915,14 @@ Transform:
   - {fileID: 7718724329804927832}
   m_Father: {fileID: 543450652767409167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &644297162
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644297160}
+  m_Enabled: 1
 --- !u!1 &649915243
 GameObject:
   m_ObjectHideFlags: 0
@@ -16534,7 +16543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   fireRate: 1
-  attackRange: 12
+  attackRange: 16
   projectilePrefab: {fileID: 1104144673388554703, guid: 2838955df129f0a4b8f9628c4faa7b28, type: 3}
   buffImage: {fileID: 1615537439}
   towerCameraComp: {fileID: 62603569678056089}
@@ -40769,7 +40778,7 @@ Transform:
   m_GameObject: {fileID: 3096949341561625202}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 14.699999, z: -3}
+  m_LocalPosition: {x: -1, y: 14.599998, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -40814,7 +40823,7 @@ Transform:
   m_GameObject: {fileID: 3096949342612727406}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 21.099998, z: -3}
+  m_LocalPosition: {x: -1, y: 14.599999, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -40829,7 +40838,7 @@ Transform:
   m_GameObject: {fileID: 3096949343239212254}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 21.099998, z: -3}
+  m_LocalPosition: {x: -1, y: 14.599999, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41319,7 +41328,7 @@ Transform:
   m_GameObject: {fileID: 6438611168692434612}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 14.099999, z: -3}
+  m_LocalPosition: {x: -1, y: 14.599999, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -50710,7 +50719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   fireRate: 1
-  attackRange: 12
+  attackRange: 14
   projectilePrefab: {fileID: 1104144673388554703, guid: 2838955df129f0a4b8f9628c4faa7b28, type: 3}
   buffImage: {fileID: 1615537439}
   towerCameraComp: {fileID: 7136694003103819898}
@@ -54571,7 +54580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   fireRate: 1
-  attackRange: 12
+  attackRange: 14
   projectilePrefab: {fileID: 1104144673388554703, guid: 2838955df129f0a4b8f9628c4faa7b28, type: 3}
   buffImage: {fileID: 1615537439}
   towerCameraComp: {fileID: 62603569551080425}
