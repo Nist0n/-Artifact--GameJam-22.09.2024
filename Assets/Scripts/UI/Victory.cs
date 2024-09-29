@@ -8,6 +8,8 @@ public class Victory : MonoBehaviour
     [SerializeField] private GameObject victory;
     [SerializeField] private GameObject background;
     [SerializeField] private GameObject pauseButton;
+    [SerializeField] private GameObject dreams;
+    [SerializeField] private GameObject bar;
     [SerializeField] private float timer;
     private bool GameRun = true;
     // Update is called once per frame
@@ -23,5 +25,7 @@ public class Victory : MonoBehaviour
     private void VictoryMode() {
         pauseButton.SetActive(!pauseButton.activeSelf);
         victory.SetActive(!victory.activeSelf);
+        bar.SetActive(!bar.activeSelf);
+        dreams.SetActive(!dreams.activeSelf);
     }
 }
