@@ -57,7 +57,6 @@ public class AudioManager : MonoBehaviour
 
         if (matchingSounds.Count > 0)
         {
-            Debug.Log("Workat PlayRandomSoundByName");
             int randomIndex = Random.Range(0, matchingSounds.Count);
             Sound randomSound = matchingSounds[randomIndex];
 
@@ -71,12 +70,10 @@ public class AudioManager : MonoBehaviour
 
         if (matchingSounds.Count > 0)
         {
-            Debug.Log("Workat PlayWalkSound");
             int randomIndex = Random.Range(0, matchingSounds.Count);
             Sound randomSound = matchingSounds[randomIndex];
 
             source.clip = randomSound.audio;
-            source.loop = true;
             source.Play();
         }
     }
@@ -87,7 +84,6 @@ public class AudioManager : MonoBehaviour
 
         if (s != null)
         {
-            Debug.Log("Workat PlayLocalSound");
             source.PlayOneShot(s.audio);
         }
     }
