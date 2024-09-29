@@ -201,6 +201,7 @@ namespace Towers
             {
                 towerAudioListener.enabled = true;
                 mainCameraListener.enabled = false;
+                Cursor.visible = false;
                 isTowerCameraActive = true;
             }
         }
@@ -211,6 +212,7 @@ namespace Towers
             {
                 mainCameraListener.enabled = true;
                 towerAudioListener.enabled = false;
+                Cursor.visible = true;
                 isTowerCameraActive = false;
             }
         }
