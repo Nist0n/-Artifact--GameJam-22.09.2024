@@ -53,15 +53,6 @@ public class GamePause : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            gameIsPaused = !gameIsPaused;
-            PauseGame();
-            pauseButton.SetActive(!pauseButton.activeSelf);
-            continueGameButton.SetActive(!continueGameButton.activeSelf);
-            background.SetActive(!background.activeSelf);
-        }
-
         if (pauseButton.activeSelf)
         {
             if (pauseButton.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name == "Selected")

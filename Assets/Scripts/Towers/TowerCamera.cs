@@ -39,10 +39,11 @@ namespace Towers
         public AudioListener mainCameraListener;
         public AudioListener towerAudioListener; 
         public GameObject _audio;
-        
+        private bool isTowerCameraActive = false;
+
         private void Start()
         {
-            ActivateMainCameraListener();
+            mainCameraListener.enabled = true;
 
             _abilityRange = GameObject.FindGameObjectWithTag("Range");
             _abilities = GetComponentInParent<AbilitiesSlots>();
@@ -68,11 +69,11 @@ namespace Towers
             // }
 
 
-            if (_currentCamera.IsLive)
+            if (_currentCamera.IsLive && !isTowerCameraActive)
             {
                 ActivateTowerListener();
             }
-            else
+            else if (!_currentCamera.IsLive && isTowerCameraActive)
             {
                 ActivateMainCameraListener();
             }
@@ -200,6 +201,7 @@ namespace Towers
             {
                 towerAudioListener.enabled = true;
                 mainCameraListener.enabled = false;
+                isTowerCameraActive = true;
             }
         }
 
@@ -209,6 +211,7 @@ namespace Towers
             {
                 mainCameraListener.enabled = true;
                 towerAudioListener.enabled = false;
+                isTowerCameraActive = false;
             }
         }
 

@@ -209,17 +209,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &44824380 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 814764548772143504, guid: 856b5a4f232b880448958da0f8f953b2, type: 3}
-  m_PrefabInstance: {fileID: 3994048162322149379}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f74bb04a7c2eab14eaac97f037323a8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &81101851
 GameObject:
   m_ObjectHideFlags: 0
@@ -3002,7 +2991,6 @@ MonoBehaviour:
   settingsButtonsGroup: {fileID: 232733838}
   sphereCamera: {fileID: 1429402084}
   volume: {fileID: 2036106573}
-  handsAnimator: {fileID: 849786018}
 --- !u!4 &1348903515
 Transform:
   m_ObjectHideFlags: 0
@@ -3503,7 +3491,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 44824380}
+      - m_Target: {fileID: 1907611154}
         m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
         m_MethodName: SetSFXVolume
         m_Mode: 1
@@ -3788,6 +3776,7 @@ GameObject:
   - component: {fileID: 1907611152}
   - component: {fileID: 1907611151}
   - component: {fileID: 1907611150}
+  - component: {fileID: 1907611154}
   m_Layer: 5
   m_Name: CanvasUI
   m_TagString: Untagged
@@ -3878,6 +3867,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1907611154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907611149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74bb04a7c2eab14eaac97f037323a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 1b08220dfc65f1240940ee20d27ae6b9, type: 2}
+  musicSlider: {fileID: 1998917163}
+  SFXSlider: {fileID: 1701459427}
 --- !u!1 &1913039845
 GameObject:
   m_ObjectHideFlags: 0
@@ -4121,7 +4125,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 44824380}
+      - m_Target: {fileID: 1907611154}
         m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 1
