@@ -14025,7 +14025,9 @@ MonoBehaviour:
   victory: {fileID: 1905724661}
   background: {fileID: 220916812}
   pauseButton: {fileID: 1512829652}
-  timer: 900
+  dreams: {fileID: 1328672639127493518}
+  bar: {fileID: 2144032466237963515}
+  timer: 5
 --- !u!114 &804337119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14056,6 +14058,8 @@ MonoBehaviour:
   loose: {fileID: 1924586155}
   background: {fileID: 220916812}
   pauseButton: {fileID: 1512829652}
+  dreams: {fileID: 1328672639127493518}
+  bar: {fileID: 2144032466237963515}
 --- !u!1 &810265876
 GameObject:
   m_ObjectHideFlags: 0
