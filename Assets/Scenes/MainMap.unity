@@ -33572,6 +33572,7 @@ MonoBehaviour:
   - {fileID: 9027525916655380491, guid: 5caacb7c4542dfa45b23c93cb6eb3589, type: 3}
   - {fileID: 9027525916655380491, guid: dd69992feb43c47409876ea2d4e1e92c, type: 3}
   - {fileID: 9027525916655380491, guid: 727eee4e4e3363145b4742646b1ae8aa, type: 3}
+  - {fileID: 9027525916655380491, guid: c2ae51ea8901fea429c22449838835be, type: 3}
   randomAbilities: []
   objectsForRandomAbilities: []
   abilitiesObj: {fileID: 550751098}
