@@ -64,20 +64,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlayWalkSound(string soundName, AudioSource source)
-    {
-        List<Sound> matchingSounds = sounds.FindAll(sound => sound.name == soundName);
-
-        if (matchingSounds.Count > 0)
-        {
-            int randomIndex = Random.Range(0, matchingSounds.Count);
-            Sound randomSound = matchingSounds[randomIndex];
-
-            source.clip = randomSound.audio;
-            source.Play();
-        }
-    }
-
     public void PlayLocalSound(string soundName,AudioSource source)
     {
         Sound s = sounds.Find(sound => sound.name == soundName);
