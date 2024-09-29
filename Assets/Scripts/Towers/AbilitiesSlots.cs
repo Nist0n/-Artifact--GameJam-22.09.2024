@@ -31,7 +31,7 @@ public class AbilitiesSlots : MonoBehaviour
     {
         if (_active != null)
         {
-            PassAbility.SetAbility(_active.gameObject);
+            if (PassAbility != null) PassAbility.SetAbility(_active.gameObject);
             
             if (_imageCooldowns == null)
             {
