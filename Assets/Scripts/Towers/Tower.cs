@@ -141,7 +141,6 @@ namespace Towers
         private IEnumerator Shoot(Vector3 currentPos, Vector3 enemyPos, GameObject target)
         {
             _canShoot = false;
-
             AudioManager.instance.PlayLocalSound("Tower", _audioSource);
 
             Vector3 projectilePos =
