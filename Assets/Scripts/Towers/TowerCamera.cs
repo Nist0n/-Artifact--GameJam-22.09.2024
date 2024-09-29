@@ -96,13 +96,11 @@ namespace Towers
                     return;
                 }
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, _searchRadius + 7, 1 << 0)) _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbilityRadius(_abilities.Ability.name, hit.point);
+                if (Physics.Raycast(ray, out hit, _searchRadius + 12, 1 << 0)) _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbilityRadius(_abilities.Ability.name, hit.point);
                 if (Input.GetKey(KeyCode.E))
                 {
                     _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbility(_abilities.Ability.name, hit.point, _abilities.Ability);
                     _isAbilityActived = false;
-                    Debug.Log("После" + _abilityRange.transform.localScale);
-                    Debug.Log(_abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction(_abilities.Ability.name));
                     _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction(_abilities.Ability.name);
                     _abilityRange.transform.position = new Vector3(1000f, 1000f, 1000f);
                 }
@@ -115,8 +113,6 @@ namespace Towers
                 {
                     DisableImage();
                     _abilityRange.transform.localScale *= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction(_abilities.Ability.name);
-                    Debug.Log(_abilityRange.transform.localScale);
-                    Debug.Log(_abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction(_abilities.Ability.name));
                     _abilities.Ability.GetComponent<ActiveAbility>().ActionRadius(_abilities.Ability.name, _abilityRange);
                     _isAbilityActived = true;
                     return;
@@ -201,6 +197,7 @@ namespace Towers
             {
                 towerAudioListener.enabled = true;
                 mainCameraListener.enabled = false;
+                Cursor.visible = false;
                 isTowerCameraActive = true;
             }
         }
@@ -211,6 +208,7 @@ namespace Towers
             {
                 mainCameraListener.enabled = true;
                 towerAudioListener.enabled = false;
+                Cursor.visible = true;
                 isTowerCameraActive = false;
             }
         }

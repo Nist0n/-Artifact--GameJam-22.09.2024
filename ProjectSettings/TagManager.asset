@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Range
   - Active
+  - Tooltip
   layers:
   - Default
   - TransparentFX

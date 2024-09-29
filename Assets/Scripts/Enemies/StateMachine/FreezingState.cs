@@ -6,7 +6,6 @@ public class FreezingState : EnemyState
     {
         navMeshAgent.speed = 0f;
         animator.speed = 0f;
-        AudioManager.instance.StopSound(AudioSource);
     }
     
     public override void Do()
