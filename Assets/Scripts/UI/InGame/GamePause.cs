@@ -165,6 +165,14 @@ public class GamePause : MonoBehaviour
     // Метод для выбора слота улучшений
     private void OnUpgradeSlotSelected(Button selectedSlot, int slotIndex)
     {
+        Transform tower = towerButtons[selectedTowerIndex].transform;
+        for (int i = 0; i < tower.childCount; i++)
+        {
+            Transform slot = tower.GetChild(i);
+            slot.gameObject.SetActive(false); // Скрываем все слоты
+            slot.gameObject.SetActive(true);
+        }
+        
         if (selectedSlot.transform.GetChild(0).gameObject.activeSelf)
         {
             for (int i = 0; i < selectedSlot.transform.childCount; i++)
@@ -194,6 +202,14 @@ public class GamePause : MonoBehaviour
                 
                 Transform upgrade = selectedSlot.transform.GetChild(i); // Получаем улучшение
                 upgrade.gameObject.SetActive(true); // Показываем кнопки с улучшениями
+
+                if (upgrade.transform.childCount > 1)
+                {
+                    for (int j = 0; j < upgrade.transform.childCount - 1; j++)
+                    {
+                        Destroy(upgrade.transform.GetChild(j).gameObject);
+                    }
+                }
 
                 // Привязываем выбор улучшения к кнопке
                 Button upgradeButton = upgrade.transform.GetChild(0).GetComponent<Button>();

@@ -2076,9 +2076,9 @@ MonoBehaviour:
   Speed: 2
   Slowness: 0.6
   Health: 0
-  DroppedCoinsMax: 10
-  DroppedCoinsMin: 25
-  MaxHealth: 15
+  DroppedCoinsMax: 20
+  DroppedCoinsMin: 45
+  MaxHealth: 9
   Damage: 5
   IsFreezed: 0
   IsSlowness: 0

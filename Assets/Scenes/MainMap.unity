@@ -2576,7 +2576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   fireRate: 1
-  attackRange: 12
+  attackRange: 16
   projectilePrefab: {fileID: 1104144673388554703, guid: 2838955df129f0a4b8f9628c4faa7b28, type: 3}
   buffImage: {fileID: 1615537439}
   towerCameraComp: {fileID: 62603569400932449}
@@ -21690,7 +21690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   fireRate: 1
-  attackRange: 12
+  attackRange: 16
   projectilePrefab: {fileID: 1104144673388554703, guid: 2838955df129f0a4b8f9628c4faa7b28, type: 3}
   buffImage: {fileID: 1615537439}
   towerCameraComp: {fileID: 62603568276663621}
@@ -48511,7 +48511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   fireRate: 1
-  attackRange: 12
+  attackRange: 16
   projectilePrefab: {fileID: 1104144673388554703, guid: 2838955df129f0a4b8f9628c4faa7b28, type: 3}
   buffImage: {fileID: 1615537439}
   towerCameraComp: {fileID: 62603568500557813}
@@ -52066,7 +52066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   fireRate: 1
-  attackRange: 14
+  attackRange: 16
   projectilePrefab: {fileID: 1104144673388554703, guid: 2838955df129f0a4b8f9628c4faa7b28, type: 3}
   buffImage: {fileID: 1615537439}
   towerCameraComp: {fileID: 7136694003103819898}
@@ -55934,7 +55934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   fireRate: 1
-  attackRange: 14
+  attackRange: 16
   projectilePrefab: {fileID: 1104144673388554703, guid: 2838955df129f0a4b8f9628c4faa7b28, type: 3}
   buffImage: {fileID: 1615537439}
   towerCameraComp: {fileID: 62603569551080425}
