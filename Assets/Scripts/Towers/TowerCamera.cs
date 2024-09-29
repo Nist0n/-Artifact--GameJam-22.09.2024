@@ -36,14 +36,12 @@ namespace Towers
 
         private Tower _towerComp;
 
-        // Добавляем ссылки на AudioListener
-        public AudioListener mainCameraListener; // AudioListener на главной камере
-        public AudioListener towerAudioListener; // AudioListener на башне
+        public AudioListener mainCameraListener;
+        public AudioListener towerAudioListener; 
         public GameObject _audio;
         
         private void Start()
         {
-            // Изначально включаем AudioListener на главной камере
             ActivateMainCameraListener();
 
             _abilityRange = GameObject.FindGameObjectWithTag("Range");
@@ -69,15 +67,13 @@ namespace Towers
             //     return;
             // }
 
-            // Проверяем, активна ли камера для башни
+
             if (_currentCamera.IsLive)
             {
-                // Если камера активна, переключаемся на башню
                 ActivateTowerListener();
             }
             else
             {
-                // Если камера не активна, включаем AudioListener на главной камере
                 ActivateMainCameraListener();
             }
 
@@ -198,7 +194,6 @@ namespace Towers
             }
         }
 
-        // Метод для активации AudioListener на башне
         private void ActivateTowerListener()
         {
             if (!towerAudioListener.enabled)
@@ -208,7 +203,6 @@ namespace Towers
             }
         }
 
-        // Метод для активации AudioListener на главной камере
         private void ActivateMainCameraListener()
         {
             if (!mainCameraListener.enabled)
