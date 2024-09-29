@@ -185,6 +185,8 @@ namespace Towers
                 return;
             }
             
+            Debug.Log(_currentCamera);
+            
             float y = Input.GetAxis("Mouse X") * turnSpeed;
             _rotX += Input.GetAxis("Mouse Y") * turnSpeed;
             

@@ -16,6 +16,8 @@ public class PassiveAbilities : MonoBehaviour
     [SerializeField] private SlowShit slowShit;
 
     [SerializeField] private DamageBoost damageBoost;
+    
+    [SerializeField] private FireBoost fireBoost;
 
     public void SetTower(Tower tower)
     {
@@ -42,6 +44,11 @@ public class PassiveAbilities : MonoBehaviour
         if (name.Contains("DamageBoost"))
         {
             return damageBoost.Cost;
+        }
+        
+        if (name.Contains("FireBoost"))
+        {
+            return fireBoost.Cost;
         }
 
         return 0;

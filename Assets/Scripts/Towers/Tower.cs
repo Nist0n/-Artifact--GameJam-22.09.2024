@@ -35,7 +35,7 @@ namespace Towers
         public float buffedFireRate;
         
         public float _initialDamage;
-        private float _initialFireRate;
+        public float _initialFireRate;
         private float _initialAttackRange;
         
         private void Start()
@@ -141,7 +141,7 @@ namespace Towers
             _canShoot = false;
             
             Vector3 projectilePos =
-                new Vector3(currentPos.x, currentPos.y + 4, currentPos.z);
+                new Vector3(currentPos.x, currentPos.y + 12.7f, currentPos.z);
             Projectile projectile = Instantiate(projectilePrefab, projectilePos, Quaternion.identity).GetComponent<Projectile>();
             projectile.damage = damage;
             
