@@ -1,14 +1,11 @@
-using System;
 using Towers;
 using UnityEngine;
 
-public class FloatingTPS : MonoBehaviour
+public class SlowShit : MonoBehaviour
 {
     private Tower _tower;
 
     public float Cost;
-
-    [SerializeField] private float tps = 0.6f;
 
     private bool _isPassiveUsed = false;
 
@@ -27,7 +24,7 @@ public class FloatingTPS : MonoBehaviour
 
     private void SetPassiveBonus()
     {
-        _tower.buffedFireRate *= tps;
+        _tower.SetSlowness();
         _isPassiveUsed = true;
     }
 }

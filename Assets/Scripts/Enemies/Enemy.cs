@@ -16,14 +16,16 @@ namespace Enemies
 
         private float _lerpTimer;
         
+        private float _slowTimer;
+
         public RunningState Running;
         public TakingDamageState TakingDamage;
         public FreezingState Freeze;
         public DeathState Death;
         public AttackingState Attacking;
         public CelebratingState Celebrating;
-        private AudioSource _audioSource;
-        
+        public SlownessState Slow;
+
         private void Start()
         {
             Health = MaxHealth;
@@ -35,7 +37,16 @@ namespace Enemies
         {
             Health = Mathf.Clamp(Health, 0, MaxHealth);
 
-            AudioManager.instance.PlayWalkSound("", _audioSource);
+            if (_slowTimer <= 3f)
+            {
+                _slowTimer += Time.deltaTime;
+                IsSlowness = true;
+            }
+            else
+            {
+                IsSlowness = false;
+            }
+            
             if (State.IsComplete)
             {
                 if (GameConfig.Instance.GameIsOverByLose)
@@ -46,7 +57,6 @@ namespace Enemies
                 
                 if (IsFreezed)
                 {
-                    AudioManager.instance.StopSound(_audioSource);
                     Set(Freeze);
                 }
                 else
@@ -63,8 +73,14 @@ namespace Enemies
                         }
                         else
                         {
-                            AudioManager.instance.PlayWalkSound("", _audioSource);
-                            Set(Running);
+                            if (IsSlowness)
+                            {
+                                Set(Slow);
+                            }
+                            else
+                            {
+                                Set(Running);
+                            }
                         }
                     }
                 }
@@ -89,6 +105,11 @@ namespace Enemies
             Health += heal;
         }
 
+        public void SetSlowness()
+        {
+            _slowTimer = 0;
+        }
+
         private void FixedUpdate()
         {
             State.FixedDoBranch();
@@ -111,7 +132,7 @@ namespace Enemies
 
         public void AttackCastle()
         {
-            AudioManager.instance.PlayRandomSoundByName("GateBreake", _audioSource);
+            AudioManager.instance.PlayRandomSoundByName("GateBreake", AudioSource);
             GameObject.FindGameObjectWithTag("Castle").GetComponent<CastleHealth>().ReceiveDamage(Damage);
         }
         

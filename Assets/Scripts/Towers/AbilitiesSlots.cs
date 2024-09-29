@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Towers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,8 @@ public class AbilitiesSlots : MonoBehaviour
 
     public GameObject Ability;
 
+    private PassiveAbilities PassAbility;
+
     private ImageCooldowns _imageCooldowns;
 
     public bool TowerSelected = false;
@@ -28,6 +31,8 @@ public class AbilitiesSlots : MonoBehaviour
     {
         if (_active != null)
         {
+            PassAbility.SetAbility(_active.gameObject);
+            
             if (_imageCooldowns == null)
             {
                 _imageCooldowns = imagePositions[_indexOfActiveAbility].GetComponent<ImageCooldowns>();
@@ -36,6 +41,11 @@ public class AbilitiesSlots : MonoBehaviour
             {
                 _imageCooldowns.GetProperties(_active.Timer(_active.name), _active.AbilityCooldown(_active.name));
             }
+        }
+
+        else if (PassAbility != null)
+        {
+            PassAbility.SetAbility(null);
         }
     }
 
@@ -50,6 +60,15 @@ public class AbilitiesSlots : MonoBehaviour
                 Ability = ability;
                 HasActiveAbility = true;
                 _active = Ability.GetComponent<ActiveAbility>();
+            }
+            else
+            {
+                ability.GetComponent<PassiveAbilities>().SetTower(GetComponent<Tower>());
+            }
+
+            if (ability.name.Contains("SpeedBoom"))
+            {
+                PassAbility = ability.GetComponent<PassiveAbilities>();
             }
         }
     }

@@ -216,4 +216,28 @@ public class ActiveAbility : MonoBehaviour
 
         return 0;
     }
+    
+    public void ChangeAbilityCooldown(string name, float percent, GameObject abil)
+    {
+        if (name.Contains(Amber))
+        {
+            abil.GetComponent<AmberBomb>().AbilityCooldown *= percent;
+        }
+        else if (name.Contains(Saphire))
+        {
+            abil.GetComponent<SaphireBomb>().AbilityCooldown *= percent;
+        }
+        else if (name.Contains(Emerald))
+        {
+            abil.GetComponent<EmeraldBomb>().AbilityCooldown *= percent;
+        }
+        else if (name.Contains(Ruby))
+        {
+            abil.GetComponent<RubyBomb>().AbilityCooldown *= percent;
+        }
+        else if (name.Contains(Diamond))
+        {
+            abil.GetComponent<DiamondBomb>().AbilityCooldown *= percent;
+        }
+    }
 }

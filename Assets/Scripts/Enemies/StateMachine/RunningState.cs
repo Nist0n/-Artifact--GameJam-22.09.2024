@@ -8,11 +8,12 @@ public class RunningState : EnemyState
     public override void Enter()
     {
         _target = GameObject.FindGameObjectWithTag("Castle").transform;
-        navMeshAgent.speed = 2;
+        navMeshAgent.speed = Speed;
     }
     
     public override void Do()
     {
+        AudioManager.instance.PlayWalkSound("", AudioSource);
         navMeshAgent.destination = _target.position;
         animationController.Run();
         if (IsDamaged || IsAttacking || GameConfig.Instance.GameIsOverByLose || IsFreezed)

@@ -12,6 +12,12 @@ public abstract class Core : MonoBehaviour
     public Animator animator;
 
     public StateMachine Machine;
+    
+    public AudioSource AudioSource;
+
+    public float Speed;
+
+    public float Slowness = 0.6f;
 
     public float Health;
 
@@ -24,6 +30,8 @@ public abstract class Core : MonoBehaviour
     public float Damage;
 
     public bool IsFreezed = false;
+    
+    public bool IsSlowness = false;
 
     public bool IsAttacking = false;
 

@@ -12,7 +12,15 @@ public abstract class EnemyState : MonoBehaviour
 
     protected Core core;
 
+    protected float Speed => core.Speed;
+    
+    protected float Slowness => core.Slowness;
+
     protected bool IsDamaged => core.IsDamaged;
+    
+    protected AudioSource AudioSource => core.AudioSource;
+    
+    protected bool IsSlowness => core.IsDamaged;
 
     protected float DroppedCoinsMin => core.DroppedCoinsMin;
     

@@ -243,7 +243,7 @@ public class GamePause : MonoBehaviour
         }
         else
         {
-            float tempCost = chosenUpgrade.gameObject.GetComponent<PassiveAbilities>().Cost;
+            float tempCost = chosenUpgrade.gameObject.GetComponent<PassiveAbilities>().Cost(chosenUpgrade.gameObject.name);
             
             if (tempCost <= SoulsCounter.Instance.Dreams)
             {

@@ -7,9 +7,11 @@ namespace Towers
 {
     public class Tower : MonoBehaviour
     {
-        public int damage;
+        public float damage;
         public float fireRate; // Time between shots (in seconds)
         public float attackRange;
+
+        protected bool slowness = false;
 
         [SerializeField] private GameObject projectilePrefab;
 
@@ -32,7 +34,7 @@ namespace Towers
 
         public float buffedFireRate;
         
-        private int _initialDamage;
+        public float _initialDamage;
         private float _initialFireRate;
         private float _initialAttackRange;
         
@@ -196,6 +198,11 @@ namespace Towers
         {
             damage = _initialDamage / 2;
             fireRate = _initialFireRate * 2;
+        }
+
+        public void SetSlowness()
+        {
+            this.slowness = true;
         }
     }
 

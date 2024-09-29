@@ -2028,6 +2028,7 @@ MonoBehaviour:
   navMeshAgent: {fileID: 3300995936046839246}
   animationController: {fileID: 3005919790545713870}
   animator: {fileID: 2128716366485521467}
+  Speed: 2
   Health: 0
   DroppedCoinsMax: 10
   DroppedCoinsMin: 25

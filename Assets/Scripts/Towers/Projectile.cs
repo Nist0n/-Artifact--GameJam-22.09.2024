@@ -28,6 +28,10 @@ namespace Towers
         {
             Enemy enemy = CurrentAutoTarget.GetComponent<Enemy>();
             enemy.ReceiveDamageActivate(damage);
+            if (slowness)
+            {
+                enemy.SetSlowness();
+            }
             StartCoroutine(ActivateHit());
         }
 
