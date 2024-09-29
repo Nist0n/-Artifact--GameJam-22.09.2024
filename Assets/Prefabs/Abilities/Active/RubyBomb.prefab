@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9058662732158334998}
-  - component: {fileID: 9156060853111906472}
   - component: {fileID: 5328194643854168695}
   - component: {fileID: 3648477758815810897}
   - component: {fileID: 345477825846978721}
+  - component: {fileID: 1419192026789381544}
+  - component: {fileID: -6703857217748586729}
   m_Layer: 0
   m_Name: RubyBomb
   m_TagString: Untagged
@@ -39,25 +40,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &9156060853111906472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4500373888269952220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 814498ba73d8fec4384824c8ee9c6943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsAbilityUsed: 0
-  AbilityCooldown: 50
-  Timer: 0
-  RangeOfAction: 4
-  ActionCollider: {fileID: 4883840351844022898, guid: c50fca4b1a60ecd4bbe8ec9fefaad2b3, type: 3}
-  ActionRadius: {fileID: 0}
-  Cost: 4
 --- !u!114 &5328194643854168695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,7 +80,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 345477825846978721}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -130,7 +112,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4b25b1cf5548f434f95949000c0d5fdc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1d941793b15d430408fe931d0d24e357, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -140,3 +122,39 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1419192026789381544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4500373888269952220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 914e206c0bb160b4bb00a4b1c3ea3b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amberBomb: {fileID: 2296879339028380043, guid: 69714c940f361554889e20502d036ee1, type: 3}
+  saphireBomb: {fileID: 3369569070268995835, guid: eb469f6ebb51fc646bbbabafd0ad6faa, type: 3}
+  emeraldBomb: {fileID: 4984192377918074956, guid: 006fefcdc0d024d489138a8842896b67, type: 3}
+  diamondBomb: {fileID: -456462015008414354, guid: e516d7157a6ef194aa005805b17c9d5a, type: 3}
+  rubyBomb: {fileID: -6703857217748586729}
+--- !u!114 &-6703857217748586729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4500373888269952220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814498ba73d8fec4384824c8ee9c6943, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsAbilityUsed: 0
+  AbilityCooldown: 45
+  Timer: 0
+  RangeOfAction: 4
+  ActionCollider: {fileID: 4883840351844022898, guid: c50fca4b1a60ecd4bbe8ec9fefaad2b3, type: 3}
+  ActionRadius: {fileID: 0}
+  Cost: 4

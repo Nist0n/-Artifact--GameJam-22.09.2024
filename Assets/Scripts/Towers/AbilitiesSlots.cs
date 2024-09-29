@@ -13,15 +13,44 @@ public class AbilitiesSlots : MonoBehaviour
     
     [SerializeField] private List<Image> imagePositions;
 
+    private int _indexOfActiveAbility;
+
+    private ActiveAbility _active;
+
     public GameObject Ability;
+
+    private ImageCooldowns _imageCooldowns;
+
+    public bool TowerSelected = false;
+    
+
+    private void Update()
+    {
+        if (_active != null)
+        {
+            if (_imageCooldowns == null)
+            {
+                _imageCooldowns = imagePositions[_indexOfActiveAbility].GetComponent<ImageCooldowns>();
+            }
+            if (TowerSelected)
+            {
+                _imageCooldowns.GetProperties(_active.Timer(_active.name), _active.AbilityCooldown(_active.name));
+            }
+        }
+    }
+
 
     [ContextMenu("CheckForAbility")]
     public void CheckForActiveAbility()
     {
         foreach (GameObject ability in Abilities)
         {
-            Ability = ability;
-            HasActiveAbility = true;
+            if (ability.GetComponent<ActiveAbility>())
+            {
+                Ability = ability;
+                HasActiveAbility = true;
+                _active = Ability.GetComponent<ActiveAbility>();
+            }
         }
     }
 
@@ -29,14 +58,24 @@ public class AbilitiesSlots : MonoBehaviour
     {
         for (int i = 0; i < Abilities.Count; i++)
         {
+            if (Abilities[i].GetComponent<ActiveAbility>())
+            {
+                _indexOfActiveAbility = i;
+            }
+
+            imagePositions[i].enabled = true;
+            imagePositions[i].transform.parent.GetComponent<Image>().enabled = true;
             imagePositions[i].sprite = Abilities[i].GetComponent<Image>().sprite;
+            imagePositions[i].transform.parent.GetComponent<Image>().sprite = Abilities[i].GetComponent<Image>().sprite;
         }
-        
-        abilitiesObject.SetActive(true);
     }
 
     public void HideAbilities()
     {
-        abilitiesObject.SetActive(false);
+        for (int i = 0; i < 3; i++)
+        {
+            imagePositions[i].enabled = false;
+            imagePositions[i].transform.parent.GetComponent<Image>().enabled = false;
+        }
     }
 }

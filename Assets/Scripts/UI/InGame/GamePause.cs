@@ -207,6 +207,7 @@ public class GamePause : MonoBehaviour
             // Находим дочерние объекты внутри слота, которые представляют собой кнопки улучшений
             for (int i = 0; i < selectedSlot.transform.childCount; i++)
             {
+                
                 Transform upgrade = selectedSlot.transform.GetChild(i); // Получаем улучшение
                 upgrade.gameObject.SetActive(true); // Показываем кнопки с улучшениями
 
@@ -225,7 +226,7 @@ public class GamePause : MonoBehaviour
     {
         if (selectedSlot.CompareTag("Active"))
         {
-            float tempCost = chosenUpgrade.gameObject.GetComponent<ActiveAbility>().Cost;
+            float tempCost = chosenUpgrade.gameObject.GetComponent<ActiveAbility>().Cost(chosenUpgrade.gameObject.name);
             
             if (tempCost <= SoulsCounter.Instance.Dreams)
             {

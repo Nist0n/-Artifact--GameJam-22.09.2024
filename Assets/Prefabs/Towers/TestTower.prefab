@@ -267,10 +267,11 @@ MonoBehaviour:
   fireRate: 1
   attackRange: 12
   projectilePrefab: {fileID: 1104144673388554703, guid: 2838955df129f0a4b8f9628c4faa7b28, type: 3}
+  buffImage: {fileID: 0}
   towerCameraComp: {fileID: 62603569550083259}
   towerCamera: {fileID: 8962925503533803723}
   piloted: 0
-  buffDuration: 0
+  buffDuration: 10
   isPowered: 0
   enemiesInRange: []
   buffedFireRate: 0
@@ -314,6 +315,7 @@ MonoBehaviour:
   Abilities: []
   imagePositions: []
   Ability: {fileID: 0}
+  TowerSelected: 0
 --- !u!1 &7801000843874872880
 GameObject:
   m_ObjectHideFlags: 0

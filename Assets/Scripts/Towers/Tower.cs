@@ -13,6 +13,8 @@ namespace Towers
 
         [SerializeField] private GameObject projectilePrefab;
 
+        [SerializeField] private GameObject buffImage;
+
         public TowerCamera towerCameraComp;
         
         public CinemachineCamera towerCamera;
@@ -164,14 +166,16 @@ namespace Towers
             }
             
             StartCoroutine(Buff());
-            StartCoroutine(BuffCooldown());
         }
 
         private IEnumerator Buff()
         {
             float prev = fireRate;
             fireRate = buffedFireRate;
+            buffImage.SetActive(true);
             yield return new WaitForSeconds(buffDuration);
+            StartCoroutine(BuffCooldown());
+            buffImage.SetActive(false);
             fireRate = prev;
         }
 

@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using NUnit.Framework;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,6 +18,8 @@ namespace Towers
 
         [SerializeField] GameObject pauseButton;
         [SerializeField] GameObject shopUI;
+        [SerializeField] private List<GameObject> towers;
+        [SerializeField] private GameObject buffImage;
 
         private bool _isSwitching = false;
 
@@ -28,15 +32,26 @@ namespace Towers
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                if (mainCinemachineCamera.IsLive)
+                if (mainCinemachineCamera.IsLive || shopCinemachineCamera.IsLive)
                 {
                     return;
                 }
-                
+
+                _currentTower.GetComponent<AbilitiesSlots>().TowerSelected = false;
                 _currentTower.GetComponent<AbilitiesSlots>().HideAbilities();
+                
+                foreach (var tw in towers)
+                {
+                    if (tw != _currentTower.gameObject)
+                    {
+                        tw.GetComponentInChildren<TowerCamera>().enabled = true;
+                    }
+                }
+                
                 _currentTower.piloted = false;
                 _currentTower.towerCamera.Priority = 0;
                 mainCinemachineCamera.Priority = 1;
+                buffImage.SetActive(false);
             }
 
             if (Input.GetKeyDown(KeyCode.B) && !_isSwitching && !GamePause.Instance.gameIsPaused && (mainCinemachineCamera.IsLive || shopCinemachineCamera.IsLive))
@@ -64,6 +79,16 @@ namespace Towers
                         Tower tower = hit.collider.gameObject.GetComponent<Tower>();
                         
                         tower.gameObject.GetComponent<AbilitiesSlots>().SetAbilitiesImages();
+
+                        tower.gameObject.GetComponent<AbilitiesSlots>().TowerSelected = true;
+
+                        foreach (var tw in towers)
+                        {
+                            if (tw != tower.gameObject)
+                            {
+                                tw.GetComponentInChildren<TowerCamera>().enabled = false;
+                            }
+                        }
                         
                         _currentTower = tower;
                         tower.towerCamera.Priority = 1;

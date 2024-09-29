@@ -35,7 +35,8 @@ public class BuyingSystem : MonoBehaviour
     }
     
     public void SetRandomPassiveAbilities()
-    { RandomGetPassiveAbilities();
+    { 
+        RandomGetPassiveAbilities();
         
         for (int i = 0; i < objectsForRandomAbilities.Count; i++)
         {
@@ -60,7 +61,6 @@ public class BuyingSystem : MonoBehaviour
             var rand = Random.Range(0, temp.Count);
             
             randomAbilities.Add(temp[rand]);
-            Debug.Log(temp[rand]);
 
             temp.Remove(temp[rand]);
         }

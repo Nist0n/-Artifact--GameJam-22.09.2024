@@ -74,17 +74,19 @@ namespace Towers
                 if (Input.GetMouseButton(0))
                 {
                     _isAbilityActived = false;
-                    _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction;
+                    _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction(_abilities.Ability.name);
                     _abilityRange.transform.position = new Vector3(1000f, 1000f, 1000f);
                     return;
                 }
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, _searchRadius + 7, 1 << 0)) _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbilityRadius(hit.point);
+                if (Physics.Raycast(ray, out hit, _searchRadius + 7, 1 << 0)) _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbilityRadius(_abilities.Ability.name, hit.point);
                 if (Input.GetKey(KeyCode.E))
                 {
-                    _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbility(hit.point);
+                    _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbility(_abilities.Ability.name, hit.point, _abilities.Ability);
                     _isAbilityActived = false;
-                    _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction;
+                    Debug.Log("После" + _abilityRange.transform.localScale);
+                    Debug.Log(_abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction(_abilities.Ability.name));
+                    _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction(_abilities.Ability.name);
                     _abilityRange.transform.position = new Vector3(1000f, 1000f, 1000f);
                 }
                 return;
@@ -92,11 +94,13 @@ namespace Towers
             
             if (Input.GetMouseButton(1) && !_isAbilityActived)
             {
-                if (_abilities.HasActiveAbility && !_abilities.Ability.GetComponent<ActiveAbility>().IsAbilityUsed)
+                if (_abilities.HasActiveAbility && !_abilities.Ability.GetComponent<ActiveAbility>().IsAbilityUsed(_abilities.Ability.name))
                 {
                     DisableImage();
-                    _abilityRange.transform.localScale *= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction;
-                    _abilities.Ability.GetComponent<ActiveAbility>().ActionRadius = _abilityRange;
+                    _abilityRange.transform.localScale *= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction(_abilities.Ability.name);
+                    Debug.Log(_abilityRange.transform.localScale);
+                    Debug.Log(_abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction(_abilities.Ability.name));
+                    _abilities.Ability.GetComponent<ActiveAbility>().ActionRadius(_abilities.Ability.name, _abilityRange);
                     _isAbilityActived = true;
                     return;
                 }

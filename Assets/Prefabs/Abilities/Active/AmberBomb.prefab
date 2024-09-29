@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9058662732158334998}
-  - component: {fileID: 640334999914399822}
   - component: {fileID: -996560195329121220}
   - component: {fileID: 7485986537182138530}
   - component: {fileID: 7022512547532372255}
+  - component: {fileID: -2089345252586005189}
+  - component: {fileID: 2296879339028380043}
   m_Layer: 0
   m_Name: AmberBomb
   m_TagString: Untagged
@@ -39,25 +40,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &640334999914399822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4500373888269952220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fc1da51647d55943993d9275469222b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsAbilityUsed: 0
-  AbilityCooldown: 45
-  Timer: 0
-  RangeOfAction: 3
-  ActionCollider: {fileID: 4883840351844022898, guid: 6b3bad0252566754f8bcfbb871d41eb5, type: 3}
-  ActionRadius: {fileID: 0}
-  Cost: 5
 --- !u!114 &-996560195329121220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,7 +112,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 15083d6ea6c969442ac3a5cdfdc36a0d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e198286c1f2eea746ad80eeee3d7036f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -140,3 +122,39 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-2089345252586005189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4500373888269952220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 914e206c0bb160b4bb00a4b1c3ea3b3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amberBomb: {fileID: 2296879339028380043}
+  saphireBomb: {fileID: 3369569070268995835, guid: eb469f6ebb51fc646bbbabafd0ad6faa, type: 3}
+  emeraldBomb: {fileID: 4984192377918074956, guid: 006fefcdc0d024d489138a8842896b67, type: 3}
+  diamondBomb: {fileID: -456462015008414354, guid: e516d7157a6ef194aa005805b17c9d5a, type: 3}
+  rubyBomb: {fileID: -6703857217748586729, guid: a35cce8f96542bb429661747b0b75d69, type: 3}
+--- !u!114 &2296879339028380043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4500373888269952220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc1da51647d55943993d9275469222b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsAbilityUsed: 0
+  AbilityCooldown: 45
+  Timer: 0
+  RangeOfAction: 3
+  ActionCollider: {fileID: 4883840351844022898, guid: 6b3bad0252566754f8bcfbb871d41eb5, type: 3}
+  ActionRadius: {fileID: 0}
+  Cost: 5
