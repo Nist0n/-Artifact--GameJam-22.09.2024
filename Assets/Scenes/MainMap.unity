@@ -13866,6 +13866,7 @@ GameObject:
   - component: {fileID: 804337114}
   - component: {fileID: 804337113}
   - component: {fileID: 804337118}
+  - component: {fileID: 804337119}
   m_Layer: 5
   m_Name: CanvasUI
   m_TagString: Untagged
@@ -14017,6 +14018,21 @@ MonoBehaviour:
   background: {fileID: 220916812}
   pauseButton: {fileID: 1512829652}
   timer: 900
+--- !u!114 &804337119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804337112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74bb04a7c2eab14eaac97f037323a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 1b08220dfc65f1240940ee20d27ae6b9, type: 2}
+  musicSlider: {fileID: 2083181980}
+  SFXSlider: {fileID: 1206088761}
 --- !u!1 &810265876
 GameObject:
   m_ObjectHideFlags: 0
