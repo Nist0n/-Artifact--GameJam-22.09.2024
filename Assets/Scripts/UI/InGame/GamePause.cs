@@ -74,14 +74,7 @@ public class GamePause : MonoBehaviour
 
     public void PauseGame()
     {
-        if (gameIsPaused)
-        {
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Time.timeScale = 1;
-        }
+        Time.timeScale = 0f;
     }
 
     public void ResumeGame()
@@ -91,7 +84,6 @@ public class GamePause : MonoBehaviour
 
     public void CloseSettings()
     {
-        gameIsPaused = !gameIsPaused;
         pauseButton.SetActive(true);
         background.SetActive(false);
         continueGameButton.SetActive(false);
@@ -99,7 +91,6 @@ public class GamePause : MonoBehaviour
 
     public void OpenSettings()
     {
-        gameIsPaused = !gameIsPaused;
         PauseGame();
         pauseButton.SetActive(false);
         continueGameButton.SetActive(true);
