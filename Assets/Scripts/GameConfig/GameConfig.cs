@@ -16,6 +16,8 @@ public class GameConfig : MonoBehaviour
 
     [SerializeField] private CinemachineCamera loseCinemachineCamera;
 
+    [SerializeField] private GameObject boss;
+
     public float GameTime;
 
     private float _timeMinutes;
@@ -85,7 +87,7 @@ public class GameConfig : MonoBehaviour
     {
         if (GameTime > 900 && !IsBossSpawned)
         {
-            StartCoroutine(_spawners[1].SpawnBoss());
+            StartCoroutine(_spawners[1].SpawnBoss(boss));
             IsWaveStarted = true;
             IsBossSpawned = true;
         }
