@@ -69,7 +69,7 @@ public class BuyingSystem : MonoBehaviour
     
     private void RandomGetPassiveAbilities()
     {
-        List<GameObject> temp = passiveAbilities;
+        List<GameObject> temp = new List<GameObject>(passiveAbilities);
 
         for (int i = 0; i < 3; i++)
         {
