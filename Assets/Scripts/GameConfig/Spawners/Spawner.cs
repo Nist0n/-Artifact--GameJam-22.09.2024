@@ -27,6 +27,7 @@ public class Spawner : MonoBehaviour
 
     public IEnumerator StartSpawn()
     {
+        AudioManager.instance.PlaySFX("SpawnMobs");
         foreach (var enemy in _enemies)
         {
             StartCoroutine(SpawnEnemy(enemy));

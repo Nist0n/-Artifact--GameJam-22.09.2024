@@ -35,6 +35,8 @@ public class GamePause : MonoBehaviour
          {
             button.onClick.AddListener(() => OnTowerSelected(button));
          }
+
+        AudioManager.instance.PlayMusic("InGame");
     }
 
     private void Awake()
