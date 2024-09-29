@@ -36,8 +36,7 @@ public class GamePause : MonoBehaviour
             button.onClick.AddListener(() => OnTowerSelected(button));
          }
 
-        Time.timeScale = 10;
-        AudioManager.instance.PlayMusic("InGame");
+        AudioManager.instance.PlayMusic("InGame2");
     }
 
     private void Awake()

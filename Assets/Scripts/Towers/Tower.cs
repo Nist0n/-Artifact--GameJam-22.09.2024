@@ -37,6 +37,8 @@ namespace Towers
         public float _initialDamage;
         public float _initialFireRate;
         private float _initialAttackRange;
+
+        public AudioSource _audioSource;
         
         private void Start()
         {
@@ -139,7 +141,9 @@ namespace Towers
         private IEnumerator Shoot(Vector3 currentPos, Vector3 enemyPos, GameObject target)
         {
             _canShoot = false;
-            
+
+            AudioManager.instance.PlayLocalSound("Tower", _audioSource);
+
             Vector3 projectilePos =
                 new Vector3(currentPos.x, currentPos.y + 12.7f, currentPos.z);
             Projectile projectile = Instantiate(projectilePrefab, projectilePos, Quaternion.identity).GetComponent<Projectile>();

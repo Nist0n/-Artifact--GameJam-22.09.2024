@@ -61,7 +61,7 @@ public class AudioManager : MonoBehaviour
             int randomIndex = Random.Range(0, matchingSounds.Count);
             Sound randomSound = matchingSounds[randomIndex];
 
-            source.Play();
+            source.PlayOneShot(randomSound.audio);
         }
     }
 
@@ -75,17 +75,19 @@ public class AudioManager : MonoBehaviour
             int randomIndex = Random.Range(0, matchingSounds.Count);
             Sound randomSound = matchingSounds[randomIndex];
 
+            source.clip = randomSound.audio;
             source.loop = true;
             source.Play();
         }
     }
 
-    public void PlayMobSound(string soundName,AudioSource source)
+    public void PlayLocalSound(string soundName,AudioSource source)
     {
         Sound s = sounds.Find(sound => sound.name == soundName);
 
         if (s != null)
         {
+            Debug.Log("Workat PlayLocalSound");
             source.PlayOneShot(s.audio);
         }
     }
