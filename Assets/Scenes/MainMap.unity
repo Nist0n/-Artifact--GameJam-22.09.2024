@@ -2535,10 +2535,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
-  m_Height: 11.27
+  m_Radius: 1.5
+  m_Height: 11
   m_Direction: 1
-  m_Center: {x: 0, y: 6.31, z: 0}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!114 &118834186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2559,7 +2559,9 @@ MonoBehaviour:
   - {fileID: 1624447552}
   - {fileID: 1266798722}
   Ability: {fileID: 0}
+  IsPassiveSetted: 0
   TowerSelected: 0
+  Circle: {fileID: 135785721}
 --- !u!114 &118834187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16967,10 +16969,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.26
-  m_Height: 14.1
+  m_Radius: 1.5
+  m_Height: 11
   m_Direction: 1
-  m_Center: {x: 0, y: 5.1, z: 0}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!114 &966439911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16991,7 +16993,9 @@ MonoBehaviour:
   - {fileID: 1624447552}
   - {fileID: 1266798722}
   Ability: {fileID: 0}
+  IsPassiveSetted: 0
   TowerSelected: 0
+  Circle: {fileID: 135785721}
 --- !u!114 &966439912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21545,10 +21549,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.38
-  m_Height: 12.03
+  m_Radius: 1.5
+  m_Height: 11
   m_Direction: 1
-  m_Center: {x: 0, y: 4.8, z: 0}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!114 &1160925687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21569,7 +21573,9 @@ MonoBehaviour:
   - {fileID: 1624447552}
   - {fileID: 1266798722}
   Ability: {fileID: 0}
+  IsPassiveSetted: 0
   TowerSelected: 0
+  Circle: {fileID: 135785721}
 --- !u!114 &1160925688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48218,7 +48224,9 @@ MonoBehaviour:
   - {fileID: 1624447552}
   - {fileID: 1266798722}
   Ability: {fileID: 0}
+  IsPassiveSetted: 0
   TowerSelected: 0
+  Circle: {fileID: 135785721}
 --- !u!136 &3304698995504800079
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -48238,10 +48246,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.06
-  m_Height: 11.55
+  m_Radius: 1.5
+  m_Height: 11
   m_Direction: 1
-  m_Center: {x: 0, y: 5.81, z: 0}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!114 &3304698995504800080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48422,10 +48430,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.45
-  m_Height: 10.7
+  m_Radius: 1.5
+  m_Height: 11
   m_Direction: 1
-  m_Center: {x: 0, y: 6.65, z: 0}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!23 &3377675243414381844
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -54914,7 +54922,9 @@ MonoBehaviour:
   - {fileID: 1624447552}
   - {fileID: 1266798722}
   Ability: {fileID: 0}
+  IsPassiveSetted: 0
   TowerSelected: 0
+  Circle: {fileID: 135785721}
 --- !u!4 &6270881893016294781
 Transform:
   m_ObjectHideFlags: 0
@@ -55637,7 +55647,9 @@ MonoBehaviour:
   - {fileID: 1624447552}
   - {fileID: 1266798722}
   Ability: {fileID: 0}
+  IsPassiveSetted: 0
   TowerSelected: 0
+  Circle: {fileID: 135785721}
 --- !u!136 &6626380498211078080
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -55657,10 +55669,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.92
-  m_Height: 12.96
+  m_Radius: 1.5
+  m_Height: 11
   m_Direction: 1
-  m_Center: {x: 0, y: 5.45, z: 0}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!114 &6626380498211078081
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,11 +20,15 @@ public class AbilitiesSlots : MonoBehaviour
 
     public GameObject Ability;
 
+    public bool IsPassiveSetted = false;
+
     private PassiveAbilities PassAbility;
 
     private ImageCooldowns _imageCooldowns;
 
     public bool TowerSelected = false;
+
+    public GameObject Circle;
     
 
     private void Update()
@@ -80,12 +84,32 @@ public class AbilitiesSlots : MonoBehaviour
             if (Abilities[i].GetComponent<ActiveAbility>())
             {
                 _indexOfActiveAbility = i;
+
+                imagePositions[0].enabled = true;
+                imagePositions[0].transform.parent.GetComponent<Image>().enabled = true;
+                imagePositions[0].sprite = Abilities[i].GetComponent<Image>().sprite;
+                imagePositions[0].transform.parent.GetComponent<Image>().sprite = Abilities[i].GetComponent<Image>().sprite;
             }
 
-            imagePositions[i].enabled = true;
-            imagePositions[i].transform.parent.GetComponent<Image>().enabled = true;
-            imagePositions[i].sprite = Abilities[i].GetComponent<Image>().sprite;
-            imagePositions[i].transform.parent.GetComponent<Image>().sprite = Abilities[i].GetComponent<Image>().sprite;
+            if (Abilities[i].GetComponent<PassiveAbilities>())
+            {
+                if (!IsPassiveSetted)
+                {
+                    Debug.Log("WTF");
+                    imagePositions[1].enabled = true;
+                    imagePositions[1].transform.parent.GetComponent<Image>().enabled = true;
+                    imagePositions[1].sprite = Abilities[i].GetComponent<Image>().sprite;
+                    imagePositions[1].transform.parent.GetComponent<Image>().sprite = Abilities[i].GetComponent<Image>().sprite;
+                    IsPassiveSetted = true;
+                }
+                else
+                {
+                    imagePositions[2].enabled = true;
+                    imagePositions[2].transform.parent.GetComponent<Image>().enabled = true;
+                    imagePositions[2].sprite = Abilities[i].GetComponent<Image>().sprite;
+                    imagePositions[2].transform.parent.GetComponent<Image>().sprite = Abilities[i].GetComponent<Image>().sprite;
+                }
+            }
         }
     }
 
@@ -95,6 +119,10 @@ public class AbilitiesSlots : MonoBehaviour
         {
             imagePositions[i].enabled = false;
             imagePositions[i].transform.parent.GetComponent<Image>().enabled = false;
+            imagePositions[i].sprite = null;
+            imagePositions[i].transform.parent.GetComponent<Image>().sprite = null;
         }
+
+        IsPassiveSetted = false;
     }
 }

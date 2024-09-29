@@ -47,7 +47,8 @@ namespace Towers
                         tw.GetComponentInChildren<TowerCamera>().enabled = true;
                     }
                 }
-                
+
+                _currentTower.GetComponent<AbilitiesSlots>().Circle.transform.position = new Vector3(1000, 1000, 1000);
                 _currentTower.piloted = false;
                 _currentTower.towerCamera.Priority = 0;
                 mainCinemachineCamera.Priority = 1;
