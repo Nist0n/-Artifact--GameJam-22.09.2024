@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7022512547532372255}
   - component: {fileID: -2089345252586005189}
   - component: {fileID: 2296879339028380043}
-  - component: {fileID: -7114955401220015313}
   m_Layer: 0
   m_Name: AmberBomb
   m_TagString: Untagged
@@ -159,48 +158,3 @@ MonoBehaviour:
   ActionCollider: {fileID: 4883840351844022898, guid: 6b3bad0252566754f8bcfbb871d41eb5, type: 3}
   ActionRadius: {fileID: 0}
   Cost: 5
---- !u!114 &-7114955401220015313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4500373888269952220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2902771025787643336, guid: 9d7770e6fc343cf4e97146e29199047c, type: 3}
-          m_TargetAssemblyTypeName: UI.InGame.Tooltip, Assembly-CSharp
-          m_MethodName: SetAndShowTooltip
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 4500373888269952220}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2902771025787643336, guid: 9d7770e6fc343cf4e97146e29199047c, type: 3}
-          m_TargetAssemblyTypeName: UI.InGame.Tooltip, Assembly-CSharp
-          m_MethodName: HideTooltip
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2

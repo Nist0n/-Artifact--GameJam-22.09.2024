@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using Cursor = UnityEngine.Cursor;
 
@@ -11,18 +12,20 @@ namespace UI.InGame
 
         private void Start()
         {
-            _tooltipObj = GameObject.FindGameObjectWithTag("Tooltip");
+            // _tooltipObj = GameObject.FindGameObjectWithTag("Tooltip");
+            // Debug.Log(_tooltipObj);
             Cursor.visible = true;
-            gameObject.SetActive(false);
+            _tooltipObj.SetActive(false);
         }
         
         private void Update()
         {
-            transform.position = Input.mousePosition;
+            gameObject.transform.position = Input.mousePosition;
         }
 
         public void SetAndShowTooltip(GameObject obj)
         {
+            // ga = GameObject.FindWithTag("Tooltip");
             gameObject.SetActive(true);
             Debug.Log("a");
             float cost = 0;
@@ -39,15 +42,15 @@ namespace UI.InGame
                 Debug.Log("couldn't find script");
             }
             Debug.Log(cost);
-            Debug.Log(gameObject);
-            textComponent.text = $"Стоимость: {cost}";
+            
+            _tooltipObj.GetComponent<Tooltip>().textComponent.text = $"Стоимость: {cost}";
         }
         
         public void HideTooltip()
         {
             Debug.Log("b");
             gameObject.SetActive(false);
-            textComponent.text = string.Empty;
+            gameObject.GetComponent<Tooltip>().textComponent.text = string.Empty;
         }
     }
 }
