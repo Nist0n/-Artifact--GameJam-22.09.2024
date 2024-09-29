@@ -1,6 +1,7 @@
 using Audio;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -49,4 +50,35 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayRandomSoundByName(string soundName, AudioSource source)
+    {
+        List<Sound> matchingSounds = sounds.FindAll(sound => sound.name == soundName);
+
+        if (matchingSounds.Count > 0)
+        {
+            int randomIndex = Random.Range(0, matchingSounds.Count);
+            Sound randomSound = matchingSounds[randomIndex];
+
+            source.Play();
+        }
+    }
+
+    public void PlayWalkSound(string soundName, AudioSource source)
+    {
+        List<Sound> matchingSounds = sounds.FindAll(sound => sound.name == soundName);
+
+        if (matchingSounds.Count > 0)
+        {
+            int randomIndex = Random.Range(0, matchingSounds.Count);
+            Sound randomSound = matchingSounds[randomIndex];
+
+            source.loop = true;
+            source.Play();
+        }
+    }
+
+    public void StopSound(AudioSource source)
+    {
+        source.Stop();
+    }
 }

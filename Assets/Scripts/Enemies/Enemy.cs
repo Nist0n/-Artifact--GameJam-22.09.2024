@@ -22,6 +22,7 @@ namespace Enemies
         public DeathState Death;
         public AttackingState Attacking;
         public CelebratingState Celebrating;
+        private AudioSource _audioSource;
         
         private void Start()
         {
@@ -33,7 +34,8 @@ namespace Enemies
         private void Update()
         {
             Health = Mathf.Clamp(Health, 0, MaxHealth);
-            
+
+            AudioManager.instance.PlayWalkSound("", _audioSource);
             if (State.IsComplete)
             {
                 if (GameConfig.Instance.GameIsOverByLose)
@@ -44,6 +46,7 @@ namespace Enemies
                 
                 if (IsFreezed)
                 {
+                    AudioManager.instance.StopSound(_audioSource);
                     Set(Freeze);
                 }
                 else
@@ -60,6 +63,7 @@ namespace Enemies
                         }
                         else
                         {
+                            AudioManager.instance.PlayWalkSound("", _audioSource);
                             Set(Running);
                         }
                     }
@@ -107,6 +111,7 @@ namespace Enemies
 
         public void AttackCastle()
         {
+            AudioManager.instance.PlayRandomSoundByName("GateBreake", _audioSource);
             GameObject.FindGameObjectWithTag("Castle").GetComponent<CastleHealth>().ReceiveDamage(Damage);
         }
         
