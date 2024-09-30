@@ -85,7 +85,7 @@ public class GameConfig : MonoBehaviour
 
     private void GameBrain()
     {
-        if (GameTime > 900 && !IsBossSpawned)
+        if (GameTime > 750 && !IsBossSpawned)
         {
             StartCoroutine(_spawners[1].SpawnBoss(boss));
             IsWaveStarted = true;
