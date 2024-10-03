@@ -2582,7 +2582,6 @@ MonoBehaviour:
   towerCameraComp: {fileID: 62603569400932449}
   towerCamera: {fileID: 8962925504517620753}
   piloted: 0
-  buffDuration: 10
   isPowered: 0
   enemiesInRange: []
   buffedFireRate: 0
@@ -17132,7 +17131,6 @@ MonoBehaviour:
   towerCameraComp: {fileID: 62603569678056089}
   towerCamera: {fileID: 8962925503670081257}
   piloted: 0
-  buffDuration: 10
   isPowered: 0
   enemiesInRange: []
   buffedFireRate: 0
@@ -21712,7 +21710,6 @@ MonoBehaviour:
   towerCameraComp: {fileID: 62603568276663621}
   towerCamera: {fileID: 8962925505608335669}
   piloted: 0
-  buffDuration: 10
   isPowered: 0
   enemiesInRange: []
   buffedFireRate: 0
@@ -33677,7 +33674,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 872ccb31634d0874cbd3ec7b5d42c63c, type: 2}
+  sharedProfile: {fileID: 11400000, guid: c03cf7ff22dc66b448e33d99c2ef6c60, type: 2}
 --- !u!4 &1822623849
 Transform:
   m_ObjectHideFlags: 0
@@ -48533,7 +48530,6 @@ MonoBehaviour:
   towerCameraComp: {fileID: 62603568500557813}
   towerCamera: {fileID: 8962925504583330693}
   piloted: 0
-  buffDuration: 10
   isPowered: 0
   enemiesInRange: []
   buffedFireRate: 0
@@ -52088,7 +52084,6 @@ MonoBehaviour:
   towerCameraComp: {fileID: 7136694003103819898}
   towerCamera: {fileID: 8126885310833972498}
   piloted: 0
-  buffDuration: 10
   isPowered: 0
   enemiesInRange: []
   buffedFireRate: 0
@@ -55956,7 +55951,6 @@ MonoBehaviour:
   towerCameraComp: {fileID: 62603569551080425}
   towerCamera: {fileID: 8962925503528621977}
   piloted: 0
-  buffDuration: 10
   isPowered: 0
   enemiesInRange: []
   buffedFireRate: 0
