@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Towers
 {
@@ -21,14 +22,13 @@ namespace Towers
         
         public CinemachineCamera towerCamera;
 
-        private AttackType _attackType;
         protected GameObject CurrentAutoTarget;
 
         private bool _canShoot = true;
         public bool piloted;
 
         public static float buffDuration = 10f;
-        public bool isPowered;
+        [FormerlySerializedAs("isPowered")] public bool isOnCooldown;
         
         public List<GameObject> enemiesInRange;
 
@@ -40,6 +40,8 @@ namespace Towers
         private float _initialAttackRange;
 
         public AudioSource _audioSource;
+
+        private bool _isBuffed;
         
         private void Start()
         {
@@ -126,8 +128,12 @@ namespace Towers
                     {
                         return;
                     }
+
+                    if (!_isBuffed)
+                    {
+                        ResetTowerStats();
+                    }
                     
-                    ResetTowerStats();
                     StartCoroutine(Shoot(position, enemyPos, towerCameraComp.currentTarget));
                 }
             }
@@ -167,7 +173,7 @@ namespace Towers
 
         public void EmpowerTower()
         {
-            if (isPowered)
+            if (isOnCooldown || _isBuffed)
             {
                 return;
             }
@@ -177,21 +183,23 @@ namespace Towers
 
         private IEnumerator Buff()
         {
-            // float prev = fireRate;
+            _isBuffed = true;
             fireRate = buffedFireRate;
             damage = buffedDamage;
             buffImage.SetActive(true);
             StartCoroutine(BuffCooldown());
             yield return new WaitForSeconds(buffDuration);
+            
+            _isBuffed = false;
             buffImage.SetActive(false);
-            ResetVariables();
+            ResetTowerStats();
         }
 
         private IEnumerator BuffCooldown()
         {
-            isPowered = true;
+            isOnCooldown = true;
             yield return new WaitForSeconds(60f);
-            isPowered = false;
+            isOnCooldown = false;
         }
 
         public void ResetTowerStats()
@@ -210,10 +218,5 @@ namespace Towers
         {
             this.Slowness = true;
         }
-    }
-
-    enum AttackType
-    {
-        
     }
 }
