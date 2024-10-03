@@ -1,10 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 namespace Towers
 {
@@ -21,7 +19,7 @@ namespace Towers
         [SerializeField] private List<GameObject> towers;
         [SerializeField] private GameObject buffImage;
 
-        private bool _isSwitching = false;
+        private bool _isSwitching;
 
         private void Awake()
         {
@@ -103,7 +101,8 @@ namespace Towers
                 }
             }
         }
-        IEnumerator ShopCameraSwap()
+
+        private IEnumerator ShopCameraSwap()
         {
             if (_isSwitching)
             {
@@ -129,7 +128,7 @@ namespace Towers
             _isSwitching = false;
         }
 
-        IEnumerator ShopSwitch()
+        private IEnumerator ShopSwitch()
         {
             yield return null;
             pauseButton.SetActive(!pauseButton.activeSelf);

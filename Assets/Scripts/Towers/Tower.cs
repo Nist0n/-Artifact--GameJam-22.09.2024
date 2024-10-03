@@ -11,7 +11,7 @@ namespace Towers
         public float fireRate; // Time between shots (in seconds)
         public float attackRange;
 
-        protected bool slowness = false;
+        protected bool Slowness;
 
         [SerializeField] private GameObject projectilePrefab;
 
@@ -33,6 +33,7 @@ namespace Towers
         public List<GameObject> enemiesInRange;
 
         public float buffedFireRate;
+        public float buffedDamage;
         
         public float _initialDamage;
         public float _initialFireRate;
@@ -45,7 +46,8 @@ namespace Towers
             _initialDamage = damage;
             _initialFireRate = fireRate;
             _initialAttackRange = attackRange;
-            buffedFireRate = fireRate * 0.7f;
+            buffedFireRate = fireRate * 0.6f;
+            buffedDamage = damage;
         }
         
         private void Update()
@@ -175,13 +177,14 @@ namespace Towers
 
         private IEnumerator Buff()
         {
-            float prev = fireRate;
+            // float prev = fireRate;
             fireRate = buffedFireRate;
+            damage = buffedDamage;
             buffImage.SetActive(true);
-            yield return new WaitForSeconds(buffDuration);
             StartCoroutine(BuffCooldown());
+            yield return new WaitForSeconds(buffDuration);
             buffImage.SetActive(false);
-            fireRate = prev;
+            ResetVariables();
         }
 
         private IEnumerator BuffCooldown()
@@ -205,7 +208,7 @@ namespace Towers
 
         public void SetSlowness()
         {
-            this.slowness = true;
+            this.Slowness = true;
         }
     }
 

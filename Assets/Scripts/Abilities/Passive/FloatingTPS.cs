@@ -9,12 +9,14 @@ namespace Abilities.Passive
 
         public float Cost;
 
-        [SerializeField] private float tps = 0.6f;
+        public static float tps = 0.6f;
+        public static float damageBuff = 1.25f;
+        
 
         private bool _isPassiveUsed = false;
         private PassiveAbilities _passiveAbilities;
 
-        public string Description { private set; get; } = $"Увеличивает скорострельность башни на 40% в течение первых {Tower.buffDuration} секунд";
+        public string Description { private set; get; } = $"Увеличивает скорострельность башни на {(1 - tps) * 100}% и урон башни на {(damageBuff - 1) * 100}% в течение первых {Tower.buffDuration} секунд";
     
         private void Start()
         {
@@ -37,6 +39,7 @@ namespace Abilities.Passive
         private void SetPassiveBonus()
         {
             _tower.buffedFireRate *= tps;
+            _tower.buffedDamage *= damageBuff;
             _isPassiveUsed = true;
         }
     }

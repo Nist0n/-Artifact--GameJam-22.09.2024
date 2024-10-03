@@ -35,7 +35,7 @@ namespace Towers
             Enemy enemy = CurrentAutoTarget.GetComponent<Enemy>();
             enemy.ReceiveDamageActivate(damage);
             
-            if (slowness)
+            if (Slowness)
             {
                 enemy.SetSlowness();
             }

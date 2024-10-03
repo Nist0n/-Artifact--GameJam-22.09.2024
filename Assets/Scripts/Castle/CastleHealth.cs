@@ -47,7 +47,7 @@ public class CastleHealth : MonoBehaviour
     {
         if (front.color.a == 0)
         {
-            front.color = Color.red;
+            front.color = Color.green;
             back.color = Color.white;
             yield return new WaitForSeconds(3f);
             front.color = Color.clear;
@@ -71,14 +71,14 @@ public class CastleHealth : MonoBehaviour
             back.fillAmount = Mathf.Lerp(fillBackBar, hFraction, percentComplete);
         }
             
-        if (fillFrontBar < hFraction)
-        {
-            back.color = Color.green;
-            back.fillAmount = hFraction;
-            _lerpTimer += Time.deltaTime;
-            float percentComplete = _lerpTimer / 3;
-            percentComplete *= percentComplete;
-            front.fillAmount = Mathf.Lerp(fillFrontBar, back.fillAmount, percentComplete);
-        }
+        // if (fillFrontBar < hFraction)
+        // {
+        //     back.color = Color.green;
+        //     back.fillAmount = hFraction;
+        //     _lerpTimer += Time.deltaTime;
+        //     float percentComplete = _lerpTimer / 3;
+        //     percentComplete *= percentComplete;
+        //     front.fillAmount = Mathf.Lerp(fillFrontBar, back.fillAmount, percentComplete);
+        // }
     }
 }
