@@ -76,6 +76,7 @@ namespace Towers
 
             if (!_currentCamera.IsLive)
             {
+                DisableImage();
                 return;
             }
             
