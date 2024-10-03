@@ -1,4 +1,7 @@
 using System.Collections;
+using Abilities.Active;
+using Abilities.Passive;
+using Shop;
 using Towers;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -182,7 +185,7 @@ public class GamePause : MonoBehaviour
         }
         else
         {
-            if (!selectedSlot.GetComponent<ButtonFreezed>().Isfreezed)
+            if (!selectedSlot.GetComponent<ButtonFrozen>().Isfreezed)
             {
                 if (selectedSlot.CompareTag("Active"))
                 {
@@ -217,7 +220,7 @@ public class GamePause : MonoBehaviour
                 upgradeButton.onClick.AddListener(() => OnAbilitySelected(selectedSlot, upgradeButton, upgradeIndex));
             }
 
-            selectedSlot.GetComponent<ButtonFreezed>().Isfreezed = true;
+            selectedSlot.GetComponent<ButtonFrozen>().Isfreezed = true;
         }
     }
 

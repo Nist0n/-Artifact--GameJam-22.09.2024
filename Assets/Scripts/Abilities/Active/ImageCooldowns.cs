@@ -26,7 +26,7 @@ public class ImageCooldowns : MonoBehaviour
                 _image.fillAmount = _timerAbi / _cd;
             }
         }
-        else if (_image != null)
+        else if (_image)
         {
             _image.fillAmount = 1;
         }

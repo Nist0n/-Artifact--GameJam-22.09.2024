@@ -8,6 +8,7 @@ namespace Towers
     public class Projectile : Tower
     {
         public float projectileSpeed;
+        private bool _hitStatus;
         [SerializeField] private GameObject hit;
 
         private void Update()
@@ -26,12 +27,20 @@ namespace Towers
 
         private void OnTriggerEnter(Collider other)
         {
+            if (_hitStatus)
+            {
+                return;
+            }
+            
             Enemy enemy = CurrentAutoTarget.GetComponent<Enemy>();
             enemy.ReceiveDamageActivate(damage);
+            
             if (slowness)
             {
                 enemy.SetSlowness();
             }
+            
+            _hitStatus = true;
             StartCoroutine(ActivateHit());
         }
 

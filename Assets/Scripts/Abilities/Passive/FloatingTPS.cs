@@ -1,4 +1,5 @@
 using System;
+using Abilities.Passive;
 using Towers;
 using UnityEngine;
 
@@ -11,15 +12,23 @@ public class FloatingTPS : MonoBehaviour
     [SerializeField] private float tps = 0.6f;
 
     private bool _isPassiveUsed = false;
+    private PassiveAbilities _passiveAbilities;
+
+    public string Description { private set; get; } = $"Увеличивает скорострельность башни на 40% в течение первых {Tower.buffDuration} секунд";
+    
+    private void Start()
+    {
+        _passiveAbilities = GetComponent<PassiveAbilities>();
+    }
 
     private void Update()
     {
-        if (GetComponent<PassiveAbilities>().tower != null)
+        if (_passiveAbilities.tower)
         {
-            _tower = GetComponent<PassiveAbilities>().tower;
+            _tower = _passiveAbilities.tower;
         }
 
-        if (_tower != null && !_isPassiveUsed)
+        if (_tower && !_isPassiveUsed)
         {
             SetPassiveBonus();
         }

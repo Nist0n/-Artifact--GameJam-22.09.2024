@@ -1,3 +1,4 @@
+using Abilities.Passive;
 using Towers;
 using UnityEngine;
 
@@ -10,15 +11,24 @@ public class RangeGiga : MonoBehaviour
     [SerializeField] private float radius = 1.25f;
 
     private bool _isPassiveUsed = false;
+    private PassiveAbilities _passiveAbilities;
+
+    public string Description { private set; get; }  = $"Увеличивает дальность атаки башни на 25%";
+    
+    private void Start()
+    {
+        Description = $"Увеличивает дальность атаки башни на {(radius - 1) * 100}%";
+        _passiveAbilities = GetComponent<PassiveAbilities>();
+    }
 
     private void Update()
     {
-        if (GetComponent<PassiveAbilities>().tower != null)
+        if (_passiveAbilities.tower)
         {
-            _tower = GetComponent<PassiveAbilities>().tower;
+            _tower = _passiveAbilities.tower;
         }
 
-        if (_tower != null && !_isPassiveUsed)
+        if (_tower && !_isPassiveUsed)
         {
             SetPassiveBonus();
         }

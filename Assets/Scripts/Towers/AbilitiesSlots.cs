@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Abilities.Active;
+using Abilities.Passive;
 using Towers;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,11 +35,11 @@ public class AbilitiesSlots : MonoBehaviour
 
     private void Update()
     {
-        if (_active != null)
+        if (_active)
         {
-            if (PassAbility != null) PassAbility.SetAbility(_active.gameObject);
+            if (PassAbility) PassAbility.SetAbility(_active.gameObject);
             
-            if (_imageCooldowns == null)
+            if (!_imageCooldowns)
             {
                 _imageCooldowns = imagePositions[_indexOfActiveAbility].GetComponent<ImageCooldowns>();
             }

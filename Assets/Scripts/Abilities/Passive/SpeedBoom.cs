@@ -1,3 +1,5 @@
+using Abilities.Active;
+using Abilities.Passive;
 using UnityEngine;
 
 public class SpeedBoom : MonoBehaviour
@@ -9,10 +11,18 @@ public class SpeedBoom : MonoBehaviour
     [SerializeField] private float percent = 0.6f;
 
     private bool _isPassiveUsed = false;
+    private PassiveAbilities _passiveAbilities;
+
+    public string Description { private set; get; } = "Уменьшает перезарядку активных способностей на 40%";
+    
+    private void Start()
+    {
+        _passiveAbilities = GetComponent<PassiveAbilities>();
+    }
 
     private void Update()
     {
-        if (GetComponent<PassiveAbilities>().ActiveAbil != null && !_isPassiveUsed)
+        if (_passiveAbilities.ActiveAbil && !_isPassiveUsed)
         {
             SetPassiveBonus();
         }
@@ -20,8 +30,8 @@ public class SpeedBoom : MonoBehaviour
 
     private void SetPassiveBonus()
     {
-        GetComponent<PassiveAbilities>().ActiveAbil.GetComponent<ActiveAbility>()
-            .ChangeAbilityCooldown(GetComponent<PassiveAbilities>().ActiveAbil.name, percent, GetComponent<PassiveAbilities>().ActiveAbil);
+        _passiveAbilities.ActiveAbil.GetComponent<ActiveAbility>()
+            .ChangeAbilityCooldown(_passiveAbilities.ActiveAbil.name, percent, _passiveAbilities.ActiveAbil);
         _isPassiveUsed = true;
     }
 }

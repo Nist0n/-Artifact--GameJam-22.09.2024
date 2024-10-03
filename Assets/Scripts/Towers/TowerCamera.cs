@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Abilities.Active;
 using Enemies;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -54,6 +55,8 @@ namespace Towers
             _currentCamera = GetComponent<CinemachineCamera>();
 
             _towerComp = gameObject.GetComponentInParent<Tower>();
+
+            reticle = reticle.GetComponent<Image>();
         }
         
         private void Update()
@@ -62,13 +65,7 @@ namespace Towers
             {
                 return;
             } */
-
-            // if (!_currentCamera.IsLive)
-            // {
-            //     return;
-            // }
-
-
+            
             if (_currentCamera.IsLive && !isTowerCameraActive)
             {
                 ActivateTowerListener();
@@ -78,10 +75,24 @@ namespace Towers
                 ActivateMainCameraListener();
             }
 
+            if (!_currentCamera.IsLive)
+            {
+                DisableImage();
+                return;
+            }
+            
             MoveCamera();
             
+            List<GameObject> enemies = _towerComp.enemiesInRange;
+
+            if (enemies.Count == 0)
+            {
+                DisableImage();
+                return;
+            }
+            
             Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
-            Ray ray = _mainCamera.ViewportPointToRay(new Vector3 (0.5f, 0.5f, 0));;
+            Ray ray = _mainCamera.ViewportPointToRay(new Vector3 (0.5f, 0.5f, 0));
             
             RaycastHit[] raycastHits = new RaycastHit[1000];
             
@@ -121,14 +132,6 @@ namespace Towers
 
             int size = Physics.SphereCastNonAlloc(tower.transform.position, crosshairRadius, ray.direction, raycastHits,
                 _searchRadius + 100);
-            
-            List<GameObject> enemies = _towerComp.enemiesInRange;
-
-            if (enemies.Count == 0)
-            {
-                DisableImage();
-                return;
-            }
             
             if (raycastHits.Length == 0)
             {
@@ -178,7 +181,7 @@ namespace Towers
 
                 if (_currentCamera.Priority > 0)
                 {
-                    reticle.GetComponent<Image>().enabled = true;
+                    reticle.enabled = true;
                 }
                 else
                 {
@@ -220,7 +223,7 @@ namespace Towers
                 return;
             }
             
-            Debug.Log(_currentCamera);
+            // Debug.Log(_currentCamera);
             
             float y = Input.GetAxis("Mouse X") * turnSpeed;
             _rotX += Input.GetAxis("Mouse Y") * turnSpeed;
@@ -233,7 +236,7 @@ namespace Towers
 
         public void DisableImage()
         {
-            reticle.GetComponent<Image>().enabled = false;
+            reticle.enabled = false;
         }
         
         private void OnDrawGizmos()
