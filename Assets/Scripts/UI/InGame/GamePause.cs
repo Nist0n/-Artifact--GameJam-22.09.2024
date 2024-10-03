@@ -74,6 +74,12 @@ public class GamePause : MonoBehaviour
             }
         }
     }
+    
+    public void RestartGame()
+    {
+        ResumeGame();
+       SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
     public void PauseGame()
     {
