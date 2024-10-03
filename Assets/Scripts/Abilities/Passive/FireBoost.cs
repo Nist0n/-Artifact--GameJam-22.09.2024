@@ -1,3 +1,4 @@
+using Abilities.Passive;
 using Towers;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class FireBoost : MonoBehaviour
     private bool _isPassiveUsed = false;
     private PassiveAbilities _passiveAbilities;
 
+    public string Description { private set; get; } = "Увеличивает скорострельность башни на 40%";
+    
     private void Start()
     {
         _passiveAbilities = GetComponent<PassiveAbilities>();

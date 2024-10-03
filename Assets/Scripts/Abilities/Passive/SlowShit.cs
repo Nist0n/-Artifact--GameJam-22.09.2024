@@ -1,3 +1,4 @@
+using Abilities.Passive;
 using Towers;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class SlowShit : MonoBehaviour
     private bool _isPassiveUsed = false;
     private PassiveAbilities _passiveAbilities;
 
+    public string Description { private set; get; } = "Башня при попадании замедляет врага на 25%";
+    
     private void Start()
     {
         _passiveAbilities = GetComponent<PassiveAbilities>();

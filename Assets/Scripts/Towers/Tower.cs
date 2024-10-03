@@ -27,7 +27,7 @@ namespace Towers
         private bool _canShoot = true;
         public bool piloted;
 
-        public float buffDuration;
+        public static float buffDuration = 10f;
         public bool isPowered;
         
         public List<GameObject> enemiesInRange;

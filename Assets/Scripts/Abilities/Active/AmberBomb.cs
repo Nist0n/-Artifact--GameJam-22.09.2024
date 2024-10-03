@@ -16,6 +16,8 @@ public class AmberBomb : MonoBehaviour
     public GameObject ActionRadius;
 
     public float Cost;
+
+    public string Description { private set; get; } = "Создаёт область, в которой враги получают урон";
     
     private void Update()
     {

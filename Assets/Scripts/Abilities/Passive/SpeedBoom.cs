@@ -1,3 +1,5 @@
+using Abilities.Active;
+using Abilities.Passive;
 using UnityEngine;
 
 public class SpeedBoom : MonoBehaviour
@@ -11,6 +13,8 @@ public class SpeedBoom : MonoBehaviour
     private bool _isPassiveUsed = false;
     private PassiveAbilities _passiveAbilities;
 
+    public string Description { private set; get; } = "Уменьшает перезарядку активных способностей на 40%";
+    
     private void Start()
     {
         _passiveAbilities = GetComponent<PassiveAbilities>();

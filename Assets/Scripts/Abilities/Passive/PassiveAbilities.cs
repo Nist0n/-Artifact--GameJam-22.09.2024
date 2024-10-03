@@ -1,68 +1,104 @@
-using System.Collections.Generic;
 using Towers;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class PassiveAbilities : MonoBehaviour
+namespace Abilities.Passive
 {
-    public Tower tower;
-
-    public GameObject ActiveAbil;
-
-    [SerializeField] private FloatingTPS floatingTps;
-    
-    [SerializeField] private SpeedBoom speedBoom;
-    
-    [SerializeField] private SlowShit slowShit;
-
-    [SerializeField] private DamageBoost damageBoost;
-    
-    [SerializeField] private FireBoost fireBoost;
-    
-    [SerializeField] private RangeGiga rangeGiga;
-
-    public void SetTower(Tower tower)
+    public class PassiveAbilities : MonoBehaviour
     {
-        this.tower = tower;
-    }
+        public Tower tower;
 
-    public float Cost(string name)
-    {
-        if (name.Contains("FloatingTPS"))
+        public GameObject ActiveAbil;
+
+        [SerializeField] private FloatingTPS floatingTps;
+    
+        [SerializeField] private SpeedBoom speedBoom;
+    
+        [SerializeField] private SlowShit slowShit;
+
+        [SerializeField] private DamageBoost damageBoost;
+    
+        [SerializeField] private FireBoost fireBoost;
+    
+        [SerializeField] private RangeGiga rangeGiga;
+
+        public void SetTower(Tower tower)
         {
-            return floatingTps.Cost;
-        }
-        
-        if (name.Contains("SlowShit"))
-        {
-            return slowShit.Cost;
-        }
-        
-        if (name.Contains("SpeedBoom"))
-        {
-            return speedBoom.Cost;
-        }
-        
-        if (name.Contains("DamageBoost"))
-        {
-            return damageBoost.Cost;
-        }
-        
-        if (name.Contains("FireBoost"))
-        {
-            return fireBoost.Cost;
-        }
-        
-        if (name.Contains("RangeGiga"))
-        {
-            return rangeGiga.Cost;
+            this.tower = tower;
         }
 
-        return 0;
-    }
+        public float Cost(string name)
+        {
+            if (name.Contains("FloatingTPS"))
+            {
+                return floatingTps.Cost;
+            }
+        
+            if (name.Contains("SlowShit"))
+            {
+                return slowShit.Cost;
+            }
+        
+            if (name.Contains("SpeedBoom"))
+            {
+                return speedBoom.Cost;
+            }
+        
+            if (name.Contains("DamageBoost"))
+            {
+                return damageBoost.Cost;
+            }
+        
+            if (name.Contains("FireBoost"))
+            {
+                return fireBoost.Cost;
+            }
+        
+            if (name.Contains("RangeGiga"))
+            {
+                return rangeGiga.Cost;
+            }
 
-    public void SetAbility(GameObject abil)
-    {
-        this.ActiveAbil = abil;
+            return 0;
+        }
+
+        public string Description(string abilityName)
+        {
+            if (name.Contains("FloatingTPS"))
+            {
+                return floatingTps.Description;
+            }
+        
+            if (name.Contains("SlowShit"))
+            {
+                return slowShit.Description;
+            }
+        
+            if (name.Contains("SpeedBoom"))
+            {
+                return speedBoom.Description;
+            }
+        
+            if (name.Contains("DamageBoost"))
+            {
+                return damageBoost.Description;
+            }
+        
+            if (name.Contains("FireBoost"))
+            {
+                return fireBoost.Description;
+            }
+        
+            if (name.Contains("RangeGiga"))
+            {
+                return rangeGiga.Description;
+            }
+
+            return "Error! You were not meant to see this";
+        }
+    
+        public void SetAbility(GameObject abil)
+        {
+            this.ActiveAbil = abil;
+        }
     }
 }

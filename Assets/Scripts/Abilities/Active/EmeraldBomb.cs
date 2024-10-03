@@ -17,6 +17,8 @@ public class EmeraldBomb : MonoBehaviour
 
     public float Cost;
     
+    public string Description { private set; get; } = "Создаёт область, из которой спустя 4 секунды все враги возвращаются в начало линии, после чего они восстанавливают часть здоровья";
+    
     private void Update()
     {
         CheckAbilityCooldown();
