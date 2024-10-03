@@ -1,39 +1,41 @@
-using Abilities.Passive;
 using Towers;
 using UnityEngine;
 
-public class SlowShit : MonoBehaviour
+namespace Abilities.Passive
 {
-    private Tower _tower;
+    public class SlowShit : MonoBehaviour
+    {
+        private Tower _tower;
 
-    public float Cost;
+        public float Cost;
 
-    private bool _isPassiveUsed = false;
-    private PassiveAbilities _passiveAbilities;
+        private bool _isPassiveUsed = false;
+        private PassiveAbilities _passiveAbilities;
 
-    public string Description { private set; get; } = "Башня при попадании замедляет врага на 25%";
+        public string Description { private set; get; } = "Башня при попадании замедляет врага на 25%";
     
-    private void Start()
-    {
-        _passiveAbilities = GetComponent<PassiveAbilities>();
-    }
-
-    private void Update()
-    {
-        if (_passiveAbilities.tower)
+        private void Start()
         {
-            _tower = _passiveAbilities.tower;
+            _passiveAbilities = GetComponent<PassiveAbilities>();
         }
 
-        if (_tower && !_isPassiveUsed)
+        private void Update()
         {
-            SetPassiveBonus();
-        }
-    }
+            if (_passiveAbilities.tower)
+            {
+                _tower = _passiveAbilities.tower;
+            }
 
-    private void SetPassiveBonus()
-    {
-        _tower.SetSlowness();
-        _isPassiveUsed = true;
+            if (_tower && !_isPassiveUsed)
+            {
+                SetPassiveBonus();
+            }
+        }
+
+        private void SetPassiveBonus()
+        {
+            _tower.SetSlowness();
+            _isPassiveUsed = true;
+        }
     }
 }
