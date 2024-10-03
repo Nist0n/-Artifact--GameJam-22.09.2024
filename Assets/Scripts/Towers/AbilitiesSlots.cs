@@ -33,11 +33,11 @@ public class AbilitiesSlots : MonoBehaviour
 
     private void Update()
     {
-        if (_active != null)
+        if (_active)
         {
-            if (PassAbility != null) PassAbility.SetAbility(_active.gameObject);
+            if (PassAbility) PassAbility.SetAbility(_active.gameObject);
             
-            if (_imageCooldowns == null)
+            if (!_imageCooldowns)
             {
                 _imageCooldowns = imagePositions[_indexOfActiveAbility].GetComponent<ImageCooldowns>();
             }

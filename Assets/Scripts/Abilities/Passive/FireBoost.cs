@@ -10,15 +10,21 @@ public class FireBoost : MonoBehaviour
     [SerializeField] private float tps = 0.6f;
 
     private bool _isPassiveUsed = false;
+    private PassiveAbilities _passiveAbilities;
+
+    private void Start()
+    {
+        _passiveAbilities = GetComponent<PassiveAbilities>();
+    }
 
     private void Update()
     {
-        if (GetComponent<PassiveAbilities>().tower != null)
+        if (_passiveAbilities.tower)
         {
-            _tower = GetComponent<PassiveAbilities>().tower;
+            _tower = _passiveAbilities.tower;
         }
 
-        if (_tower != null && !_isPassiveUsed)
+        if (_tower && !_isPassiveUsed)
         {
             SetPassiveBonus();
         }

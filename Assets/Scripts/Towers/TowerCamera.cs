@@ -64,13 +64,7 @@ namespace Towers
             {
                 return;
             } */
-
-            // if (!_currentCamera.IsLive)
-            // {
-            //     return;
-            // }
-
-
+            
             if (_currentCamera.IsLive && !isTowerCameraActive)
             {
                 ActivateTowerListener();
@@ -80,6 +74,11 @@ namespace Towers
                 ActivateMainCameraListener();
             }
 
+            if (!_currentCamera.IsLive)
+            {
+                return;
+            }
+            
             MoveCamera();
             
             List<GameObject> enemies = _towerComp.enemiesInRange;

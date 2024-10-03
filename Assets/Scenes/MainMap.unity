@@ -92,7 +92,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: c6da80a8d13c1624eade013dcfa1277b, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -14123,7 +14123,7 @@ MonoBehaviour:
   pauseButton: {fileID: 1512829652}
   dreams: {fileID: 1328672639127493518}
   bar: {fileID: 2144032466237963515}
-  timer: 5
+  timer: 750
 --- !u!114 &804337119
 MonoBehaviour:
   m_ObjectHideFlags: 0
