@@ -1,41 +1,43 @@
-using Abilities.Passive;
 using Towers;
 using UnityEngine;
 
-public class FireBoost : MonoBehaviour
+namespace Abilities.Passive
 {
-    private Tower _tower;
+    public class FireBoost : MonoBehaviour
+    {
+        private Tower _tower;
 
-    public float Cost;
+        public float Cost;
 
-    [SerializeField] private float tps = 0.6f;
+        [SerializeField] private float tps = 0.6f;
 
-    private bool _isPassiveUsed = false;
-    private PassiveAbilities _passiveAbilities;
+        private bool _isPassiveUsed = false;
+        private PassiveAbilities _passiveAbilities;
 
-    public string Description { private set; get; } = "Увеличивает скорострельность башни на 40%";
+        public string Description { private set; get; } = "Увеличивает скорострельность башни на 40%";
     
-    private void Start()
-    {
-        _passiveAbilities = GetComponent<PassiveAbilities>();
-    }
-
-    private void Update()
-    {
-        if (_passiveAbilities.tower)
+        private void Start()
         {
-            _tower = _passiveAbilities.tower;
+            _passiveAbilities = GetComponent<PassiveAbilities>();
         }
 
-        if (_tower && !_isPassiveUsed)
+        private void Update()
         {
-            SetPassiveBonus();
-        }
-    }
+            if (_passiveAbilities.tower)
+            {
+                _tower = _passiveAbilities.tower;
+            }
 
-    private void SetPassiveBonus()
-    {
-        _tower._initialFireRate *= tps;
-        _isPassiveUsed = true;
+            if (_tower && !_isPassiveUsed)
+            {
+                SetPassiveBonus();
+            }
+        }
+
+        private void SetPassiveBonus()
+        {
+            _tower._initialFireRate *= tps;
+            _isPassiveUsed = true;
+        }
     }
 }

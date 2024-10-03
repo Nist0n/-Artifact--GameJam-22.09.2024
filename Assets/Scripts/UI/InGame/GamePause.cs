@@ -30,10 +30,14 @@ public class GamePause : MonoBehaviour
     private bool towerSelected = false;
 
     public bool gameIsPaused;
+    private Animator _pauseAnimator;
+    private Animator _continueAnimator;
 
     private void Start()
     {
-         // Отключаем все слоты и улучшения в начале игры
+        _continueAnimator = continueGameButton.GetComponent<Animator>();
+        _pauseAnimator = pauseButton.GetComponent<Animator>();
+        // Отключаем все слоты и улучшения в начале игры
          foreach (Button button in towerButtons)
          {
             button.onClick.AddListener(() => OnTowerSelected(button));
@@ -58,7 +62,7 @@ public class GamePause : MonoBehaviour
     {
         if (pauseButton.activeSelf)
         {
-            if (pauseButton.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name == "Selected")
+            if (_pauseAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Selected")
             {
                 Invoke("OpenSettings", 0.01f);
             }
@@ -67,7 +71,7 @@ public class GamePause : MonoBehaviour
 
         if (continueGameButton.activeSelf)
         {
-            if (continueGameButton.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.name == "Selected")
+            if (_continueAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Selected")
             {
                 ResumeGame();
                 Invoke("CloseSettings", 0.01f);
@@ -108,12 +112,10 @@ public class GamePause : MonoBehaviour
 
     public void Quit()
     {
-        SceneManager.LoadScene("UI VLAD");
+        SceneManager.LoadScene("MenuScene");
         ResumeGame();
     }
-
     
-
     private void OnTowerSelected(Button selectedButton)
     {
         int towerIndex = System.Array.IndexOf(towerButtons, selectedButton); // Получаем индекс выбранной башни
