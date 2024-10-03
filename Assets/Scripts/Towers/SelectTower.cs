@@ -37,9 +37,8 @@ namespace Towers
                     return;
                 }
 
-                AbilitiesSlots towerSlots = _currentTower.gameObject.GetComponent<AbilitiesSlots>();
-                towerSlots.TowerSelected = false;
-                towerSlots.HideAbilities();
+                _currentTower.GetComponent<AbilitiesSlots>().TowerSelected = false;
+                _currentTower.GetComponent<AbilitiesSlots>().HideAbilities();
                 
                 foreach (var tw in towers)
                 {
@@ -49,7 +48,7 @@ namespace Towers
                     }
                 }
 
-                towerSlots.Circle.transform.position = new Vector3(1000, 1000, 1000);
+                _currentTower.GetComponent<AbilitiesSlots>().Circle.transform.position = new Vector3(1000, 1000, 1000);
                 _currentTower.piloted = false;
                 _currentTower.towerCamera.Priority = 0;
                 mainCinemachineCamera.Priority = 1;
@@ -80,10 +79,9 @@ namespace Towers
                     {
                         Tower tower = hit.collider.gameObject.GetComponent<Tower>();
                         
-                        AbilitiesSlots towerSlots = tower.gameObject.GetComponent<AbilitiesSlots>();
-                        towerSlots.SetAbilitiesImages();
+                        tower.gameObject.GetComponent<AbilitiesSlots>().SetAbilitiesImages();
 
-                        towerSlots.TowerSelected = true;
+                        tower.gameObject.GetComponent<AbilitiesSlots>().TowerSelected = true;
 
                         foreach (var tw in towers)
                         {

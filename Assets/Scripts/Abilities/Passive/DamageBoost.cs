@@ -1,43 +1,41 @@
+using Abilities.Passive;
 using Towers;
 using UnityEngine;
 
-namespace Abilities.Passive
+public class DamageBoost : MonoBehaviour
 {
-    public class DamageBoost : MonoBehaviour
-    {
-        private Tower _tower;
+    private Tower _tower;
 
-        public float Cost;
+    public float Cost;
 
-        [SerializeField] private float damage = 1.4f;
+    [SerializeField] private float damage = 1.4f;
 
-        private bool _isPassiveUsed = false;
-        private PassiveAbilities _passiveAbilities;
+    private bool _isPassiveUsed = false;
+    private PassiveAbilities _passiveAbilities;
 
-        public string Description { private set; get; } = "Увеличивает урон башни на 40%";
+    public string Description { private set; get; } = "Увеличивает урон башни на 40%";
     
-        private void Start()
+    private void Start()
+    {
+        _passiveAbilities = GetComponent<PassiveAbilities>();
+    }
+
+    private void Update()
+    {
+        if (_passiveAbilities.tower)
         {
-            _passiveAbilities = GetComponent<PassiveAbilities>();
+            _tower = _passiveAbilities.tower;
         }
 
-        private void Update()
+        if (_tower && !_isPassiveUsed)
         {
-            if (_passiveAbilities.tower)
-            {
-                _tower = _passiveAbilities.tower;
-            }
-
-            if (_tower && !_isPassiveUsed)
-            {
-                SetPassiveBonus();
-            }
+            SetPassiveBonus();
         }
+    }
 
-        private void SetPassiveBonus()
-        {
-            _tower._initialDamage = Mathf.Round(damage * _tower._initialDamage);
-            _isPassiveUsed = true;
-        }
+    private void SetPassiveBonus()
+    {
+        _tower._initialDamage = Mathf.Round(damage * _tower._initialDamage);
+        _isPassiveUsed = true;
     }
 }

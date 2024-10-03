@@ -1,39 +1,37 @@
 using Abilities.Active;
+using Abilities.Passive;
 using UnityEngine;
 
-namespace Abilities.Passive
+public class SpeedBoom : MonoBehaviour
 {
-    public class SpeedBoom : MonoBehaviour
+    public float Cost;
+
+    [SerializeField] private GameObject abil;
+    
+    [SerializeField] private float percent = 0.6f;
+
+    private bool _isPassiveUsed = false;
+    private PassiveAbilities _passiveAbilities;
+
+    public string Description { private set; get; } = "Уменьшает перезарядку активных способностей на 40%";
+    
+    private void Start()
     {
-        public float Cost;
+        _passiveAbilities = GetComponent<PassiveAbilities>();
+    }
 
-        [SerializeField] private GameObject abil;
-    
-        [SerializeField] private float percent = 0.6f;
-
-        private bool _isPassiveUsed = false;
-        private PassiveAbilities _passiveAbilities;
-
-        public string Description { private set; get; } = "Уменьшает перезарядку активных способностей на 40%";
-    
-        private void Start()
+    private void Update()
+    {
+        if (_passiveAbilities.ActiveAbil && !_isPassiveUsed)
         {
-            _passiveAbilities = GetComponent<PassiveAbilities>();
+            SetPassiveBonus();
         }
+    }
 
-        private void Update()
-        {
-            if (_passiveAbilities.ActiveAbil && !_isPassiveUsed)
-            {
-                SetPassiveBonus();
-            }
-        }
-
-        private void SetPassiveBonus()
-        {
-            _passiveAbilities.ActiveAbil.GetComponent<ActiveAbility>()
-                .ChangeAbilityCooldown(_passiveAbilities.ActiveAbil.name, percent, _passiveAbilities.ActiveAbil);
-            _isPassiveUsed = true;
-        }
+    private void SetPassiveBonus()
+    {
+        _passiveAbilities.ActiveAbil.GetComponent<ActiveAbility>()
+            .ChangeAbilityCooldown(_passiveAbilities.ActiveAbil.name, percent, _passiveAbilities.ActiveAbil);
+        _isPassiveUsed = true;
     }
 }
