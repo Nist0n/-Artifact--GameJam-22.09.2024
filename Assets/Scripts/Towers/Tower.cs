@@ -28,7 +28,7 @@ namespace Towers
         public bool piloted;
 
         public static float buffDuration = 10f;
-        [FormerlySerializedAs("isPowered")] public bool isOnCooldown;
+        public bool isOnCooldown;
         
         public List<GameObject> enemiesInRange;
 
@@ -111,6 +111,13 @@ namespace Towers
                 }
             }
 
+            if (!piloted)
+            {
+                return;
+            }
+            
+            buffImage.SetActive(_isBuffed);
+            
             if (Input.GetMouseButton(0)) // Player shooting
             {
                 if (!towerCameraComp.currentTarget)
@@ -118,7 +125,7 @@ namespace Towers
                     return;
                 }
                 
-                if (_canShoot && piloted)
+                if (_canShoot)
                 {
                     var enemyPos = towerCameraComp.currentTarget.transform.position;
                     var position = transform.position;
@@ -129,10 +136,8 @@ namespace Towers
                         return;
                     }
 
-                    if (!_isBuffed)
-                    {
-                        ResetTowerStats();
-                    }
+                    // Potentially check if !isBuffed, although it introduces new challenges as already seen
+                    ResetTowerStats();
                     
                     StartCoroutine(Shoot(position, enemyPos, towerCameraComp.currentTarget));
                 }
@@ -186,12 +191,10 @@ namespace Towers
             _isBuffed = true;
             fireRate = buffedFireRate;
             damage = buffedDamage;
-            buffImage.SetActive(true);
             StartCoroutine(BuffCooldown());
             yield return new WaitForSeconds(buffDuration);
             
             _isBuffed = false;
-            buffImage.SetActive(false);
             ResetTowerStats();
         }
 
@@ -202,13 +205,20 @@ namespace Towers
             isOnCooldown = false;
         }
 
-        public void ResetTowerStats()
+        private void ResetTowerStats()
         {
+            if (_isBuffed)
+            {
+                damage = buffedDamage;
+                fireRate = buffedFireRate;
+                return;
+            }
+            
             damage = _initialDamage;
             fireRate = _initialFireRate;
         }
 
-        public void SuppressTower()
+        private void SuppressTower()
         {
             damage = _initialDamage / 2;
             fireRate = _initialFireRate * 2;
@@ -216,7 +226,7 @@ namespace Towers
 
         public void SetSlowness()
         {
-            this.Slowness = true;
+            Slowness = true;
         }
     }
 }
