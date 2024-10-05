@@ -10,6 +10,10 @@ public class CastleHealth : MonoBehaviour
         
     [SerializeField] private Image front;
 
+    private float _timer = 4f;
+
+    private float _cooldown = 3f;
+
     private float _lerpTimer;
     
     public float health;
@@ -29,6 +33,18 @@ public class CastleHealth : MonoBehaviour
         {
             GameConfig.Instance.GameIsOverByLose = true;
         }
+
+        if (_timer <= _cooldown)
+        {
+            _timer += Time.deltaTime;
+            front.color = Color.green;
+            back.color = Color.white;
+        }
+        else if (front.color.a != 0)
+        {
+            front.color = Color.clear;
+            back.color = Color.clear;
+        }
         
         if (front.color.a != 0)
         {
@@ -39,22 +55,10 @@ public class CastleHealth : MonoBehaviour
     public void ReceiveDamage(float damage)
     {
         health -= damage;
-        StartCoroutine(ShowHpBar());
+        _timer = 0;
         _lerpTimer = 0;
     }
-    
-    private IEnumerator ShowHpBar()
-    {
-        if (front.color.a == 0)
-        {
-            front.color = Color.green;
-            back.color = Color.white;
-            yield return new WaitForSeconds(3f);
-            front.color = Color.clear;
-            back.color = Color.clear;
-        }
-    }
-    
+
     private void UpdateHpBar()
     {
         float fillFrontBar = front.fillAmount;
