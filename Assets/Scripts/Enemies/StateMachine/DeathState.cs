@@ -12,11 +12,11 @@ public class DeathState : EnemyState
         navMeshAgent.speed = 0;
         SoulsCounter.Instance.AddNightmares(Mathf.Round(Random.Range(DroppedCoinsMin, DroppedCoinsMax)));
         Instantiate(soul, transform.position, quaternion.identity);
+        animator.Play("Death");
     }
     
     public override void Do()
     {
-        animationController.Death();
     }
     
     public override void Exit()
