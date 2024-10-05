@@ -131,7 +131,7 @@ public class GameConfig : MonoBehaviour
     private void Timer()
     {
         _timeMinutes = Mathf.Floor(GameTime / 60);
-        if (_timeSeconds < 60) _timeSeconds += Time.deltaTime;
+        if (_timeSeconds < 59) _timeSeconds += Time.deltaTime;
         else _timeSeconds = 0;
         timerText.text = $"Время: {_timeMinutes}:{_timeSeconds.ToString("00")}";
     }
