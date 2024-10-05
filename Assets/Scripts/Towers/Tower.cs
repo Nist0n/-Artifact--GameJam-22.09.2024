@@ -54,6 +54,11 @@ namespace Towers
         
         private void Update()
         {
+            if (GameConfig.Instance.GameIsOverByLose || GameConfig.Instance.HasWon)
+            {
+                return;
+            }
+            
             enemiesInRange = new List<GameObject>();
             if (GameConfig.Instance.EnemyList.Count == 0)
             {

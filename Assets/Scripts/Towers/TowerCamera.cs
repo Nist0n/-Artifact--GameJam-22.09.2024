@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Abilities.Active;
-using Enemies;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +10,7 @@ namespace Towers
     {
         private GameObject _abilityRange;
         private AbilitiesSlots _abilities;
-        [SerializeField] private bool _isAbilityActived = false;
+        [SerializeField] private bool _isAbilityActived;
         [SerializeField] private float turnSpeed = 4.0f;
         [SerializeField] private GameObject tower;
         private const float MinTurnAngle = -90.0f;
@@ -40,7 +39,7 @@ namespace Towers
         public AudioListener mainCameraListener;
         public AudioListener towerAudioListener; 
         public GameObject _audio;
-        private bool isTowerCameraActive = false;
+        private bool _isTowerCameraActive;
 
         private void Start()
         {
@@ -61,16 +60,16 @@ namespace Towers
         
         private void Update()
         {
-            /*(if (GamePause.Instance.gameIsPaused) // If game is paused
+            if (Time.timeScale == 0) // If game is paused
             {
                 return;
-            } */
+            }
             
-            if (_currentCamera.IsLive && !isTowerCameraActive)
+            if (_currentCamera.IsLive && !_isTowerCameraActive)
             {
                 ActivateTowerListener();
             }
-            else if (!_currentCamera.IsLive && isTowerCameraActive)
+            else if (!_currentCamera.IsLive && _isTowerCameraActive)
             {
                 ActivateMainCameraListener();
             }
@@ -200,8 +199,8 @@ namespace Towers
             {
                 towerAudioListener.enabled = true;
                 mainCameraListener.enabled = false;
-                Cursor.visible = false;
-                isTowerCameraActive = true;
+                // Cursor.visible = false;
+                _isTowerCameraActive = true;
             }
         }
 
@@ -211,8 +210,8 @@ namespace Towers
             {
                 mainCameraListener.enabled = true;
                 towerAudioListener.enabled = false;
-                Cursor.visible = true;
-                isTowerCameraActive = false;
+                // Cursor.visible = true;
+                _isTowerCameraActive = false;
             }
         }
 

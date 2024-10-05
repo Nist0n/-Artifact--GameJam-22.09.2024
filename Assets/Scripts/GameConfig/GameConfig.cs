@@ -42,6 +42,8 @@ public class GameConfig : MonoBehaviour
 
     private bool IsBossSpawned = false;
 
+    public bool HasWon;
+
     private void Awake()
     {
         if (Instance == null)

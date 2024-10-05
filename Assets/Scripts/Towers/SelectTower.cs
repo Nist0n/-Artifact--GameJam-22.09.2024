@@ -28,6 +28,16 @@ namespace Towers
 
         private void Update()
         {
+            if (mainCinemachineCamera.Priority == 1 || shopCinemachineCamera.Priority == 1 || 
+                GameConfig.Instance.GameIsOverByLose || Time.timeScale == 0)
+            {
+                Cursor.visible = true;
+            }
+            else
+            {
+                Cursor.visible = false;
+            }
+            
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 if (mainCinemachineCamera.IsLive || shopCinemachineCamera.IsLive)

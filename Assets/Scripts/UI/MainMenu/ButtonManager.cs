@@ -23,18 +23,8 @@ namespace UI.MainMenu
             _canvasComponent = canvas.GetComponent<Canvas>();
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyUp(KeyCode.Escape))
-            {
-                settingsButtonsGroup.SetActive(!settingsButtonsGroup.activeSelf);
-                mainMenuButtonsGroup.SetActive(!mainMenuButtonsGroup.activeSelf);
-            }
-        }
-
         public void PlayGame()
         {
-            // SceneManager.LoadScene("MainMap");
             StartCoroutine(ChangeCamera());
         }
 

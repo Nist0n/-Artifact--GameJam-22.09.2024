@@ -970,7 +970,7 @@ RectTransform:
   m_Father: {fileID: 1801020178}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4584,7 +4584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &220916813
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11957,7 +11957,7 @@ RectTransform:
   m_Father: {fileID: 975843108}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -13943,7 +13943,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82413cc8e2c5e6a4ab9f165cc7945f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameConfig: {fileID: 930643877}
   victory: {fileID: 1905724661}
   background: {fileID: 220916812}
   pauseButton: {fileID: 1512829652}
@@ -16264,6 +16263,7 @@ MonoBehaviour:
   EnemyList: []
   _spawners: []
   GameIsOverByLose: 0
+  HasWon: 0
 --- !u!4 &930643878
 Transform:
   m_ObjectHideFlags: 0
@@ -22904,7 +22904,7 @@ RectTransform:
   m_Father: {fileID: 1167566682}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -25985,7 +25985,7 @@ RectTransform:
   m_Father: {fileID: 1579228586}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

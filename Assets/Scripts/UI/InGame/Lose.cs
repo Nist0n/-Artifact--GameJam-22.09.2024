@@ -15,11 +15,11 @@ namespace UI.InGame
         {
             if (GameConfig.Instance.GameIsOverByLose && _gameRun) {
                 _gameRun = false;
-                LooseMode();
+                LoseMode();
             }
         }
 
-        private void LooseMode() {
+        private void LoseMode() {
             Cursor.visible = true;
             pauseButton.SetActive(!pauseButton.activeSelf);
             loose.SetActive(!loose.activeSelf);
