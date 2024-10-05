@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class FirstTimeCheck : MonoBehaviour
 
     private const string FirstLaunchKey = "firstLaunch";
 
-    void Start()
+    private void Awake()
     {
         if (PlayerPrefs.HasKey(FirstLaunchKey))
         {
