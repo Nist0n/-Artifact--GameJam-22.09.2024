@@ -41,7 +41,7 @@ namespace Towers
 
         public AudioSource _audioSource;
 
-        private bool _isBuffed;
+        [SerializeField] private bool isBuffed;
         
         private void Start()
         {
@@ -121,7 +121,7 @@ namespace Towers
                 return;
             }
             
-            buffImage.SetActive(_isBuffed);
+            buffImage.SetActive(isBuffed);
             
             if (Input.GetMouseButton(0)) // Player shooting
             {
@@ -153,7 +153,7 @@ namespace Towers
         {
             CurrentAutoTarget = null;
             _canShoot = true;
-            StopAllCoroutines();
+            StopCoroutine("Shoot");
         }
 
         private IEnumerator Shoot(Vector3 currentPos, Vector3 enemyPos, GameObject target)
@@ -183,7 +183,7 @@ namespace Towers
 
         public void EmpowerTower()
         {
-            if (isOnCooldown || _isBuffed)
+            if (isOnCooldown || isBuffed)
             {
                 return;
             }
@@ -193,13 +193,13 @@ namespace Towers
 
         private IEnumerator Buff()
         {
-            _isBuffed = true;
+            isBuffed = true;
             fireRate = buffedFireRate;
             damage = buffedDamage;
             StartCoroutine(BuffCooldown());
             yield return new WaitForSeconds(buffDuration);
             
-            _isBuffed = false;
+            isBuffed = false;
             ResetTowerStats();
         }
 
@@ -212,7 +212,7 @@ namespace Towers
 
         private void ResetTowerStats()
         {
-            if (_isBuffed)
+            if (isBuffed)
             {
                 damage = buffedDamage;
                 fireRate = buffedFireRate;
