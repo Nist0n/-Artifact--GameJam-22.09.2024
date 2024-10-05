@@ -15,12 +15,15 @@ public class URP_Settings : MonoBehaviour
 
     private void Start()
     {
-        shadowRes.value = QualitySettings.GetQualityLevel();
+        shadowRes.value = PlayerPrefs.GetInt("GraphicsPreset", 0);
+        QualitySettings.SetQualityLevel(shadowRes.value);
+        QualitySettings.renderPipeline = qualityLevels[shadowRes.value];
     }
 
     public void DropDown_IndexChanged()
     {
         QualitySettings.SetQualityLevel(shadowRes.value);
         QualitySettings.renderPipeline = qualityLevels[shadowRes.value];
+        PlayerPrefs.SetInt("GraphicsPreset", shadowRes.value);
     }
 }
