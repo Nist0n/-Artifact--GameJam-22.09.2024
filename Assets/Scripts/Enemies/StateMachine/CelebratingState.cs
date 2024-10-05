@@ -9,6 +9,7 @@ namespace Enemies.StateMachine
         {
             navMeshAgent.speed = 0;
             r = Random.Range(0, 2);
+            AudioSource.enabled = false;
         }
     
         public override void Do()
