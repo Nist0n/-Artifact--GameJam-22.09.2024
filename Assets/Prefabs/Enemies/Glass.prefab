@@ -1268,9 +1268,9 @@ GameObject:
   - component: {fileID: 144254355584556979}
   - component: {fileID: 4868901985195546701}
   - component: {fileID: 1743808988455916475}
+  - component: {fileID: 6722302287053755312}
   - component: {fileID: 8995070257835787098}
   - component: {fileID: 6143731935698025277}
-  - component: {fileID: 6722302287053755312}
   - component: {fileID: 1657119338062613939}
   m_Layer: 0
   m_Name: Glass
@@ -1357,6 +1357,44 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6722302287053755312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8142872892816006428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5751aef57cc94d5b8adc61b8d69a4477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navMeshAgent: {fileID: 144254355584556979}
+  animationController: {fileID: 4868901985195546701}
+  animator: {fileID: 1657119338062613939}
+  AudioSource: {fileID: 6143731935698025277}
+  Speed: 4.5
+  Slowness: 0.6
+  Health: 0
+  DroppedCoinsMax: 15
+  DroppedCoinsMin: 25
+  MaxHealth: 7
+  Damage: 3
+  IsFreezed: 0
+  IsSlowness: 0
+  IsAttacking: 0
+  IsCelebrating: 0
+  Soul: {fileID: 1277085015814301893, guid: ff37baff706d86848addca8e6f134b91, type: 3}
+  IsDamaged: 0
+  back: {fileID: 1637030215264534352}
+  front: {fileID: 7341842173739960259}
+  Running: {fileID: 8728136260902871752}
+  TakingDamage: {fileID: 1490308238618221366}
+  Freeze: {fileID: 5858155872515324969}
+  Death: {fileID: 4531612253613639098}
+  Attacking: {fileID: 1492695760393367732}
+  Celebrating: {fileID: 3152085983016445550}
+  Slow: {fileID: 5346073122159693881}
 --- !u!136 &8995070257835787098
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1402,9 +1440,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 50
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1437,7 +1475,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1477,44 +1515,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6722302287053755312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8142872892816006428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5751aef57cc94d5b8adc61b8d69a4477, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navMeshAgent: {fileID: 144254355584556979}
-  animationController: {fileID: 4868901985195546701}
-  animator: {fileID: 1657119338062613939}
-  AudioSource: {fileID: 6143731935698025277}
-  Speed: 4.5
-  Slowness: 0.6
-  Health: 0
-  DroppedCoinsMax: 15
-  DroppedCoinsMin: 25
-  MaxHealth: 7
-  Damage: 3
-  IsFreezed: 0
-  IsSlowness: 0
-  IsAttacking: 0
-  IsCelebrating: 0
-  Soul: {fileID: 1277085015814301893, guid: ff37baff706d86848addca8e6f134b91, type: 3}
-  IsDamaged: 0
-  back: {fileID: 1637030215264534352}
-  front: {fileID: 7341842173739960259}
-  Running: {fileID: 8728136260902871752}
-  TakingDamage: {fileID: 1490308238618221366}
-  Freeze: {fileID: 5858155872515324969}
-  Death: {fileID: 4531612253613639098}
-  Attacking: {fileID: 1492695760393367732}
-  Celebrating: {fileID: 3152085983016445550}
-  Slow: {fileID: 5346073122159693881}
 --- !u!95 &1657119338062613939
 Animator:
   serializedVersion: 7

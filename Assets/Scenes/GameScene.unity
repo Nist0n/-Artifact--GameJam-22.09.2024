@@ -46935,6 +46935,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainTower1
       objectReference: {fileID: 0}
+    - target: {fileID: 7997697460362464845, guid: ca575fa051db6974fb636705bd346d03, type: 3}
+      propertyPath: MaxDistance
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -47749,6 +47753,10 @@ PrefabInstance:
       propertyPath: mainCameraListener
       value: 
       objectReference: {fileID: 117611329}
+    - target: {fileID: 8700807769340761920, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
+      propertyPath: MaxDistance
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -47844,6 +47852,10 @@ PrefabInstance:
       propertyPath: 'imagePositions.Array.data[2]'
       value: 
       objectReference: {fileID: 1266798722}
+    - target: {fileID: 7699990449088829161, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
+      propertyPath: MaxDistance
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8269471945438881495, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
       propertyPath: m_Name
       value: MainTower2
@@ -47950,6 +47962,10 @@ PrefabInstance:
     - target: {fileID: 7676622830900532834, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847250605473699863, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
+      propertyPath: MaxDistance
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -48191,6 +48207,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8230746893766988098, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
+      propertyPath: MaxDistance
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8813755897768338203, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
       propertyPath: m_Name
       value: MainTower6
@@ -48377,6 +48397,10 @@ PrefabInstance:
       propertyPath: buffImage
       value: 
       objectReference: {fileID: 1615537439}
+    - target: {fileID: 7473701358565158634, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
+      propertyPath: MaxDistance
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8451893764317487575, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
       propertyPath: mainCameraListener
       value: 
