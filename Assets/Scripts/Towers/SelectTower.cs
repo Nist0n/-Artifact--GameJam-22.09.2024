@@ -32,10 +32,12 @@ namespace Towers
                 GameConfig.Instance.GameIsOverByLose || Time.timeScale == 0)
             {
                 Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
             }
             else
             {
                 Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
             
             if (Input.GetKeyDown(KeyCode.Q))

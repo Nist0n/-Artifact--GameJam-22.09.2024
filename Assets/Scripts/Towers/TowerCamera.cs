@@ -199,7 +199,6 @@ namespace Towers
             {
                 towerAudioListener.enabled = true;
                 mainCameraListener.enabled = false;
-                // Cursor.visible = false;
                 _isTowerCameraActive = true;
             }
         }
@@ -210,19 +209,16 @@ namespace Towers
             {
                 mainCameraListener.enabled = true;
                 towerAudioListener.enabled = false;
-                // Cursor.visible = true;
                 _isTowerCameraActive = false;
             }
         }
 
         private void MoveCamera()
         {
-            if (!_currentCamera.IsLive)
+            if (_currentCamera.Priority == 0)
             {
                 return;
             }
-            
-            // Debug.Log(_currentCamera);
             
             float y = Input.GetAxis("Mouse X") * turnSpeed;
             _rotX += Input.GetAxis("Mouse Y") * turnSpeed;
@@ -233,7 +229,7 @@ namespace Towers
             _audio.transform.eulerAngles = tower.transform.eulerAngles;
         }
 
-        public void DisableImage()
+        private void DisableImage()
         {
             reticle.enabled = false;
         }

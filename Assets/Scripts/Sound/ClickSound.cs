@@ -6,6 +6,7 @@ public class ClickSound : MonoBehaviour
     {
         AudioManager.instance.PlaySFX("Aimed");
     }
+    
     public void PlaySoundPressed()
     {
         AudioManager.instance.PlaySFX("Click");

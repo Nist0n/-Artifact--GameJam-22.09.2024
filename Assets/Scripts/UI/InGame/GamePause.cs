@@ -60,21 +60,33 @@ public class GamePause : MonoBehaviour
 
     private void Update()
     {
-        if (pauseButton.activeSelf)
+        // if (pauseButton.activeSelf)
+        // {
+        //     if (_pauseAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Selected")
+        //     {
+        //         Invoke("OpenSettings", 0.01f);
+        //     }
+        //
+        // }
+        //
+        // if (continueGameButton.activeSelf)
+        // {
+        //     if (_continueAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Selected")
+        //     {
+        //         ResumeGame();
+        //         Invoke("CloseSettings", 0.01f);
+        //     }
+        // }
+
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-            if (_pauseAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Selected")
+            if (!background.activeSelf)
             {
-                Invoke("OpenSettings", 0.01f);
+                PauseGame();
             }
-
-        }
-
-        if (continueGameButton.activeSelf)
-        {
-            if (_continueAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "Selected")
+            else
             {
                 ResumeGame();
-                Invoke("CloseSettings", 0.01f);
             }
         }
     }
@@ -88,24 +100,27 @@ public class GamePause : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0f;
+        OpenSettings();
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1;
+        CloseSettings();
     }
 
     public void CloseSettings()
     {
-        pauseButton.SetActive(true);
+        // pauseButton.SetActive(true);
+        AudioManager.instance.PlaySFX("Click");
         background.SetActive(false);
         continueGameButton.SetActive(false);
     }
 
     public void OpenSettings()
     {
-        PauseGame();
-        pauseButton.SetActive(false);
+        // pauseButton.SetActive(false);
+        AudioManager.instance.PlaySFX("Click");
         continueGameButton.SetActive(true);
         background.SetActive(true);
     }
