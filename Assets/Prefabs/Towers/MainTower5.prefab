@@ -1858,13 +1858,14 @@ MonoBehaviour:
   towerCameraComp: {fileID: 2597354718296248088}
   towerCamera: {fileID: 3147052024303866609}
   piloted: 0
-  isPowered: 0
+  isOnCooldown: 0
   enemiesInRange: []
   buffedFireRate: 0
   buffedDamage: 0
   _initialDamage: 0
   _initialFireRate: 0
   _audioSource: {fileID: 7847250605473699863}
+  isBuffed: 0
 --- !u!1 &4099181340250216980
 GameObject:
   m_ObjectHideFlags: 0
@@ -2181,7 +2182,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0

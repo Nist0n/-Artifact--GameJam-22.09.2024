@@ -168,7 +168,7 @@ public class GamePause : MonoBehaviour
         }
     }
 
-    IEnumerator ShowUpgradeSlots(Button selectedButton)
+    private IEnumerator ShowUpgradeSlots(Button selectedButton)
     {
         yield return new WaitForSeconds(animationDuration); // Ждем окончания анимации
 

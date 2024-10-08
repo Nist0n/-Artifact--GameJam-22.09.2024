@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 namespace Towers
 {
@@ -18,6 +19,8 @@ namespace Towers
         [SerializeField] GameObject shopUI;
         [SerializeField] private List<GameObject> towers;
         [SerializeField] private GameObject buffImage;
+        [SerializeField] private GameObject selectTowerControls;
+        [SerializeField] private GameObject upgradeTowerControls;
 
         private bool _isSwitching;
 
@@ -40,7 +43,7 @@ namespace Towers
                 Cursor.lockState = CursorLockMode.Locked;
             }
             
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q)) // Exit tower
             {
                 if (mainCinemachineCamera.IsLive || shopCinemachineCamera.IsLive)
                 {
@@ -71,7 +74,7 @@ namespace Towers
                 StartCoroutine(ShopCameraSwap());
             }
             
-            if (!mainCinemachineCamera.IsLive)
+            if (!mainCinemachineCamera.IsLive) // If we are already in a tower
             {
                 return;
             }
@@ -83,35 +86,36 @@ namespace Towers
                     return;
                 }
 
+                ToggleUpgradeTowerControls(false);
+                
                 Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
                     if (hit.collider.gameObject.CompareTag("Tower")) // If clicking on a tower
                     {
                         Tower tower = hit.collider.gameObject.GetComponent<Tower>();
-                        
-                        AbilitiesSlots towerSlots = tower.gameObject.GetComponent<AbilitiesSlots>();
-                        towerSlots.SetAbilitiesImages();
 
-                        towerSlots.TowerSelected = true;
-
-                        foreach (var tw in towers)
-                        {
-                            if (tw != tower.gameObject)
-                            {
-                                tw.GetComponentInChildren<TowerCamera>().enabled = false;
-                            }
-                        }
+                        selectTowerControls.transform.position = _mainCamera.WorldToScreenPoint(tower.transform.position);
+                        ToggleSelectTowerControls(!selectTowerControls.activeSelf);
                         
                         _currentTower = tower;
-                        tower.towerCamera.Priority = 1;
-                        mainCinemachineCamera.Priority = 0;
-                        tower.piloted = true;
-                        
-                        tower.EmpowerTower();
+                    }
+                    else
+                    {
+                        ToggleSelectTowerControls(false);
                     }
                 }
             }
+        }
+
+        private void ToggleSelectTowerControls(bool b)
+        {
+            selectTowerControls.SetActive(b);
+        }
+        
+        public void ToggleUpgradeTowerControls(bool b)
+        {
+            upgradeTowerControls.SetActive(b);
         }
 
         private IEnumerator ShopCameraSwap()
@@ -140,10 +144,33 @@ namespace Towers
             _isSwitching = false;
         }
 
+        public void EnterCurrentTower()
+        {
+            ToggleSelectTowerControls(false);
+            AbilitiesSlots towerSlots = _currentTower.gameObject.GetComponent<AbilitiesSlots>();
+            towerSlots.SetAbilitiesImages();
+
+            towerSlots.TowerSelected = true;
+
+            foreach (var tw in towers)
+            {
+                if (tw != _currentTower.gameObject)
+                {
+                    tw.GetComponentInChildren<TowerCamera>().enabled = false;
+                }
+            }
+            
+            _currentTower.towerCamera.Priority = 1;
+            mainCinemachineCamera.Priority = 0;
+            _currentTower.piloted = true;
+                        
+            _currentTower.EmpowerTower();
+        }
+        
         private IEnumerator ShopSwitch()
         {
             yield return null;
-            pauseButton.SetActive(!pauseButton.activeSelf);
+            // pauseButton.SetActive(!pauseButton.activeSelf);
             shopUI.SetActive(!pauseButton.activeSelf);
         }
     }
