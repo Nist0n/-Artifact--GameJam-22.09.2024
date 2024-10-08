@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Sound;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Serialization;

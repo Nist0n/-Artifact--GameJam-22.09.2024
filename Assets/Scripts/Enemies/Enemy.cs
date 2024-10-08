@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Enemies.StateMachine;
+using Sound;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;

@@ -2,6 +2,7 @@ using System.Collections;
 using Abilities.Active;
 using Abilities.Passive;
 using Shop;
+using Sound;
 using Towers;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -35,8 +36,8 @@ public class GamePause : MonoBehaviour
 
     private void Start()
     {
-        _continueAnimator = continueGameButton.GetComponent<Animator>();
-        _pauseAnimator = pauseButton.GetComponent<Animator>();
+        // _continueAnimator = continueGameButton.GetComponent<Animator>();
+        // _pauseAnimator = pauseButton.GetComponent<Animator>();
         // Отключаем все слоты и улучшения в начале игры
          foreach (Button button in towerButtons)
          {
@@ -109,7 +110,7 @@ public class GamePause : MonoBehaviour
         CloseSettings();
     }
 
-    public void CloseSettings()
+    private void CloseSettings()
     {
         // pauseButton.SetActive(true);
         AudioManager.instance.PlaySFX("Click");
@@ -117,7 +118,7 @@ public class GamePause : MonoBehaviour
         continueGameButton.SetActive(false);
     }
 
-    public void OpenSettings()
+    private void OpenSettings()
     {
         // pauseButton.SetActive(false);
         AudioManager.instance.PlaySFX("Click");

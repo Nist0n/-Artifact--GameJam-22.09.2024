@@ -1,3 +1,4 @@
+using Sound;
 using UnityEngine;
 
 public class TakingDamageState : EnemyState

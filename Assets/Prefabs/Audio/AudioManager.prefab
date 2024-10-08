@@ -47,7 +47,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -309,10 +309,44 @@ MonoBehaviour:
   music:
   - name: MainMenu
     audio: {fileID: 8300000, guid: c31fb1ae842089346923bae6cdba9115, type: 3}
-  - name: MainMenu2
-    audio: {fileID: 8300000, guid: f299b99ed6c622b4996986c4e2af03d3, type: 3}
+  - name: InGame
+    audio: {fileID: 8300000, guid: 699763a7736b8f34285be18d6529b0dd, type: 3}
+  - name: InGame2
+    audio: {fileID: 8300000, guid: 0b85c01cc376ac84f8af728c2ffc10c0, type: 3}
   sounds:
   - name: Aimed
     audio: {fileID: 8300000, guid: 3f1047a717eed844b96caf86b3fa76bd, type: 3}
   - name: Click
     audio: {fileID: 8300000, guid: 0e246b7d604a22e4b8f64ff9e4edd2d3, type: 3}
+  - name: SpawnMobs
+    audio: {fileID: 8300000, guid: 83f6cdd70f14672429a1e43953a8a40c, type: 3}
+  - name: WalkEnemy
+    audio: {fileID: 8300000, guid: 53e5343225425314bb5eff1ab8630a4b, type: 3}
+  - name: WalkEnemy
+    audio: {fileID: 8300000, guid: a37c7854d9d288f439d4afe034ba89ff, type: 3}
+  - name: WalkEnemy
+    audio: {fileID: 8300000, guid: b010ada21caf32c48aa3d81cf828ea99, type: 3}
+  - name: WalkEnemy
+    audio: {fileID: 8300000, guid: f2dc227c45b03fe4397366a4c3ee1a61, type: 3}
+  - name: WalkEnemy
+    audio: {fileID: 8300000, guid: 6cc2de725b2ca3c45b343465491a83eb, type: 3}
+  - name: WalkEnemy
+    audio: {fileID: 8300000, guid: 0f6217b4f76b62a419927de04e2f769f, type: 3}
+  - name: WalkEnemy
+    audio: {fileID: 8300000, guid: 338bf339aefc22d4ca8533cb21642f13, type: 3}
+  - name: GateBreake
+    audio: {fileID: 8300000, guid: bdd76141fd26407418342d1a09e075f6, type: 3}
+  - name: GateBreake
+    audio: {fileID: 8300000, guid: ab7fb1ba62b71a14a905a01eda625dfc, type: 3}
+  - name: GetDamage
+    audio: {fileID: 8300000, guid: 1b1ee98202f02b64b86385efee1c7a4b, type: 3}
+  - name: GetDamage
+    audio: {fileID: 8300000, guid: 41691232e367a144b85dd974dad28577, type: 3}
+  - name: GetDamage
+    audio: {fileID: 8300000, guid: 9f58963c9771ae64da91779d0d261890, type: 3}
+  - name: GetDamageBoss
+    audio: {fileID: 8300000, guid: f20c1c701f138474d92809485d405a9b, type: 3}
+  - name: Tower
+    audio: {fileID: 8300000, guid: 72c571b19fde5ca4090073e6b8140227, type: 3}
+  - name: Die
+    audio: {fileID: 8300000, guid: dd5bfbbc3667f304da01cab2865b8abf, type: 3}

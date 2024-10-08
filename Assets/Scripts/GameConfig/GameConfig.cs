@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Sound;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
