@@ -15,7 +15,7 @@ namespace UI.InGame
 
         private void Update()
         {
-            transform.position = Input.mousePosition;
+            // transform.position = Input.mousePosition;
         }
     }
 }

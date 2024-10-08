@@ -99,6 +99,8 @@ namespace Towers
 
                         selectTowerControls.transform.position = _mainCamera.WorldToScreenPoint(tower.transform.position);
                         ToggleSelectTowerControls(!selectTowerControls.activeSelf);
+                        upgradeTowerControls.transform.position =
+                            _mainCamera.WorldToScreenPoint(tower.transform.position);
                         
                         _currentTower = tower;
                         
@@ -151,6 +153,7 @@ namespace Towers
         public void EnterCurrentTower()
         {
             ToggleSelectTowerControls(false);
+            ToggleUpgradeTowerControls(false);
             AbilitiesSlots towerSlots = _currentTower.gameObject.GetComponent<AbilitiesSlots>();
             towerSlots.SetAbilitiesImages();
 
@@ -175,7 +178,7 @@ namespace Towers
         {
             yield return null;
             // pauseButton.SetActive(!pauseButton.activeSelf);
-            shopUI.SetActive(!pauseButton.activeSelf);
+            shopUI.SetActive(shopCinemachineCamera.IsLive);
         }
     }
 }
