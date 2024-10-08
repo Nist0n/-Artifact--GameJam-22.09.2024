@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Shop;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -21,6 +22,7 @@ namespace Towers
         [SerializeField] private GameObject buffImage;
         [SerializeField] private GameObject selectTowerControls;
         [SerializeField] private GameObject upgradeTowerControls;
+        [SerializeField] private BuyingSystem buyingSystem;
 
         private bool _isSwitching;
 
@@ -99,6 +101,8 @@ namespace Towers
                         ToggleSelectTowerControls(!selectTowerControls.activeSelf);
                         
                         _currentTower = tower;
+                        
+                        buyingSystem.GetTower(tower.gameObject.GetComponent<AbilitiesSlots>());
                     }
                     else
                     {

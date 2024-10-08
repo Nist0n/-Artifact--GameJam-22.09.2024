@@ -10,28 +10,36 @@ public class AbilitiesSlots : MonoBehaviour
 {
     [SerializeField] private GameObject abilitiesObject;
     
+    [SerializeField] private List<Image> imagePositions;
+    
+    public List<GameObject> RandomActiveAbilities;
+        
+    public List<GameObject> RandomPassiveAbilities;
+    
     public bool HasActiveAbility = false;
     
-    public List<GameObject> Abilities = new List<GameObject>(3);
-    
-    [SerializeField] private List<Image> imagePositions;
-
-    private int _indexOfActiveAbility;
-
-    private ActiveAbility _active;
+    public List<GameObject> Abilities;
 
     public GameObject Ability;
 
     public bool IsPassiveSetted = false;
+    
+    public bool TowerSelected = false;
+
+    public GameObject Circle;
+
+    public bool PassivesShowed = false;
+    
+    public bool ActivesShowed = false;
 
     private PassiveAbilities _passAbility;
 
     private ImageCooldowns _imageCooldowns;
-
-    public bool TowerSelected = false;
-
-    public GameObject Circle;
     
+    private int _indexOfActiveAbility;
+
+    private ActiveAbility _active;
+
 
     private void Update()
     {

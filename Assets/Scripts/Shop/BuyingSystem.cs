@@ -12,47 +12,71 @@ namespace Shop
     
         [SerializeField] private List<GameObject> passiveAbilities;
 
-        [SerializeField] private List<GameObject> randomAbilities;
+        [SerializeField] private List<GameObject> randomActiveAbilities;
+        
+        [SerializeField] private List<GameObject> randomPassiveAbilities;
 
-        [SerializeField] private List<GameObject> objectsForRandomAbilities;
+        [SerializeField] private List<GameObject> objectsForRandomActiveAbilities;
+        
+        [SerializeField] private List<GameObject> objectsForRandomPassiveAbilities;
 
         [SerializeField] private GameObject abilitiesObj;
 
-        private int _index;
+        private AbilitiesSlots _tower;
 
-        public void GetTowerIndex(int index)
+        public List<GameObject> GetActiveAbilities() => randomActiveAbilities;
+
+        public List<GameObject> GetPassiveAbilities() => randomPassiveAbilities;
+
+        public void GetTower(AbilitiesSlots tower)
         {
-            _index = index;
+            _tower = tower;
         }
 
         public void SetRandomActiveAbilities()
         {
-            RandomGetActiveAbilities();
+            if (!_tower.ActivesShowed)
+            {
+                RandomGetActiveAbilities();
         
-            for (int i = 0; i < objectsForRandomAbilities.Count; i++)
-            { 
-                Instantiate(randomAbilities[i], objectsForRandomAbilities[i].transform.position, Quaternion.identity,
-                    objectsForRandomAbilities[i].transform);
+                for (int i = 0; i < objectsForRandomActiveAbilities.Count; i++)
+                { 
+                    Instantiate(randomActiveAbilities[i], objectsForRandomActiveAbilities[i].transform.position, Quaternion.identity,
+                        objectsForRandomActiveAbilities[i].transform);
+                }
+
+                _tower.ActivesShowed = true;
             }
         }
-    
+
         public void SetRandomPassiveAbilities()
         { 
             RandomGetPassiveAbilities();
         
-            for (int i = 0; i < objectsForRandomAbilities.Count; i++)
+            for (int i = 0; i < objectsForRandomPassiveAbilities.Count; i++)
             {
-                Instantiate(randomAbilities[i], objectsForRandomAbilities[i].transform.position, Quaternion.identity,
-                    objectsForRandomAbilities[i].transform);
+                Instantiate(randomPassiveAbilities[i], objectsForRandomPassiveAbilities[i].transform.position, Quaternion.identity,
+                    objectsForRandomPassiveAbilities[i].transform);
+            }
+        }
+
+        public void SetDetectedActiveAbilities()
+        {
+            if (_tower.ActivesShowed)
+            {
+                for (int i = 0; i < _tower.RandomActiveAbilities.Count; i++)
+                { 
+                    Instantiate(_tower.RandomActiveAbilities[i], objectsForRandomActiveAbilities[i].transform.position, Quaternion.identity,
+                        objectsForRandomActiveAbilities[i].transform);
+                }
             }
         }
 
         public void ResetLists()
         {
-            objectsForRandomAbilities.Clear();
-            randomAbilities.Clear();
+            randomActiveAbilities.Clear();
+            randomPassiveAbilities.Clear();
         }
-    
 
         private void RandomGetActiveAbilities()
         {
@@ -62,11 +86,12 @@ namespace Shop
             {
                 var rand = Random.Range(0, temp.Count);
             
-                randomAbilities.Add(temp[rand]);
+                randomActiveAbilities.Add(temp[rand]);
 
                 temp.Remove(temp[rand]);
             }
 
+            _tower.RandomActiveAbilities = GetActiveAbilities();
         }
     
         private void RandomGetPassiveAbilities()
@@ -77,25 +102,27 @@ namespace Shop
             {
                 var rand = Random.Range(0, temp.Count);
             
-                randomAbilities.Add(temp[rand]);
+                randomPassiveAbilities.Add(temp[rand]);
 
                 temp.Remove(temp[rand]);
             }
+
+            _tower.RandomPassiveAbilities = GetPassiveAbilities();
         }
 
         public void GetButtonsUpgrade(Button button)
         {
             for (int i = 0; i < button.transform.childCount; i++)
             {
-                objectsForRandomAbilities.Add(button.transform.GetChild(i).gameObject);
+                button.transform.GetChild(i).gameObject.SetActive(!button.transform.GetChild(i).gameObject.activeSelf);
             }
         }
 
         public void SetAbilityOnTower(Button upgrade)
         {
             var temp = Instantiate(upgrade.gameObject, abilitiesObj.transform);
-            towerList[_index].GetComponent<AbilitiesSlots>().Abilities.Add(temp);
-            towerList[_index].GetComponent<AbilitiesSlots>().CheckForActiveAbility();
+            _tower.Abilities.Add(temp);
+            _tower.CheckForActiveAbility();
         }
     }
 }

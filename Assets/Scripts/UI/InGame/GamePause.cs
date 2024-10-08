@@ -161,7 +161,7 @@ public class GamePause : MonoBehaviour
             Animator towerAnimator = towerAnimators[towerIndex]; // Берём аниматор выбранной башни
             towerAnimator.SetTrigger("SelectTower");
             
-            buyingSystem.GetTowerIndex(selectedTowerIndex);
+            //buyingSystem.GetTowerIndex(selectedTowerIndex);
 
             // Показываем слоты для улучшений после анимации
             StartCoroutine(ShowUpgradeSlots(selectedButton));
