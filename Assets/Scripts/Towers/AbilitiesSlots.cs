@@ -24,7 +24,7 @@ public class AbilitiesSlots : MonoBehaviour
 
     public bool IsPassiveSetted = false;
 
-    private PassiveAbilities PassAbility;
+    private PassiveAbilities _passAbility;
 
     private ImageCooldowns _imageCooldowns;
 
@@ -37,7 +37,7 @@ public class AbilitiesSlots : MonoBehaviour
     {
         if (_active)
         {
-            if (PassAbility) PassAbility.SetAbility(_active.gameObject);
+            if (_passAbility) _passAbility.SetAbility(_active.gameObject);
             
             if (!_imageCooldowns)
             {
@@ -49,9 +49,9 @@ public class AbilitiesSlots : MonoBehaviour
             }
         }
 
-        else if (PassAbility != null)
+        else if (_passAbility != null)
         {
-            PassAbility.SetAbility(null);
+            _passAbility.SetAbility(null);
         }
     }
 
@@ -74,7 +74,7 @@ public class AbilitiesSlots : MonoBehaviour
 
             if (ability.name.Contains("SpeedBoom"))
             {
-                PassAbility = ability.GetComponent<PassiveAbilities>();
+                _passAbility = ability.GetComponent<PassiveAbilities>();
             }
         }
     }
