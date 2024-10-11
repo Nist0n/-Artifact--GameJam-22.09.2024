@@ -11,7 +11,7 @@ public class Spawner : MonoBehaviour
 
     private Vector3 _transformBubble;
     
-    private GameConfig _gameConfig;
+    private GameConfig.GameConfig _gameConfig;
 
     public float MaxTimeToSpawn = 4;
 
@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        _gameConfig = GetComponentInParent<GameConfig>();
+        _gameConfig = GetComponentInParent<GameConfig.GameConfig>();
         _transformBubble = transform.position;
         _transformBubble.y += 1f;
     }

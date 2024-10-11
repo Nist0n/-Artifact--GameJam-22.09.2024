@@ -15,7 +15,7 @@ namespace UI.InGame
         void Update()
         {
             if(timer > 0) timer -= Time.deltaTime;
-            if (GameConfig.Instance.EnemyList.Count <= 0 && _gameRun && timer < 0) {
+            if (GameConfig.GameConfig.Instance.EnemyList.Count <= 0 && _gameRun && timer < 0) {
                 _gameRun = false;
                 VictoryMode();  
             }
@@ -23,7 +23,7 @@ namespace UI.InGame
 
         private void VictoryMode()
         {
-            GameConfig.Instance.HasWon = true;
+            GameConfig.GameConfig.Instance.HasWon = true;
             Cursor.visible = true;
             pauseButton.SetActive(!pauseButton.activeSelf);
             victory.SetActive(!victory.activeSelf);

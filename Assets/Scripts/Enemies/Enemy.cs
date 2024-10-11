@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using Castle;
 using Enemies.StateMachine;
 using Sound;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 namespace Enemies
 {
@@ -50,7 +48,7 @@ namespace Enemies
             
             if (State.IsComplete)
             {
-                if (GameConfig.Instance.GameIsOverByLose)
+                if (GameConfig.GameConfig.Instance.GameIsOverByLose)
                 {
                     Set(Celebrating);
                     return;

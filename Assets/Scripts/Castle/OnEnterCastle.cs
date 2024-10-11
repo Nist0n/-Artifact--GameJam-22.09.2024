@@ -1,14 +1,16 @@
-using System;
 using Enemies;
 using UnityEngine;
 
-public class OnEnterCastle : Enemy
+namespace Castle
 {
-    private void OnTriggerEnter(Collider other)
+    public class OnEnterCastle : Enemy
     {
-        if (other.gameObject.CompareTag("Castle"))
+        private void OnTriggerEnter(Collider other)
         {
-            IsAttacking = true;
+            if (other.gameObject.CompareTag("Castle"))
+            {
+                IsAttacking = true;
+            }
         }
     }
 }

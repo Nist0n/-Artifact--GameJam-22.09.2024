@@ -15,7 +15,7 @@ public class RunningState : EnemyState
     {
         navMeshAgent.destination = _target.position;
         animationController.Run();
-        if (IsDamaged || IsAttacking || GameConfig.Instance.GameIsOverByLose || IsFreezed)
+        if (IsDamaged || IsAttacking || GameConfig.GameConfig.Instance.GameIsOverByLose || IsFreezed)
         {
             IsComplete = true;
         }

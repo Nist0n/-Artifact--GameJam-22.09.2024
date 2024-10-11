@@ -55,19 +55,19 @@ namespace Towers
         
         private void Update()
         {
-            if (GameConfig.Instance.GameIsOverByLose || GameConfig.Instance.HasWon)
+            if (GameConfig.GameConfig.Instance.GameIsOverByLose || GameConfig.GameConfig.Instance.HasWon)
             {
                 return;
             }
             
             enemiesInRange = new List<GameObject>();
-            if (GameConfig.Instance.EnemyList.Count == 0)
+            if (GameConfig.GameConfig.Instance.EnemyList.Count == 0)
             {
                 ResetVariables();
                 return;
             }
             
-            foreach (var enem in GameConfig.Instance.EnemyList)
+            foreach (var enem in GameConfig.GameConfig.Instance.EnemyList)
             {
                 if (enem)
                 {

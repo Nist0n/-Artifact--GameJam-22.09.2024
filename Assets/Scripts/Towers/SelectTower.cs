@@ -34,7 +34,7 @@ namespace Towers
         private void Update()
         {
             if (mainCinemachineCamera.Priority == 1 || shopCinemachineCamera.Priority == 1 || 
-                GameConfig.Instance.GameIsOverByLose || Time.timeScale == 0)
+                GameConfig.GameConfig.Instance.GameIsOverByLose || Time.timeScale == 0)
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
@@ -87,8 +87,8 @@ namespace Towers
                 {
                     return;
                 }
-
-                ToggleUpgradeTowerControls(false);
+                
+                upgradeTowerControls.SetActive(false);
                 
                 Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hit))
@@ -99,8 +99,8 @@ namespace Towers
 
                         selectTowerControls.transform.position = _mainCamera.WorldToScreenPoint(tower.transform.position);
                         ToggleSelectTowerControls(!selectTowerControls.activeSelf);
-                        upgradeTowerControls.transform.position =
-                            _mainCamera.WorldToScreenPoint(tower.transform.position);
+                        // upgradeTowerControls.transform.position =
+                        //     _mainCamera.WorldToScreenPoint(tower.transform.position);
                         
                         _currentTower = tower;
                         
@@ -121,7 +121,8 @@ namespace Towers
         
         public void ToggleUpgradeTowerControls(bool b)
         {
-            upgradeTowerControls.SetActive(b);
+            upgradeTowerControls.SetActive(!upgradeTowerControls.activeSelf);
+            ToggleSelectTowerControls(false);
         }
 
         private IEnumerator ShopCameraSwap()
@@ -153,7 +154,6 @@ namespace Towers
         public void EnterCurrentTower()
         {
             ToggleSelectTowerControls(false);
-            ToggleUpgradeTowerControls(false);
             AbilitiesSlots towerSlots = _currentTower.gameObject.GetComponent<AbilitiesSlots>();
             towerSlots.SetAbilitiesImages();
 
