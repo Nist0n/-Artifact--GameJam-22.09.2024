@@ -54,14 +54,27 @@ namespace Shop
             }
         }
 
-        public void SetRandomPassiveAbilities()
-        { 
-            RandomGetPassiveAbilities();
-        
-            for (int i = 0; i < objectsForRandomPassiveAbilities.Count; i++)
+        public void SetRandomPassiveAbilities(Button button)
+        {
+            if (button.transform.GetChild(0).gameObject.transform.childCount == 0)
             {
-                Instantiate(randomPassiveAbilities[i], objectsForRandomPassiveAbilities[i].transform.position, Quaternion.identity,
-                    objectsForRandomPassiveAbilities[i].transform);
+                if (!_tower.PassivesShowed)
+                {
+                    RandomGetPassiveAbilities();
+
+                    for (int i = 0; i < objectsForRandomPassiveAbilities.Count; i++)
+                    {
+                        Instantiate(randomPassiveAbilities[i], objectsForRandomPassiveAbilities[i].transform.position,
+                            Quaternion.identity,
+                            objectsForRandomPassiveAbilities[i].transform);
+                    }
+                    
+                    _tower.PassivesShowed = true;
+                }
+                else
+                {
+                    SetDetectedPassiveAbilities();
+                }
             }
         }
 
@@ -72,6 +85,18 @@ namespace Shop
                 for (int i = 0; i < _tower.RandomActiveAbilities.Count; i++)
                 { 
                     Instantiate(_tower.RandomActiveAbilities[i], objectsForRandomActiveAbilities[i].transform.position, Quaternion.identity,
+                        objectsForRandomActiveAbilities[i].transform);
+                }
+            }
+        }
+        
+        public void SetDetectedPassiveAbilities()
+        {
+            if (_tower.PassivesShowed)
+            {
+                for (int i = 0; i < _tower.RandomPassiveAbilities.Count; i++)
+                { 
+                    Instantiate(_tower.RandomPassiveAbilities[i], objectsForRandomActiveAbilities[i].transform.position, Quaternion.identity,
                         objectsForRandomActiveAbilities[i].transform);
                 }
             }
@@ -197,20 +222,25 @@ namespace Shop
                     return;
                 }
             }
-            // Скрываем все улучшения после выбора
+
             for (int i = 0; i < selectedSlot.transform.childCount; i++)
             {
                 selectedSlot.transform.GetChild(i).gameObject.SetActive(false);
             }
 
-            // Меняем иконку слота на иконку выбранного улучшения
-            Image slotImage = selectedSlot.GetComponent<Image>();
-            Image upgradeImage = chosenUpgrade.GetComponent<Image>();
-            slotImage.sprite = upgradeImage.sprite;
-
-            DisableSlotWithoutChangingAppearance(selectedSlot);
-
-            Debug.Log("Выбрано улучшение: " + upgradeIndex + " для слота: " + selectedSlot.name);
+            if (selectedSlot.gameObject.CompareTag("Active"))
+            {
+                Image slotImage = selectedSlot.GetComponent<Image>();
+                Image upgradeImage = chosenUpgrade.GetComponent<Image>();
+                slotImage.sprite = upgradeImage.sprite;
+                
+                DisableSlotWithoutChangingAppearance(selectedSlot);
+            }
+            else
+            {
+                _tower.PassivesShowed = false;
+                _tower.RandomPassiveAbilities.Clear();
+            }
         }
         
         private void DisableSlotWithoutChangingAppearance(Button slotButton)

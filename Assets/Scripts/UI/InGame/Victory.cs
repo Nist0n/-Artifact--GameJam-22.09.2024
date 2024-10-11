@@ -5,8 +5,6 @@ namespace UI.InGame
     public class Victory : MonoBehaviour
     {
         [SerializeField] private GameObject victory;
-        [SerializeField] private GameObject background;
-        [SerializeField] private GameObject pauseButton;
         [SerializeField] private GameObject dreams;
         [SerializeField] private GameObject bar;
         [SerializeField] private float timer;
@@ -25,7 +23,6 @@ namespace UI.InGame
         {
             GameConfig.GameConfig.Instance.HasWon = true;
             Cursor.visible = true;
-            pauseButton.SetActive(!pauseButton.activeSelf);
             victory.SetActive(!victory.activeSelf);
             bar.SetActive(!bar.activeSelf);
             dreams.SetActive(!dreams.activeSelf);

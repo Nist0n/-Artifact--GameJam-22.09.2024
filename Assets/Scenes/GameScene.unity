@@ -14795,28 +14795,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646375440d3a9714da23792ab990aaf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseButton: {fileID: 0}
   background: {fileID: 220916812}
   continueGameButton: {fileID: 36637105}
-  shopUI: {fileID: 1826320199}
-  buyingSystem: {fileID: 1826320201}
-  cameraMain: {fileID: 12805554}
-  cameraShop: {fileID: 1112695003}
-  towerButtons:
-  - {fileID: 969042567}
-  - {fileID: 1966023129}
-  - {fileID: 1953454641}
-  - {fileID: 1694470523}
-  - {fileID: 461779439}
-  - {fileID: 2039223853}
-  towerAnimators:
-  - {fileID: 969042570}
-  - {fileID: 1966023132}
-  - {fileID: 1953454644}
-  - {fileID: 1694470526}
-  - {fileID: 461779442}
-  - {fileID: 2039223856}
-  animationDuration: 0.2
   gameIsPaused: 0
 --- !u!114 &804337114
 MonoBehaviour:
@@ -14925,8 +14905,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victory: {fileID: 1905724661}
-  background: {fileID: 220916812}
-  pauseButton: {fileID: 0}
   dreams: {fileID: 1328672639127493518}
   bar: {fileID: 2144032466237963515}
   timer: 750
@@ -14958,8 +14936,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loose: {fileID: 1924586155}
-  background: {fileID: 220916812}
-  pauseButton: {fileID: 0}
   dreams: {fileID: 1328672639127493518}
   bar: {fileID: 2144032466237963515}
 --- !u!1 &812701637
@@ -17858,10 +17834,10 @@ MonoBehaviour:
       - m_Target: {fileID: 299149465}
         m_TargetAssemblyTypeName: Shop.BuyingSystem, Assembly-CSharp
         m_MethodName: SetRandomPassiveAbilities
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 948428167}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -51001,10 +50977,6 @@ PrefabInstance:
     - target: {fileID: 3829405167000923477, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8230746893766988098, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
-      propertyPath: MaxDistance
-      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8813755897768338203, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
       propertyPath: m_Name
