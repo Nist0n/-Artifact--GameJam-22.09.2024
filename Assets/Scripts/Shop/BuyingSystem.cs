@@ -78,7 +78,7 @@ namespace Shop
             }
         }
 
-        public void SetDetectedActiveAbilities()
+        private void SetDetectedActiveAbilities()
         {
             if (_tower.ActivesShowed)
             {
@@ -90,14 +90,14 @@ namespace Shop
             }
         }
         
-        public void SetDetectedPassiveAbilities()
+        private void SetDetectedPassiveAbilities()
         {
             if (_tower.PassivesShowed)
             {
                 for (int i = 0; i < _tower.RandomPassiveAbilities.Count; i++)
                 { 
-                    Instantiate(_tower.RandomPassiveAbilities[i], objectsForRandomActiveAbilities[i].transform.position, Quaternion.identity,
-                        objectsForRandomActiveAbilities[i].transform);
+                    Instantiate(_tower.RandomPassiveAbilities[i], objectsForRandomPassiveAbilities[i].transform.position, Quaternion.identity,
+                        objectsForRandomPassiveAbilities[i].transform);
                 }
             }
         }
@@ -165,9 +165,9 @@ namespace Shop
 
             foreach (var abil in randomPassiveAbilities)
             {
-                if (_tower.RandomActiveAbilities.Count < 3)
+                if (_tower.RandomPassiveAbilities.Count < 3)
                 {
-                    _tower.RandomActiveAbilities.Add(abil);
+                    _tower.RandomPassiveAbilities.Add(abil);
                 }
             }
         }
