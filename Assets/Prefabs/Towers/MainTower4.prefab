@@ -1950,16 +1950,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilitiesObject: {fileID: 0}
-  HasActiveAbility: 0
-  Abilities: []
   imagePositions:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  RandomActiveAbilities: []
+  RandomPassiveAbilities: []
+  HasActiveAbility: 0
+  Abilities: []
   Ability: {fileID: 0}
   IsPassiveSetted: 0
   TowerSelected: 0
   Circle: {fileID: 0}
+  PassivesShowed: 0
+  ActivesShowed: 0
 --- !u!114 &299173886661617663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1980,13 +1984,14 @@ MonoBehaviour:
   towerCameraComp: {fileID: 4124598613440498813}
   towerCamera: {fileID: 782202365097143688}
   piloted: 0
-  isPowered: 0
+  isOnCooldown: 0
   enemiesInRange: []
   buffedFireRate: 0
   buffedDamage: 0
   _initialDamage: 0
   _initialFireRate: 0
   _audioSource: {fileID: 8700807769340761920}
+  isBuffed: 0
 --- !u!1 &3168436723789122466
 GameObject:
   m_ObjectHideFlags: 0
@@ -3697,10 +3702,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
