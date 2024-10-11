@@ -33,19 +33,26 @@ namespace Shop
             _tower = tower;
         }
 
-        public void SetRandomActiveAbilities()
+        public void SetRandomActiveAbilities(Button button)
         {
-            if (!_tower.ActivesShowed)
+            if (button.transform.GetChild(0).gameObject.transform.childCount == 0)
             {
-                RandomGetActiveAbilities();
+                if (!_tower.ActivesShowed)
+                {
+                    RandomGetActiveAbilities();
         
-                for (int i = 0; i < objectsForRandomActiveAbilities.Count; i++)
-                { 
-                    Instantiate(randomActiveAbilities[i], objectsForRandomActiveAbilities[i].transform.position, Quaternion.identity,
-                        objectsForRandomActiveAbilities[i].transform);
-                }
+                    for (int i = 0; i < objectsForRandomActiveAbilities.Count; i++)
+                    { 
+                        Instantiate(randomActiveAbilities[i], objectsForRandomActiveAbilities[i].transform.position, Quaternion.identity,
+                            objectsForRandomActiveAbilities[i].transform);
+                    }
 
-                _tower.ActivesShowed = true;
+                    _tower.ActivesShowed = true;
+                }
+                else
+                {
+                    SetDetectedActiveAbilities();
+                }
             }
         }
 
@@ -69,13 +76,20 @@ namespace Shop
                     Instantiate(_tower.RandomActiveAbilities[i], objectsForRandomActiveAbilities[i].transform.position, Quaternion.identity,
                         objectsForRandomActiveAbilities[i].transform);
                 }
+                Debug.Log("SET Abilities");
             }
         }
 
-        public void ResetLists()
+        public void ResetActiveLists()
         {
             randomActiveAbilities.Clear();
-            randomPassiveAbilities.Clear();
+            foreach (var obj in objectsForRandomActiveAbilities)
+            {
+                if (obj.transform.childCount != 0)
+                {
+                    Destroy(obj.transform.GetChild(0).gameObject);
+                }
+            }
         }
 
         private void RandomGetActiveAbilities()
@@ -91,7 +105,13 @@ namespace Shop
                 temp.Remove(temp[rand]);
             }
 
-            _tower.RandomActiveAbilities = GetActiveAbilities();
+            foreach (var abil in randomActiveAbilities)
+            {
+                if (_tower.RandomActiveAbilities.Count < 3)
+                {
+                    _tower.RandomActiveAbilities.Add(abil);
+                }
+            }
         }
     
         private void RandomGetPassiveAbilities()

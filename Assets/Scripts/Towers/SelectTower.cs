@@ -109,6 +109,7 @@ namespace Towers
                     else
                     {
                         ToggleSelectTowerControls(false);
+                        buyingSystem.ResetActiveLists();
                     }
                 }
             }

@@ -214,7 +214,7 @@ public class GamePause : MonoBehaviour
                 if (selectedSlot.CompareTag("Active"))
                 {
                     buyingSystem.GetButtonsUpgrade(selectedSlot);
-                    buyingSystem.SetRandomActiveAbilities();
+                    //buyingSystem.SetRandomActiveAbilities();
                 }
                 else
                 {
@@ -258,7 +258,7 @@ public class GamePause : MonoBehaviour
             if (tempCost <= SoulsCounter.Instance.Dreams)
             {
                 buyingSystem.SetAbilityOnTower(chosenUpgrade);
-                buyingSystem.ResetLists();
+                //buyingSystem.ResetLists();
                 SoulsCounter.Instance.Dreams -= tempCost;
             }
             else
@@ -273,7 +273,7 @@ public class GamePause : MonoBehaviour
             if (tempCost <= SoulsCounter.Instance.Dreams)
             {
                 buyingSystem.SetAbilityOnTower(chosenUpgrade);
-                buyingSystem.ResetLists();
+                //buyingSystem.ResetLists();
                 SoulsCounter.Instance.Dreams -= tempCost;
             }
             else
