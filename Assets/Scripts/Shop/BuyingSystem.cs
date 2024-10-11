@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Abilities.Active;
+using Abilities.Passive;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,10 +8,10 @@ namespace Shop
 {
     public class BuyingSystem : MonoBehaviour
     {
+        [SerializeField] private Sprite plusIcon;
+        
         [SerializeField] private List<GameObject> activeAbilities;
-    
-        [SerializeField] private List<GameObject> towerList;
-    
+
         [SerializeField] private List<GameObject> passiveAbilities;
 
         [SerializeField] private List<GameObject> randomActiveAbilities;
@@ -23,10 +25,6 @@ namespace Shop
         [SerializeField] private GameObject abilitiesObj;
 
         private AbilitiesSlots _tower;
-
-        public List<GameObject> GetActiveAbilities() => randomActiveAbilities;
-
-        public List<GameObject> GetPassiveAbilities() => randomPassiveAbilities;
 
         public void GetTower(AbilitiesSlots tower)
         {
@@ -76,19 +74,32 @@ namespace Shop
                     Instantiate(_tower.RandomActiveAbilities[i], objectsForRandomActiveAbilities[i].transform.position, Quaternion.identity,
                         objectsForRandomActiveAbilities[i].transform);
                 }
-                Debug.Log("SET Abilities");
             }
         }
 
-        public void ResetActiveLists()
+        public void ResetLists()
         {
             randomActiveAbilities.Clear();
+            randomPassiveAbilities.Clear();
+            
             foreach (var obj in objectsForRandomActiveAbilities)
             {
                 if (obj.transform.childCount != 0)
                 {
                     Destroy(obj.transform.GetChild(0).gameObject);
                 }
+                
+                obj.SetActive(false);
+            }
+            
+            foreach (var obj in objectsForRandomPassiveAbilities)
+            {
+                if (obj.transform.childCount != 0)
+                {
+                    Destroy(obj.transform.GetChild(0).gameObject);
+                }
+                
+                obj.SetActive(false);
             }
         }
 
@@ -127,7 +138,13 @@ namespace Shop
                 temp.Remove(temp[rand]);
             }
 
-            _tower.RandomPassiveAbilities = GetPassiveAbilities();
+            foreach (var abil in randomPassiveAbilities)
+            {
+                if (_tower.RandomActiveAbilities.Count < 3)
+                {
+                    _tower.RandomActiveAbilities.Add(abil);
+                }
+            }
         }
 
         public void GetButtonsUpgrade(Button button)
@@ -135,6 +152,9 @@ namespace Shop
             for (int i = 0; i < button.transform.childCount; i++)
             {
                 button.transform.GetChild(i).gameObject.SetActive(!button.transform.GetChild(i).gameObject.activeSelf);
+                Button upgradeButton = button.transform.GetChild(i).transform.GetChild(0).GetComponent<Button>();
+                int upgradeIndex = i;
+                upgradeButton.onClick.AddListener(() => OnAbilitySelected(button, upgradeButton, upgradeIndex));
             }
         }
 
@@ -143,6 +163,77 @@ namespace Shop
             var temp = Instantiate(upgrade.gameObject, abilitiesObj.transform);
             _tower.Abilities.Add(temp);
             _tower.CheckForActiveAbility();
+        }
+        
+        private void OnAbilitySelected(Button selectedSlot, Button chosenUpgrade, int upgradeIndex)
+        {
+            if (selectedSlot.CompareTag("Active"))
+            {
+                float tempCost = chosenUpgrade.gameObject.GetComponent<ActiveAbility>().Cost(chosenUpgrade.gameObject.name);
+            
+                if (tempCost <= SoulsCounter.Instance.Dreams)
+                {
+                    SetAbilityOnTower(chosenUpgrade);
+                    ResetLists();
+                    SoulsCounter.Instance.Dreams -= tempCost;
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                float tempCost = chosenUpgrade.gameObject.GetComponent<PassiveAbilities>().Cost(chosenUpgrade.gameObject.name);
+            
+                if (tempCost <= SoulsCounter.Instance.Dreams)
+                {
+                    SetAbilityOnTower(chosenUpgrade);
+                    ResetLists();
+                    SoulsCounter.Instance.Dreams -= tempCost;
+                }
+                else
+                {
+                    return;
+                }
+            }
+            // Скрываем все улучшения после выбора
+            for (int i = 0; i < selectedSlot.transform.childCount; i++)
+            {
+                selectedSlot.transform.GetChild(i).gameObject.SetActive(false);
+            }
+
+            // Меняем иконку слота на иконку выбранного улучшения
+            Image slotImage = selectedSlot.GetComponent<Image>();
+            Image upgradeImage = chosenUpgrade.GetComponent<Image>();
+            slotImage.sprite = upgradeImage.sprite;
+
+            DisableSlotWithoutChangingAppearance(selectedSlot);
+
+            Debug.Log("Выбрано улучшение: " + upgradeIndex + " для слота: " + selectedSlot.name);
+        }
+        
+        private void DisableSlotWithoutChangingAppearance(Button slotButton)
+        {
+            ColorBlock colors = slotButton.colors;
+            colors.disabledColor = colors.normalColor;
+            slotButton.colors = colors;
+
+            slotButton.interactable = false;
+        }
+
+        public void ActivateActiveSlot(Button slotButton)
+        {
+            if (!_tower.HasActiveAbility)
+            {
+                slotButton.interactable = true;
+                slotButton.gameObject.GetComponent<Image>().sprite = plusIcon;
+            }
+            else
+            {
+                slotButton.gameObject.GetComponent<Image>().sprite = _tower.Ability.GetComponent<Image>().sprite;
+                slotButton.interactable = false;
+            }
         }
     }
 }

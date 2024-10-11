@@ -3563,7 +3563,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 299149465}
         m_TargetAssemblyTypeName: Shop.BuyingSystem, Assembly-CSharp
-        m_MethodName: GetButtonsUpgrade
+        m_MethodName: SetRandomActiveAbilities
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 142760870}
@@ -3575,7 +3575,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 299149465}
         m_TargetAssemblyTypeName: Shop.BuyingSystem, Assembly-CSharp
-        m_MethodName: SetRandomActiveAbilities
+        m_MethodName: GetButtonsUpgrade
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 142760870}
@@ -6408,13 +6408,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a57d4ee3cc3b25b46a29cd2655fe659d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plusIcon: {fileID: 21300000, guid: 258f4634c1bdb054da8f46a1aec1e77a, type: 3}
   activeAbilities:
   - {fileID: 4500373888269952220, guid: 69714c940f361554889e20502d036ee1, type: 3}
   - {fileID: 4500373888269952220, guid: e516d7157a6ef194aa005805b17c9d5a, type: 3}
   - {fileID: 4500373888269952220, guid: 006fefcdc0d024d489138a8842896b67, type: 3}
   - {fileID: 4500373888269952220, guid: a35cce8f96542bb429661747b0b75d69, type: 3}
   - {fileID: 4500373888269952220, guid: eb469f6ebb51fc646bbbabafd0ad6faa, type: 3}
-  towerList: []
   passiveAbilities:
   - {fileID: 9027525916655380491, guid: 753921215f0b55d4897ff446d7e4ee2b, type: 3}
   - {fileID: 9027525916655380491, guid: f622b9a36f00bb94ca71e1e5482d5717, type: 3}
@@ -17857,11 +17857,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 299149465}
         m_TargetAssemblyTypeName: Shop.BuyingSystem, Assembly-CSharp
-        m_MethodName: GetButtonsUpgrade
-        m_Mode: 2
+        m_MethodName: SetRandomPassiveAbilities
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 948428167}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -17869,11 +17869,11 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 299149465}
         m_TargetAssemblyTypeName: Shop.BuyingSystem, Assembly-CSharp
-        m_MethodName: SetRandomPassiveAbilities
-        m_Mode: 1
+        m_MethodName: GetButtonsUpgrade
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 948428167}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -33062,6 +33062,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 299149465}
+        m_TargetAssemblyTypeName: Shop.BuyingSystem, Assembly-CSharp
+        m_MethodName: ActivateActiveSlot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 142760870}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1683250278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33368,6 +33380,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 299149465}
+        m_TargetAssemblyTypeName: Shop.BuyingSystem, Assembly-CSharp
+        m_MethodName: ResetLists
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -35975,19 +35999,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a57d4ee3cc3b25b46a29cd2655fe659d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plusIcon: {fileID: 0}
   activeAbilities:
   - {fileID: 4500373888269952220, guid: 69714c940f361554889e20502d036ee1, type: 3}
   - {fileID: 4500373888269952220, guid: e516d7157a6ef194aa005805b17c9d5a, type: 3}
   - {fileID: 4500373888269952220, guid: 006fefcdc0d024d489138a8842896b67, type: 3}
   - {fileID: 4500373888269952220, guid: a35cce8f96542bb429661747b0b75d69, type: 3}
   - {fileID: 4500373888269952220, guid: eb469f6ebb51fc646bbbabafd0ad6faa, type: 3}
-  towerList:
-  - {fileID: 3842974870668956620}
-  - {fileID: 2780821684462500855}
-  - {fileID: 6626380498211078078}
-  - {fileID: 919132148034661541}
-  - {fileID: 919132149047070389}
-  - {fileID: 3266665714728202458}
   passiveAbilities:
   - {fileID: 9027525916655380491, guid: 753921215f0b55d4897ff446d7e4ee2b, type: 3}
   - {fileID: 9027525916655380491, guid: f622b9a36f00bb94ca71e1e5482d5717, type: 3}

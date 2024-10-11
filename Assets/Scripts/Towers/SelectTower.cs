@@ -96,6 +96,8 @@ namespace Towers
                     if (hit.collider.gameObject.CompareTag("Tower")) // If clicking on a tower
                     {
                         Tower tower = hit.collider.gameObject.GetComponent<Tower>();
+                        
+                        buyingSystem.ResetLists(); // чистка выбора умений
 
                         selectTowerControls.transform.position = _mainCamera.WorldToScreenPoint(tower.transform.position);
                         ToggleSelectTowerControls(!selectTowerControls.activeSelf);
@@ -109,7 +111,7 @@ namespace Towers
                     else
                     {
                         ToggleSelectTowerControls(false);
-                        buyingSystem.ResetActiveLists();
+                        buyingSystem.ResetLists();
                     }
                 }
             }
