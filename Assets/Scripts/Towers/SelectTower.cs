@@ -71,10 +71,10 @@ namespace Towers
                 buffImage.SetActive(false);
             }
 
-            if (Input.GetKeyDown(KeyCode.B) && !_isSwitching && !GamePause.Instance.gameIsPaused && (mainCinemachineCamera.IsLive || shopCinemachineCamera.IsLive))
-            {
-                StartCoroutine(ShopCameraSwap());
-            }
+            // if (Input.GetKeyDown(KeyCode.B) && !_isSwitching && !GamePause.Instance.gameIsPaused && (mainCinemachineCamera.IsLive || shopCinemachineCamera.IsLive))
+            // {
+            //     StartCoroutine(ShopCameraSwap());
+            // }
             
             if (!mainCinemachineCamera.IsLive) // If we are already in a tower
             {
@@ -128,31 +128,31 @@ namespace Towers
             ToggleSelectTowerControls(false);
         }
 
-        private IEnumerator ShopCameraSwap()
-        {
-            if (_isSwitching)
-            {
-                yield break;
-            }
-
-            _isSwitching = true;
-
-            if (shopCinemachineCamera.IsLive)
-            {
-                shopCinemachineCamera.Priority = 0;
-                mainCinemachineCamera.Priority = 1;
-            }
-            else if (mainCinemachineCamera.IsLive)
-            {
-                mainCinemachineCamera.Priority = 0;
-                shopCinemachineCamera.Priority = 1;
-            }
-
-            yield return new WaitForSeconds(1f);
-            StartCoroutine(ShopSwitch());
-
-            _isSwitching = false;
-        }
+        // private IEnumerator ShopCameraSwap()
+        // {
+        //     if (_isSwitching)
+        //     {
+        //         yield break;
+        //     }
+        //
+        //     _isSwitching = true;
+        //
+        //     if (shopCinemachineCamera.IsLive)
+        //     {
+        //         shopCinemachineCamera.Priority = 0;
+        //         mainCinemachineCamera.Priority = 1;
+        //     }
+        //     else if (mainCinemachineCamera.IsLive)
+        //     {
+        //         mainCinemachineCamera.Priority = 0;
+        //         shopCinemachineCamera.Priority = 1;
+        //     }
+        //
+        //     yield return new WaitForSeconds(1f);
+        //     StartCoroutine(ShopSwitch());
+        //
+        //     _isSwitching = false;
+        // }
 
         public void EnterCurrentTower()
         {
@@ -177,11 +177,11 @@ namespace Towers
             _currentTower.EmpowerTower();
         }
         
-        private IEnumerator ShopSwitch()
-        {
-            yield return null;
-            // pauseButton.SetActive(!pauseButton.activeSelf);
-            shopUI.SetActive(shopCinemachineCamera.IsLive);
-        }
+        // private IEnumerator ShopSwitch()
+        // {
+        //     yield return null;
+        //     // pauseButton.SetActive(!pauseButton.activeSelf);
+        //     shopUI.SetActive(shopCinemachineCamera.IsLive);
+        // }
     }
 }

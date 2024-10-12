@@ -1,12 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace UI.InGame
 {
     public class Lose : MonoBehaviour
     {
-        [SerializeField] private GameObject loose;
-        [SerializeField] private GameObject dreams;
-        [SerializeField] private GameObject bar;
+        [SerializeField] private List<GameObject> objectsToHide;
+        
+        [SerializeField] private GameObject loseUI;
+        
         private bool _gameRun = true;
         
         void Update()
@@ -19,9 +21,11 @@ namespace UI.InGame
 
         private void LoseMode() {
             Cursor.visible = true;
-            loose.SetActive(!loose.activeSelf);
-            bar.SetActive(!bar.activeSelf);
-            dreams.SetActive(!dreams.activeSelf);
+            loseUI.SetActive(true);
+            foreach (var gameObj in objectsToHide)
+            {
+                gameObj.SetActive(false);
+            }
         }
     }
 }
