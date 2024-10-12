@@ -39,6 +39,7 @@ namespace Abilities.Passive
             _tower._initialFireRate *= tps;
             Debug.Log(_tower._initialFireRate);
             _isPassiveUsed = true;
+            gameObject.GetComponent<FireBoost>().enabled = false;
         }
     }
 }

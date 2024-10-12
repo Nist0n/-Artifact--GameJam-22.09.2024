@@ -36,6 +36,7 @@ namespace Abilities.Passive
         {
             _tower.SetSlowness();
             _isPassiveUsed = true;
+            gameObject.GetComponent<SlowShit>().enabled = false;
         }
     }
 }

@@ -34,6 +34,7 @@ namespace Abilities.Passive
             _passiveAbilities.ActiveAbil.GetComponent<ActiveAbility>()
                 .ChangeAbilityCooldown(_passiveAbilities.ActiveAbil.name, percent, _passiveAbilities.ActiveAbil);
             _isPassiveUsed = true;
+            gameObject.GetComponent<SpeedBoom>().enabled = false;
         }
     }
 }

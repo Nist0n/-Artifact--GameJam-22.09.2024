@@ -38,6 +38,7 @@ namespace Abilities.Passive
         {
             _tower._initialDamage = Mathf.Round(damage * _tower._initialDamage);
             _isPassiveUsed = true;
+            gameObject.GetComponent<DamageBoost>().enabled = false;
         }
     }
 }

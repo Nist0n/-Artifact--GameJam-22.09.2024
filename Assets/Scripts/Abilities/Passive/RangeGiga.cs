@@ -40,6 +40,7 @@ namespace Abilities.Passive
             _tower.attackRange *= radius;
             Debug.Log(_tower.attackRange);
             _isPassiveUsed = true;
+            gameObject.GetComponent<RangeGiga>().enabled = false;
         }
     }
 }

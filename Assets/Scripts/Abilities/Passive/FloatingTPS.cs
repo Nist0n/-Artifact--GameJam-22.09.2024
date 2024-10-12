@@ -41,6 +41,7 @@ namespace Abilities.Passive
             _tower.buffedFireRate *= tps;
             _tower.buffedDamage *= damageBuff;
             _isPassiveUsed = true;
+            gameObject.GetComponent<FloatingTPS>().enabled = false;
         }
     }
 }
