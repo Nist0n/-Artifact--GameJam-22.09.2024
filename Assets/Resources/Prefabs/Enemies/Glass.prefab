@@ -1267,9 +1267,7 @@ GameObject:
   - component: {fileID: 3828180133360198973}
   - component: {fileID: 144254355584556979}
   - component: {fileID: 4868901985195546701}
-  - component: {fileID: 1743808988455916475}
   - component: {fileID: 6722302287053755312}
-  - component: {fileID: 8995070257835787098}
   - component: {fileID: 6143731935698025277}
   - component: {fileID: 1657119338062613939}
   m_Layer: 0
@@ -1330,33 +1328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb93d8c775ac3d44a9e6c7c2fd9542a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1743808988455916475
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8142872892816006428}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &6722302287053755312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1395,29 +1366,6 @@ MonoBehaviour:
   Attacking: {fileID: 1492695760393367732}
   Celebrating: {fileID: 3152085983016445550}
   Slow: {fileID: 5346073122159693881}
---- !u!136 &8995070257835787098
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8142872892816006428}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 4.1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &6143731935698025277
 AudioSource:
   m_ObjectHideFlags: 0

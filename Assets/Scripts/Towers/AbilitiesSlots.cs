@@ -105,7 +105,6 @@ public class AbilitiesSlots : MonoBehaviour
             {
                 if (!IsPassiveSetted)
                 {
-                    Debug.Log("WTF");
                     imagePositions[1].enabled = true;
                     imagePositions[1].transform.parent.GetComponent<Image>().enabled = true;
                     imagePositions[1].sprite = Abilities[i].GetComponent<Image>().sprite;
