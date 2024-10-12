@@ -1,91 +1,104 @@
-using System.Collections;
-using Abilities.Active;
-using Abilities.Passive;
-using Shop;
 using Sound;
-using Towers;
-using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class GamePause : MonoBehaviour
+namespace UI.InGame
 {
-    public static GamePause Instance;
+    public class GamePause : MonoBehaviour
+    {
+        public static GamePause Instance;
     
-    [SerializeField] GameObject background;
-    [SerializeField] GameObject continueGameButton;
+        [SerializeField] GameObject background;
+        [SerializeField] GameObject continueGameButton;
+        [SerializeField] GameObject dreamCounter;
 
-    public bool gameIsPaused;
+        public bool gameIsPaused;
 
-    private void Start()
-    {
-        AudioManager.instance.PlayMusic("InGame2");
-    }
-
-    private void Awake()
-    {
-        if (Instance == null)
+        private void Start()
         {
-            Instance = this;
+            AudioManager.instance.PlayMusic("InGame2");
+            continueGameButton.GetComponent<Animator>().keepAnimatorStateOnDisable = true;
         }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        private void Awake()
         {
-            if (!background.activeSelf)
+            if (Instance == null)
             {
-                PauseGame();
+                Instance = this;
             }
             else
             {
-                ResumeGame();
+                Destroy(gameObject);
             }
         }
-    }
+
+        private void Update()
+        {
+            if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                if (!background.activeSelf)
+                {
+                    SetPause(true);
+                }
+                else
+                {
+                    SetPause(false);
+                }
+            }
+        }
     
-    public void RestartGame()
-    { 
-        ResumeGame();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+        public void RestartGame()
+        { 
+            SetPause(false);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
 
-    public void PauseGame()
-    {
-        Time.timeScale = 0f;
-        OpenSettings();
-    }
+        public void SetPause(bool isPaused)
+        {
+            Time.timeScale = isPaused ? 0 : 1;
+            ToggleSettings(isPaused);
+        }
+    
+        // public void PauseGame()
+        // {
+        //     Time.timeScale = 0f;
+        //     ToggleSettings(true);
+        // }
+        //
+        // public void ResumeGame()
+        // {
+        //     Time.timeScale = 1;
+        //     ToggleSettings(false);
+        // }
 
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
-        CloseSettings();
-    }
-
-    private void CloseSettings()
-    {
-        AudioManager.instance.PlaySFX("Click");
-        background.SetActive(false);
-        continueGameButton.SetActive(false);
-    }
-
-    private void OpenSettings()
-    {
-        AudioManager.instance.PlaySFX("Click");
-        continueGameButton.SetActive(true);
-        background.SetActive(true);
-    }
-
-    public void Quit()
-    {
-        SceneManager.LoadScene("MenuScene");
-        ResumeGame();
+        private void ToggleSettings(bool active)
+        {
+            AudioManager.instance.PlaySFX("Click");
+            background.SetActive(active);
+            dreamCounter.SetActive(!active);
+        }
+    
+        // private void OpenSettings()
+        // {
+        //     AudioManager.instance.PlaySFX("Click");
+        //     // continueGameButton.SetActive(true);
+        //     dreamCounter.SetActive(false);
+        //     background.SetActive(true);
+        // }
+        //
+        // private void CloseSettings()
+        // {
+        //     AudioManager.instance.PlaySFX("Click");
+        //     background.SetActive(false);
+        //     dreamCounter.SetActive(true);
+        //     // continueGameButton.SetActive(false);
+        // }
+    
+        public void Quit()
+        {
+            SceneManager.LoadScene("MenuScene");
+            SetPause(false);
+        }
     }
 }
 
