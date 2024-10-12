@@ -5934,12 +5934,12 @@ MonoBehaviour:
   - {fileID: 4500373888269952220, guid: a35cce8f96542bb429661747b0b75d69, type: 3}
   - {fileID: 4500373888269952220, guid: eb469f6ebb51fc646bbbabafd0ad6faa, type: 3}
   passiveAbilities:
-  - {fileID: 9027525916655380491, guid: 753921215f0b55d4897ff446d7e4ee2b, type: 3}
-  - {fileID: 9027525916655380491, guid: f622b9a36f00bb94ca71e1e5482d5717, type: 3}
-  - {fileID: 9027525916655380491, guid: 5caacb7c4542dfa45b23c93cb6eb3589, type: 3}
-  - {fileID: 9027525916655380491, guid: dd69992feb43c47409876ea2d4e1e92c, type: 3}
-  - {fileID: 9027525916655380491, guid: 727eee4e4e3363145b4742646b1ae8aa, type: 3}
-  - {fileID: 9027525916655380491, guid: c2ae51ea8901fea429c22449838835be, type: 3}
+  - {fileID: 8316077456163229515, guid: 753921215f0b55d4897ff446d7e4ee2b, type: 3}
+  - {fileID: 4389482718115497517, guid: f622b9a36f00bb94ca71e1e5482d5717, type: 3}
+  - {fileID: 6173531244944585238, guid: 5caacb7c4542dfa45b23c93cb6eb3589, type: 3}
+  - {fileID: 7470456824265320316, guid: c2ae51ea8901fea429c22449838835be, type: 3}
+  - {fileID: 4591804485477310307, guid: dd69992feb43c47409876ea2d4e1e92c, type: 3}
+  - {fileID: 1924374824294202110, guid: 727eee4e4e3363145b4742646b1ae8aa, type: 3}
   randomActiveAbilities: []
   randomPassiveAbilities: []
   objectsForRandomActiveAbilities:
@@ -13661,7 +13661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   background: {fileID: 220916812}
   continueGameButton: {fileID: 36637105}
-  dreamCounter: {fileID: 1328672639127493518}
+  dreamCounter: {fileID: 0}
   gameIsPaused: 0
 --- !u!114 &804337114
 MonoBehaviour:
@@ -13761,11 +13761,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82413cc8e2c5e6a4ab9f165cc7945f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objects:
-  - {fileID: 1328672639127493518}
-  - {fileID: 700745460}
-  - {fileID: 299149463}
-  victoryUI: {fileID: 1905724661}
+  objects: []
+  victoryUI: {fileID: 0}
   timer: 750
 --- !u!114 &804337119
 MonoBehaviour:
@@ -13794,11 +13791,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c188716f0259d34dab9779a5489ba82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToHide:
-  - {fileID: 1328672639127493518}
-  - {fileID: 299149463}
-  - {fileID: 700745460}
-  loseUI: {fileID: 1924586155}
+  objectsToHide: []
+  loseUI: {fileID: 0}
 --- !u!1 &812701637
 GameObject:
   m_ObjectHideFlags: 0
@@ -33610,11 +33604,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2891064684481574484, guid: add615d1c3ecb0b4980000163938993c, type: 3}
   m_PrefabInstance: {fileID: 1905724659}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1905724661 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8459963022038926023, guid: add615d1c3ecb0b4980000163938993c, type: 3}
-  m_PrefabInstance: {fileID: 1905724659}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1912960023
 GameObject:
   m_ObjectHideFlags: 0
@@ -33976,11 +33965,6 @@ PrefabInstance:
 --- !u!224 &1924586154 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2891064684481574484, guid: add615d1c3ecb0b4980000163938993c, type: 3}
-  m_PrefabInstance: {fileID: 1924586153}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1924586155 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8459963022038926023, guid: add615d1c3ecb0b4980000163938993c, type: 3}
   m_PrefabInstance: {fileID: 1924586153}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1935415452

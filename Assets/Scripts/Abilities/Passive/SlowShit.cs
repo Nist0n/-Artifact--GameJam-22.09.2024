@@ -1,3 +1,4 @@
+using TMPro;
 using Towers;
 using UnityEngine;
 
@@ -5,9 +6,15 @@ namespace Abilities.Passive
 {
     public class SlowShit : MonoBehaviour
     {
+        [SerializeField] private TextMeshProUGUI countText;
+        
         private Tower _tower;
 
         public float Cost;
+        
+        public int Count;
+        
+        private bool _activeOnTheTower = false;
 
         private bool _isPassiveUsed = false;
         private PassiveAbilities _passiveAbilities;
@@ -21,6 +28,17 @@ namespace Abilities.Passive
 
         private void Update()
         {
+            if (_activeOnTheTower)
+            {
+                if (Count == 1)
+                {
+                    countText.text = "";
+                    return;
+                }
+                countText.text = $"{Count}x";
+                return;
+            }
+            
             if (_passiveAbilities.tower)
             {
                 _tower = _passiveAbilities.tower;
@@ -36,7 +54,7 @@ namespace Abilities.Passive
         {
             _tower.SetSlowness();
             _isPassiveUsed = true;
-            gameObject.GetComponent<SlowShit>().enabled = false;
+            _activeOnTheTower = true;
         }
     }
 }

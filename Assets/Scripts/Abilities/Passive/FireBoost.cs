@@ -1,3 +1,4 @@
+using TMPro;
 using Towers;
 using UnityEngine;
 
@@ -5,9 +6,15 @@ namespace Abilities.Passive
 {
     public class FireBoost : MonoBehaviour
     {
+        [SerializeField] private TextMeshProUGUI countText;
+        
         private Tower _tower;
 
         public float Cost;
+
+        public int Count;
+        
+        private bool _activeOnTheTower = false;
 
         [SerializeField] private float tps = 0.6f;
 
@@ -23,6 +30,17 @@ namespace Abilities.Passive
 
         private void Update()
         {
+            if (_activeOnTheTower)
+            {
+                if (Count == 1)
+                {
+                    countText.text = "";
+                    return;
+                }
+                countText.text = $"{Count}x";
+                return;
+            }
+            
             if (_passiveAbilities.tower)
             {
                 _tower = _passiveAbilities.tower;
@@ -37,9 +55,8 @@ namespace Abilities.Passive
         private void SetPassiveBonus()
         {
             _tower._initialFireRate *= tps;
-            Debug.Log(_tower._initialFireRate);
             _isPassiveUsed = true;
-            gameObject.GetComponent<FireBoost>().enabled = false;
+            _activeOnTheTower = true;
         }
     }
 }

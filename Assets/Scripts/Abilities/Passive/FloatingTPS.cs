@@ -1,3 +1,4 @@
+using TMPro;
 using Towers;
 using UnityEngine;
 
@@ -5,9 +6,15 @@ namespace Abilities.Passive
 {
     public class FloatingTPS : MonoBehaviour
     {
+        [SerializeField] private TextMeshProUGUI countText;
+        
         private Tower _tower;
 
         public float Cost;
+        
+        public int Count;
+        
+        private bool _activeOnTheTower = false;
 
         public static float tps = 0.6f;
         public static float damageBuff = 1.25f;
@@ -25,6 +32,17 @@ namespace Abilities.Passive
 
         private void Update()
         {
+            if (_activeOnTheTower)
+            {
+                if (Count == 1)
+                {
+                    countText.text = "";
+                    return;
+                }
+                countText.text = $"{Count}x";
+                return;
+            }
+            
             if (_passiveAbilities.tower)
             {
                 _tower = _passiveAbilities.tower;
@@ -41,7 +59,7 @@ namespace Abilities.Passive
             _tower.buffedFireRate *= tps;
             _tower.buffedDamage *= damageBuff;
             _isPassiveUsed = true;
-            gameObject.GetComponent<FloatingTPS>().enabled = false;
+            _activeOnTheTower = true;
         }
     }
 }

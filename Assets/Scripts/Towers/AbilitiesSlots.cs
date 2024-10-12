@@ -40,6 +40,8 @@ public class AbilitiesSlots : MonoBehaviour
 
     private ActiveAbility _active;
 
+    private Dictionary<string, int> _myDict;
+
 
     private void Update()
     {
@@ -91,44 +93,54 @@ public class AbilitiesSlots : MonoBehaviour
     {
         List<GameObject> tempPassives = new List<GameObject>();
 
-        for (int i = 0; i < Abilities.Count; i++)
+        foreach (var ability in Abilities)
         {
-            if (Abilities[i].GetComponent<ActiveAbility>())
+            if (ability.GetComponent<ActiveAbility>())
             {
                 activeAbilityPosition.enabled = true;
                 activeAbilityPosition.transform.parent.GetComponent<Image>().enabled = true;
-                activeAbilityPosition.sprite = Abilities[i].GetComponent<Image>().sprite;
-                activeAbilityPosition.transform.parent.GetComponent<Image>().sprite = Abilities[i].GetComponent<Image>().sprite;
+                activeAbilityPosition.sprite = ability.GetComponent<Image>().sprite;
+                activeAbilityPosition.transform.parent.GetComponent<Image>().sprite = ability.GetComponent<Image>().sprite;
             }
 
-            if (Abilities[i].GetComponent<PassiveAbilities>())
+            if (ability.GetComponent<PassiveAbilities>())
             {
                 if (tempPassives.Count > 0)
                 {
                     bool equal = false;
+
+                    bool foundSample = false;
                     
                     foreach (var passive in tempPassives)
                     {
-                        if (!Abilities[i].name.Contains(passive.name) && !equal)
+                        if (!ability.name.Contains(passive.name) && !foundSample)
                         {
                             equal = true;
+                        }
+
+                        if (ability.name.Contains(passive.name))
+                        {
+                            equal = false;
+                            foundSample = true;
+                            passive.GetComponent<PassiveAbilities>().Count(passive.name, 1);
                         }
                     }
 
                     if (equal)
                     {
-                        tempPassives.Add(Abilities[i]);
+                        tempPassives.Add(ability);
                     }
                 }
                 else
                 {
-                    tempPassives.Add(Abilities[i]);
+                    tempPassives.Add(ability);
                 }
             }
         }
 
         foreach (var passive in tempPassives)
         {
+            Debug.Log(passive.name + "Instantiated");
             GameObject temp = Instantiate(passive, passivesTransform.transform);
             imagePositions.Add(temp);
         }
@@ -144,6 +156,14 @@ public class AbilitiesSlots : MonoBehaviour
         foreach (var image in imagePositions)
         {
             Destroy(image);
+        }
+
+        foreach (var ability in Abilities)
+        {
+            if (ability.GetComponent<PassiveAbilities>())
+            {
+                ability.GetComponent<PassiveAbilities>().ClearCount(ability.name);
+            }
         }
         
         imagePositions.Clear();

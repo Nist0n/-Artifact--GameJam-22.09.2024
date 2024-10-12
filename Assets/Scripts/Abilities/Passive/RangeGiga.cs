@@ -1,3 +1,4 @@
+using TMPro;
 using Towers;
 using UnityEngine;
 
@@ -5,9 +6,15 @@ namespace Abilities.Passive
 {
     public class RangeGiga : MonoBehaviour
     {
+        [SerializeField] private TextMeshProUGUI countText;
+        
         private Tower _tower;
 
         public float Cost;
+        
+        public int Count;
+
+        private bool _activeOnTheTower = false;
 
         [SerializeField] private float radius = 1.25f;
 
@@ -24,6 +31,17 @@ namespace Abilities.Passive
 
         private void Update()
         {
+            if (_activeOnTheTower)
+            {
+                if (Count == 1)
+                {
+                    countText.text = "";
+                    return;
+                }
+                countText.text = $"{Count}x";
+                return;
+            }
+
             if (_passiveAbilities.tower)
             {
                 _tower = _passiveAbilities.tower;
@@ -38,9 +56,8 @@ namespace Abilities.Passive
         private void SetPassiveBonus()
         {
             _tower.attackRange *= radius;
-            Debug.Log(_tower.attackRange);
             _isPassiveUsed = true;
-            gameObject.GetComponent<RangeGiga>().enabled = false;
+            _activeOnTheTower = true;
         }
     }
 }
