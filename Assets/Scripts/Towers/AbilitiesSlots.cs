@@ -37,8 +37,6 @@ public class AbilitiesSlots : MonoBehaviour
     private PassiveAbilities _passAbility;
 
     private ImageCooldowns _imageCooldowns;
-    
-    private int _indexOfActiveAbility;
 
     private ActiveAbility _active;
 
@@ -51,7 +49,7 @@ public class AbilitiesSlots : MonoBehaviour
             
             if (!_imageCooldowns)
             {
-                _imageCooldowns = imagePositions[_indexOfActiveAbility].GetComponent<ImageCooldowns>();
+                _imageCooldowns = activeAbilityPosition.GetComponent<ImageCooldowns>();
             }
             if (TowerSelected)
             {
@@ -95,8 +93,6 @@ public class AbilitiesSlots : MonoBehaviour
         {
             if (Abilities[i].GetComponent<ActiveAbility>())
             {
-                _indexOfActiveAbility = i;
-
                 activeAbilityPosition.enabled = true;
                 activeAbilityPosition.transform.parent.GetComponent<Image>().enabled = true;
                 activeAbilityPosition.sprite = Abilities[i].GetComponent<Image>().sprite;

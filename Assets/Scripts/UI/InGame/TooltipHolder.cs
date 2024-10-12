@@ -14,8 +14,11 @@ namespace UI.InGame
         
         private void Start()
         {
-            tooltipTransform = transform.parent.parent.parent.Find("TooltipPosition");
-            _tooltip = Instantiate(tooltipPrefab, tooltipTransform);
+            if (!tooltipTransform)
+            {
+                tooltipTransform = transform.parent.parent.parent.Find("TooltipPosition");
+                _tooltip = Instantiate(tooltipPrefab, tooltipTransform);
+            }
         }
 
         public void SetAndShowTooltip()

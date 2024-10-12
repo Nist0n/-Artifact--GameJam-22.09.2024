@@ -55,7 +55,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cost: 3
-  tps: 0.6
 --- !u!114 &-2860358935240821253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPrefab: {fileID: 2261655398193748972, guid: b79453b23b0418448be7c2c061f7128f, type: 3}
+  tooltipTransform: {fileID: 0}
 --- !u!114 &-8258190714004683311
 MonoBehaviour:
   m_ObjectHideFlags: 0
