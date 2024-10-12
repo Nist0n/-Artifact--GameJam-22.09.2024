@@ -89,6 +89,8 @@ public class AbilitiesSlots : MonoBehaviour
 
     public void SetAbilitiesImages()
     {
+        List<GameObject> tempPassives = new List<GameObject>();
+
         for (int i = 0; i < Abilities.Count; i++)
         {
             if (Abilities[i].GetComponent<ActiveAbility>())
@@ -101,9 +103,34 @@ public class AbilitiesSlots : MonoBehaviour
 
             if (Abilities[i].GetComponent<PassiveAbilities>())
             {
-                GameObject temp = Instantiate(Abilities[i], passivesTransform.transform.position, Quaternion.identity, passivesTransform.transform);
-                imagePositions.Add(temp);
+                if (tempPassives.Count > 0)
+                {
+                    bool equal = false;
+                    
+                    foreach (var passive in tempPassives)
+                    {
+                        if (!Abilities[i].name.Contains(passive.name) && !equal)
+                        {
+                            equal = true;
+                        }
+                    }
+
+                    if (equal)
+                    {
+                        tempPassives.Add(Abilities[i]);
+                    }
+                }
+                else
+                {
+                    tempPassives.Add(Abilities[i]);
+                }
             }
+        }
+
+        foreach (var passive in tempPassives)
+        {
+            GameObject temp = Instantiate(passive, passivesTransform.transform);
+            imagePositions.Add(temp);
         }
     }
 
