@@ -1,4 +1,5 @@
-﻿using Abilities.Active;
+﻿using System;
+using Abilities.Active;
 using Abilities.Passive;
 using UnityEngine;
 
@@ -7,12 +8,14 @@ namespace UI.InGame
     public class TooltipHolder : MonoBehaviour
     {
         [SerializeField] private GameObject tooltipPrefab;
+        [SerializeField] private Transform tooltipTransform;
 
         private GameObject _tooltip;
         
         private void Start()
         {
-            _tooltip = Instantiate(tooltipPrefab, transform);
+            tooltipTransform = transform.parent.parent.parent.Find("TooltipPosition");
+            _tooltip = Instantiate(tooltipPrefab, tooltipTransform);
         }
 
         public void SetAndShowTooltip()
@@ -42,6 +45,11 @@ namespace UI.InGame
         {
             _tooltip.SetActive(false);
             _tooltip.GetComponent<Tooltip>().textComponent.text = string.Empty;
+        }
+
+        private void OnDestroy()
+        {
+            Destroy(_tooltip);
         }
     }
 }
