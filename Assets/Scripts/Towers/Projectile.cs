@@ -10,6 +10,12 @@ namespace Towers
         public float projectileSpeed;
         private bool _hitStatus;
         [SerializeField] private GameObject hit;
+        private Enemy _enemy;
+
+        private void Start()
+        {
+            _enemy = CurrentAutoTarget.GetComponent<Enemy>();
+        }
 
         private void Update()
         {
@@ -35,37 +41,17 @@ namespace Towers
             {
                 return;
             }
-            
-            Enemy enemy = CurrentAutoTarget.GetComponent<Enemy>();
-            enemy.ReceiveDamageActivate(damage);
+
+            _enemy.ReceiveDamageActivate(damage);
             
             if (Slowness)
             {
-                enemy.SetSlowness();
+                _enemy.SetSlowness();
             }
             
             _hitStatus = true;
             StartCoroutine(ActivateHit());
         }
-
-        // private void OnTriggerEnter(Collider other)
-        // {
-        //     if (_hitStatus)
-        //     {
-        //         return;
-        //     }
-        //     
-        //     Enemy enemy = CurrentAutoTarget.GetComponent<Enemy>();
-        //     enemy.ReceiveDamageActivate(damage);
-        //     
-        //     if (Slowness)
-        //     {
-        //         enemy.SetSlowness();
-        //     }
-        //     
-        //     _hitStatus = true;
-        //     StartCoroutine(ActivateHit());
-        // }
 
         private IEnumerator ActivateHit()
         {
