@@ -8,9 +8,11 @@ using UnityEngine.UI;
 
 public class AbilitiesSlots : MonoBehaviour
 {
-    [SerializeField] private GameObject abilitiesObject;
+    [SerializeField] private Image activeAbilityPosition;
     
-    [SerializeField] private List<Image> imagePositions;
+    [SerializeField] private List<GameObject> imagePositions;
+
+    [SerializeField] private GameObject passivesTransform;
     
     public List<GameObject> RandomActiveAbilities;
         
@@ -95,42 +97,33 @@ public class AbilitiesSlots : MonoBehaviour
             {
                 _indexOfActiveAbility = i;
 
-                imagePositions[0].enabled = true;
-                imagePositions[0].transform.parent.GetComponent<Image>().enabled = true;
-                imagePositions[0].sprite = Abilities[i].GetComponent<Image>().sprite;
-                imagePositions[0].transform.parent.GetComponent<Image>().sprite = Abilities[i].GetComponent<Image>().sprite;
+                activeAbilityPosition.enabled = true;
+                activeAbilityPosition.transform.parent.GetComponent<Image>().enabled = true;
+                activeAbilityPosition.sprite = Abilities[i].GetComponent<Image>().sprite;
+                activeAbilityPosition.transform.parent.GetComponent<Image>().sprite = Abilities[i].GetComponent<Image>().sprite;
             }
 
             if (Abilities[i].GetComponent<PassiveAbilities>())
             {
-                if (!IsPassiveSetted)
-                {
-                    imagePositions[1].enabled = true;
-                    imagePositions[1].transform.parent.GetComponent<Image>().enabled = true;
-                    imagePositions[1].sprite = Abilities[i].GetComponent<Image>().sprite;
-                    imagePositions[1].transform.parent.GetComponent<Image>().sprite = Abilities[i].GetComponent<Image>().sprite;
-                    IsPassiveSetted = true;
-                }
-                else
-                {
-                    imagePositions[2].enabled = true;
-                    imagePositions[2].transform.parent.GetComponent<Image>().enabled = true;
-                    imagePositions[2].sprite = Abilities[i].GetComponent<Image>().sprite;
-                    imagePositions[2].transform.parent.GetComponent<Image>().sprite = Abilities[i].GetComponent<Image>().sprite;
-                }
+                GameObject temp = Instantiate(Abilities[i], passivesTransform.transform.position, Quaternion.identity, passivesTransform.transform);
+                imagePositions.Add(temp);
             }
         }
     }
 
     public void HideAbilities()
     {
-        for (int i = 0; i < 3; i++)
+        activeAbilityPosition.enabled = false;
+        activeAbilityPosition.transform.parent.GetComponent<Image>().enabled = false;
+        activeAbilityPosition.sprite = null;
+        activeAbilityPosition.transform.parent.GetComponent<Image>().sprite = null;
+
+        foreach (var image in imagePositions)
         {
-            imagePositions[i].enabled = false;
-            imagePositions[i].transform.parent.GetComponent<Image>().enabled = false;
-            imagePositions[i].sprite = null;
-            imagePositions[i].transform.parent.GetComponent<Image>().sprite = null;
+            Destroy(image);
         }
+        
+        imagePositions.Clear();
 
         IsPassiveSetted = false;
     }
