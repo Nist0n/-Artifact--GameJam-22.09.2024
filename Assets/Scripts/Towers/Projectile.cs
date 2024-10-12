@@ -23,10 +23,14 @@ namespace Towers
             Vector3 moveProjectile = 
                 Vector3.MoveTowards(transform.position, position, projectileSpeed * Time.deltaTime);
             transform.position = moveProjectile;
-        }
+            
+            float sqrDistance = (position - moveProjectile).sqrMagnitude;
 
-        private void OnTriggerEnter(Collider other)
-        {
+            if (sqrDistance > float.Epsilon * float.Epsilon)
+            {
+                return;
+            }
+            
             if (_hitStatus)
             {
                 return;
@@ -43,6 +47,25 @@ namespace Towers
             _hitStatus = true;
             StartCoroutine(ActivateHit());
         }
+
+        // private void OnTriggerEnter(Collider other)
+        // {
+        //     if (_hitStatus)
+        //     {
+        //         return;
+        //     }
+        //     
+        //     Enemy enemy = CurrentAutoTarget.GetComponent<Enemy>();
+        //     enemy.ReceiveDamageActivate(damage);
+        //     
+        //     if (Slowness)
+        //     {
+        //         enemy.SetSlowness();
+        //     }
+        //     
+        //     _hitStatus = true;
+        //     StartCoroutine(ActivateHit());
+        // }
 
         private IEnumerator ActivateHit()
         {
