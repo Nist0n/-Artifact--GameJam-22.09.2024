@@ -83,17 +83,8 @@ namespace Towers
             MoveCamera();
             
             List<GameObject> enemies = _towerComp.enemiesInRange;
-
-            if (enemies.Count == 0)
-            {
-                DisableImage();
-                return;
-            }
             
-            Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
             Ray ray = _mainCamera.ViewportPointToRay(new Vector3 (0.5f, 0.5f, 0));
-            
-            RaycastHit[] raycastHits = new RaycastHit[1000];
             
             if (_isAbilityActived)
             {
@@ -128,6 +119,16 @@ namespace Towers
                     return;
                 }
             }
+
+            if (enemies.Count == 0)
+            {
+                DisableImage();
+                return;
+            }
+            
+            Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+
+            RaycastHit[] raycastHits = new RaycastHit[1000];
 
             int size = Physics.SphereCastNonAlloc(tower.transform.position, crosshairRadius, ray.direction, raycastHits,
                 _searchRadius + 100);
