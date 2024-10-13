@@ -17,7 +17,7 @@ namespace UI.InGame
         private void Start()
         {
             AudioManager.instance.PlayMusic("InGame2");
-            continueGameButton.GetComponent<Animator>().keepAnimatorStateOnDisable = true;
+            // continueGameButton.GetComponent<Animator>().keepAnimatorStateOnDisable = true;
         }
 
         private void Awake()

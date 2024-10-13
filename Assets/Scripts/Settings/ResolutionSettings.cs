@@ -22,7 +22,7 @@ namespace Settings
             List<string> options = new List<string>();
             foreach (Resolution res in _resolutions)
             {
-                options.Add(res.ToString());
+                options.Add($"{res.width}x{res.height}");
             }
             resolutionDropdown.AddOptions(options);
             
