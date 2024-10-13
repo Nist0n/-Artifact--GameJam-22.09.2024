@@ -12942,6 +12942,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 771928806}
   m_CullTransparentMesh: 1
+--- !u!1 &772640075 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8459963022038926023, guid: add615d1c3ecb0b4980000163938993c, type: 3}
+  m_PrefabInstance: {fileID: 1905724659}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &788828724
 GameObject:
   m_ObjectHideFlags: 0
@@ -13661,7 +13666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   background: {fileID: 220916812}
   continueGameButton: {fileID: 36637105}
-  dreamCounter: {fileID: 0}
+  dreamCounter: {fileID: 1328672639127493518}
   gameIsPaused: 0
 --- !u!114 &804337114
 MonoBehaviour:
@@ -13762,7 +13767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objects: []
-  victoryUI: {fileID: 0}
+  victoryUI: {fileID: 772640075}
   timer: 750
 --- !u!114 &804337119
 MonoBehaviour:
@@ -13792,7 +13797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectsToHide: []
-  loseUI: {fileID: 0}
+  loseUI: {fileID: 1762706226}
 --- !u!1 &812701637
 GameObject:
   m_ObjectHideFlags: 0
@@ -30887,6 +30892,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1760986500}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1762706226 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8459963022038926023, guid: add615d1c3ecb0b4980000163938993c, type: 3}
+  m_PrefabInstance: {fileID: 1924586153}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1770089121
 GameObject:
   m_ObjectHideFlags: 0
