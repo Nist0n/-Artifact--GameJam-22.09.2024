@@ -101,8 +101,16 @@ namespace Towers
                     _abilityRange.transform.position = new Vector3(1000f, 1000f, 1000f);
                     return;
                 }
+                
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, _searchRadius, 1 << 0)) _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbilityRadius(_abilities.Ability.name, hit.point);
+
+                Vector3 abilityUsePoint = new Vector3();
+
+                if (Physics.Raycast(ray, out hit, _searchRadius + 9, 1 << 0))
+                {
+                    _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbilityRadius(_abilities.Ability.name, hit.point);
+                    abilityUsePoint = hit.point;
+                }
                 else
                 {
                     float x = ray.direction.x;
@@ -111,22 +119,31 @@ namespace Towers
 
                     Vector3 temp = new Vector3();
 
-                    Debug.Log(Mathf.Atan(x / z));
-                    
-                    Debug.Log($"Sin {Mathf.Sin(Mathf.Atan(x / z))} Cos {Mathf.Cos(Mathf.Atan(x / z))}");
+                    if (z > 0)
+                    {
+                        temp.x = _towerComp.attackRange * Mathf.Sin(Mathf.Atan(x / z)) + _towerComp.gameObject.transform.position.x;
 
-                    temp.x = _towerComp.attackRange * Mathf.Sin(Mathf.Atan(x / z)) + _towerComp.gameObject.transform.position.x;
-
-                    temp.y = _towerComp.gameObject.transform.position.y + 1;
+                        temp.y = _towerComp.gameObject.transform.position.y + 0.5f;
                     
-                    temp.z = _towerComp.attackRange * Mathf.Cos(Mathf.Atan(x / z)) + _towerComp.gameObject.transform.position.z;
+                        temp.z = _towerComp.attackRange * Mathf.Cos(Mathf.Atan(x / z)) + _towerComp.gameObject.transform.position.z;
+                    }
+                    else
+                    {
+                        temp.x = -(_towerComp.attackRange * Mathf.Sin(Mathf.Atan(x / z))) + _towerComp.gameObject.transform.position.x;
+
+                        temp.y = _towerComp.gameObject.transform.position.y + 1;
+                    
+                        temp.z = -(_towerComp.attackRange * Mathf.Cos(Mathf.Atan(x / z))) + _towerComp.gameObject.transform.position.z;
+                    }
 
                     _abilities.Ability.GetComponent<ActiveAbility>()
                         .ActivateAbilityRadius(_abilities.Ability.name, temp);
+                    
+                    abilityUsePoint = temp;
                 }
                 if (Input.GetKey(KeyCode.E))
                 {
-                    _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbility(_abilities.Ability.name, hit.point, _abilities.Ability);
+                    _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbility(_abilities.Ability.name, abilityUsePoint, _abilities.Ability);
                     _isAbilityActived = false;
                     _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction(_abilities.Ability.name);
                     _abilityRange.transform.position = new Vector3(1000f, 1000f, 1000f);
