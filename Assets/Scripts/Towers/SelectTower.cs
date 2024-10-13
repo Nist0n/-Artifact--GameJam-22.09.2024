@@ -63,8 +63,8 @@ namespace Towers
                         tw.GetComponentInChildren<TowerCamera>().enabled = true;
                     }
                 }
-
-                towerSlots.Circle.transform.position = new Vector3(1000, 1000, 1000);
+                
+                towerSlots.Circle.SetActive(false);
                 _currentTower.piloted = false;
                 _currentTower.towerCamera.Priority = 0;
                 mainCinemachineCamera.Priority = 1;
@@ -105,6 +105,10 @@ namespace Towers
                         //     _mainCamera.WorldToScreenPoint(tower.transform.position);
                         
                         _currentTower = tower;
+                        
+                        AbilitiesSlots towerSlots = _currentTower.gameObject.GetComponent<AbilitiesSlots>();
+                        towerSlots.Circle.SetActive(true);
+                        towerSlots.Circle.transform.position = new Vector3(1000f, 1000f, 1000f);
                         
                         buyingSystem.GetTower(tower.gameObject.GetComponent<AbilitiesSlots>());
                     }

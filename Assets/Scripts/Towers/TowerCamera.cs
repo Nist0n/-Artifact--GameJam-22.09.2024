@@ -76,6 +76,11 @@ namespace Towers
 
             if (!_currentCamera.IsLive)
             {
+                if (_isAbilityActived)
+                {
+                    _isAbilityActived = false;
+                    _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction(_abilities.Ability.name);
+                }
                 DisableImage();
                 return;
             }
@@ -97,7 +102,28 @@ namespace Towers
                     return;
                 }
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, _searchRadius + 12, 1 << 0)) _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbilityRadius(_abilities.Ability.name, hit.point);
+                if (Physics.Raycast(ray, out hit, _searchRadius, 1 << 0)) _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbilityRadius(_abilities.Ability.name, hit.point);
+                else
+                {
+                    float x = ray.direction.x;
+                    float z = ray.direction.z;
+                    float y = ray.direction.y;
+
+                    Vector3 temp = new Vector3();
+
+                    Debug.Log(Mathf.Atan(x / z));
+                    
+                    Debug.Log($"Sin {Mathf.Sin(Mathf.Atan(x / z))} Cos {Mathf.Cos(Mathf.Atan(x / z))}");
+
+                    temp.x = _towerComp.attackRange * Mathf.Sin(Mathf.Atan(x / z)) + _towerComp.gameObject.transform.position.x;
+
+                    temp.y = _towerComp.gameObject.transform.position.y + 1;
+                    
+                    temp.z = _towerComp.attackRange * Mathf.Cos(Mathf.Atan(x / z)) + _towerComp.gameObject.transform.position.z;
+
+                    _abilities.Ability.GetComponent<ActiveAbility>()
+                        .ActivateAbilityRadius(_abilities.Ability.name, temp);
+                }
                 if (Input.GetKey(KeyCode.E))
                 {
                     _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbility(_abilities.Ability.name, hit.point, _abilities.Ability);
