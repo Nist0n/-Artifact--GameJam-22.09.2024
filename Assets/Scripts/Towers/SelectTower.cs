@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Shop;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
+using GameConfiguration;
 
 namespace Towers
 {
@@ -34,7 +33,7 @@ namespace Towers
         private void Update()
         {
             if (mainCinemachineCamera.Priority == 1 || shopCinemachineCamera.Priority == 1 || 
-                GameConfig.GameConfig.Instance.GameIsOverByLose || Time.timeScale == 0)
+                GameConfig.Instance.GameIsOverByLose || GameConfig.Instance.HasWon || Time.timeScale == 0)
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
@@ -70,11 +69,6 @@ namespace Towers
                 mainCinemachineCamera.Priority = 1;
                 buffImage.SetActive(false);
             }
-
-            // if (Input.GetKeyDown(KeyCode.B) && !_isSwitching && !GamePause.Instance.gameIsPaused && (mainCinemachineCamera.IsLive || shopCinemachineCamera.IsLive))
-            // {
-            //     StartCoroutine(ShopCameraSwap());
-            // }
             
             if (!mainCinemachineCamera.IsLive) // If we are already in a tower
             {
@@ -105,8 +99,6 @@ namespace Towers
 
                         selectTowerControls.transform.position = _mainCamera.WorldToScreenPoint(tower.transform.position);
                         ToggleSelectTowerControls(!selectTowerControls.activeSelf);
-                        // upgradeTowerControls.transform.position =
-                        //     _mainCamera.WorldToScreenPoint(tower.transform.position);
                         
                         _currentTower = tower;
                         
@@ -136,32 +128,6 @@ namespace Towers
             ToggleSelectTowerControls(false);
         }
 
-        // private IEnumerator ShopCameraSwap()
-        // {
-        //     if (_isSwitching)
-        //     {
-        //         yield break;
-        //     }
-        //
-        //     _isSwitching = true;
-        //
-        //     if (shopCinemachineCamera.IsLive)
-        //     {
-        //         shopCinemachineCamera.Priority = 0;
-        //         mainCinemachineCamera.Priority = 1;
-        //     }
-        //     else if (mainCinemachineCamera.IsLive)
-        //     {
-        //         mainCinemachineCamera.Priority = 0;
-        //         shopCinemachineCamera.Priority = 1;
-        //     }
-        //
-        //     yield return new WaitForSeconds(1f);
-        //     StartCoroutine(ShopSwitch());
-        //
-        //     _isSwitching = false;
-        // }
-
         public void EnterCurrentTower()
         {
             ToggleSelectTowerControls(false);
@@ -184,12 +150,5 @@ namespace Towers
                         
             _currentTower.EmpowerTower();
         }
-        
-        // private IEnumerator ShopSwitch()
-        // {
-        //     yield return null;
-        //     // pauseButton.SetActive(!pauseButton.activeSelf);
-        //     shopUI.SetActive(shopCinemachineCamera.IsLive);
-        // }
     }
 }

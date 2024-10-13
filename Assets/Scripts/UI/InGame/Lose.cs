@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GameConfiguration;
 using UnityEngine;
 
 namespace UI.InGame
@@ -13,14 +14,13 @@ namespace UI.InGame
         
         void Update()
         {
-            if (GameConfig.GameConfig.Instance.GameIsOverByLose && _gameRun) {
+            if (GameConfig.Instance.GameIsOverByLose && _gameRun) {
                 _gameRun = false;
                 LoseMode();
             }
         }
 
         private void LoseMode() {
-            Cursor.visible = true;
             loseUI.SetActive(true);
             foreach (var gameObj in objectsToHide)
             {

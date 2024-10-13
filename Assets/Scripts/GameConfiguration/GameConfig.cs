@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using GameConfiguration.Spawners;
 using Sound;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace GameConfig
+namespace GameConfiguration
 {
     public class GameConfig : MonoBehaviour
     {
@@ -67,6 +68,11 @@ namespace GameConfig
             if (GameIsOverByLose)
             {
                 GameLost();
+                return;
+            }
+
+            if (HasWon)
+            {
                 return;
             }
         

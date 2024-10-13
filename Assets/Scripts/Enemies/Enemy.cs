@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Castle;
 using Enemies.StateMachine;
+using GameConfiguration;
 using Sound;
 using UnityEngine;
 using UnityEngine.UI;
@@ -48,7 +49,7 @@ namespace Enemies
             
             if (State.IsComplete)
             {
-                if (GameConfig.GameConfig.Instance.GameIsOverByLose)
+                if (GameConfig.Instance.GameIsOverByLose)
                 {
                     Set(Celebrating);
                     return;

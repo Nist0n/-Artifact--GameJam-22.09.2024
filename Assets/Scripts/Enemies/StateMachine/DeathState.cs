@@ -1,4 +1,5 @@
 using Enemies;
+using GameConfiguration;
 using Sound;
 using Unity.Mathematics;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class DeathState : EnemyState
 {
     public override void Enter()
     {
-        GameConfig.GameConfig.Instance.EnemyList.Remove(gameObject.GetComponentInParent<Enemy>().gameObject);
+        GameConfig.Instance.EnemyList.Remove(gameObject.GetComponentInParent<Enemy>().gameObject);
         AudioManager.instance.PlayLocalSound("Die", AudioSource);
         navMeshAgent.speed = 0;
         SoulsCounter.Instance.AddNightmares(Mathf.Round(Random.Range(DroppedCoinsMin, DroppedCoinsMax)));

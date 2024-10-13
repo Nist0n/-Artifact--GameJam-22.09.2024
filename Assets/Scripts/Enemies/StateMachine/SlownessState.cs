@@ -1,3 +1,4 @@
+using GameConfiguration;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class SlownessState : EnemyState
     public override void Do()
     {
         animationController.Run();
-        if (IsDamaged || IsAttacking || GameConfig.GameConfig.Instance.GameIsOverByLose || IsFreezed || !IsSlowness)
+        if (IsDamaged || IsAttacking || GameConfig.Instance.GameIsOverByLose || IsFreezed || !IsSlowness)
         {
             IsComplete = true;
         }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GameConfiguration;
 using UnityEngine;
 
 namespace UI.InGame
@@ -15,16 +16,19 @@ namespace UI.InGame
         void Update()
         {
             if (timer > 0) timer -= Time.deltaTime;
-            if (GameConfig.GameConfig.Instance.EnemyList.Count <= 0 && _gameRun && timer < 0) {
+            if (GameConfig.Instance.EnemyList.Count <= 0 && _gameRun && timer < 0) {
                 _gameRun = false;
-                VictoryMode();  
+                GameConfig.Instance.HasWon = true;
+            }
+
+            if (GameConfig.Instance.HasWon)
+            {
+                VictoryMode();
             }
         }
 
         private void VictoryMode()
         {
-            GameConfig.GameConfig.Instance.HasWon = true;
-            Cursor.visible = true;
             victoryUI.SetActive(true);
             foreach (var obj in objects)
             {

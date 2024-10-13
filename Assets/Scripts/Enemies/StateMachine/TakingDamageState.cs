@@ -1,3 +1,4 @@
+using GameConfiguration;
 using Sound;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class TakingDamageState : EnemyState
     public override void Do()
     {
         animationController.TakeDamage();
-        if (!IsDamaged || GameConfig.GameConfig.Instance.GameIsOverByLose || IsFreezed)
+        if (!IsDamaged || GameConfig.Instance.GameIsOverByLose || IsFreezed)
         {
             IsComplete = true;
         }

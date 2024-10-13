@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Enemies;
+using GameConfiguration.Spawners;
 using UnityEngine;
 
 public class EmeraldBombDamage : MonoBehaviour

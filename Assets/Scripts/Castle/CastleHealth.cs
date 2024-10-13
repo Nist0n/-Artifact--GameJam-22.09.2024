@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GameConfiguration;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Castle
@@ -33,7 +34,7 @@ namespace Castle
     
             if (health <= 0)
             {
-                GameConfig.GameConfig.Instance.GameIsOverByLose = true;
+                GameConfig.Instance.GameIsOverByLose = true;
             }
 
             if (_timer <= _cooldown)

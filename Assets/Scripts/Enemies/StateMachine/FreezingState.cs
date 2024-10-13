@@ -1,3 +1,4 @@
+using GameConfiguration;
 using UnityEngine;
 
 public class FreezingState : EnemyState
@@ -10,7 +11,7 @@ public class FreezingState : EnemyState
     
     public override void Do()
     {
-        if (!IsFreezed || GameConfig.GameConfig.Instance.GameIsOverByLose)
+        if (!IsFreezed || GameConfig.Instance.GameIsOverByLose)
         {
             navMeshAgent.speed = 1f;
             animator.speed = 1f;
