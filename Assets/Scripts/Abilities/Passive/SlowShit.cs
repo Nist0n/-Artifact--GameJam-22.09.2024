@@ -14,9 +14,10 @@ namespace Abilities.Passive
         
         public int Count;
         
-        private bool _activeOnTheTower = false;
+        public bool ActiveOnTheTower = false;
 
         private bool _isPassiveUsed = false;
+        
         private PassiveAbilities _passiveAbilities;
 
         public string Description { private set; get; } = "Башня при попадании замедляет врага на 25%";
@@ -28,7 +29,7 @@ namespace Abilities.Passive
 
         private void Update()
         {
-            if (_activeOnTheTower)
+            if (ActiveOnTheTower)
             {
                 if (Count == 1)
                 {
@@ -54,7 +55,7 @@ namespace Abilities.Passive
         {
             _tower.SetSlowness();
             _isPassiveUsed = true;
-            _activeOnTheTower = true;
+            ActiveOnTheTower = true;
         }
     }
 }

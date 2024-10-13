@@ -128,6 +128,34 @@ namespace Abilities.Passive
                 speedBoom.Count = 1;
             }
         }
+        
+        public void DisableAbility(string name)
+        {
+            if (name.Contains(FloatingTps))
+            {
+                floatingTps.ActiveOnTheTower = true;
+            }
+            else if (name.Contains(FireBoost))
+            {
+                fireBoost.ActiveOnTheTower = true;
+            }
+            else if (name.Contains(RangeGiga))
+            {
+                rangeGiga.ActiveOnTheTower = true;
+            }
+            else if (name.Contains(DamageBoost))
+            {
+                damageBoost.ActiveOnTheTower = true;
+            }
+            else if (name.Contains(SlowShit))
+            {
+                slowShit.ActiveOnTheTower = true;
+            }
+            else if (name.Contains(SpeedBoom))
+            {
+                speedBoom.ActiveOnTheTower = true;
+            }
+        }
 
         public string Description(string abilityName)
         {

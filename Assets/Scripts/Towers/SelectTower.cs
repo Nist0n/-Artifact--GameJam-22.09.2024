@@ -88,6 +88,10 @@ namespace Towers
                     return;
                 }
                 
+                if (upgradeTowerControls.activeSelf)
+                {
+                    buyingSystem.HidePassiveAbilities();
+                }
                 upgradeTowerControls.SetActive(false);
                 
                 Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);

@@ -13,7 +13,7 @@ namespace Abilities.Passive
         
         public int Count;
         
-        private bool _activeOnTheTower = false;
+        public bool ActiveOnTheTower = false;
 
         private bool _isCountSeted = false;
 
@@ -36,7 +36,7 @@ namespace Abilities.Passive
 
         private void Update()
         {
-            if (_activeOnTheTower)
+            if (ActiveOnTheTower)
             {
                 if (Count == 1)
                 {
@@ -55,7 +55,7 @@ namespace Abilities.Passive
             if (_tower && !_isCountSeted)
             {
                 _isCountSeted = true;
-                _activeOnTheTower = true;
+                ActiveOnTheTower = true;
             }
             
             if (_passiveAbilities.ActiveAbil && !_isPassiveUsed)
@@ -69,6 +69,7 @@ namespace Abilities.Passive
             _passiveAbilities.ActiveAbil.GetComponent<ActiveAbility>()
                 .ChangeAbilityCooldown(_passiveAbilities.ActiveAbil.name, percent, _passiveAbilities.ActiveAbil);
             _isPassiveUsed = true;
+            ActiveOnTheTower = true;
         }
     }
 }

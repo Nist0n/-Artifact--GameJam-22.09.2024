@@ -14,7 +14,7 @@ namespace Abilities.Passive
         
         public int Count;
         
-        private bool _activeOnTheTower = false;
+        public bool ActiveOnTheTower = false;
 
         [SerializeField] private float damage = 1.4f;
 
@@ -30,7 +30,7 @@ namespace Abilities.Passive
 
         private void Update()
         {
-            if (_activeOnTheTower)
+            if (ActiveOnTheTower)
             {
                 if (Count == 1)
                 {
@@ -56,7 +56,7 @@ namespace Abilities.Passive
         {
             _tower._initialDamage = Mathf.Round(damage * _tower._initialDamage);
             _isPassiveUsed = true;
-            _activeOnTheTower = true;
+            ActiveOnTheTower = true;
         }
     }
 }

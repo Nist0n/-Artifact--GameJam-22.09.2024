@@ -241,6 +241,10 @@ namespace Shop
                 _tower.PassivesShowed = false;
                 _tower.RandomPassiveAbilities.Clear();
             }
+            
+            HidePassiveAbilities();
+            
+            SetPassivesImages();
         }
         
         private void DisableSlotWithoutChangingAppearance(Button slotButton)
@@ -264,6 +268,16 @@ namespace Shop
                 slotButton.gameObject.GetComponent<Image>().sprite = _tower.Ability.GetComponent<Image>().sprite;
                 slotButton.interactable = false;
             }
+        }
+
+        public void SetPassivesImages()
+        {
+            _tower.SetAbilitiesImages();
+        }
+
+        public void HidePassiveAbilities()
+        {
+            _tower.HideAbilities();
         }
     }
 }

@@ -140,8 +140,8 @@ public class AbilitiesSlots : MonoBehaviour
 
         foreach (var passive in tempPassives)
         {
-            Debug.Log(passive.name + "Instantiated");
             GameObject temp = Instantiate(passive, passivesTransform.transform);
+            temp.GetComponent<PassiveAbilities>().DisableAbility(passive.name);
             imagePositions.Add(temp);
         }
     }

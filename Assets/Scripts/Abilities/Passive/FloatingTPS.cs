@@ -14,13 +14,14 @@ namespace Abilities.Passive
         
         public int Count;
         
-        private bool _activeOnTheTower = false;
+        public bool ActiveOnTheTower = false;
 
         public static float tps = 0.6f;
+        
         public static float damageBuff = 1.25f;
         
-
         private bool _isPassiveUsed = false;
+        
         private PassiveAbilities _passiveAbilities;
 
         public string Description { private set; get; } = $"Увеличивает скорострельность башни на {(1 - tps) * 100}% и урон башни на {(damageBuff - 1) * 100}% в течение первых {Tower.buffDuration} секунд";
@@ -32,7 +33,7 @@ namespace Abilities.Passive
 
         private void Update()
         {
-            if (_activeOnTheTower)
+            if (ActiveOnTheTower)
             {
                 if (Count == 1)
                 {
@@ -59,7 +60,7 @@ namespace Abilities.Passive
             _tower.buffedFireRate *= tps;
             _tower.buffedDamage *= damageBuff;
             _isPassiveUsed = true;
-            _activeOnTheTower = true;
+            ActiveOnTheTower = true;
         }
     }
 }

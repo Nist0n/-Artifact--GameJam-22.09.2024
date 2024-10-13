@@ -14,11 +14,12 @@ namespace Abilities.Passive
         
         public int Count;
 
-        private bool _activeOnTheTower = false;
+        public bool ActiveOnTheTower = false;
 
         [SerializeField] private float radius = 1.25f;
 
         private bool _isPassiveUsed = false;
+        
         private PassiveAbilities _passiveAbilities;
 
         public string Description { private set; get; }  = $"Увеличивает дальность атаки башни на 25%";
@@ -31,7 +32,7 @@ namespace Abilities.Passive
 
         private void Update()
         {
-            if (_activeOnTheTower)
+            if (ActiveOnTheTower)
             {
                 if (Count == 1)
                 {
@@ -57,7 +58,7 @@ namespace Abilities.Passive
         {
             _tower.attackRange *= radius;
             _isPassiveUsed = true;
-            _activeOnTheTower = true;
+            ActiveOnTheTower = true;
         }
     }
 }
