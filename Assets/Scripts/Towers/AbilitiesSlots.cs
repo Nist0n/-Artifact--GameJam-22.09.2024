@@ -1,9 +1,9 @@
-using System;
 using System.Collections.Generic;
 using Abilities.Active;
 using Abilities.Passive;
 using Towers;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class AbilitiesSlots : MonoBehaviour
@@ -142,6 +142,7 @@ public class AbilitiesSlots : MonoBehaviour
         {
             GameObject temp = Instantiate(passive, passivesTransform.transform);
             temp.GetComponent<PassiveAbilities>().DisableAbility(passive.name);
+            temp.GetComponent<EventTrigger>().enabled = false;
             imagePositions.Add(temp);
         }
     }
