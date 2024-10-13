@@ -87,9 +87,9 @@ namespace Sound
             }
         }
 
-        public void StopSound(AudioSource source)
+        public void StopMusic()
         {
-            source.Stop();
+            musicSource.Stop();
         }
     }
 }

@@ -309,7 +309,7 @@ MonoBehaviour:
   music:
   - name: MainMenu
     audio: {fileID: 8300000, guid: c31fb1ae842089346923bae6cdba9115, type: 3}
-  - name: InGame
+  - name: InGame1
     audio: {fileID: 8300000, guid: 699763a7736b8f34285be18d6529b0dd, type: 3}
   - name: InGame2
     audio: {fileID: 8300000, guid: 0b85c01cc376ac84f8af728c2ffc10c0, type: 3}

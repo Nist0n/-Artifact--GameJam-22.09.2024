@@ -93,7 +93,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 6ac3409e28fabc040bc1336655b89d18, type: 2}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 6b3a26967d81c0b4ebbc262a6e57d2a7, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2893,11 +2893,11 @@ Transform:
   m_GameObject: {fileID: 117611328}
   serializedVersion: 2
   m_LocalRotation: {x: 0.41735283, y: 0.02217519, z: -0.013294905, w: 0.9083767}
-  m_LocalPosition: {x: 14.604919, y: 34.80229, z: 5.9299927}
+  m_LocalPosition: {x: -25.242615, y: 62.70773, z: -31.15561}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1119071823}
+  m_Father: {fileID: 1473598026}
   m_LocalEulerAnglesHint: {x: 49.36, y: 2.569, z: -0.496}
 --- !u!114 &117611332
 MonoBehaviour:
@@ -2957,8 +2957,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCinemachineCamera: {fileID: 12805554}
   shopCinemachineCamera: {fileID: 1112695003}
-  pauseButton: {fileID: 0}
-  shopUI: {fileID: 0}
   towers:
   - {fileID: 3842974870668956620}
   - {fileID: 2780821684462500855}
@@ -13993,7 +13991,7 @@ GameObject:
   - component: {fileID: 812701640}
   - component: {fileID: 812701639}
   m_Layer: 5
-  m_Name: TimeText
+  m_Name: TimerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19975,38 +19973,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1473598026}
   m_LocalEulerAnglesHint: {x: 38.561, y: 76.095, z: -6.025}
---- !u!1 &1119071822
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1119071823}
-  m_Layer: 0
-  m_Name: MainCameraHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1119071823
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1119071822}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.847534, y: 27.905436, z: -37.0856}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 117611331}
-  m_Father: {fileID: 1473598026}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1119783030
 GameObject:
   m_ObjectHideFlags: 0
@@ -26264,7 +26230,7 @@ Transform:
   - {fileID: 12805555}
   - {fileID: 1112695004}
   - {fileID: 2051529545}
-  - {fileID: 1119071823}
+  - {fileID: 117611331}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1473827548

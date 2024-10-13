@@ -12,19 +12,15 @@ namespace Towers
         private Camera _mainCamera;
         private Tower _currentTower;
 
-        public CinemachineCamera mainCinemachineCamera;
-        public CinemachineCamera shopCinemachineCamera;
+        [SerializeField] private CinemachineCamera mainCinemachineCamera;
+        [SerializeField] private CinemachineCamera shopCinemachineCamera;
 
-        [SerializeField] GameObject pauseButton;
-        [SerializeField] GameObject shopUI;
         [SerializeField] private List<GameObject> towers;
         [SerializeField] private GameObject buffImage;
         [SerializeField] private GameObject selectTowerControls;
         [SerializeField] private GameObject upgradeTowerControls;
         [SerializeField] private BuyingSystem buyingSystem;
-
-        private bool _isSwitching;
-
+        
         private void Awake()
         {
             _mainCamera = Camera.main;
