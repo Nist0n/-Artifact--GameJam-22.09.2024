@@ -9,11 +9,6 @@ namespace UI.InGame
         [SerializeField] private TMP_Text tooltipText;
         private readonly Vector3 _offset = new(-75, -75, 0);
 
-        private void Start()
-        {
-            gameObject.SetActive(false);
-        }
-
         private void Update()
         {
             gameObject.transform.position = Input.mousePosition + _offset;
@@ -21,8 +16,9 @@ namespace UI.InGame
 
         public void ShowTooltip(GameObject obj)
         {
+            gameObject.transform.position = Input.mousePosition + _offset;
             gameObject.SetActive(true);
-            string info = String.Empty;
+            string info;
             if (obj.name == "EnterTowerButton")
             {
                 info = "Управлять";
