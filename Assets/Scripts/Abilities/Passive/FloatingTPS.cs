@@ -57,8 +57,8 @@ namespace Abilities.Passive
 
         private void SetPassiveBonus()
         {
-            _tower.buffedFireRate *= tps;
-            _tower.buffedDamage *= damageBuff;
+            _tower.buffedFireRatePercent *= tps;
+            _tower.buffedDamagePercent *= damageBuff;
             _isPassiveUsed = true;
             ActiveOnTheTower = true;
         }

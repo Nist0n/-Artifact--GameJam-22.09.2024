@@ -45012,6 +45012,14 @@ PrefabInstance:
       propertyPath: buffImage
       value: 
       objectReference: {fileID: 1615537439}
+    - target: {fileID: 4887585456182582242, guid: ca575fa051db6974fb636705bd346d03, type: 3}
+      propertyPath: buffedDamagePercent
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887585456182582242, guid: ca575fa051db6974fb636705bd346d03, type: 3}
+      propertyPath: buffedFireRatePercent
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 4956288290686549706, guid: ca575fa051db6974fb636705bd346d03, type: 3}
       propertyPath: mainCameraListener
       value: 
@@ -45753,6 +45761,14 @@ PrefabInstance:
       propertyPath: buffImage
       value: 
       objectReference: {fileID: 1615537439}
+    - target: {fileID: 299173886661617663, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
+      propertyPath: buffedDamagePercent
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 299173886661617663, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
+      propertyPath: buffedFireRatePercent
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1527353363443726447, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
       propertyPath: Circle
       value: 
@@ -45908,6 +45924,14 @@ PrefabInstance:
       propertyPath: buffImage
       value: 
       objectReference: {fileID: 1615537439}
+    - target: {fileID: 1747375655861413608, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
+      propertyPath: buffedDamagePercent
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747375655861413608, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
+      propertyPath: buffedFireRatePercent
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 2053784674779635135, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
       propertyPath: mainCameraListener
       value: 
@@ -45991,6 +46015,14 @@ PrefabInstance:
       propertyPath: buffImage
       value: 
       objectReference: {fileID: 1615537439}
+    - target: {fileID: 2819424521365261996, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
+      propertyPath: buffedDamagePercent
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2819424521365261996, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
+      propertyPath: buffedFireRatePercent
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 4096085081091214255, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
       propertyPath: m_Name
       value: MainTower5
@@ -46271,6 +46303,14 @@ PrefabInstance:
       propertyPath: buffImage
       value: 
       objectReference: {fileID: 1615537439}
+    - target: {fileID: 2597579229329932202, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
+      propertyPath: buffedDamagePercent
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2597579229329932202, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
+      propertyPath: buffedFireRatePercent
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 3829405167000923477, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.160706
@@ -46509,6 +46549,14 @@ PrefabInstance:
       propertyPath: buffImage
       value: 
       objectReference: {fileID: 1615537439}
+    - target: {fileID: 7328125474371382164, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
+      propertyPath: buffedDamagePercent
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7328125474371382164, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
+      propertyPath: buffedFireRatePercent
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 7473701358565158634, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
       propertyPath: MaxDistance
       value: 50

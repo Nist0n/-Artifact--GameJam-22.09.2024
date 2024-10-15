@@ -34,8 +34,8 @@ namespace Towers
         
         public List<GameObject> enemiesInRange;
 
-        public float buffedFireRate;
-        public float buffedDamage;
+        public float buffedFireRatePercent;
+        public float buffedDamagePercent;
         
         public float _initialDamage;
         public float _initialFireRate;
@@ -50,8 +50,6 @@ namespace Towers
             _initialDamage = damage;
             _initialFireRate = fireRate;
             _initialAttackRange = attackRange;
-            buffedFireRate = fireRate * 0.6f;
-            buffedDamage = damage;
         }
         
         private void Update()
@@ -196,8 +194,8 @@ namespace Towers
         private IEnumerator Buff()
         {
             isBuffed = true;
-            fireRate = buffedFireRate;
-            damage = buffedDamage;
+            fireRate = _initialFireRate * buffedFireRatePercent;
+            damage = _initialDamage * buffedDamagePercent;
             StartCoroutine(BuffCooldown());
             yield return new WaitForSeconds(buffDuration);
             
@@ -216,8 +214,8 @@ namespace Towers
         {
             if (isBuffed)
             {
-                damage = buffedDamage;
-                fireRate = buffedFireRate;
+                damage = _initialDamage * buffedDamagePercent;
+                fireRate = _initialFireRate * buffedFireRatePercent;
                 return;
             }
             
