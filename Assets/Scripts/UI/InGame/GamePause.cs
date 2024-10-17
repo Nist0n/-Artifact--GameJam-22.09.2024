@@ -6,30 +6,13 @@ namespace UI.InGame
 {
     public class GamePause : MonoBehaviour
     {
-        // public static GamePause Instance;
-    
         [SerializeField] GameObject background;
-        // [SerializeField] GameObject continueGameButton;
         [SerializeField] GameObject dreamCounter;
 
-        // public bool gameIsPaused;
-
-        private void Start()
-        {
-            int randMusic = Random.Range(1, 3);
-            AudioManager.instance.PlayMusic($"InGame{randMusic}");
-        }
-
-        // private void Awake()
+        // private void Start()
         // {
-        //     if (Instance == null)
-        //     {
-        //         Instance = this;
-        //     }
-        //     else
-        //     {
-        //         Destroy(gameObject);
-        //     }
+        //     int randMusic = Random.Range(1, 3);
+        //     AudioManager.instance.PlayMusic($"InGame{randMusic}");
         // }
 
         private void Update()

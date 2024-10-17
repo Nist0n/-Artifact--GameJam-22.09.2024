@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using GameConfiguration.Spawners;
 using Sound;
 using TMPro;
+using UI.InGame;
 using Unity.Cinemachine;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -46,6 +47,13 @@ namespace GameConfiguration
 
         public bool HasWon;
 
+        [SerializeField] private float waveTime;
+        
+        
+        [SerializeField] private List<GameObject> objectsToHide;
+        [SerializeField] private GameObject loseUI;
+        [SerializeField] private GameObject victoryUI;
+
         private void Awake()
         {
             if (Instance == null)
@@ -60,6 +68,8 @@ namespace GameConfiguration
 
         private void Start()
         {
+            int randMusic = Random.Range(1, 3);
+            AudioManager.instance.PlayMusic($"InGame{randMusic}");
             GetSpawners();
         }
 
@@ -71,8 +81,9 @@ namespace GameConfiguration
                 return;
             }
 
-            if (HasWon)
+            if (EnemyList.Count <= 0 && GameTime > waveTime)
             {
+                GameWon();
                 return;
             }
         
@@ -94,7 +105,7 @@ namespace GameConfiguration
 
         private void GameBrain()
         {
-            if (GameTime > 750 && !IsBossSpawned)
+            if (GameTime > waveTime && !IsBossSpawned)
             {
                 StartCoroutine(_spawners[1].SpawnBoss(boss));
                 IsWaveStarted = true;
@@ -140,12 +151,26 @@ namespace GameConfiguration
             _timeMinutes = Mathf.Floor(GameTime / 60);
             if (_timeSeconds < 59) _timeSeconds += Time.deltaTime;
             else _timeSeconds = 0;
-            timerText.text = $"Время: {_timeMinutes}:{_timeSeconds.ToString("00")}";
+            timerText.text = $"Время: {_timeMinutes}:{_timeSeconds:00}";
         }
 
         private void GameLost()
         {
             loseCinemachineCamera.Priority = 2;
+            loseUI.SetActive(true);
+            foreach (var gameObj in objectsToHide)
+            {
+                gameObj.SetActive(false);
+            }
+        }
+
+        private void GameWon()
+        {
+            victoryUI.SetActive(true);
+            foreach (var obj in objectsToHide)
+            {
+                obj.SetActive(false);
+            }
         }
     }
 }

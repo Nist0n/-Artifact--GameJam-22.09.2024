@@ -133,6 +133,7 @@ namespace Enemies
         public void AttackCastle()
         {
             AudioManager.instance.PlayRandomSoundByName("GateBreake", AudioSource);
+            Debug.Log(name);
             GameObject.FindGameObjectWithTag("Castle").GetComponent<CastleHealth>().ReceiveDamage(Damage);
         }
         

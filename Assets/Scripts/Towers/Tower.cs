@@ -153,7 +153,7 @@ namespace Towers
         {
             CurrentAutoTarget = null;
             _canShoot = true;
-            StopCoroutine("Shoot");
+            StopCoroutine(nameof(Shoot));
         }
 
         private IEnumerator Shoot(Vector3 currentPos, Vector3 enemyPos, GameObject target)

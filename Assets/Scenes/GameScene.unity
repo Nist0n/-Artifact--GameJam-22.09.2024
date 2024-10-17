@@ -13940,7 +13940,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804337112}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82413cc8e2c5e6a4ab9f165cc7945f06, type: 3}
   m_Name: 
@@ -13970,7 +13970,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804337112}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c188716f0259d34dab9779a5489ba82, type: 3}
   m_Name: 
@@ -16320,7 +16320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesTypes:
-  - {fileID: 7306416952122180914, guid: dee0c1af7105f954eb310dad81da4a2e, type: 3}
+  - {fileID: 8529001337484171297, guid: 3bfa84d4c960e22499f35ea12d36ea72, type: 3}
   - {fileID: 8142872892816006428, guid: c65e9b8c6d5834c42aa5ec6f50355f9b, type: 3}
   timerText: {fileID: 812701639}
   loseCinemachineCamera: {fileID: 2051529544}
@@ -16330,6 +16330,11 @@ MonoBehaviour:
   _spawners: []
   GameIsOverByLose: 0
   HasWon: 0
+  waveTime: 750
+  objectsToHide:
+  - {fileID: 1328672639127493518}
+  loseUI: {fileID: 1762706226}
+  victoryUI: {fileID: 772640075}
 --- !u!4 &930643878
 Transform:
   m_ObjectHideFlags: 0
