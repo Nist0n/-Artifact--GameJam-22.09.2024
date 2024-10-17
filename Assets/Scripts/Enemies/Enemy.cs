@@ -119,7 +119,7 @@ namespace Enemies
 
         private void KillEnemy()
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         public void FreezeEnemyActivate(float freezeTime)

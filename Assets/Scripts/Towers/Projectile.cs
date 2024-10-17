@@ -19,7 +19,7 @@ namespace Towers
 
         private void Update()
         {
-            if (!CurrentAutoTarget)
+            if (!CurrentAutoTarget || _enemy.Health <= 0) // If object doesn't exist anymore or enemy's death animation is playing
             {
                 Destroy(gameObject);
                 return;
@@ -32,12 +32,12 @@ namespace Towers
             
             float sqrDistance = (position - moveProjectile).sqrMagnitude;
 
-            if (sqrDistance > float.Epsilon * float.Epsilon)
+            if (sqrDistance > float.Epsilon * float.Epsilon) // Not close enough
             {
                 return;
             }
             
-            if (_hitStatus)
+            if (_hitStatus) // Already hit in this frame
             {
                 return;
             }
