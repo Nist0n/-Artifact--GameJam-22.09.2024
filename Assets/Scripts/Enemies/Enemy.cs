@@ -49,7 +49,7 @@ namespace Enemies
             
             if (State.IsComplete)
             {
-                if (GameConfig.Instance.GameIsOverByLose)
+                if (GameConfig.Instance.HasLost)
                 {
                     Set(Celebrating);
                     return;
@@ -133,7 +133,6 @@ namespace Enemies
         public void AttackCastle()
         {
             AudioManager.instance.PlayRandomSoundByName("GateBreake", AudioSource);
-            Debug.Log(name);
             GameObject.FindGameObjectWithTag("Castle").GetComponent<CastleHealth>().ReceiveDamage(Damage);
         }
         

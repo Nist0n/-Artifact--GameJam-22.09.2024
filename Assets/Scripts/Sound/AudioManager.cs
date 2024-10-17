@@ -23,12 +23,7 @@ namespace Sound
                 Destroy(gameObject);
             }
         }
-
-        private void Start()
-        {
-            PlayMusic("MainMenu");
-        }
-
+        
         public void PlayMusic(string soundName)
         {
             Sound s = music.Find(x => x.name == soundName);

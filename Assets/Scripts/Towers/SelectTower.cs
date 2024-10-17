@@ -13,8 +13,6 @@ namespace Towers
         private Tower _currentTower;
 
         [SerializeField] private CinemachineCamera mainCinemachineCamera;
-        [SerializeField] private CinemachineCamera shopCinemachineCamera;
-
         [SerializeField] private List<GameObject> towers;
         [SerializeField] private GameObject buffImage;
         [SerializeField] private GameObject selectTowerControls;
@@ -28,21 +26,19 @@ namespace Towers
 
         private void Update()
         {
-            if (mainCinemachineCamera.Priority == 1 || shopCinemachineCamera.Priority == 1 || 
-                GameConfig.Instance.GameIsOverByLose || GameConfig.Instance.HasWon || Time.timeScale == 0)
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
+            GameConfig.Instance.isInTower = mainCinemachineCamera.Priority == 0;
+            // if (mainCinemachineCamera.Priority == 1 || shopCinemachineCamera.Priority == 1)
+            // {
+            //     GameConfig.Instance.isInTower = false;
+            // }
+            // else
+            // {
+            //     GameConfig.Instance.isInTower = true;
+            // }
             
             if (Input.GetKeyDown(KeyCode.Q)) // Exit tower
             {
-                if (mainCinemachineCamera.IsLive || shopCinemachineCamera.IsLive)
+                if (mainCinemachineCamera.IsLive)
                 {
                     return;
                 }

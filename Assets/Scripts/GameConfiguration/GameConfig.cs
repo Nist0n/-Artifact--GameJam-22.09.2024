@@ -5,6 +5,7 @@ using TMPro;
 using UI.InGame;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace GameConfiguration
@@ -37,7 +38,7 @@ namespace GameConfiguration
 
         private float _waveTime = 0f;
 
-        public bool GameIsOverByLose = false;
+        public bool HasLost = false;
 
         private float _countOfUnits;
 
@@ -47,8 +48,9 @@ namespace GameConfiguration
 
         public bool HasWon;
 
-        [SerializeField] private float waveTime;
+        public bool isInTower;
         
+        [SerializeField] private float waveTime;
         
         [SerializeField] private List<GameObject> objectsToHide;
         [SerializeField] private GameObject loseUI;
@@ -75,7 +77,7 @@ namespace GameConfiguration
 
         private void Update()
         {
-            if (GameIsOverByLose)
+            if (HasLost)
             {
                 GameLost();
                 return;
@@ -92,6 +94,22 @@ namespace GameConfiguration
             Timer();
         
             GameBrain();
+
+            ControlCursor();
+        }
+
+        private void ControlCursor()
+        {
+            if (!isInTower || HasLost || HasWon || Time.timeScale == 0)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
 
         private void GetSpawners()

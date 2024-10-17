@@ -54,7 +54,7 @@ namespace Towers
         
         private void Update()
         {
-            if (GameConfig.Instance.GameIsOverByLose || GameConfig.Instance.HasWon)
+            if (GameConfig.Instance.HasLost || GameConfig.Instance.HasWon)
             {
                 return;
             }

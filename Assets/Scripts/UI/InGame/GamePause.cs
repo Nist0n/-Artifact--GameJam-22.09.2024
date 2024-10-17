@@ -9,12 +9,6 @@ namespace UI.InGame
         [SerializeField] GameObject background;
         [SerializeField] GameObject dreamCounter;
 
-        // private void Start()
-        // {
-        //     int randMusic = Random.Range(1, 3);
-        //     AudioManager.instance.PlayMusic($"InGame{randMusic}");
-        // }
-
         private void Update()
         {
             if (Input.GetKeyUp(KeyCode.Escape))
@@ -51,7 +45,7 @@ namespace UI.InGame
     
         public void Quit()
         {
-            AudioManager.instance.PlayMusic("MainMenu");
+            AudioManager.instance.StopMusic();
             SceneManager.LoadScene("MenuScene");
             SetPause(false);
         }

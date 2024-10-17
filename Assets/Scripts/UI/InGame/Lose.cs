@@ -14,7 +14,7 @@ namespace UI.InGame
         
         void Update()
         {
-            if (GameConfig.Instance.GameIsOverByLose && _gameRun) {
+            if (GameConfig.Instance.HasLost && _gameRun) {
                 _gameRun = false;
                 LoseMode();
             }

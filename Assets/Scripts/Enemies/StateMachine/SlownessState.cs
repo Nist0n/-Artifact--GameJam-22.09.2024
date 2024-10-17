@@ -13,7 +13,7 @@ public class SlownessState : EnemyState
     public override void Do()
     {
         animationController.Run();
-        if (IsDamaged || IsAttacking || GameConfig.Instance.GameIsOverByLose || IsFreezed || !IsSlowness)
+        if (IsDamaged || IsAttacking || GameConfig.Instance.HasLost || IsFreezed || !IsSlowness)
         {
             IsComplete = true;
         }

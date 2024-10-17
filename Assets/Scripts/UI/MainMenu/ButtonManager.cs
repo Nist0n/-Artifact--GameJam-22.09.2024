@@ -1,4 +1,5 @@
 using System.Collections;
+using Sound;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -21,6 +22,7 @@ namespace UI.MainMenu
         private void Start()
         {
             _canvasComponent = canvas.GetComponent<Canvas>();
+            AudioManager.instance.PlayMusic("MainMenu");
         }
 
         public void PlayGame()
