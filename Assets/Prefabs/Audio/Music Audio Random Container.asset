@@ -6,8 +6,8 @@ AudioContainerElement:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: InGame music 1_{-2862908281074811351}
-  m_AudioClip: {fileID: 8300000, guid: 699763a7736b8f34285be18d6529b0dd, type: 3}
+  m_Name: InGame 2_{-2862908281074811351}
+  m_AudioClip: {fileID: 8300000, guid: 349900b5d4c52c34c89bb87adf0c28ce, type: 3}
   m_Volume: 0
   m_Enabled: 1
 --- !u!1307931743 &6418180475301049370
@@ -28,6 +28,7 @@ AudioRandomContainer:
   m_Elements:
   - {fileID: -2862908281074811351}
   - {fileID: 8041665697347929211}
+  - {fileID: 9089606086163919811}
   m_AvoidRepeatingLast: 0
   m_PlaybackMode: 1
   m_TriggerMode: 1
@@ -43,7 +44,17 @@ AudioContainerElement:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: InGame 2_{8041665697347929211}
-  m_AudioClip: {fileID: 8300000, guid: 661c2bf5d6ed5744abc7076b0d5c9199, type: 3}
+  m_Name: InGame music 1_{8041665697347929211}
+  m_AudioClip: {fileID: 8300000, guid: 7114ad02accd24f449d5fce2fc46578a, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &9089606086163919811
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: In game 3 jadis0x_{9089606086163919811}
+  m_AudioClip: {fileID: 8300000, guid: 07450215f8611b94db49c1d069e47468, type: 3}
   m_Volume: 0
   m_Enabled: 1
