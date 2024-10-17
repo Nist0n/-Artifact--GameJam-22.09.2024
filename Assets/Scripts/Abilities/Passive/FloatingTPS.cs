@@ -24,6 +24,8 @@ namespace Abilities.Passive
         
         private PassiveAbilities _passiveAbilities;
 
+        public string Name { private set; get; } = "Плавающий затвор";
+        
         public string Description { private set; get; } = $"Увеличивает скорострельность башни на {(1 - tps) * 100}% и урон башни на {(damageBuff - 1) * 100}% в течение первых {Tower.buffDuration} секунд";
     
         private void Start()

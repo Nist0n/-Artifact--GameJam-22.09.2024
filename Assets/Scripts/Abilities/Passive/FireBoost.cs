@@ -22,6 +22,8 @@ namespace Abilities.Passive
         
         private PassiveAbilities _passiveAbilities;
 
+        public string Name { private set; get; } = "Скоропоточный двигатель";
+        
         public string Description { private set; get; } = "Увеличивает скорострельность башни на 40%";
     
         private void Start()

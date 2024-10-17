@@ -271,5 +271,35 @@ namespace Abilities.Active
 
             return "Error! You were not meant to see this";
         }
+        
+        public string Name(string abilityName)
+        {
+            if (abilityName.Contains(Amber))
+            {
+                return amberBomb.Name;
+            }
+
+            if (abilityName.Contains(Saphire))
+            {
+                return saphireBomb.Name;
+            }
+
+            if (abilityName.Contains(Emerald))
+            {
+                return emeraldBomb.Name;
+            }
+
+            if (abilityName.Contains(Ruby))
+            {
+                return rubyBomb.Name;
+            }
+
+            if (abilityName.Contains(Diamond))
+            {
+                return diamondBomb.Name;
+            }
+
+            return "Error! You were not meant to see this";
+        }
     }
 }

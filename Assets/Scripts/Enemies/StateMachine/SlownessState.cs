@@ -7,6 +7,7 @@ public class SlownessState : EnemyState
     public override void Enter()
     {
         navMeshAgent.speed = Speed * Slowness;
+        Debug.Log(navMeshAgent.speed);
     }
     
     public override void Do()

@@ -14,7 +14,7 @@ namespace Towers
         public float fireRate; // Time between shots (in seconds)
         public float attackRange;
 
-        protected bool Slowness;
+        [SerializeField] protected bool Slowness;
 
         [SerializeField] private GameObject projectilePrefab;
 
@@ -165,6 +165,7 @@ namespace Towers
                 new Vector3(currentPos.x, currentPos.y + 12.7f, currentPos.z);
             Projectile projectile = Instantiate(projectilePrefab, projectilePos, Quaternion.identity).GetComponent<Projectile>();
             projectile.damage = damage;
+            projectile.Slowness = Slowness;
             
             if (target is not null)
             {

@@ -27,6 +27,8 @@ namespace Abilities.Passive
         
         private PassiveAbilities _passiveAbilities;
 
+        public string Name { private set; get; } = "Разящая шестерёнка";
+        
         public string Description { private set; get; } = "Уменьшает перезарядку активных способностей на 40%";
     
         private void Start()

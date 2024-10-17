@@ -16,6 +16,8 @@ public class RubyBomb : MonoBehaviour
 
     public float Cost;
     
+    public string Name { private set; get; } = "Рубиновая бомба";
+    
     public string Description { private set; get; } = "Наносит урон врагам по области в зависимости от их скорости передвижения";
     
     private void Update()

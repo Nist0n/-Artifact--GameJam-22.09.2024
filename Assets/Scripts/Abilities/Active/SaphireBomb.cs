@@ -16,6 +16,8 @@ public class SaphireBomb : MonoBehaviour
 
     public float Cost;
     
+    public string Name { private set; get; } = "Сапфировая бомба";
+    
     public string Description { private set; get; } = "Наносит урон по области";
     
     private void Update()

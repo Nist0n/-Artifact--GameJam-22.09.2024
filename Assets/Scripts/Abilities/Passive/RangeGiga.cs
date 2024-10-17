@@ -22,7 +22,8 @@ namespace Abilities.Passive
         
         private PassiveAbilities _passiveAbilities;
 
-        public string Description { private set; get; }  = $"Увеличивает дальность атаки башни на 25%";
+        public string Name { private set; get; } = "Чёткий прицел";
+        public string Description { private set; get; } = "Увеличивает дальность атаки башни на 25%";
     
         private void Start()
         {

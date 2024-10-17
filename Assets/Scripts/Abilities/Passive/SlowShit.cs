@@ -20,6 +20,8 @@ namespace Abilities.Passive
         
         private PassiveAbilities _passiveAbilities;
 
+        public string Name { private set; get; } = "Замедляющий бульбулятор";
+        
         public string Description { private set; get; } = "Башня при попадании замедляет врага на 25%";
     
         private void Start()

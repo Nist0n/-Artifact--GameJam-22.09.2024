@@ -45013,6 +45013,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1615537439}
     - target: {fileID: 4887585456182582242, guid: ca575fa051db6974fb636705bd346d03, type: 3}
+      propertyPath: attackRange
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887585456182582242, guid: ca575fa051db6974fb636705bd346d03, type: 3}
       propertyPath: buffedDamagePercent
       value: 1.25
       objectReference: {fileID: 0}

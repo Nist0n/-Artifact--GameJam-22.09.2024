@@ -16,6 +16,8 @@ public class DiamondBomb : MonoBehaviour
 
     public float Cost;
     
+    public string Name { private set; get; } = "Алмазная бомба";
+    
     public string Description { private set; get; } = "Замораживает врагов в области на время";
     
     private void Update()

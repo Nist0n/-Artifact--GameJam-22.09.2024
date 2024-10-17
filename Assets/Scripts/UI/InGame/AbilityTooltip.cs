@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace UI.InGame
 {
-    public class TooltipHolder : MonoBehaviour
+    public class AbilityTooltip : MonoBehaviour
     {
         [SerializeField] private GameObject tooltipPrefab;
         [SerializeField] private Transform tooltipTransform;
@@ -26,13 +26,16 @@ namespace UI.InGame
             _tooltip.SetActive(true);
             float cost = 0;
             string description = "";
+            string name = "";
             if (gameObject.TryGetComponent(out PassiveAbilities passive))
             {
+                name = passive.Name(gameObject.name);
                 cost = passive.Cost(gameObject.name);
                 description = passive.Description(gameObject.name);
             }
             else if (gameObject.TryGetComponent(out ActiveAbility active))
             {
+                name = active.Name(gameObject.name);
                 cost = active.Cost(gameObject.name);
                 description = active.Description(gameObject.name);
             }
@@ -41,7 +44,7 @@ namespace UI.InGame
                 Debug.Log("Couldn't find script");
             }
             
-            _tooltip.GetComponent<Tooltip>().textComponent.text = $"Стоимость: {cost}\n{description}";
+            _tooltip.GetComponent<Tooltip>().textComponent.text = $"{name}\nСтоимость: {cost}\n{description}";
         }
         
         public void HideTooltip()

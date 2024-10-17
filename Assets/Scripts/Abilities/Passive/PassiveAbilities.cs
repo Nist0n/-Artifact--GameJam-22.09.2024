@@ -159,32 +159,32 @@ namespace Abilities.Passive
 
         public string Description(string abilityName)
         {
-            if (name.Contains("FloatingTPS"))
+            if (abilityName.Contains("FloatingTPS"))
             {
                 return floatingTps.Description;
             }
         
-            if (name.Contains("SlowShit"))
+            if (abilityName.Contains("SlowShit"))
             {
                 return slowShit.Description;
             }
         
-            if (name.Contains("SpeedBoom"))
+            if (abilityName.Contains("SpeedBoom"))
             {
                 return speedBoom.Description;
             }
         
-            if (name.Contains("DamageBoost"))
+            if (abilityName.Contains("DamageBoost"))
             {
                 return damageBoost.Description;
             }
         
-            if (name.Contains("FireBoost"))
+            if (abilityName.Contains("FireBoost"))
             {
                 return fireBoost.Description;
             }
         
-            if (name.Contains("RangeGiga"))
+            if (abilityName.Contains("RangeGiga"))
             {
                 return rangeGiga.Description;
             }
@@ -192,6 +192,41 @@ namespace Abilities.Passive
             return "Error! You were not meant to see this";
         }
     
+        public string Name(string abilityName)
+        {
+            if (abilityName.Contains("FloatingTPS"))
+            {
+                return floatingTps.Name;
+            }
+        
+            if (abilityName.Contains("SlowShit"))
+            {
+                return slowShit.Name;
+            }
+        
+            if (abilityName.Contains("SpeedBoom"))
+            {
+                return speedBoom.Name;
+            }
+        
+            if (abilityName.Contains("DamageBoost"))
+            {
+                return damageBoost.Name;
+            }
+        
+            if (abilityName.Contains("FireBoost"))
+            {
+                return fireBoost.Name;
+            }
+        
+            if (abilityName.Contains("RangeGiga"))
+            {
+                return rangeGiga.Name;
+            }
+
+            return "Error! You were not meant to see this";
+        }
+        
         public void SetAbility(GameObject abil)
         {
             this.ActiveAbil = abil;

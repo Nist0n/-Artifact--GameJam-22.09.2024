@@ -21,6 +21,8 @@ namespace Abilities.Passive
         private bool _isPassiveUsed = false;
         private PassiveAbilities _passiveAbilities;
 
+        public string Name { private set; get; } = "Силовые поршни";
+        
         public string Description { private set; get; } = "Увеличивает урон башни на 40%";
     
         private void Start()

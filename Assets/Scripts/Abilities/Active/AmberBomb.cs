@@ -17,6 +17,8 @@ public class AmberBomb : MonoBehaviour
 
     public float Cost;
 
+    public string Name { private set; get; } = "Янтарная бомба";
+    
     public string Description { private set; get; } = "Создаёт область, в которой враги получают урон";
     
     private void Update()
