@@ -27,15 +27,7 @@ namespace Towers
         private void Update()
         {
             GameConfig.Instance.isInTower = mainCinemachineCamera.Priority == 0;
-            // if (mainCinemachineCamera.Priority == 1 || shopCinemachineCamera.Priority == 1)
-            // {
-            //     GameConfig.Instance.isInTower = false;
-            // }
-            // else
-            // {
-            //     GameConfig.Instance.isInTower = true;
-            // }
-            
+
             if (Input.GetKeyDown(KeyCode.Q)) // Exit tower
             {
                 if (mainCinemachineCamera.IsLive)
