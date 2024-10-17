@@ -1,5 +1,15 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-7596869921374811690
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ingame4_bloodpixelhero_{-7596869921374811690}
+  m_AudioClip: {fileID: 8300000, guid: a5e6d657c59e49f4eb64bf859988c081, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
 --- !u!1233149941 &-2862908281074811351
 AudioContainerElement:
   m_ObjectHideFlags: 1
@@ -29,6 +39,7 @@ AudioRandomContainer:
   - {fileID: -2862908281074811351}
   - {fileID: 8041665697347929211}
   - {fileID: 9089606086163919811}
+  - {fileID: -7596869921374811690}
   m_AvoidRepeatingLast: 0
   m_PlaybackMode: 1
   m_TriggerMode: 1
