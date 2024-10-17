@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Sound;
+using Audio;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

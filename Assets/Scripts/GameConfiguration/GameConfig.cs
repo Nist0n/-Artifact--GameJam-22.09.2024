@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using Audio;
 using GameConfiguration.Spawners;
-using Sound;
 using TMPro;
 using UI.InGame;
 using Unity.Cinemachine;
@@ -70,8 +70,7 @@ namespace GameConfiguration
 
         private void Start()
         {
-            int randMusic = Random.Range(1, 3);
-            AudioManager.instance.PlayMusic($"InGame{randMusic}");
+            AudioManager.instance.StartMusicShuffle();
             GetSpawners();
         }
 
@@ -85,6 +84,7 @@ namespace GameConfiguration
 
             if (EnemyList.Count <= 0 && GameTime > waveTime)
             {
+                HasWon = true;
                 GameWon();
                 return;
             }

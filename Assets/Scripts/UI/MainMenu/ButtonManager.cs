@@ -1,5 +1,5 @@
 using System.Collections;
-using Sound;
+using Audio;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Rendering;

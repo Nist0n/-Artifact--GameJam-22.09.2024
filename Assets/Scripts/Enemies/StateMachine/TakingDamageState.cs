@@ -1,5 +1,5 @@
+using Audio;
 using GameConfiguration;
-using Sound;
 using UnityEngine;
 
 public class TakingDamageState : EnemyState

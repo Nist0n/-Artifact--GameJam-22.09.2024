@@ -1,6 +1,6 @@
+using Audio;
 using Enemies;
 using GameConfiguration;
-using Sound;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;

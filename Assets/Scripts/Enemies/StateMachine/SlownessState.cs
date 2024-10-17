@@ -1,26 +1,26 @@
 using GameConfiguration;
-using NUnit.Framework;
-using UnityEngine;
 
-public class SlownessState : EnemyState
+namespace Enemies.StateMachine
 {
-    public override void Enter()
+    public class SlownessState : EnemyState
     {
-        navMeshAgent.speed = Speed * Slowness;
-        Debug.Log(navMeshAgent.speed);
-    }
-    
-    public override void Do()
-    {
-        animationController.Run();
-        if (IsDamaged || IsAttacking || GameConfig.Instance.HasLost || IsFrozen || !IsSlowness)
+        public override void Enter()
         {
-            IsComplete = true;
+            navMeshAgent.speed = Speed * Slowness;
         }
-    }
     
-    public override void Exit()
-    {
+        public override void Do()
+        {
+            animationController.Run();
+            if (IsDamaged || IsAttacking || GameConfig.Instance.HasLost || IsFrozen || !IsSlowness)
+            {
+                IsComplete = true;
+            }
+        }
+    
+        public override void Exit()
+        {
         
+        }
     }
 }
