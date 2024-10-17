@@ -26,6 +26,8 @@ namespace Enemies
         public CelebratingState Celebrating;
         public SlownessState Slow;
 
+        private Coroutine _hpBarCoroutine;
+        
         private void Start()
         {
             Health = MaxHealth;
@@ -55,7 +57,7 @@ namespace Enemies
                     return;
                 }
                 
-                if (IsFreezed)
+                if (IsFrozen)
                 {
                     Set(Freeze);
                 }
@@ -127,6 +129,11 @@ namespace Enemies
         
         public void ReceiveDamageActivate(float damage)
         {
+            if (_hpBarCoroutine != null)
+            {
+                StopCoroutine(_hpBarCoroutine);
+                _hpBarCoroutine = null;
+            }
             StartCoroutine(ReceiveDamage(damage));
         }
 
@@ -140,7 +147,10 @@ namespace Enemies
         {
             IsDamaged = true;
             Health -= damage;
-            StartCoroutine(ShowHpBar());
+            if (_hpBarCoroutine == null)
+            {
+                _hpBarCoroutine = StartCoroutine(ShowHpBar());
+            }
             _lerpTimer = 0;
             yield return new WaitForSeconds(0.1f);
             IsDamaged = false;
@@ -148,9 +158,9 @@ namespace Enemies
         
         private IEnumerator FreezeEnemy(float freezeTime)
         {
-            IsFreezed = true;
+            IsFrozen = true;
             yield return new WaitForSeconds(freezeTime);
-            IsFreezed = false;
+            IsFrozen = false;
         }
         
         private void OnTriggerEnter(Collider other)
@@ -163,14 +173,11 @@ namespace Enemies
 
         private IEnumerator ShowHpBar()
         {
-            if (front.color.a == 0)
-            {
-                front.color = Color.red;
-                back.color = Color.white;
-                yield return new WaitForSeconds(3f);
-                front.color = Color.clear;
-                back.color = Color.clear;
-            }
+            front.color = Color.red;
+            back.color = Color.white;
+            yield return new WaitForSeconds(3f);
+            front.color = Color.clear;
+            back.color = Color.clear;
         }
         
         private void UpdateHpBar()

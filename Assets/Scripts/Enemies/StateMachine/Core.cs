@@ -2,6 +2,7 @@ using System.Collections;
 using Enemies;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 public abstract class Core : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public abstract class Core : MonoBehaviour
 
     public float Damage;
 
-    public bool IsFreezed = false;
+    [FormerlySerializedAs("IsFreezed")] public bool IsFrozen = false;
     
     public bool IsSlowness = false;
 

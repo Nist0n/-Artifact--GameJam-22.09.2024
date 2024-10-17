@@ -11,7 +11,7 @@ public class AttackingState : EnemyState
     public override void Do()
     {
         animationController.Attacking();
-        if (!IsAttacking || GameConfig.Instance.HasLost || IsFreezed)
+        if (!IsAttacking || GameConfig.Instance.HasLost || IsFrozen)
         {
             IsComplete = true;
         }

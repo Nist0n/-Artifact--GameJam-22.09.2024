@@ -13,7 +13,7 @@ public class TakingDamageState : EnemyState
     public override void Do()
     {
         animationController.TakeDamage();
-        if (!IsDamaged || GameConfig.Instance.HasLost || IsFreezed)
+        if (!IsDamaged || GameConfig.Instance.HasLost || IsFrozen)
         {
             IsComplete = true;
         }
