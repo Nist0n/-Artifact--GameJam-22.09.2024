@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Audio;
 using Shop;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -49,6 +50,7 @@ namespace Towers
                 
                 towerSlots.Circle.SetActive(false);
                 _currentTower.piloted = false;
+                AudioManager.instance.PlaySFX("Clicked");
                 _currentTower.towerCamera.Priority = 0;
                 mainCinemachineCamera.Priority = 1;
                 buffImage.SetActive(false);
@@ -77,6 +79,7 @@ namespace Towers
                 {
                     if (hit.collider.gameObject.CompareTag("Tower")) // If clicking on a tower
                     {
+                        AudioManager.instance.PlaySFX("Click");
                         Tower tower = hit.collider.gameObject.GetComponent<Tower>();
                         
                         buyingSystem.ResetLists(); // чистка выбора умений

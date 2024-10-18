@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Shop
 {
     public class ButtonFrozen : MonoBehaviour
     {
-        public bool Isfreezed = false;
+        public bool IsFrozen = false;
     }
 }

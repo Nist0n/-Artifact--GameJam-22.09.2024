@@ -1,6 +1,6 @@
-﻿using System;
-using Abilities.Active;
+﻿using Abilities.Active;
 using Abilities.Passive;
+using Audio;
 using UnityEngine;
 
 namespace UI.InGame
@@ -23,19 +23,20 @@ namespace UI.InGame
 
         public void SetAndShowTooltip()
         {
+            AudioManager.instance.PlaySFX("Aimed");
             _tooltip.SetActive(true);
             float cost = 0;
             string description = "";
-            string name = "";
+            string abilityName = "";
             if (gameObject.TryGetComponent(out PassiveAbilities passive))
             {
-                name = passive.Name(gameObject.name);
+                abilityName = passive.Name(gameObject.name);
                 cost = passive.Cost(gameObject.name);
                 description = passive.Description(gameObject.name);
             }
             else if (gameObject.TryGetComponent(out ActiveAbility active))
             {
-                name = active.Name(gameObject.name);
+                abilityName = active.Name(gameObject.name);
                 cost = active.Cost(gameObject.name);
                 description = active.Description(gameObject.name);
             }
@@ -44,7 +45,7 @@ namespace UI.InGame
                 Debug.Log("Couldn't find script");
             }
             
-            _tooltip.GetComponent<Tooltip>().textComponent.text = $"{name}\nСтоимость: {cost}\n{description}";
+            _tooltip.GetComponent<Tooltip>().textComponent.text = $"{abilityName}\nСтоимость: {cost}\n{description}";
         }
         
         public void HideTooltip()
