@@ -16343,11 +16343,11 @@ MonoBehaviour:
   timerText: {fileID: 812701639}
   loseCinemachineCamera: {fileID: 2051529544}
   boss: {fileID: 1042049111983135298, guid: 0481631e36099474198d77e49d4bae14, type: 3}
-  GameTime: 0
-  EnemyList: []
-  _spawners: []
-  HasLost: 0
-  HasWon: 0
+  gameTime: 0
+  enemyList: []
+  spawners: []
+  hasLost: 0
+  hasWon: 0
   isInTower: 0
   waveTime: 750
   objectsToHide:

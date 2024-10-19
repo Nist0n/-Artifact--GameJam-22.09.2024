@@ -37,36 +37,36 @@ namespace Towers
         public float buffedFireRatePercent;
         public float buffedDamagePercent;
         
-        public float _initialDamage;
-        public float _initialFireRate;
+        public float initialDamage;
+        public float initialFireRate;
         private float _initialAttackRange;
 
-        public AudioSource _audioSource;
+        [FormerlySerializedAs("_audioSource")] public AudioSource audioSource;
 
         [SerializeField] private bool isBuffed;
         
         private void Start()
         {
-            _initialDamage = damage;
-            _initialFireRate = fireRate;
+            initialDamage = damage;
+            initialFireRate = fireRate;
             _initialAttackRange = attackRange;
         }
         
         private void Update()
         {
-            if (GameConfig.Instance.HasLost || GameConfig.Instance.HasWon)
+            if (GameConfig.Instance.hasLost || GameConfig.Instance.hasWon)
             {
                 return;
             }
             
             enemiesInRange = new List<GameObject>();
-            if (GameConfig.Instance.EnemyList.Count == 0)
+            if (GameConfig.Instance.enemyList.Count == 0)
             {
                 ResetVariables();
                 return;
             }
             
-            foreach (var enem in GameConfig.Instance.EnemyList)
+            foreach (var enem in GameConfig.Instance.enemyList)
             {
                 if (enem)
                 {
@@ -110,8 +110,7 @@ namespace Towers
                     if (!piloted)
                     {
                         SuppressTower();
-                        StartCoroutine(Shoot(transform.position, CurrentAutoTarget.transform.position,
-                            CurrentAutoTarget)); 
+                        StartCoroutine(Shoot(transform.position, CurrentAutoTarget)); 
                     }
                 }
             }
@@ -141,10 +140,9 @@ namespace Towers
                         return;
                     }
 
-                    // Potentially check if !isBuffed, although it introduces new challenges as already seen
                     ResetTowerStats();
                     
-                    StartCoroutine(Shoot(position, enemyPos, towerCameraComp.currentTarget));
+                    StartCoroutine(Shoot(position, towerCameraComp.currentTarget));
                 }
             }
         }
@@ -156,10 +154,10 @@ namespace Towers
             StopCoroutine(nameof(Shoot));
         }
 
-        private IEnumerator Shoot(Vector3 currentPos, Vector3 enemyPos, GameObject target)
+        private IEnumerator Shoot(Vector3 currentPos, GameObject target)
         {
             _canShoot = false;
-            AudioManager.instance.PlayLocalSound("Tower", _audioSource);
+            AudioManager.instance.PlayLocalSound("Tower", audioSource);
 
             Vector3 projectilePos =
                 new Vector3(currentPos.x, currentPos.y + 12.7f, currentPos.z);
@@ -195,8 +193,8 @@ namespace Towers
         private IEnumerator Buff()
         {
             isBuffed = true;
-            fireRate = _initialFireRate * buffedFireRatePercent;
-            damage = _initialDamage * buffedDamagePercent;
+            fireRate = initialFireRate * buffedFireRatePercent;
+            damage = initialDamage * buffedDamagePercent;
             StartCoroutine(BuffCooldown());
             yield return new WaitForSeconds(buffDuration);
             
@@ -215,19 +213,19 @@ namespace Towers
         {
             if (isBuffed)
             {
-                damage = _initialDamage * buffedDamagePercent;
-                fireRate = _initialFireRate * buffedFireRatePercent;
+                damage = initialDamage * buffedDamagePercent;
+                fireRate = initialFireRate * buffedFireRatePercent;
                 return;
             }
             
-            damage = _initialDamage;
-            fireRate = _initialFireRate;
+            damage = initialDamage;
+            fireRate = initialFireRate;
         }
 
         private void SuppressTower()
         {
-            damage = _initialDamage / 2;
-            fireRate = _initialFireRate * 2;
+            damage = initialDamage / 2;
+            fireRate = initialFireRate * 2;
         }
 
         public void SetSlowness()

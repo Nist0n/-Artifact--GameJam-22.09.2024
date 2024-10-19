@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Abilities.Active;
 using Abilities.Passive;
+using Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -201,6 +202,7 @@ namespace Shop
                     SetAbilityOnTower(chosenUpgrade);
                     ResetLists();
                     SoulsCounter.Instance.Dreams -= tempCost;
+                    AudioManager.instance.PlaySFX("Coin");
                 }
                 else
                 {
@@ -216,6 +218,7 @@ namespace Shop
                     SetAbilityOnTower(chosenUpgrade);
                     ResetLists();
                     SoulsCounter.Instance.Dreams -= tempCost;
+                    AudioManager.instance.PlaySFX("Coin");
                 }
                 else
                 {

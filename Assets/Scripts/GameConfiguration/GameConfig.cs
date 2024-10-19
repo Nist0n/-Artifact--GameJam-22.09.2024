@@ -2,10 +2,8 @@ using System.Collections.Generic;
 using Audio;
 using GameConfiguration.Spawners;
 using TMPro;
-using UI.InGame;
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace GameConfiguration
@@ -22,31 +20,31 @@ namespace GameConfiguration
 
         [SerializeField] private GameObject boss;
 
-        public float GameTime;
+        public float gameTime;
 
         private float _timeMinutes;
     
         private float _timeSeconds;
 
-        public List<GameObject> EnemyList;
+        public List<GameObject> enemyList;
 
-        [SerializeField] private List<Spawner> _spawners;
+        [SerializeField] private List<Spawner> spawners;
 
         private float _previousCount = 10;
 
         private float _percentAdvantage = 15;
 
-        private float _waveTime = 0f;
+        private float _waveTime;
 
-        public bool HasLost = false;
+        public bool hasLost;
 
         private float _countOfUnits;
 
-        private bool IsWaveStarted = false;
+        private bool _isWaveStarted;
 
-        private bool IsBossSpawned = false;
+        private bool _isBossSpawned;
 
-        public bool HasWon;
+        public bool hasWon;
 
         public bool isInTower;
         
@@ -76,20 +74,24 @@ namespace GameConfiguration
 
         private void Update()
         {
-            if (HasLost)
+            if (hasLost)
             {
-                GameLost();
+                if (!loseUI.activeSelf)
+                {
+                    GameLost();
+                }
+                
                 return;
             }
 
-            if (EnemyList.Count <= 0 && GameTime > waveTime)
+            if (enemyList.Count <= 0 && gameTime > waveTime)
             {
-                HasWon = true;
+                hasWon = true;
                 GameWon();
                 return;
             }
         
-            GameTime += Time.deltaTime;
+            gameTime += Time.deltaTime;
         
             Timer();
         
@@ -100,7 +102,7 @@ namespace GameConfiguration
 
         private void ControlCursor()
         {
-            if (!isInTower || HasLost || HasWon || Time.timeScale == 0)
+            if (!isInTower || hasLost || hasWon || Time.timeScale == 0)
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
@@ -117,26 +119,26 @@ namespace GameConfiguration
             var spawn = GetComponentsInChildren<Spawner>();
             foreach (var spawner in spawn)
             {
-                _spawners.Add(spawner);
+                spawners.Add(spawner);
             }
         }
 
         private void GameBrain()
         {
-            if (GameTime > waveTime && !IsBossSpawned)
+            if (gameTime > waveTime && !_isBossSpawned)
             {
-                StartCoroutine(_spawners[1].SpawnBoss(boss));
-                IsWaveStarted = true;
-                IsBossSpawned = true;
+                StartCoroutine(spawners[1].SpawnBoss(boss));
+                _isWaveStarted = true;
+                _isBossSpawned = true;
             }
         
-            if (GameTime > _waveTime && !IsWaveStarted)
+            if (gameTime > _waveTime && !_isWaveStarted)
             {
                 AudioManager.instance.PlaySFX("SpawnMobs");
                 _percentAdvantage = Mathf.Round(_percentAdvantage *= 1.15f);
                 _countOfUnits = Random.Range(_previousCount, _percentAdvantage);
                 GetSummoners(_countOfUnits);
-                foreach (var spawner in _spawners)
+                foreach (var spawner in spawners)
                 {
                     spawner.MaxTimeToSpawn *= 0.89f;
                     spawner.MinTimeToSpawn *= 0.92f;
@@ -145,12 +147,12 @@ namespace GameConfiguration
 
                 _previousCount = _percentAdvantage;
 
-                IsWaveStarted = true;
+                _isWaveStarted = true;
 
                 if (_waveTime < 75) _waveTime = 75;
                 else _waveTime += 75;
 
-                IsWaveStarted = false;
+                _isWaveStarted = false;
             }
         }
 
@@ -158,15 +160,15 @@ namespace GameConfiguration
         {
             for (int i = 0; i < enemyCount; i++)
             {
-                var randSpawner = Random.Range(0, _spawners.Count);
+                var randSpawner = Random.Range(0, spawners.Count);
                 var randEnemy = Random.Range(0, enemiesTypes.Count);
-                _spawners[randSpawner].SetEnemies(enemiesTypes[randEnemy]);
+                spawners[randSpawner].SetEnemies(enemiesTypes[randEnemy]);
             }
         }
 
         private void Timer()
         {
-            _timeMinutes = Mathf.Floor(GameTime / 60);
+            _timeMinutes = Mathf.Floor(gameTime / 60);
             if (_timeSeconds < 59) _timeSeconds += Time.deltaTime;
             else _timeSeconds = 0;
             timerText.text = $"Время: {_timeMinutes}:{_timeSeconds:00}";
@@ -174,6 +176,8 @@ namespace GameConfiguration
 
         private void GameLost()
         {
+            AudioManager.instance.StopMusicSourceLoop();
+            AudioManager.instance.PlayMusic("Defeat");
             loseCinemachineCamera.Priority = 2;
             loseUI.SetActive(true);
             foreach (var gameObj in objectsToHide)

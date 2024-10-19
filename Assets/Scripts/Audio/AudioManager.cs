@@ -30,21 +30,27 @@ namespace Audio
         {
             Sound s = music.Find(x => x.name == soundName);
 
-            if (s != null)
+            if (s == null)
             {
-                musicSource.clip = s.audio;
-                musicSource.Play();
+                Debug.LogWarning("Music: " + soundName + " not found!");
+                return;
             }
+            
+            musicSource.clip = s.audio;
+            musicSource.Play();
         }
 
         public void PlaySFX(string soundName)
         {
             Sound s = sounds.Find(x => x.name == soundName);
 
-            if (s != null)
+            if (s == null)
             {
-                SFXSource.PlayOneShot(s.audio);
+                Debug.LogWarning("Sound " + soundName + " not found!");
+                return;
             }
+            
+            SFXSource.PlayOneShot(s.audio);
         }
 
         public void PlayRandomSoundByName(string soundName, AudioSource source)
@@ -93,6 +99,11 @@ namespace Audio
         {
             musicSource.resource = musicAudioRandomController;
             musicSource.Play();
+        }
+
+        public void StopMusicSourceLoop()
+        {
+            musicSource.loop = false;
         }
     }
 }

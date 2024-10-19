@@ -34,7 +34,7 @@ namespace Castle
     
             if (health <= 0)
             {
-                GameConfig.Instance.HasLost = true;
+                GameConfig.Instance.hasLost = true;
             }
 
             if (_timer <= _cooldown)

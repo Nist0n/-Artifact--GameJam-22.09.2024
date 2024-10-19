@@ -51,7 +51,7 @@ namespace Enemies
             
             if (State.IsComplete)
             {
-                if (GameConfig.Instance.HasLost)
+                if (GameConfig.Instance.hasLost)
                 {
                     Set(Celebrating);
                     return;

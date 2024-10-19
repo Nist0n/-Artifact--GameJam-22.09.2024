@@ -50,7 +50,7 @@ namespace Towers
                 
                 towerSlots.Circle.SetActive(false);
                 _currentTower.piloted = false;
-                AudioManager.instance.PlaySFX("Clicked");
+                AudioManager.instance.PlaySFX("Click");
                 _currentTower.towerCamera.Priority = 0;
                 mainCinemachineCamera.Priority = 1;
                 buffImage.SetActive(false);

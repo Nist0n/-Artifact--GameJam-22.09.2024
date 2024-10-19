@@ -57,7 +57,7 @@ namespace Abilities.Passive
 
         private void SetPassiveBonus()
         {
-            _tower._initialFireRate *= tps;
+            _tower.initialFireRate *= tps;
             _isPassiveUsed = true;
             ActiveOnTheTower = true;
         }

@@ -56,7 +56,7 @@ namespace Abilities.Passive
 
         private void SetPassiveBonus()
         {
-            _tower._initialDamage = Mathf.Round(damage * _tower._initialDamage);
+            _tower.initialDamage = Mathf.Round(damage * _tower.initialDamage);
             _isPassiveUsed = true;
             ActiveOnTheTower = true;
         }

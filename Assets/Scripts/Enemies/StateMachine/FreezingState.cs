@@ -11,7 +11,7 @@ public class FreezingState : EnemyState
     
     public override void Do()
     {
-        if (!IsFrozen || GameConfig.Instance.HasLost)
+        if (!IsFrozen || GameConfig.Instance.hasLost)
         {
             navMeshAgent.speed = 1f;
             animator.speed = 1f;

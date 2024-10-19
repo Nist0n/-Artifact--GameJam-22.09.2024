@@ -16,12 +16,12 @@ namespace UI.InGame
         void Update()
         {
             if (timer > 0) timer -= Time.deltaTime;
-            if (GameConfig.Instance.EnemyList.Count <= 0 && _gameRun && timer < 0) {
+            if (GameConfig.Instance.enemyList.Count <= 0 && _gameRun && timer < 0) {
                 _gameRun = false;
-                GameConfig.Instance.HasWon = true;
+                GameConfig.Instance.hasWon = true;
             }
 
-            if (GameConfig.Instance.HasWon)
+            if (GameConfig.Instance.hasWon)
             {
                 VictoryMode();
             }
