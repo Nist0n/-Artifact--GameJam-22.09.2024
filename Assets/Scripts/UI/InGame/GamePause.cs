@@ -11,10 +11,10 @@ namespace UI.InGame
         [SerializeField] GameObject dreamCounter;
         [SerializeField] Animator continueButtonAnimator;
 
-        // private void Start()
-        // {
-        //     continueButtonAnimator.keepAnimatorStateOnDisable = true;
-        // }
+        private void Start()
+        {
+            // continueButtonAnimator.keepAnimatorStateOnDisable = true;
+        }
 
         private void Update()
         {
