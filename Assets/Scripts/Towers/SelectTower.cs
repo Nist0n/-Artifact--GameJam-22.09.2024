@@ -27,6 +27,11 @@ namespace Towers
 
         private void Update()
         {
+            if (GameConfig.Instance.hasLost)
+            {
+                return;
+            }
+            
             GameConfig.Instance.isInTower = mainCinemachineCamera.Priority == 0;
 
             if (Input.GetKeyDown(KeyCode.Q)) // Exit tower
