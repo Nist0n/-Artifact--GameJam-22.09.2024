@@ -8,7 +8,7 @@ AudioContainerElement:
   m_PrefabAsset: {fileID: 0}
   m_Name: ingame4_bloodpixelhero_{-7596869921374811690}
   m_AudioClip: {fileID: 8300000, guid: a5e6d657c59e49f4eb64bf859988c081, type: 3}
-  m_Volume: 0
+  m_Volume: -7
   m_Enabled: 1
 --- !u!1233149941 &-2862908281074811351
 AudioContainerElement:
@@ -33,7 +33,7 @@ AudioRandomContainer:
   m_LoopCount: 1
   m_VolumeRandomizationRange: {x: 0, y: 0}
   m_PitchRandomizationRange: {x: 0, y: 0}
-  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 2}
   m_LoopCountRandomizationRange: {x: 0, y: 0}
   m_Elements:
   - {fileID: -2862908281074811351}
@@ -47,7 +47,7 @@ AudioRandomContainer:
   m_LoopMode: 0
   m_VolumeRandomizationEnabled: 0
   m_PitchRandomizationEnabled: 0
-  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_AutomaticTriggerTimeRandomizationEnabled: 1
   m_LoopCountRandomizationEnabled: 0
 --- !u!1233149941 &8041665697347929211
 AudioContainerElement:
@@ -67,5 +67,5 @@ AudioContainerElement:
   m_PrefabAsset: {fileID: 0}
   m_Name: In game 3 jadis0x_{9089606086163919811}
   m_AudioClip: {fileID: 8300000, guid: 07450215f8611b94db49c1d069e47468, type: 3}
-  m_Volume: 0
+  m_Volume: -7
   m_Enabled: 1
