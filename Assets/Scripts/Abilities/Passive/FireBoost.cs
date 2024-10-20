@@ -16,7 +16,7 @@ namespace Abilities.Passive
         
         public bool ActiveOnTheTower = false;
 
-        [SerializeField] private float tps = 0.6f;
+        [SerializeField] private float tps = 0.3f;
 
         private bool _isPassiveUsed = false;
         
@@ -57,7 +57,7 @@ namespace Abilities.Passive
 
         private void SetPassiveBonus()
         {
-            _tower.initialFireRate *= tps;
+            _tower.gameObject.GetComponent<AbilityTowerBuff>().AbilityFireRateBuff += tps;
             _isPassiveUsed = true;
             ActiveOnTheTower = true;
         }

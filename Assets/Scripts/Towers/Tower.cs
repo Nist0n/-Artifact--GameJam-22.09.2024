@@ -21,6 +21,8 @@ namespace Towers
 
         [SerializeField] private GameObject buffImage;
 
+        [SerializeField] private AbilityTowerBuff abilityTowerBuff;
+
         public TowerCamera towerCameraComp;
         
         public CinemachineCamera towerCamera;
@@ -222,8 +224,9 @@ namespace Towers
                 return;
             }
             
-            damage = initialDamage;
-            fireRate = initialFireRate;
+            damage = Mathf.Round(initialDamage * abilityTowerBuff.AbilityDamageBuff);
+            fireRate = initialFireRate / (1 + abilityTowerBuff.AbilityFireRateBuff);
+            attackRange = _initialAttackRange + (1.4f * abilityTowerBuff.AbilityRangeBuff / (0.1f * abilityTowerBuff.AbilityRangeBuff + 0.3f));
         }
 
         private void SuppressTower()

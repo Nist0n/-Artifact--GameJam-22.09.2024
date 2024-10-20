@@ -16,7 +16,7 @@ namespace Abilities.Passive
         
         public bool ActiveOnTheTower = false;
 
-        [SerializeField] private float damage = 1.4f;
+        [SerializeField] private float damage = 0.4f;
 
         private bool _isPassiveUsed = false;
         private PassiveAbilities _passiveAbilities;
@@ -56,7 +56,7 @@ namespace Abilities.Passive
 
         private void SetPassiveBonus()
         {
-            _tower.initialDamage = Mathf.Round(damage * _tower.initialDamage);
+            _tower.gameObject.GetComponent<AbilityTowerBuff>().AbilityDamageBuff += damage;
             _isPassiveUsed = true;
             ActiveOnTheTower = true;
         }

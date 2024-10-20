@@ -16,7 +16,7 @@ namespace Abilities.Passive
 
         public bool ActiveOnTheTower = false;
 
-        [SerializeField] private float radius = 1.25f;
+        [SerializeField] private float radius = 1;
 
         private bool _isPassiveUsed = false;
         
@@ -57,7 +57,7 @@ namespace Abilities.Passive
 
         private void SetPassiveBonus()
         {
-            _tower.attackRange *= radius;
+            _tower.gameObject.GetComponent<AbilityTowerBuff>().AbilityRangeBuff += radius;
             _isPassiveUsed = true;
             ActiveOnTheTower = true;
         }
