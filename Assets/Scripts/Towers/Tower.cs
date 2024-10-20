@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Audio;
+using Enemies;
 using GameConfiguration;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace Towers
         public float fireRate; // Time between shots (in seconds)
         public float attackRange;
 
-        [SerializeField] protected bool Slowness;
+        [SerializeField] protected bool slowness;
 
         [SerializeField] private GameObject projectilePrefab;
 
@@ -24,7 +25,7 @@ namespace Towers
         
         public CinemachineCamera towerCamera;
 
-        protected GameObject CurrentAutoTarget;
+        protected GameObject CurrentTarget;
 
         private bool _canShoot = true;
         public bool piloted;
@@ -66,23 +67,23 @@ namespace Towers
                 return;
             }
             
-            foreach (var enem in GameConfig.Instance.enemyList)
+            foreach (GameObject enemy in GameConfig.Instance.enemyList)
             {
-                if (enem)
+                if (enemy)
                 {
-                    if (Vector3.SqrMagnitude(enem.transform.position - transform.position) < attackRange * attackRange)
+                    if (Vector3.SqrMagnitude(enemy.transform.position - transform.position) < attackRange * attackRange)
                     {
-                        if (!enemiesInRange.Contains(enem))
+                        if (!enemiesInRange.Contains(enemy))
                         {
-                            enemiesInRange.Add(enem);
+                            enemiesInRange.Add(enemy);
                         }
                     } 
                 }
                 else
                 {
-                    if (enemiesInRange.Contains(enem))
+                    if (enemiesInRange.Contains(enemy))
                     {
-                        enemiesInRange.Remove(enem);
+                        enemiesInRange.Remove(enemy);
                     }
                 }
             }
@@ -103,14 +104,14 @@ namespace Towers
                     }
                 }
                 
-                CurrentAutoTarget = closestEnemy;
+                CurrentTarget = closestEnemy;
                 
                 if (_canShoot)
                 {
                     if (!piloted)
                     {
                         SuppressTower();
-                        StartCoroutine(Shoot(transform.position, CurrentAutoTarget)); 
+                        StartCoroutine(Shoot(transform.position, CurrentTarget)); 
                     }
                 }
             }
@@ -149,7 +150,7 @@ namespace Towers
 
         private void ResetVariables()
         {
-            CurrentAutoTarget = null;
+            CurrentTarget = null;
             _canShoot = true;
             StopCoroutine(nameof(Shoot));
         }
@@ -157,17 +158,20 @@ namespace Towers
         private IEnumerator Shoot(Vector3 currentPos, GameObject target)
         {
             _canShoot = false;
-            AudioManager.instance.PlayLocalSound("Tower", audioSource);
-
-            Vector3 projectilePos =
-                new Vector3(currentPos.x, currentPos.y + 12.7f, currentPos.z);
-            Projectile projectile = Instantiate(projectilePrefab, projectilePos, Quaternion.identity).GetComponent<Projectile>();
-            projectile.damage = damage;
-            projectile.Slowness = Slowness;
             
             if (target is not null)
             {
-                projectile.CurrentAutoTarget = target;
+                Enemy enemy = target.GetComponent<Enemy>();
+                if (enemy.Health > 0)
+                {
+                    Vector3 projectilePos =
+                        new Vector3(currentPos.x, currentPos.y + 12.7f, currentPos.z);
+                    Projectile projectile = Instantiate(projectilePrefab, projectilePos, Quaternion.identity).GetComponent<Projectile>();
+                    projectile.damage = damage;
+                    projectile.slowness = slowness;
+                    projectile.CurrentTarget = target;
+                    AudioManager.instance.PlayLocalSound("Tower", audioSource);
+                }
             }
 
             yield return new WaitForSeconds(fireRate);
@@ -230,7 +234,7 @@ namespace Towers
 
         public void SetSlowness()
         {
-            Slowness = true;
+            slowness = true;
         }
     }
 }
