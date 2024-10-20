@@ -74,6 +74,8 @@ namespace GameConfiguration
 
         private void Update()
         {
+            ControlCursor();
+            
             if (hasLost)
             {
                 if (!loseUI.activeSelf)
@@ -96,8 +98,6 @@ namespace GameConfiguration
             Timer();
         
             GameBrain();
-
-            ControlCursor();
         }
 
         private void ControlCursor()
