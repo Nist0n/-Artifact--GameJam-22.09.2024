@@ -92,20 +92,8 @@ namespace Towers
             
             if (enemiesInRange.Count > 0)
             {
-                float minDistanceSqr = attackRange * attackRange;
                 GameObject closestEnemy = enemiesInRange[0];
-                foreach (var enemy in enemiesInRange)
-                {
-                    Vector3 enemyPos = enemy.transform.position;
-                    float distanceSqr = Vector3.SqrMagnitude(transform.position - enemyPos);
-                    
-                    if (distanceSqr < minDistanceSqr)
-                    {
-                        minDistanceSqr = distanceSqr;
-                        closestEnemy = enemy;
-                    }
-                }
-                
+
                 CurrentTarget = closestEnemy;
                 
                 if (_canShoot)
