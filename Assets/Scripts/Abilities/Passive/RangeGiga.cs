@@ -23,11 +23,11 @@ namespace Abilities.Passive
         private PassiveAbilities _passiveAbilities;
 
         public string Name { private set; get; } = "Чёткий прицел";
-        public string Description { private set; get; } = "Увеличивает дальность атаки башни на 25%";
+        public string Description { private set; get; } = "Увеличивает дальность атаки башни";
     
         private void Start()
         {
-            Description = $"Увеличивает дальность атаки башни на {(radius - 1) * 100}%";
+            Description = "Увеличивает дальность атаки башни%";
             _passiveAbilities = GetComponent<PassiveAbilities>();
         }
 

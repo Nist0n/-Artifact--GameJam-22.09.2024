@@ -16,7 +16,7 @@ namespace Abilities.Passive
         
         public bool ActiveOnTheTower = false;
 
-        [SerializeField] private float tps = 0.3f;
+        [SerializeField] private static float tps = 0.25f;
 
         private bool _isPassiveUsed = false;
         
@@ -24,7 +24,7 @@ namespace Abilities.Passive
 
         public string Name { private set; get; } = "Скоропоточный двигатель";
         
-        public string Description { private set; get; } = "Увеличивает скорострельность башни на 40%";
+        public string Description { private set; get; } = $"Увеличивает скорострельность башни на {tps * 100}%\n(+{tps * 100}% за штуку)";
     
         private void Start()
         {

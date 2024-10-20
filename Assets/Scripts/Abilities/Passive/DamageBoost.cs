@@ -16,14 +16,14 @@ namespace Abilities.Passive
         
         public bool ActiveOnTheTower = false;
 
-        [SerializeField] private float damage = 0.4f;
+        [SerializeField] private static float damage = 0.4f;
 
         private bool _isPassiveUsed = false;
         private PassiveAbilities _passiveAbilities;
 
         public string Name { private set; get; } = "Силовые поршни";
         
-        public string Description { private set; get; } = "Увеличивает урон башни на 40%";
+        public string Description { private set; get; } = $"Увеличивает урон башни на {damage * 100}%\n(+{damage * 100}% за штуку)";
     
         private void Start()
         {
