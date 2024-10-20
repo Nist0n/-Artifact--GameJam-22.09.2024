@@ -169,14 +169,14 @@ namespace Towers
                     Vector3 projectilePos =
                         new Vector3(currentPos.x, currentPos.y + 12.7f, currentPos.z);
                     Projectile projectile = Instantiate(projectilePrefab, projectilePos, Quaternion.identity).GetComponent<Projectile>();
-                    projectile.damage = damage;
+                    projectile.damage = initialDamage;
                     projectile.slowness = slowness;
                     projectile.CurrentTarget = target;
                     AudioManager.instance.PlayLocalSound("Tower", audioSource);
                 }
             }
 
-            yield return new WaitForSeconds(fireRate);
+            yield return new WaitForSeconds(initialFireRate);
             _canShoot = true;
         }
 
@@ -199,8 +199,8 @@ namespace Towers
         private IEnumerator Buff()
         {
             isBuffed = true;
-            fireRate = initialFireRate * buffedFireRatePercent;
-            damage = initialDamage * buffedDamagePercent;
+            initialFireRate = fireRate / (1 + abilityTowerBuff.AbilityFireRateBuff) * buffedFireRatePercent;
+            initialDamage = Mathf.Round(damage * abilityTowerBuff.AbilityDamageBuff) * buffedDamagePercent;
             StartCoroutine(BuffCooldown());
             yield return new WaitForSeconds(buffDuration);
             
@@ -219,20 +219,20 @@ namespace Towers
         {
             if (isBuffed)
             {
-                damage = initialDamage * buffedDamagePercent;
-                fireRate = initialFireRate * buffedFireRatePercent;
+                initialDamage = Mathf.Round(damage * abilityTowerBuff.AbilityDamageBuff) * buffedDamagePercent;
+                initialFireRate = fireRate / (1 + abilityTowerBuff.AbilityFireRateBuff) * buffedFireRatePercent;
                 return;
             }
             
-            damage = Mathf.Round(initialDamage * abilityTowerBuff.AbilityDamageBuff);
-            fireRate = initialFireRate / (1 + abilityTowerBuff.AbilityFireRateBuff);
+            initialDamage = Mathf.Round(damage * abilityTowerBuff.AbilityDamageBuff);
+            initialFireRate = fireRate / (1 + abilityTowerBuff.AbilityFireRateBuff);
             attackRange = _initialAttackRange + (1.4f * abilityTowerBuff.AbilityRangeBuff / (0.1f * abilityTowerBuff.AbilityRangeBuff + 0.3f));
         }
 
         private void SuppressTower()
         {
-            damage = initialDamage / 2;
-            fireRate = initialFireRate * 2;
+            initialDamage = Mathf.Round(damage * abilityTowerBuff.AbilityDamageBuff) / 2;
+            initialFireRate = fireRate / (1 + abilityTowerBuff.AbilityFireRateBuff) * 2;
         }
 
         public void SetSlowness()

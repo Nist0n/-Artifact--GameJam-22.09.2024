@@ -39125,11 +39125,41 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1125817258941263679, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
   m_PrefabInstance: {fileID: 7374142040803707717}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &919132148034661545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148034661541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72fcb329036f4c94c915bb12811d41bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityFireRateBuff: 0
+  AbilityDamageBuff: 1
+  AbilityRangeBuff: 0
 --- !u!1 &919132149047070389 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8269471945438881495, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
   m_PrefabInstance: {fileID: 6349152167454527003}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &919132149047070393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149047070389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72fcb329036f4c94c915bb12811d41bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityFireRateBuff: 0
+  AbilityDamageBuff: 1
+  AbilityRangeBuff: 0
 --- !u!23 &952554955072993494
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39842,6 +39872,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7676622830900532834, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
   m_PrefabInstance: {fileID: 6506187005050180147}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3304698995504800081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2780821684462500855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72fcb329036f4c94c915bb12811d41bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityFireRateBuff: 0
+  AbilityDamageBuff: 1
+  AbilityRangeBuff: 0
 --- !u!33 &3305623090660519346
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -44960,6 +45005,10 @@ PrefabInstance:
       value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4887585456182582242, guid: ca575fa051db6974fb636705bd346d03, type: 3}
+      propertyPath: abilityTowerBuff
+      value: 
+      objectReference: {fileID: 6036592554327397317}
+    - target: {fileID: 4887585456182582242, guid: ca575fa051db6974fb636705bd346d03, type: 3}
       propertyPath: buffedDamagePercent
       value: 1.25
       objectReference: {fileID: 0}
@@ -44986,7 +45035,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7479351625784057971, guid: ca575fa051db6974fb636705bd346d03, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6036592554327397317}
   m_SourcePrefab: {fileID: 100100000, guid: ca575fa051db6974fb636705bd346d03, type: 3}
 --- !u!33 &4138175640267181740
 MeshFilter:
@@ -45105,6 +45157,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3829405167000923477, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
   m_PrefabInstance: {fileID: 7016436364397875027}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4476347012782590330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842974870668956620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72fcb329036f4c94c915bb12811d41bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityFireRateBuff: 0
+  AbilityDamageBuff: 1
+  AbilityRangeBuff: 0
 --- !u!23 &4556165383726467561
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45600,6 +45667,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2181942960811312706, guid: ca575fa051db6974fb636705bd346d03, type: 3}
   m_PrefabInstance: {fileID: 3900584085631118497}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6036592554327397317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3266665714728202458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72fcb329036f4c94c915bb12811d41bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityFireRateBuff: 0
+  AbilityDamageBuff: 1
+  AbilityRangeBuff: 0
 --- !u!33 &6052488225016171812
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -45713,6 +45795,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1615537439}
     - target: {fileID: 299173886661617663, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
+      propertyPath: abilityTowerBuff
+      value: 
+      objectReference: {fileID: 6626380498211078082}
+    - target: {fileID: 299173886661617663, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
       propertyPath: buffedDamagePercent
       value: 1.25
       objectReference: {fileID: 0}
@@ -45811,7 +45897,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3151675996807965608, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6626380498211078082}
   m_SourcePrefab: {fileID: 100100000, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
 --- !u!114 &6279361713927181827
 MonoBehaviour:
@@ -45880,6 +45969,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1615537439}
     - target: {fileID: 1747375655861413608, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
+      propertyPath: abilityTowerBuff
+      value: 
+      objectReference: {fileID: 919132149047070393}
+    - target: {fileID: 1747375655861413608, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
       propertyPath: buffedDamagePercent
       value: 1.25
       objectReference: {fileID: 0}
@@ -45938,7 +46031,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8269471945438881495, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 919132149047070393}
   m_SourcePrefab: {fileID: 100100000, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
 --- !u!1 &6498981728564473473
 GameObject:
@@ -45974,6 +46070,10 @@ PrefabInstance:
       propertyPath: buffImage
       value: 
       objectReference: {fileID: 1615537439}
+    - target: {fileID: 2819424521365261996, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
+      propertyPath: abilityTowerBuff
+      value: 
+      objectReference: {fileID: 3304698995504800081}
     - target: {fileID: 2819424521365261996, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
       propertyPath: buffedDamagePercent
       value: 1.25
@@ -46069,7 +46169,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4096085081091214255, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3304698995504800081}
   m_SourcePrefab: {fileID: 100100000, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
 --- !u!1 &6526408637469350016
 GameObject:
@@ -46094,6 +46197,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3151675996807965608, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
   m_PrefabInstance: {fileID: 6252351810708379095}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6626380498211078082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6626380498211078078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72fcb329036f4c94c915bb12811d41bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityFireRateBuff: 0
+  AbilityDamageBuff: 1
+  AbilityRangeBuff: 0
 --- !u!33 &6655597134556330157
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -46267,6 +46385,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1615537439}
     - target: {fileID: 2597579229329932202, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
+      propertyPath: abilityTowerBuff
+      value: 
+      objectReference: {fileID: 4476347012782590330}
+    - target: {fileID: 2597579229329932202, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
       propertyPath: buffedDamagePercent
       value: 1.25
       objectReference: {fileID: 0}
@@ -46357,7 +46479,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8813755897768338203, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4476347012782590330}
   m_SourcePrefab: {fileID: 100100000, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
 --- !u!4 &7023907498844855527
 Transform:
@@ -46517,6 +46642,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1615537439}
     - target: {fileID: 7328125474371382164, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
+      propertyPath: abilityTowerBuff
+      value: 
+      objectReference: {fileID: 919132148034661545}
+    - target: {fileID: 7328125474371382164, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
       propertyPath: buffedDamagePercent
       value: 1.25
       objectReference: {fileID: 0}
@@ -46571,7 +46700,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1125817258941263679, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 919132148034661545}
   m_SourcePrefab: {fileID: 100100000, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
 --- !u!23 &7480168595456136186
 MeshRenderer:

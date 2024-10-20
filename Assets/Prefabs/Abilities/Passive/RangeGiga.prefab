@@ -58,7 +58,8 @@ MonoBehaviour:
   countText: {fileID: 8473436519228531679}
   Cost: 5
   Count: 1
-  radius: 1.25
+  ActiveOnTheTower: 0
+  radius: 1
 --- !u!114 &3222999262189131312
 MonoBehaviour:
   m_ObjectHideFlags: 0

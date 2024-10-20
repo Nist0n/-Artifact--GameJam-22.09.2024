@@ -194,8 +194,8 @@ MonoBehaviour:
   countText: {fileID: 3748269257818488345}
   Cost: 4
   Count: 1
-  _activeOnTheTower: 0
-  tps: 0.6
+  ActiveOnTheTower: 0
+  tps: 0.3
 --- !u!114 &7708889689620164055
 MonoBehaviour:
   m_ObjectHideFlags: 0
