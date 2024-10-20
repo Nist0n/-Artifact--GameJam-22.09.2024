@@ -16411,7 +16411,7 @@ MonoBehaviour:
   isInTower: 0
   waveTime: 750
   objectsToHide:
-  - {fileID: 1328672639127493518}
+  - {fileID: 2081842627}
   loseUI: {fileID: 1762706226}
   victoryUI: {fileID: 772640075}
 --- !u!4 &930643878
