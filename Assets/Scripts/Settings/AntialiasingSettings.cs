@@ -12,21 +12,12 @@ namespace Settings
         [SerializeField] private TMP_Dropdown msaaDropdown;
 
         [SerializeField] private List<String> options;
-        
-        private const string CameraAaKey = "CAMERA_AA";
-        private const string MSAAKey = "MSAA";
 
-        private UniversalRenderPipelineAsset _renderPipelineAsset;
+        public const string CameraAaKey = "CAMERA_AA";
+        public const string MSAAKey = "MSAA";
         
         private void Start()
         {
-            _renderPipelineAsset = QualitySettings.renderPipeline as UniversalRenderPipelineAsset;
-            if (!_renderPipelineAsset)
-            {
-                Debug.LogWarning("No render pipeline found");
-                return;
-            }
-            
             // Set saved values
             int aaModeIndex = PlayerPrefs.GetInt(CameraAaKey, 0);
             int sampleCount = PlayerPrefs.GetInt(MSAAKey, 1);
@@ -67,7 +58,6 @@ namespace Settings
         /// <summary>
         /// Changes antialiasing parameter in camera rendering settings.
         /// </summary>
-        /// 
         /// <param name="aaModeIndex">
         ///     Antialiasing mode. 0 - No antialiasing, 1 - FXAA, 2 - SMAA, <br/> 3 - TAA. <br/>
         ///     Note that TAA only works when MSAA is off. <br/>
@@ -76,15 +66,28 @@ namespace Settings
         /// /// <param name="cameraObject">
         ///     Camera object to set antialiasing for.
         /// </param>
-        public void ChangeAASettings(int aaModeIndex, Camera cameraObject)
+        public static void ChangeAASettings(int aaModeIndex, Camera cameraObject)
         {
-            if (aaModeIndex == 3 && _renderPipelineAsset.msaaSampleCount != 1) // if MSAA is on
+            UniversalRenderPipelineAsset renderPipelineAsset = QualitySettings.renderPipeline as UniversalRenderPipelineAsset;
+            if (!renderPipelineAsset)
+            {
+                Debug.LogWarning("No render pipeline asset found");
+                return;
+            }
+            
+            if (aaModeIndex == 3 && renderPipelineAsset.msaaSampleCount != 1) // if MSAA is on
             {
                 aaModeIndex = 2;
             }
             AntialiasingMode aaMode = (AntialiasingMode) aaModeIndex;
             
+            if (aaMode == cameraObject.GetComponent<UniversalAdditionalCameraData>().antialiasing)
+            {
+                return;
+            }
+            
             cameraObject.GetComponent<UniversalAdditionalCameraData>().antialiasing = aaMode;
+            PlayerPrefs.SetInt(CameraAaKey, aaModeIndex);
         }
 
         /// <summary>
@@ -93,27 +96,41 @@ namespace Settings
         /// <param name="sampleCount">
         ///     MSAA sample count. <br/> 1 - MSAA disabled. Other possible values are 2, 4, 8.
         /// </param>
-        public void ChangeMSAASettings(int sampleCount)
+        public static void ChangeMSAASettings(int sampleCount)
         {
-            if (!_renderPipelineAsset)
+            UniversalRenderPipelineAsset renderPipelineAsset = QualitySettings.renderPipeline as UniversalRenderPipelineAsset;
+            if (!renderPipelineAsset)
             {
                 Debug.LogWarning("No render pipeline asset found");
                 return;
             }
 
+            if (renderPipelineAsset.msaaSampleCount == sampleCount)
+            {
+                return;
+            }
+            
             List<int> possibleValues = new() { 1, 2, 4, 8 };
             if (!possibleValues.Contains(sampleCount))
             {
                 Debug.LogWarning("Invalid sample count \n Possible values are: 1, 2, 4, 8");
             }
             
-            _renderPipelineAsset.msaaSampleCount = sampleCount;
+            renderPipelineAsset.msaaSampleCount = sampleCount;
+            PlayerPrefs.SetInt(MSAAKey, sampleCount);
         }
 
         private void AdjustAADropdown()
         {
             // If MSAA is on, TAA needs to be turned off
-            if (_renderPipelineAsset.msaaSampleCount != 1)
+            UniversalRenderPipelineAsset renderPipelineAsset = QualitySettings.renderPipeline as UniversalRenderPipelineAsset;
+            if (!renderPipelineAsset)
+            {
+                Debug.LogWarning("No render pipeline asset found");
+                return;
+            }
+            
+            if (renderPipelineAsset.msaaSampleCount != 1)
             {
                 int currentValue = cameraAaDropdown.value;
                 cameraAaDropdown.ClearOptions();

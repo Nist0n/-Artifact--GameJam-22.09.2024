@@ -37018,7 +37018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da8a8e88a3f34e242a48262834cf2377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadowRes: {fileID: 2094044570}
+  graphicsLevelDropdown: {fileID: 2094044570}
   qualityLevels:
   - {fileID: 11400000, guid: f913df0441726384aa3e3fa2005b569e, type: 2}
   - {fileID: 11400000, guid: 7ce142f5b452e9142b56d122305997f8, type: 2}
