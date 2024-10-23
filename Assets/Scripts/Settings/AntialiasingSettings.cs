@@ -21,8 +21,10 @@ namespace Settings
             // Set saved values
             int aaModeIndex = PlayerPrefs.GetInt(CameraAaKey, 0);
             int sampleCount = PlayerPrefs.GetInt(MSAAKey, 1);
-            
+
+            cameraAaDropdown.value = aaModeIndex;
             ChangeAASettings(aaModeIndex, Camera.main);
+            msaaDropdown.value = SampleCountToDropdownValue(sampleCount);
             ChangeMSAASettings(sampleCount);
         }
 
@@ -33,24 +35,10 @@ namespace Settings
             AdjustMSAADropdown(currentValue);
         }
 
-        public void OnCameraMsaaDropdownChanged()
+        public void OnMsaaDropdownChanged()
         {
             int currentValue = msaaDropdown.value;
-            switch (currentValue)
-            {
-                case 1:
-                    ChangeMSAASettings(2);
-                    break;
-                case 2:
-                    ChangeMSAASettings(4);
-                    break;
-                case 3:
-                    ChangeMSAASettings(8);
-                    break;
-                default:
-                    ChangeMSAASettings(1);
-                    break;
-            }
+            ChangeMSAASettings(DropdownValueToSampleCount(currentValue));
             
             AdjustAADropdown();
         }
@@ -77,6 +65,7 @@ namespace Settings
             
             if (aaModeIndex == 3 && renderPipelineAsset.msaaSampleCount != 1) // if MSAA is on
             {
+                Debug.Log("MSAA is on which conflicts with TAA, SMAA will be set instead.");
                 aaModeIndex = 2;
             }
             AntialiasingMode aaMode = (AntialiasingMode) aaModeIndex;
@@ -109,6 +98,11 @@ namespace Settings
             {
                 return;
             }
+
+            if (IsTaaEnabled())
+            {
+                
+            }
             
             List<int> possibleValues = new() { 1, 2, 4, 8 };
             if (!possibleValues.Contains(sampleCount))
@@ -135,7 +129,7 @@ namespace Settings
                 int currentValue = cameraAaDropdown.value;
                 cameraAaDropdown.ClearOptions();
                 cameraAaDropdown.AddOptions(options.GetRange(0, 3));
-                cameraAaDropdown.value = currentValue == 3 ? 2 : currentValue;
+                cameraAaDropdown.value = currentValue == 3 ? 2 : currentValue; // Possibly redundant
             }
             else
             {
@@ -155,6 +149,43 @@ namespace Settings
             {
                 msaaDropdown.interactable = true;
             }
+        }
+
+        private static bool IsTaaEnabled()
+        {
+            if (Camera.main == null)
+            {
+                Debug.LogWarning("No main camera found");
+                return false;
+            }
+            
+            return Camera.main.GetComponent<UniversalAdditionalCameraData>().antialiasing == AntialiasingMode.TemporalAntiAliasing;
+        }
+
+        private int SampleCountToDropdownValue(int sampleCount)
+        {
+            int dropdownValue = sampleCount switch
+            {
+                2 => 1,
+                4 => 2,
+                8 => 3,
+                _ => 0
+            };
+
+            return dropdownValue;
+        }
+        
+        private int DropdownValueToSampleCount(int dropdownValue)
+        {
+            int sampleCount = dropdownValue switch
+            {
+                1 => 2,
+                2 => 4,
+                3 => 8,
+                _ => 1
+            };
+
+            return sampleCount;
         }
     }
 }
