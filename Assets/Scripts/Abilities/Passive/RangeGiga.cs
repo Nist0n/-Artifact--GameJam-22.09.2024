@@ -27,7 +27,6 @@ namespace Abilities.Passive
     
         private void Start()
         {
-            Description = "Увеличивает дальность атаки башни%";
             _passiveAbilities = GetComponent<PassiveAbilities>();
         }
 

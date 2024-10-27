@@ -40,7 +40,9 @@ namespace Towers
         public AudioListener towerAudioListener; 
         public GameObject _audio;
         private bool _isTowerCameraActive;
-
+        
+        private CinemachineBrain _cinemachineBrain;
+        
         private void Start()
         {
             mainCameraListener.enabled = true;
@@ -56,6 +58,8 @@ namespace Towers
             _towerComp = gameObject.GetComponentInParent<Tower>();
 
             reticle = reticle.GetComponent<Image>();
+            
+            _cinemachineBrain = CinemachineBrain.GetActiveBrain(0);
         }
         
         private void Update()
@@ -259,7 +263,7 @@ namespace Towers
 
         private void MoveCamera()
         {
-            if (_currentCamera.Priority == 0)
+            if (_currentCamera.Priority == 0 || _cinemachineBrain.IsBlending)
             {
                 return;
             }

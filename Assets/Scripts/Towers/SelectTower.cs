@@ -36,7 +36,7 @@ namespace Towers
 
             if (Input.GetKeyDown(KeyCode.Q)) // Exit tower
             {
-                if (mainCinemachineCamera.IsLive)
+                if (mainCinemachineCamera.Priority == 1)
                 {
                     return;
                 }
@@ -66,7 +66,7 @@ namespace Towers
                 return;
             }
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonUp(0))
             {
                 if (EventSystem.current.IsPointerOverGameObject()) // If clicking on UI
                 {
