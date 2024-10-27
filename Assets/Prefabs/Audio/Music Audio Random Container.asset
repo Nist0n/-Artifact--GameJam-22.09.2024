@@ -8,7 +8,7 @@ AudioContainerElement:
   m_PrefabAsset: {fileID: 0}
   m_Name: ingame4_bloodpixelhero_{-7596869921374811690}
   m_AudioClip: {fileID: 8300000, guid: a5e6d657c59e49f4eb64bf859988c081, type: 3}
-  m_Volume: -7
+  m_Volume: 0
   m_Enabled: 1
 --- !u!1233149941 &-2862908281074811351
 AudioContainerElement:
@@ -16,8 +16,18 @@ AudioContainerElement:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: InGame 2_{-2862908281074811351}
-  m_AudioClip: {fileID: 8300000, guid: 349900b5d4c52c34c89bb87adf0c28ce, type: 3}
+  m_Name: Curse of the Scarab_{-2862908281074811351}
+  m_AudioClip: {fileID: 8300000, guid: ab9f7063a844b3945a2671ec630d73c5, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-311342699309764261
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Wretched Destroyer_{-311342699309764261}
+  m_AudioClip: {fileID: 8300000, guid: d59832ccdd8d3b24c9730e8fa5133b8b, type: 3}
   m_Volume: 0
   m_Enabled: 1
 --- !u!1307931743 &6418180475301049370
@@ -40,6 +50,7 @@ AudioRandomContainer:
   - {fileID: 8041665697347929211}
   - {fileID: 9089606086163919811}
   - {fileID: -7596869921374811690}
+  - {fileID: -311342699309764261}
   m_AvoidRepeatingLast: 0
   m_PlaybackMode: 1
   m_TriggerMode: 1
@@ -55,8 +66,8 @@ AudioContainerElement:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: InGame music 1_{8041665697347929211}
-  m_AudioClip: {fileID: 8300000, guid: 7114ad02accd24f449d5fce2fc46578a, type: 3}
+  m_Name: Malicious_{8041665697347929211}
+  m_AudioClip: {fileID: 8300000, guid: eebb0312e42926645a210e8746468789, type: 3}
   m_Volume: 0
   m_Enabled: 1
 --- !u!1233149941 &9089606086163919811
@@ -67,5 +78,5 @@ AudioContainerElement:
   m_PrefabAsset: {fileID: 0}
   m_Name: In game 3 jadis0x_{9089606086163919811}
   m_AudioClip: {fileID: 8300000, guid: 07450215f8611b94db49c1d069e47468, type: 3}
-  m_Volume: -7
+  m_Volume: 0
   m_Enabled: 1
