@@ -1,89 +1,91 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoulsCounter : MonoBehaviour
+namespace UI.InGame
 {
-    public static SoulsCounter Instance;
-    
-    public float Nightmares;
-    
-    public float Dreams;
-    
-    [SerializeField] private TextMeshProUGUI text;
-    
-    [SerializeField] private string newText;
-
-    [SerializeField] private Image frontBar;
-
-    [SerializeField] private Image backBar;
-
-    private float _chipSpeed = 3f;
-
-    private float _lerpTimer;
-    
-    private void Awake()
+    public class SoulsCounter : MonoBehaviour
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+        public static SoulsCounter Instance;
+    
+        public float Nightmares;
+    
+        public float Dreams;
+    
+        [SerializeField] private TextMeshProUGUI text;
+    
+        [SerializeField] private string newText;
 
-    private void Update()
-    {
-        if (Nightmares >= 100)
+        [SerializeField] private Image frontBar;
+
+        [SerializeField] private Image backBar;
+
+        private float _chipSpeed = 3f;
+
+        private float _lerpTimer;
+    
+        private void Awake()
         {
-            RemoveNightmares(100);
-            Dreams++;
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
+
+        private void Update()
+        {
+            if (Nightmares >= 100)
+            {
+                RemoveNightmares(100);
+                Dreams++;
+            }
         
-        UpdateHpBar();
-    }
+            UpdateHpBar();
+        }
     
-    private void UpdateHpBar()
-    {
-        float fillFrontBar = frontBar.fillAmount;
-        float fillBackBar = backBar.fillAmount;
-        float hFraction = Nightmares / 100;
+        private void UpdateHpBar()
+        {
+            float fillFrontBar = frontBar.fillAmount;
+            float fillBackBar = backBar.fillAmount;
+            float hFraction = Nightmares / 100;
         
-        text.text = $"{newText}{Dreams.ToString()}";
+            text.text = $"{newText}{Dreams.ToString()}";
 
-        if (fillBackBar > hFraction)
-        {
-            frontBar.fillAmount = hFraction;
-            backBar.color = Color.red;
-            _lerpTimer += Time.deltaTime;
-            float percentComplete = _lerpTimer / _chipSpeed;
-            percentComplete *= percentComplete;
-            backBar.fillAmount = Mathf.Lerp(fillBackBar, hFraction, percentComplete);
-        }
+            if (fillBackBar > hFraction)
+            {
+                frontBar.fillAmount = hFraction;
+                backBar.color = Color.red;
+                _lerpTimer += Time.deltaTime;
+                float percentComplete = _lerpTimer / _chipSpeed;
+                percentComplete *= percentComplete;
+                backBar.fillAmount = Mathf.Lerp(fillBackBar, hFraction, percentComplete);
+            }
 
-        if (fillFrontBar < hFraction)
-        {
-            backBar.color = Color.magenta;
-            backBar.fillAmount = hFraction;
-            _lerpTimer += Time.deltaTime;
-            float percentComplete = _lerpTimer / _chipSpeed;
-            percentComplete *= percentComplete;
-            frontBar.fillAmount = Mathf.Lerp(fillFrontBar, backBar.fillAmount, percentComplete);
+            if (fillFrontBar < hFraction)
+            {
+                backBar.color = Color.magenta;
+                backBar.fillAmount = hFraction;
+                _lerpTimer += Time.deltaTime;
+                float percentComplete = _lerpTimer / _chipSpeed;
+                percentComplete *= percentComplete;
+                frontBar.fillAmount = Mathf.Lerp(fillFrontBar, backBar.fillAmount, percentComplete);
+            }
         }
-    }
     
-    public void AddNightmares(float count) 
-    {
-        Nightmares += count;
-        _lerpTimer = 0f;
-    }
+        public void AddNightmares(float count) 
+        {
+            Nightmares += count;
+            _lerpTimer = 0f;
+        }
 
-    private void RemoveNightmares(float count)
-    {
-        Nightmares -= count;
-        _lerpTimer = 0f;
+        private void RemoveNightmares(float count)
+        {
+            Nightmares -= count;
+            _lerpTimer = 0f;
+        }
     }
 }

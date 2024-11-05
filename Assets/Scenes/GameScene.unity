@@ -2419,8 +2419,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -100, y: -400}
-  m_SizeDelta: {x: 1200, y: 100}
+  m_AnchoredPosition: {x: -100, y: -10}
+  m_SizeDelta: {x: 1200, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &107072263
 MonoBehaviour:
@@ -2442,8 +2442,8 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 20, y: 20}
+  m_CellSize: {x: 120, y: 120}
+  m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &109428608
@@ -6713,6 +6713,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1593713479}
+  - {fileID: 1822457747}
   m_Father: {fileID: 1266302422}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -6901,8 +6902,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -800, y: -400}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -800, y: -5}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &304915762
 MonoBehaviour:
@@ -6911,20 +6912,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 304915760}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 0.6862745}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: dd5c49b3934f3a64ea39afa7cb9b662c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15728,7 +15729,7 @@ GameObject:
   - component: {fileID: 804337113}
   - component: {fileID: 804337119}
   m_Layer: 5
-  m_Name: CanvasUI
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25177,7 +25178,6 @@ RectTransform:
   - {fileID: 700745461}
   - {fileID: 299149464}
   - {fileID: 1615537440}
-  - {fileID: 1822457747}
   m_Father: {fileID: 804337117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -36292,7 +36292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1822457747}
   m_Layer: 5
-  m_Name: Abilities
+  m_Name: AbilitiesUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36312,12 +36312,12 @@ RectTransform:
   m_Children:
   - {fileID: 304915761}
   - {fileID: 107072262}
-  m_Father: {fileID: 1266302422}
+  m_Father: {fileID: 299149464}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: -400}
+  m_SizeDelta: {x: 100, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1822623847
 GameObject:
@@ -49017,6 +49017,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1496471281}
     - target: {fileID: 994077674886679309, guid: ca575fa051db6974fb636705bd346d03, type: 3}
+      propertyPath: imageBackgroundPrefab
+      value: 
+      objectReference: {fileID: 9030074097097086666, guid: a5e920eebe34b334a9cf8a744133fe9c, type: 3}
+    - target: {fileID: 994077674886679309, guid: ca575fa051db6974fb636705bd346d03, type: 3}
       propertyPath: imagePositions.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -49925,6 +49929,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1496471281}
     - target: {fileID: 1527353363443726447, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
+      propertyPath: imageBackgroundPrefab
+      value: 
+      objectReference: {fileID: 9030074097097086666, guid: a5e920eebe34b334a9cf8a744133fe9c, type: 3}
+    - target: {fileID: 1527353363443726447, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
       propertyPath: imagePositions.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -50103,6 +50111,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1496471281}
     - target: {fileID: 4482845753825977457, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
+      propertyPath: imageBackgroundPrefab
+      value: 
+      objectReference: {fileID: 9030074097097086666, guid: a5e920eebe34b334a9cf8a744133fe9c, type: 3}
+    - target: {fileID: 4482845753825977457, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
       propertyPath: imagePositions.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -50204,6 +50216,10 @@ PrefabInstance:
       propertyPath: activeAbilityPosition
       value: 
       objectReference: {fileID: 1496471281}
+    - target: {fileID: 4592922054296886805, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
+      propertyPath: imageBackgroundPrefab
+      value: 
+      objectReference: {fileID: 9030074097097086666, guid: a5e920eebe34b334a9cf8a744133fe9c, type: 3}
     - target: {fileID: 4592922054296886805, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
       propertyPath: imagePositions.Array.size
       value: 0
@@ -50559,6 +50575,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1496471281}
     - target: {fileID: 8912294310350394961, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
+      propertyPath: imageBackgroundPrefab
+      value: 
+      objectReference: {fileID: 9030074097097086666, guid: a5e920eebe34b334a9cf8a744133fe9c, type: 3}
+    - target: {fileID: 8912294310350394961, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
       propertyPath: imagePositions.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -50779,6 +50799,10 @@ PrefabInstance:
       propertyPath: activeAbilityPosition
       value: 
       objectReference: {fileID: 1496471281}
+    - target: {fileID: 8868298108112695238, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
+      propertyPath: imageBackgroundPrefab
+      value: 
+      objectReference: {fileID: 9030074097097086666, guid: a5e920eebe34b334a9cf8a744133fe9c, type: 3}
     - target: {fileID: 8868298108112695238, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
       propertyPath: imagePositions.Array.size
       value: 0

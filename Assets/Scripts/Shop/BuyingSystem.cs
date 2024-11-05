@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using Abilities.Active;
 using Abilities.Passive;
 using Audio;
+using Towers;
+using UI.InGame;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -193,37 +195,24 @@ namespace Shop
         
         private void OnAbilitySelected(Button selectedSlot, Button chosenUpgrade, int upgradeIndex)
         {
-            if (selectedSlot.CompareTag("Active"))
+            float tempCost;
+            if (selectedSlot.CompareTag("Active")) 
             {
-                float tempCost = chosenUpgrade.gameObject.GetComponent<ActiveAbility>().Cost(chosenUpgrade.gameObject.name);
-            
-                if (tempCost <= SoulsCounter.Instance.Dreams)
-                {
-                    SetAbilityOnTower(chosenUpgrade);
-                    ResetLists();
-                    SoulsCounter.Instance.Dreams -= tempCost;
-                    AudioManager.instance.PlaySFX("Coin");
-                }
-                else
-                {
-                    return;
-                }
+                tempCost = chosenUpgrade.gameObject.GetComponent<ActiveAbility>()
+                    .Cost(chosenUpgrade.gameObject.name);
             }
             else
             {
-                float tempCost = chosenUpgrade.gameObject.GetComponent<PassiveAbilities>().Cost(chosenUpgrade.gameObject.name);
-            
-                if (tempCost <= SoulsCounter.Instance.Dreams)
-                {
-                    SetAbilityOnTower(chosenUpgrade);
-                    ResetLists();
-                    SoulsCounter.Instance.Dreams -= tempCost;
-                    AudioManager.instance.PlaySFX("Coin");
-                }
-                else
-                {
-                    return;
-                }
+                tempCost = chosenUpgrade.gameObject.GetComponent<PassiveAbilities>()
+                    .Cost(chosenUpgrade.gameObject.name);
+            }
+
+            if (tempCost <= SoulsCounter.Instance.Dreams)
+            {
+                SetAbilityOnTower(chosenUpgrade);
+                ResetLists();
+                SoulsCounter.Instance.Dreams -= tempCost;
+                AudioManager.instance.PlaySFX("Coin");
             }
 
             for (int i = 0; i < selectedSlot.transform.childCount; i++)
