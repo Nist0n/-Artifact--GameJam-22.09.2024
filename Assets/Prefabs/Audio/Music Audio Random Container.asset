@@ -6,8 +6,8 @@ AudioContainerElement:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ingame4_bloodpixelhero_{-7596869921374811690}
-  m_AudioClip: {fileID: 8300000, guid: a5e6d657c59e49f4eb64bf859988c081, type: 3}
+  m_Name: In game 3 jadis0x_{-7596869921374811690}
+  m_AudioClip: {fileID: 8300000, guid: c73ae3122638ae344af0b678322fc3e1, type: 3}
   m_Volume: 0
   m_Enabled: 1
 --- !u!1233149941 &-2862908281074811351
@@ -76,7 +76,7 @@ AudioContainerElement:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: In game 3 jadis0x_{9089606086163919811}
-  m_AudioClip: {fileID: 8300000, guid: 07450215f8611b94db49c1d069e47468, type: 3}
+  m_Name: ingame4_bloodpixelhero_{9089606086163919811}
+  m_AudioClip: {fileID: 8300000, guid: aca529e4f2590364aa9a462cd3cd4927, type: 3}
   m_Volume: 0
   m_Enabled: 1
