@@ -1352,7 +1352,7 @@ MonoBehaviour:
   DroppedCoinsMin: 25
   MaxHealth: 7
   Damage: 3
-  IsFreezed: 0
+  IsFrozen: 0
   IsSlowness: 0
   IsAttacking: 0
   IsCelebrating: 0

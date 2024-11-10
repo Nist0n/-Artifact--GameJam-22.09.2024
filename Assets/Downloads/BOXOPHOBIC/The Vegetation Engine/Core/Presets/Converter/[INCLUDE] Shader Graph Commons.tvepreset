@@ -1,0 +1,40 @@
+*******************************************************************
+*                             INCLUDE                             *
+*******************************************************************
+
+Material COPY_FLOAT _BUILTIN_CullMode _RenderCull
+Material COPY_FLOAT _Cull _RenderCull
+Material COPY_FLOAT _CullMode _RenderCull
+
+Material COPY_FLOAT _ReceiveShadows _RenderShadows
+Material COPY_FLOAT _SupportDecals _RenderDecals
+Material COPY_FLOAT _ReceiveSSR _RenderSSR
+
+Material COPY_FLOAT _BUILTIN_AlphaClip _RenderClip
+Material COPY_FLOAT _AlphaClip _RenderClip
+Material COPY_FLOAT _AlphaCutoffEnable _RenderClip
+
+if MATERIAL_KEYWORD_ENABLED _ALPHATEST_ON
+{
+	Material SET_FLOAT _RenderClip 1
+}
+
+Material COPY_FLOAT _Cutoff _AlphaClipValue
+Material COPY_FLOAT _AlphaCutoff _AlphaClipValue
+
+if MATERIAL_FLOAT_EQUALS _DoubleSidedEnable 0
+{
+	Material SET_FLOAT _RenderCull 2
+}
+
+if MATERIAL_FLOAT_EQUALS _DoubleSidedEnable 1
+{
+	Material SET_FLOAT _RenderCull 0
+}
+
+Material COPY_FLOAT _DoubleSidedNormalMode _RenderNormals
+
+Material COPY_FLOAT _DiffusionProfileHash _SubsurfaceDiffusion
+Material COPY_VECTOR _DiffusionProfileAsset _SubsurfaceDiffusion_asset
+Material COPY_VECTOR _DiffusionProfileAsset _SubsurfaceDiffusion_Asset
+
