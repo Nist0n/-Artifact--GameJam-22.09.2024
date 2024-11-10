@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Fir1_imp
+  m_Shader: {fileID: 4800000, guid: e983ca7d4c91d1142be06fb3442458d7, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _HIDESIDES_ON
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _ColorVariationNoise:
+        m_Texture: {fileID: 2800000, guid: a867d76725c54f128d2949c885e1a09c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Diffuse:
+        m_Texture: {fileID: 2800000, guid: 768bf00105ef4365b71849db6a1690db, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Mask:
+        m_Texture: {fileID: 2800000, guid: 1fa1857eb6434892bbf80cbc8986c7a8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: 12c52ef2c64c42c7a10a701ca53d544b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaCutoff: 0.5
+    - _ColorVariationPower: 0.5
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DoubleSidedNormalMode: 0
+    - _EnvironmentReflections: 1
+    - _GradientFalloff: 0
+    - _GradientPosition: 0
+    - _HidePower: 2.5
+    - _HideSides: 1
+    - _InvertGradient: 0
+    - _MicroWindMultiplier: 1
+    - _NoiseScale: 0.43
+    - _NormalPower: 1
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
+    - _SpecularHighlights: 1
+    - _TransAmbient: 1
+    - _TransDirect: 0.849
+    - _TransNormal: 0.5
+    - _TransNormalDistortion: 1
+    - _TransScattering: 2
+    - _TransShadow: 0.802
+    - _TransStrength: 1
+    - _Translucency: 0.9
+    - _VertexOcclusionPower: 0.25
+    - _WindMultiplier: 1
+    - _WindTrunkContrast: 10
+    - _WindTrunkPosition: 0
+    - __dirty: 1
+    m_Colors:
+    - _ColorVariation: {r: 0.3347623, g: 0.46226412, b: 0.15990263, a: 1}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _GradientColor: {r: 0.043137237, g: 0.39607844, b: 0.2980392, a: 1}
+    - _MainColor: {r: 0.07683631, g: 0.33018863, b: 0.15284199, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
