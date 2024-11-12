@@ -214,6 +214,10 @@ namespace Shop
                 SoulsCounter.Instance.Dreams -= tempCost;
                 AudioManager.instance.PlaySFX("Coin");
             }
+            else
+            {
+                return;
+            }
 
             for (int i = 0; i < selectedSlot.transform.childCount; i++)
             {
