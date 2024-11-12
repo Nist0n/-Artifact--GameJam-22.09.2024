@@ -27,7 +27,7 @@ namespace Towers
 
         public GameObject Ability;
 
-        public bool IsPassiveSetted = false;
+        public bool IsPassiveSet = false;
     
         public bool TowerSelected = false;
 
@@ -103,7 +103,7 @@ namespace Towers
                     activeAbilityPosition.enabled = true;
                     activeAbilityPosition.transform.parent.GetComponent<Image>().enabled = true;
                     activeAbilityPosition.sprite = ability.GetComponent<Image>().sprite;
-                    // activeAbilityPosition.transform.parent.GetComponent<Image>().sprite = ability.GetComponent<Image>().sprite;
+                    activeAbilityPosition.transform.parent.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/ability-bg");
                 }
 
                 if (ability.GetComponent<PassiveAbilities>())
@@ -156,7 +156,7 @@ namespace Towers
             activeAbilityPosition.enabled = false;
             activeAbilityPosition.transform.parent.GetComponent<Image>().enabled = false;
             activeAbilityPosition.sprite = null;
-            // activeAbilityPosition.transform.parent.GetComponent<Image>().sprite = null;
+            activeAbilityPosition.transform.parent.GetComponent<Image>().sprite = null;
 
             foreach (var image in imagePositions)
             {
@@ -173,7 +173,7 @@ namespace Towers
         
             imagePositions.Clear();
 
-            IsPassiveSetted = false;
+            IsPassiveSet = false;
         }
     }
 }

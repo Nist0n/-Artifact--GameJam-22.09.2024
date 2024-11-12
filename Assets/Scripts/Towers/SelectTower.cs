@@ -119,7 +119,7 @@ namespace Towers
             upgradeTowerControls.SetActive(!upgradeTowerControls.activeSelf);
             ToggleSelectTowerControls(false);
         }
-
+        
         public void EnterCurrentTower()
         {
             ToggleSelectTowerControls(false);
