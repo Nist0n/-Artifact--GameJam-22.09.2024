@@ -1,5 +1,6 @@
 using System;
 using Audio;
+using GameConfiguration;
 using StaticClasses;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,6 +15,10 @@ namespace UI.InGame
 
         private void Update()
         {
+            if (GameConfig.Instance.hasLost || GameConfig.Instance.hasWon)
+            {
+                return;
+            }
             if (Input.GetKeyUp(KeyCode.Escape))
             {
                 if (!background.activeSelf)
@@ -35,7 +40,7 @@ namespace UI.InGame
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-        public void SetPause(bool isPaused)
+        private void SetPause(bool isPaused)
         {
             Time.timeScale = isPaused ? 0 : 1;
             ToggleSettings(isPaused);

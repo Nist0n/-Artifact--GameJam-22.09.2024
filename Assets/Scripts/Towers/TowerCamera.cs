@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Abilities.Active;
+using GameConfiguration;
 using StaticClasses;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -46,8 +47,6 @@ namespace Towers
         
         private void Start()
         {
-            GameEvents.GamePause += OnGamePause;
-            
             mainCameraListener.enabled = true;
 
             _abilityRange = GameObject.FindGameObjectWithTag("Range");
@@ -65,9 +64,19 @@ namespace Towers
             _cinemachineBrain = CinemachineBrain.GetActiveBrain(0);
         }
         
+        private void OnEnable()
+        {
+            GameEvents.GamePause += OnGamePause;
+        }
+
+        private void OnDisable()
+        {
+            GameEvents.GamePause -= OnGamePause;
+        }
+        
         private void Update()
         {
-            if (Time.timeScale == 0) // If game is paused
+            if (Time.timeScale == 0 || GameConfig.Instance.hasWon || GameConfig.Instance.hasLost) // If game is paused/lost/won
             {
                 return;
             }

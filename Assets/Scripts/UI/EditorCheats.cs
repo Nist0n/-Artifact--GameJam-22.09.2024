@@ -1,3 +1,5 @@
+using System;
+using StaticClasses;
 using UI.InGame;
 using UnityEngine;
 
@@ -14,7 +16,15 @@ namespace UI
                 cheatMenu.SetActive(true);
             #endif
         }
-        
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                GameEvents.OnCheatGameWin();
+            }
+        }
+
         public void ExpandAllCheats()
         {
             expandableCheats.SetActive(!expandableCheats.activeSelf);
@@ -23,6 +33,11 @@ namespace UI
         public void AddMaxDreams()
         {
             SoulsCounter.Instance.Dreams += int.MaxValue;
+        }
+
+        public void WinGame()
+        {
+            GameEvents.OnCheatGameWin();
         }
     }
 }

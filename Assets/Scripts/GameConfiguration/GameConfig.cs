@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using Audio;
 using GameConfiguration.Spawners;
+using StaticClasses;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -66,8 +68,19 @@ namespace GameConfiguration
             }
         }
 
+        private void OnEnable()
+        {
+            GameEvents.CheatGameWin += GameWon;
+        }
+
+        private void OnDisable()
+        {
+            GameEvents.CheatGameWin -= GameWon;
+        }
+
         private void Start()
         {
+            GameEvents.CheatGameWin += GameWon;
             AudioManager.instance.StartMusicShuffle();
             GetSpawners();
         }
@@ -188,6 +201,7 @@ namespace GameConfiguration
 
         private void GameWon()
         {
+            hasWon = true;
             victoryUI.SetActive(true);
             foreach (var obj in objectsToHide)
             {
