@@ -119,7 +119,6 @@ namespace Towers
                 {
                     float x = ray.direction.x;
                     float z = ray.direction.z;
-                    float y = ray.direction.y;
 
                     Vector3 temp = new Vector3();
 
