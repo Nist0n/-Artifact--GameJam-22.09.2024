@@ -1,5 +1,6 @@
 using System;
 using Audio;
+using StaticClasses;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,21 +12,18 @@ namespace UI.InGame
         [SerializeField] GameObject dreamCounter;
         [SerializeField] Animator continueButtonAnimator;
 
-        private void Start()
-        {
-            // continueButtonAnimator.keepAnimatorStateOnDisable = true;
-        }
-
         private void Update()
         {
             if (Input.GetKeyUp(KeyCode.Escape))
             {
                 if (!background.activeSelf)
                 {
+                    GameEvents.OnGamePause(true);
                     SetPause(true);
                 }
                 else
                 {
+                    GameEvents.OnGamePause(false);
                     SetPause(false);
                 }
             }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Abilities.Active;
+using StaticClasses;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,6 +46,8 @@ namespace Towers
         
         private void Start()
         {
+            GameEvents.GamePause += OnGamePause;
+            
             mainCameraListener.enabled = true;
 
             _abilityRange = GameObject.FindGameObjectWithTag("Range");
@@ -285,6 +288,14 @@ namespace Towers
         {
             Gizmos.color=Color.red;
             Gizmos.DrawWireSphere(_sphereGizmoPoint, crosshairRadius);
+        }
+
+        private void OnGamePause(bool condition)
+        {
+            if (_isTowerCameraActive)
+            {
+                reticle.enabled = !condition;
+            }
         }
     }
 }
