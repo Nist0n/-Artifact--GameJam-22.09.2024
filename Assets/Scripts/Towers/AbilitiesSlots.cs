@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Abilities.Active;
 using Abilities.Passive;
@@ -45,6 +46,10 @@ namespace Towers
 
         private Dictionary<string, int> _myDict;
 
+        private void Start()
+        {
+            _imageCooldowns = activeAbilityPosition.GetComponent<ImageCooldowns>();
+        }
 
         private void Update()
         {
@@ -52,10 +57,10 @@ namespace Towers
             {
                 if (_passAbility) _passAbility.SetAbility(_active.gameObject);
             
-                if (!_imageCooldowns)
-                {
-                    _imageCooldowns = activeAbilityPosition.GetComponent<ImageCooldowns>();
-                }
+                // if (!_imageCooldowns)
+                // {
+                //     _imageCooldowns = activeAbilityPosition.GetComponent<ImageCooldowns>();
+                // }
                 if (TowerSelected)
                 {
                     _imageCooldowns.GetProperties(_active.Timer(_active.name), _active.AbilityCooldown(_active.name));

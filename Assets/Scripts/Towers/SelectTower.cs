@@ -61,7 +61,7 @@ namespace Towers
                 buffImage.SetActive(false);
             }
             
-            if (!mainCinemachineCamera.IsLive) // If we are already in a tower
+            if (mainCinemachineCamera.Priority == 0) // If we are already in a tower
             {
                 return;
             }

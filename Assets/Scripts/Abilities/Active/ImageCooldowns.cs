@@ -1,42 +1,45 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ImageCooldowns : MonoBehaviour
+namespace Abilities.Active
 {
-    private Image _image;
-    
-    private float _timerAbi;
-
-    private float _cd;
-
-    private bool _isGot = false;
-    
-    void Update()
+    public class ImageCooldowns : MonoBehaviour
     {
-        if (_isGot && _timerAbi > 0)
+        private Image _image;
+    
+        private float _timerAbi;
+
+        private float _cd;
+
+        private bool _isGot = false;
+    
+        void Update()
         {
-            if (_timerAbi >= _cd)
+            if (_isGot && _timerAbi > 0)
             {
-                _timerAbi = _cd;
-                _image.fillAmount = _timerAbi / _cd;
+                if (_timerAbi >= _cd)
+                {
+                    _timerAbi = _cd;
+                    _image.fillAmount = _timerAbi / _cd;
+                }
+                else
+                {
+                    _timerAbi += Time.deltaTime;
+                    _image.fillAmount = _timerAbi / _cd;
+                }
             }
-            else
+            else if (_image)
             {
-                _timerAbi += Time.deltaTime;
-                _image.fillAmount = _timerAbi / _cd;
+                _image.fillAmount = 1;
             }
         }
-        else if (_image)
-        {
-            _image.fillAmount = 1;
-        }
-    }
 
-    public void GetProperties(float _timer, float _Cd)
-    {
-        _timerAbi = _timer;
-        _cd = _Cd;
-        _isGot = true;
-        _image = GetComponent<Image>();
+        public void GetProperties(float _timer, float _Cd)
+        {
+            _timerAbi = _timer;
+            _cd = _Cd;
+            _isGot = true;
+            _image = GetComponent<Image>();
+        }
     }
 }
