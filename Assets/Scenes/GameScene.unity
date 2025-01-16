@@ -42237,7 +42237,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2094044569}
         m_TargetAssemblyTypeName: URP_Settings, Assembly-CSharp
-        m_MethodName: DropDown_IndexChanged
+        m_MethodName: GraphicsDropDown_IndexChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -10,6 +10,8 @@ namespace Settings
 
         [SerializeField] private UniversalRenderPipelineAsset[] qualityLevels;
 
+        [SerializeField] private TMP_Dropdown shadowResolutionDropdown;
+        
         private void Start()
         {
             graphicsLevelDropdown.value = PlayerPrefs.GetInt("GraphicsPreset", 0);
@@ -19,9 +21,22 @@ namespace Settings
             }
             
             ChangeGraphicsLevel(graphicsLevelDropdown.value);
+            AdjustShadowResolutionDropdown();
         }
 
-        public void DropDown_IndexChanged()
+        private void AdjustShadowResolutionDropdown()
+        {
+            UniversalRenderPipelineAsset renderPipelineAsset = QualitySettings.renderPipeline as UniversalRenderPipelineAsset;
+            if (!renderPipelineAsset)
+            {
+                Debug.LogWarning("No render pipeline asset found");
+                return;
+            }
+
+            shadowResolutionDropdown.value = renderPipelineAsset.mainLightShadowmapResolution;
+        }
+
+        public void GraphicsDropDown_IndexChanged()
         {
             ChangeGraphicsLevel(graphicsLevelDropdown.value);
         }
@@ -41,6 +56,19 @@ namespace Settings
             
             AntialiasingSettings.ChangeAASettings(aaModeIndex, Camera.main);
             AntialiasingSettings.ChangeMSAASettings(sampleCount);
+        }
+
+        public void ChangeShadowResolution()
+        {
+            UniversalRenderPipelineAsset renderPipelineAsset = QualitySettings.renderPipeline as UniversalRenderPipelineAsset;
+            if (!renderPipelineAsset)
+            {
+                Debug.LogWarning("No render pipeline asset found");
+                return;
+            }
+
+            int selectedIndex = shadowResolutionDropdown.value;
+            // renderPipelineAsset.mainLightShadowmapResolution = shadowResolutionDropdown.options[selectedIndex].text;
         }
     }
 }
