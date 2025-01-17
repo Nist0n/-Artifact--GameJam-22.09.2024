@@ -1,3 +1,5 @@
+using System;
+using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -15,13 +17,13 @@ namespace Settings
         private void Start()
         {
             graphicsLevelDropdown.value = PlayerPrefs.GetInt("GraphicsPreset", 0);
+            AdjustShadowResolutionDropdown();
+            
             if (QualitySettings.GetQualityLevel() == graphicsLevelDropdown.value)
             {
                 return;
             }
-            
             ChangeGraphicsLevel(graphicsLevelDropdown.value);
-            AdjustShadowResolutionDropdown();
         }
 
         private void AdjustShadowResolutionDropdown()
@@ -33,7 +35,9 @@ namespace Settings
                 return;
             }
 
-            shadowResolutionDropdown.value = renderPipelineAsset.mainLightShadowmapResolution;
+            string currentResStr = renderPipelineAsset.mainLightShadowmapResolution.ToString();
+            int currentResIndex = shadowResolutionDropdown.options.FindIndex(x => x.text == currentResStr);
+            shadowResolutionDropdown.value = currentResIndex;
         }
 
         public void GraphicsDropDown_IndexChanged()
@@ -47,6 +51,7 @@ namespace Settings
             QualitySettings.renderPipeline = qualityLevels[level];
             PlayerPrefs.SetInt("GraphicsPreset", level);
             MaintainAntialiasing();
+            AdjustShadowResolutionDropdown();
         }
         
         private void MaintainAntialiasing()
@@ -68,7 +73,8 @@ namespace Settings
             }
 
             int selectedIndex = shadowResolutionDropdown.value;
-            // renderPipelineAsset.mainLightShadowmapResolution = shadowResolutionDropdown.options[selectedIndex].text;
+            
+            renderPipelineAsset.mainLightShadowmapResolution = int.Parse(shadowResolutionDropdown.options[selectedIndex].text);
         }
     }
 }
