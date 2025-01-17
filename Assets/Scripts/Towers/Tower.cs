@@ -89,20 +89,39 @@ namespace Towers
                     }
                 }
             }
-            
-            if (enemiesInRange.Count > 0)
-            {
-                GameObject closestEnemy = enemiesInRange[0];
 
-                CurrentTarget = closestEnemy;
-                
-                if (_canShoot)
+            if (enemiesInRange.Count == 0)
+            {
+                return;
+            }
+            
+            float smallestSqrDist = float.MaxValue;
+            GameObject closestEnemyToMainBuilding = enemiesInRange[0];
+            foreach (var t in enemiesInRange)
+            {
+                Enemy enemy = t.GetComponent<Enemy>();
+                float sqrDistance = 0;
+                var corners = enemy.navMeshAgent.path.corners;
+                for (int j = 0; j < corners.Length - 1; ++j)
                 {
-                    if (!piloted)
-                    {
-                        SuppressTower();
-                        StartCoroutine(Shoot(transform.position, CurrentTarget)); 
-                    }
+                    sqrDistance += (corners[j] - corners[j + 1]).sqrMagnitude;
+                }
+
+                if (sqrDistance < smallestSqrDist)
+                {
+                    smallestSqrDist = sqrDistance;
+                    closestEnemyToMainBuilding = t;
+                }
+            }
+            
+            CurrentTarget = closestEnemyToMainBuilding;
+                
+            if (_canShoot)
+            {
+                if (!piloted)
+                {
+                    SuppressTower();
+                    StartCoroutine(Shoot(transform.position, CurrentTarget)); 
                 }
             }
 

@@ -91,7 +91,7 @@ namespace Enemies
             if (Health <= 0)
             {
                 Set(Death);
-                Invoke("KillEnemy", 1f);
+                Invoke(nameof(KillEnemy), 1f);
             }
 
             if (front.color.a != 0)
@@ -139,7 +139,7 @@ namespace Enemies
 
         public void AttackCastle()
         {
-            AudioManager.instance.PlayRandomSoundByName("GateBreake", AudioSource);
+            AudioManager.instance.PlayRandomSoundByName("GateBreak", AudioSource);
             GameObject.FindGameObjectWithTag("Castle").GetComponent<CastleHealth>().ReceiveDamage(Damage);
         }
         

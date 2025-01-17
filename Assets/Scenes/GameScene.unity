@@ -3014,6 +3014,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 241120360548077020, guid: 856b5a4f232b880448958da0f8f953b2, type: 3}
+      propertyPath: sounds.Array.data[10].name
+      value: GateBreak
+      objectReference: {fileID: 0}
+    - target: {fileID: 241120360548077020, guid: 856b5a4f232b880448958da0f8f953b2, type: 3}
+      propertyPath: sounds.Array.data[11].name
+      value: GateBreak
+      objectReference: {fileID: 0}
     - target: {fileID: 7447941557276251211, guid: 856b5a4f232b880448958da0f8f953b2, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -42172,6 +42180,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f913df0441726384aa3e3fa2005b569e, type: 2}
   - {fileID: 11400000, guid: 7ce142f5b452e9142b56d122305997f8, type: 2}
   - {fileID: 11400000, guid: 4b83569d67af61e458304325a23e5dfd, type: 2}
+  shadowResolutionDropdown: {fileID: 0}
 --- !u!114 &2094044570
 MonoBehaviour:
   m_ObjectHideFlags: 0
