@@ -130,7 +130,7 @@ QualitySettings:
     globalTextureMipmapLimit: 2
     textureMipmapLimitSettings: []
     anisotropicTextures: 2
-    antiAliasing: 4
+    antiAliasing: 0
     softParticles: 0
     softVegetation: 1
     realtimeReflectionProbes: 0
@@ -179,7 +179,7 @@ QualitySettings:
     PS5: 0
     Server: 0
     Stadia: 0
-    Standalone: 0
+    Standalone: 2
     WebGL: 0
     Windows Store Apps: 0
     XboxOne: 0
