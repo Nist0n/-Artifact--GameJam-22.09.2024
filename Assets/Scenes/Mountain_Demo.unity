@@ -42,7 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -368,7 +369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &23476259
 Transform:
   m_ObjectHideFlags: 0
@@ -1076,7 +1077,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &93859050
 Transform:
   m_ObjectHideFlags: 0
@@ -5688,7 +5689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &381549104
 Transform:
   m_ObjectHideFlags: 0
@@ -12402,7 +12403,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &959672159
 Transform:
   m_ObjectHideFlags: 0
@@ -17789,7 +17790,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1326033585
 Transform:
   m_ObjectHideFlags: 0
@@ -28535,39 +28536,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2393a541df660d247a1e12ecc770cb29, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 75.97
+      value: 75.97742
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2393a541df660d247a1e12ecc770cb29, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -48.12
+      value: -47.991486
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2393a541df660d247a1e12ecc770cb29, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9982877
+      value: 0.99891764
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2393a541df660d247a1e12ecc770cb29, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.047215525
+      value: 0.031163795
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2393a541df660d247a1e12ecc770cb29, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.023272071
+      value: 0.022859024
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2393a541df660d247a1e12ecc770cb29, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.025511205
+      value: -0.025881963
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2393a541df660d247a1e12ecc770cb29, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 5.478
+      value: 3.637
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2393a541df660d247a1e12ecc770cb29, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 2.537
+      value: 2.53
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2393a541df660d247a1e12ecc770cb29, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -2.806
+      value: -2.888
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2393a541df660d247a1e12ecc770cb29, type: 3}
       propertyPath: m_ConstrainProportionsScale
