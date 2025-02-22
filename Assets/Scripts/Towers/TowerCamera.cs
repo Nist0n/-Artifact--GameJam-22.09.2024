@@ -76,7 +76,7 @@ namespace Towers
         
         private void Update()
         {
-            if (Time.timeScale == 0 || GameConfig.Instance.hasWon || GameConfig.Instance.hasLost) // If game is paused/lost/won
+            if (Cursor.visible) // If game is paused/lost/won
             {
                 return;
             }
