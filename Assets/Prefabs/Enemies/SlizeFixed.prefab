@@ -2494,7 +2494,7 @@ MonoBehaviour:
   DroppedCoinsMin: 45
   MaxHealth: 9
   Damage: 5
-  IsFreezed: 0
+  IsFrozen: 0
   IsSlowness: 0
   IsAttacking: 0
   IsCelebrating: 0
@@ -2509,6 +2509,7 @@ MonoBehaviour:
   Attacking: {fileID: 1960129806069850145}
   Celebrating: {fileID: 447904791863723882}
   Slow: {fileID: 5947483245266585327}
+  deathEvent: {fileID: 11400000, guid: d1b348893b2595c4c9e3e78604a42eec, type: 2}
 --- !u!95 &4408944662625507171
 Animator:
   serializedVersion: 7

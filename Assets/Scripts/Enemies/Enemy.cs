@@ -2,6 +2,7 @@
 using Audio;
 using Castle;
 using Enemies.StateMachine;
+using Events;
 using GameConfiguration;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +28,8 @@ namespace Enemies
         public SlownessState Slow;
 
         private Coroutine _hpBarCoroutine;
+
+        [SerializeField] private GameEvent deathEvent;
         
         private void Start()
         {
@@ -120,6 +123,7 @@ namespace Enemies
         private void KillEnemy()
         {
             Destroy(gameObject);
+            deathEvent.TriggerEvent();
         }
 
         public void FreezeEnemyActivate(float freezeTime)

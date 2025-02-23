@@ -1367,6 +1367,7 @@ MonoBehaviour:
   Attacking: {fileID: 1492695760393367732}
   Celebrating: {fileID: 3152085983016445550}
   Slow: {fileID: 5346073122159693881}
+  deathEvent: {fileID: 11400000, guid: d1b348893b2595c4c9e3e78604a42eec, type: 2}
 --- !u!136 &8995070257835787098
 CapsuleCollider:
   m_ObjectHideFlags: 0
