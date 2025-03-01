@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,9 +10,18 @@ namespace Achievements
         
         // these should be saved
         private int _enemyKilledCounter;
-        
+
+        // private void Update()
+        // {
+        //     foreach (var achievement in achievements)
+        //     {
+        //         Debug.Log(achievement.Completed);
+        //     }
+        // }
+
         public void OnEnemyDeath()
         {
+            // kill 100 enemies
             _enemyKilledCounter++;
             if (_enemyKilledCounter < 100)
             {
@@ -23,7 +33,8 @@ namespace Achievements
             {
                 achievement.CompleteAchievement();
                 // notify the player
-                Debug.Log(achievement.name);
+                Debug.Log($"{achievement.name} was just completed!");
+                // possibly also utilize events to UI to notify the player
             }
         }
 

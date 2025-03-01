@@ -1,5 +1,7 @@
 using System;
+using System.Globalization;
 using StaticClasses;
+using TMPro;
 using UI.InGame;
 using UnityEngine;
 
@@ -9,6 +11,8 @@ namespace UI
     {
         [SerializeField] private GameObject cheatMenu;
         [SerializeField] private GameObject expandableCheats;
+        [SerializeField] private TMP_Text gameSpeedValueText;
+        
         
         private void Start()
         {
@@ -38,6 +42,14 @@ namespace UI
         public void WinGame()
         {
             GameEvents.OnCheatGameWin();
+        }
+
+        public void OnChangeGameSpeed(float value)
+        {
+            // An event invoke doesn't make a lot of sense since
+            // this code is very unlikely to be repeated elsewhere
+            Time.timeScale = value;
+            gameSpeedValueText.text = value.ToString("0.00");
         }
     }
 }
