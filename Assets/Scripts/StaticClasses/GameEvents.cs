@@ -9,6 +9,9 @@ namespace StaticClasses
 
         public static Action CheatGameWin;
 
+        public static Action GameLost;
+        // public static Action GameWon;
+
         public static void OnGamePause(bool var)
         {
             GamePause?.Invoke(var);

@@ -38,7 +38,7 @@ namespace GameConfiguration
 
         private float _waveTime;
 
-        public bool hasLost;
+        public bool hasLost; // still seems suspicious
 
         private float _countOfUnits;
 
@@ -71,11 +71,13 @@ namespace GameConfiguration
         private void OnEnable()
         {
             GameEvents.CheatGameWin += GameWon;
+            GameEvents.GameLost += GameLost;
         }
 
         private void OnDisable()
         {
             GameEvents.CheatGameWin -= GameWon;
+            GameEvents.GameLost -= GameLost;
         }
 
         private void Start()
@@ -89,15 +91,15 @@ namespace GameConfiguration
         {
             ControlCursor();
             
-            if (hasLost)
-            {
-                if (!loseUI.activeSelf)
-                {
-                    GameLost();
-                }
-                
-                return;
-            }
+            // if (hasLost)
+            // {
+            //     if (!loseUI.activeSelf)
+            //     {
+            //         GameLost();
+            //     }
+            //     
+            //     return;
+            // }
 
             if (enemyList.Count <= 0 && gameTime > waveTime)
             {
@@ -189,6 +191,7 @@ namespace GameConfiguration
 
         private void GameLost()
         {
+            hasLost = true;
             AudioManager.instance.StopMusicSourceLoop();
             AudioManager.instance.PlayMusic("Defeat");
             loseCinemachineCamera.Priority = 2;

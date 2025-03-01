@@ -1,4 +1,5 @@
 ﻿using GameConfiguration;
+using StaticClasses;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,7 +35,7 @@ namespace Castle
     
             if (health <= 0)
             {
-                GameConfig.Instance.hasLost = true;
+                GameEvents.GameLost?.Invoke();
             }
 
             if (_timer <= _cooldown)
