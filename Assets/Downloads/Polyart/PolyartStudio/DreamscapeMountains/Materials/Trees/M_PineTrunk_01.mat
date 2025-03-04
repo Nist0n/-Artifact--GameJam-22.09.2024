@@ -1,0 +1,322 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_PineTrunk_01
+  m_Shader: {fileID: 4800000, guid: 418a5281d3f8eab4f99d89dfa09c84eb, type: 3}
+  m_ValidKeywords:
+  - _USEDFORTRUNK_ON
+  m_InvalidKeywords:
+  - TVE_FEATURE_CLIP
+  - _ALPHATEST_ON
+  - _TRUNKMATERIAL_ON
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - TransparentBackface
+  - TransparentBackfaceDebugDisplay
+  - TransparentDepthPrepass
+  - TransparentDepthPostpass
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlbedoTexture:
+        m_Texture: {fileID: 2800000, guid: df757f20a1d2d6e4f928de6a5ea6b193, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 651ed4a4c6169f04cadfd7e72643f0d5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ColorMap:
+        m_Texture: {fileID: 2800000, guid: df757f20a1d2d6e4f928de6a5ea6b193, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedo:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailSmoothness:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissiveMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissiveTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissiveTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FoliageColorMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FoliageNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainAlbedoTex:
+        m_Texture: {fileID: 2800000, guid: df757f20a1d2d6e4f928de6a5ea6b193, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainMaskTex:
+        m_Texture: {fileID: 2800000, guid: 89a41b01d11534641932b83fe17c6e62, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainNormalTex:
+        m_Texture: {fileID: 2800000, guid: 651ed4a4c6169f04cadfd7e72643f0d5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: df757f20a1d2d6e4f928de6a5ea6b193, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTexture:
+        m_Texture: {fileID: 2800000, guid: d5c189d1879805542bfc315efacf4db4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 651ed4a4c6169f04cadfd7e72643f0d5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalTexture:
+        m_Texture: {fileID: 2800000, guid: 651ed4a4c6169f04cadfd7e72643f0d5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ORMMap:
+        m_Texture: {fileID: 2800000, guid: 89a41b01d11534641932b83fe17c6e62, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecondAlbedoTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecondMaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SecondNormalTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SmoothnessTexture:
+        m_Texture: {fileID: 2800000, guid: 89a41b01d11534641932b83fe17c6e62, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AOIntensity: 1
+    - _AlphaClip: 0.5
+    - _AlphaClipValue: 0.5
+    - _AlphaCutoff: 0.5
+    - _BoundsHeightValue: 3
+    - _BoundsRadiusValue: 2.04
+    - _CategoryDetail: 1
+    - _CategoryEmissive: 1
+    - _CategoryGradient: 1
+    - _CategoryMain: 1
+    - _CategoryMotion: 1
+    - _CategoryObject: 1
+    - _CategoryOcclusion: 1
+    - _CategoryRender: 1
+    - _CategorySubsurface: 1
+    - _Culling: 2
+    - _Cutoff: 0.5
+    - _DetailAlphaMode: 1
+    - _DetailBlendMaxValue: 0.6
+    - _DetailBlendMinValue: 0.4
+    - _DetailBlendMode: 1
+    - _DetailIntensity: 0
+    - _DetailMaskMaxValue: 1
+    - _DetailMaskMinValue: 0
+    - _DetailMaskMode: 0
+    - _DetailMeshMaxValue: 1
+    - _DetailMeshMinValue: 0
+    - _DetailMeshMode: 0
+    - _DetailMode: 0
+    - _DetailNormalIntensity: 0
+    - _DetailNormalValue: 1
+    - _DetailSmooth: 0
+    - _DetailSnowMode: 0
+    - _DetailTextureON: 0
+    - _DetailTiling: 0
+    - _DetailValue: 1
+    - _DirectLightInt: 1
+    - _EmissiveFlagMode: 0
+    - _EmissiveIntensity: 0
+    - _EmissiveIntensityMode: 0
+    - _EmissiveIntensityValue: 1
+    - _EmissiveMultiplier: 0
+    - _EmissiveTexMaxValue: 1
+    - _EmissiveTexMinValue: 0
+    - _EnvironmentReflections: 1
+    - _FoliageEmissiveIntensity: 0
+    - _FoliageNormalIntensity: 1
+    - _FoliageRoughness: 0.85
+    - _FoliageSize: 100
+    - _GradientFallout: 0
+    - _GradientOffset: 0
+    - _HasEmissive: 0
+    - _HasGradient: 0
+    - _HasOcclusion: 0
+    - _IndirectLightningIntensity: 1
+    - _IsBarkShader: 1
+    - _IsCollected: 0
+    - _IsCustomShader: 0
+    - _IsIdentifier: 0
+    - _IsLiteShader: 1
+    - _IsShared: 0
+    - _IsStandardShader: 1
+    - _IsTVEShader: 1
+    - _IsVersion: 100
+    - _LightOffset: 0
+    - _MainAlbedoValue: 1
+    - _MainNormalValue: 1
+    - _MainOcclusionValue: 0
+    - _MainSmoothnessValue: 0
+    - _MaskClipValue: 1
+    - _MessageBounds: 0
+    - _MessageMainMask: 0
+    - _MessageMotion: 0
+    - _MessageOcclusion: 0
+    - _MessageSecondMask: 0
+    - _MessageSnow: 0
+    - _MessageSubsurface: 0
+    - _MetallicMultiplier: 0
+    - _MotionAmplitude_10: 0.29
+    - _MotionAmplitude_20: 0.2
+    - _MotionAmplitude_22: 0.2
+    - _MotionFacingValue: 0.5
+    - _MotionPosition_10: 0.5
+    - _MotionScale_10: 0
+    - _MotionScale_20: 3
+    - _MotionSpeed_10: 2
+    - _MotionSpeed_20: 6
+    - _MotionValue_20: 1
+    - _MotionVariation_10: 0
+    - _MotionVariation_20: 0
+    - _NormalIntensity: 0.804
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _ReceiveShadows: 1
+    - _RenderClip: 1
+    - _RenderCull: 0
+    - _RenderDecals: 0
+    - _RenderMode: 0
+    - _RenderNormals: 0
+    - _RenderPriority: 0
+    - _RenderQueue: 0
+    - _RenderSSR: 0
+    - _RenderSpecular: 1
+    - _RenderZWrite: 1
+    - _RoughnessIntensity: 1.837
+    - _SecondAlbedoValue: 1
+    - _SecondNormalValue: 1
+    - _SecondOcclusionValue: 0
+    - _SecondSmoothnessValue: 0
+    - _SecondUVsMode: 0
+    - _SecondUVsScaleMode: 0
+    - _SmoothnessMultiplier: 0.58
+    - _SpaceSubsurface: 0
+    - _SpecularHighlights: 1
+    - _SubsurfaceAmbientValue: 0.2
+    - _SubsurfaceAngleValue: 8
+    - _SubsurfaceDiffusion: 0
+    - _SubsurfaceDirectValue: 1
+    - _SubsurfaceFadeDistance: 200
+    - _SubsurfaceIntensity: 10
+    - _SubsurfaceNormalValue: 0
+    - _SubsurfaceScatteringValue: 2
+    - _SubsurfaceShadowValue: 1
+    - _TextureSize: 100
+    - _TransAmbient: 0
+    - _TransDirect: 0.096
+    - _TransNormalDistortion: 0
+    - _TransScattering: 1
+    - _TransShadow: 0
+    - _Translucency: 0
+    - _TrunkMaterial: 1
+    - _UseGlobalWindSettings: 0
+    - _UsedforTrunk: 1
+    - _UsesGlobalWindSettings: 0
+    - _VertexOcclusionMaxValue: 1
+    - _VertexOcclusionMinValue: 0
+    - _VertexVariationMode: 0
+    - _WIndSwayFrequency: 1
+    - _WIndSwayIntensity: 1
+    - _WindJitterSpeed: 0.171
+    - _WindOffsetIntensity: 0.202
+    - _WindRustleSize: 0.1089
+    - _WindScrollSpeed: 0.247
+    - __dirty: 1
+    - _emissive_intensity_value: 1
+    - _render_coverage: 0
+    - _render_cull: 0
+    - _render_dst: 0
+    - _render_src: 1
+    - _render_zw: 1
+    m_Colors:
+    - _AlbedoTint: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorTint: {r: 1, g: 1, b: 1, a: 0}
+    - _DetailBlendRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _DetailMaskRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _DetailMeshRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissiveColor: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissiveTexRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissiveUVs: {r: 1, g: 1, b: 0, a: 0}
+    - _FoliageColorBottom: {r: 0, g: 0, b: 0, a: 0}
+    - _FoliageColorTop: {r: 1, g: 1, b: 1, a: 0}
+    - _FoliageEmissiveColor: {r: 0, g: 0, b: 0, a: 0}
+    - _GradientMaskRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MainMaskRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _MainUVs: {r: 1, g: 1, b: 0, a: 0}
+    - _SecondColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SecondMaskRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _SecondUVs: {r: 1, g: 1, b: 0, a: 0}
+    - _SubsurfaceDiffusion_Asset: {r: 0, g: 0, b: 0, a: 0}
+    - _VertexOcclusionColor: {r: 0, g: 0, b: 0, a: 0.5019608}
+    - _VertexOcclusionRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _WindSwayDirection: {r: 1, g: 0, b: 0, a: 0}
+    - _render_normals: {r: -1, g: -1, b: -1, a: 0}
+    - _second_uvs_mode: {r: 1, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
