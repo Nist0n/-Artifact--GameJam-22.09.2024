@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using SaveSystem;
 using UnityEngine;
 
 namespace Achievements
@@ -7,9 +8,12 @@ namespace Achievements
     public class AchievementHandler : MonoBehaviour
     {
         [SerializeField] private List<Achievement> achievements;
+
+        private SaveAchievementValues _achievementSaver;
+        private AchievementsData _achievementsData;
         
         // these should be saved
-        private int _enemyKilledCounter;
+        // private int _enemiesKilledCounter;
 
         // private void Update()
         // {
@@ -19,11 +23,37 @@ namespace Achievements
         //     }
         // }
 
+        private void Awake()
+        {
+            _achievementSaver = new SaveAchievementValues();
+            AchievementsData loadedData = _achievementSaver.Load();
+            if (loadedData == null)
+            {
+                Debug.Log("No data loaded");
+                _achievementsData = new AchievementsData();
+            }
+            else
+            {
+                Debug.Log("Loaded data");
+                _achievementsData = loadedData;
+            }
+        }
+
+        private void SaveData()
+        {
+            _achievementSaver.Save(_achievementsData);
+            Debug.Log("Saved achievement data");
+        }
+        
         public void OnEnemyDeath()
         {
             // kill 100 enemies
-            _enemyKilledCounter++;
-            if (_enemyKilledCounter < 100)
+            // _enemiesKilledCounter++;
+            _achievementsData.enemiesKilledCounter++;
+            SaveData();
+            Debug.Log(_achievementsData.enemiesKilledCounter);
+            
+            if (_achievementsData.enemiesKilledCounter < 100)
             {
                 return;
             }
@@ -38,6 +68,8 @@ namespace Achievements
             }
         }
 
+        // dunno how to check for that for now
+        // maybe every time a tower is upgraded check all its upgrades
         public void OnTowerUpgraded()
         {
             // if a tower has all possible upgrades (5 passives and 1 active)
@@ -46,7 +78,7 @@ namespace Achievements
             // notify the player
         }
 
-        public void OnLoss()
+        public void OnLoss() // a basic event
         {
             // check if achievement is already completed
             // if not, complete it
