@@ -11,17 +11,6 @@ namespace Achievements
 
         private SaveAchievementValues _achievementSaver;
         private AchievementsData _achievementsData;
-        
-        // these should be saved
-        // private int _enemiesKilledCounter;
-
-        // private void Update()
-        // {
-        //     foreach (var achievement in achievements)
-        //     {
-        //         Debug.Log(achievement.Completed);
-        //     }
-        // }
 
         private void Awake()
         {
@@ -34,7 +23,6 @@ namespace Achievements
             }
             else
             {
-                Debug.Log("Loaded data");
                 _achievementsData = loadedData;
             }
         }
@@ -42,16 +30,13 @@ namespace Achievements
         private void SaveData()
         {
             _achievementSaver.Save(_achievementsData);
-            Debug.Log("Saved achievement data");
         }
         
         public void OnEnemyDeath()
         {
             // kill 100 enemies
-            // _enemiesKilledCounter++;
             _achievementsData.enemiesKilledCounter++;
             SaveData();
-            Debug.Log(_achievementsData.enemiesKilledCounter);
             
             if (_achievementsData.enemiesKilledCounter < 100)
             {

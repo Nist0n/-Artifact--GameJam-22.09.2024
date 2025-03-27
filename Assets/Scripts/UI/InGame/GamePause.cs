@@ -11,7 +11,6 @@ namespace UI.InGame
     {
         [SerializeField] GameObject background;
         [SerializeField] GameObject dreamCounter;
-        [SerializeField] Animator continueButtonAnimator;
 
         private void Update()
         {

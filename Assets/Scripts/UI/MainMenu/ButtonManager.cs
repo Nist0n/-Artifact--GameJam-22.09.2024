@@ -21,6 +21,8 @@ namespace UI.MainMenu
 
         private void Start()
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             _canvasComponent = canvas.GetComponent<Canvas>();
             AudioManager.instance.PlayMusic("MainMenu");
         }
