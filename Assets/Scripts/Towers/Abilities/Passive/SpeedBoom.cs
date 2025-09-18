@@ -69,7 +69,7 @@ namespace Abilities.Passive
         private void SetPassiveBonus()
         {
             _passiveAbilities.ActiveAbil.GetComponent<ActiveAbility>()
-                .ChangeAbilityCooldown(_passiveAbilities.ActiveAbil.name, percent, _passiveAbilities.ActiveAbil);
+                .ChangeAbilityCooldown(percent);
             _isPassiveUsed = true;
             ActiveOnTheTower = true;
         }

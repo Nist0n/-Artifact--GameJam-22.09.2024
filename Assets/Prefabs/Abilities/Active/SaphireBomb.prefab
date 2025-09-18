@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5314728818853644405}
   - component: {fileID: 2980114478020370099}
   - component: {fileID: 1802751943315448317}
-  - component: {fileID: 3369569070268995835}
   - component: {fileID: 150991011609258522}
   - component: {fileID: -353634557570054615}
   m_Layer: 0
@@ -136,30 +135,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 914e206c0bb160b4bb00a4b1c3ea3b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amberBomb: {fileID: 2296879339028380043, guid: 69714c940f361554889e20502d036ee1, type: 3}
-  saphireBomb: {fileID: 3369569070268995835}
-  emeraldBomb: {fileID: 4984192377918074956, guid: 006fefcdc0d024d489138a8842896b67, type: 3}
-  diamondBomb: {fileID: -456462015008414354, guid: e516d7157a6ef194aa005805b17c9d5a, type: 3}
-  rubyBomb: {fileID: -6703857217748586729, guid: a35cce8f96542bb429661747b0b75d69, type: 3}
---- !u!114 &3369569070268995835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4500373888269952220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d2df96236d24ad4b97b3176f82e1c06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsAbilityUsed: 0
-  AbilityCooldown: 30
-  Timer: 0
-  RangeOfAction: 4
-  ActionCollider: {fileID: 4883840351844022898, guid: 8a1fcd3f2faddb541ae67a1455195f80, type: 3}
-  ActionRadius: {fileID: 0}
-  Cost: 3
+  isAbilityUsed: 0
+  abilityCooldown: 30
+  timer: 0
+  rangeOfAction: 4
+  actionCollider: {fileID: 4883840351844022898, guid: 8a1fcd3f2faddb541ae67a1455195f80, type: 3}
+  actionRadius: {fileID: 0}
+  cost: 3
+  activeAbilityName: "\u0421\u0430\u043F\u0444\u0438\u0440\u043E\u0432\u0430\u044F
+    \u0431\u043E\u043C\u0431\u0430"
+  description: "\u041D\u0430\u043D\u043E\u0441\u0438\u0442 \u0443\u0440\u043E\u043D
+    \u043F\u043E \u043E\u0431\u043B\u0430\u0441\u0442\u0438"
 --- !u!114 &150991011609258522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPrefab: {fileID: 2261655398193748972, guid: b79453b23b0418448be7c2c061f7128f, type: 3}
+  tooltipTransform: {fileID: 0}
 --- !u!114 &-353634557570054615
 MonoBehaviour:
   m_ObjectHideFlags: 0

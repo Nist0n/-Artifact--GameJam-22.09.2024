@@ -199,7 +199,7 @@ namespace Shop
             if (selectedSlot.CompareTag("Active")) 
             {
                 tempCost = chosenUpgrade.gameObject.GetComponent<ActiveAbility>()
-                    .Cost(chosenUpgrade.gameObject.name);
+                    .Cost();
             }
             else
             {

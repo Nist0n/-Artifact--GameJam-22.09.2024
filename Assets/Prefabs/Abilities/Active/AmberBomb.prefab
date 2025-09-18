@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7485986537182138530}
   - component: {fileID: 7022512547532372255}
   - component: {fileID: -2089345252586005189}
-  - component: {fileID: 2296879339028380043}
   - component: {fileID: -2474928114966009340}
   - component: {fileID: 6095329416196362240}
   m_Layer: 0
@@ -136,30 +135,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 914e206c0bb160b4bb00a4b1c3ea3b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amberBomb: {fileID: 2296879339028380043}
-  saphireBomb: {fileID: 3369569070268995835, guid: eb469f6ebb51fc646bbbabafd0ad6faa, type: 3}
-  emeraldBomb: {fileID: 4984192377918074956, guid: 006fefcdc0d024d489138a8842896b67, type: 3}
-  diamondBomb: {fileID: -456462015008414354, guid: e516d7157a6ef194aa005805b17c9d5a, type: 3}
-  rubyBomb: {fileID: -6703857217748586729, guid: a35cce8f96542bb429661747b0b75d69, type: 3}
---- !u!114 &2296879339028380043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4500373888269952220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fc1da51647d55943993d9275469222b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsAbilityUsed: 0
-  AbilityCooldown: 45
-  Timer: 0
-  RangeOfAction: 3
-  ActionCollider: {fileID: 4883840351844022898, guid: 6b3bad0252566754f8bcfbb871d41eb5, type: 3}
-  ActionRadius: {fileID: 0}
-  Cost: 5
+  isAbilityUsed: 0
+  abilityCooldown: 45
+  timer: 0
+  rangeOfAction: 4
+  actionCollider: {fileID: 4883840351844022898, guid: 6b3bad0252566754f8bcfbb871d41eb5, type: 3}
+  actionRadius: {fileID: 0}
+  cost: 3
+  activeAbilityName: "\u042F\u043D\u0442\u0430\u0440\u043D\u0430\u044F \u0431\u043E\u043C\u0431\u0430"
+  description: "\u0421\u043E\u0437\u0434\u0430\u0451\u0442 \u043E\u0431\u043B\u0430\u0441\u0442\u044C,
+    \u0432 \u043A\u043E\u0442\u043E\u0440\u043E\u0439 \u0432\u0440\u0430\u0433\u0438
+    \u043F\u043E\u043B\u0443\u0447\u0430\u044E\u0442 \u0443\u0440\u043E\u043D"
 --- !u!114 &-2474928114966009340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPrefab: {fileID: 2261655398193748972, guid: b79453b23b0418448be7c2c061f7128f, type: 3}
+  tooltipTransform: {fileID: 0}
 --- !u!114 &6095329416196362240
 MonoBehaviour:
   m_ObjectHideFlags: 0

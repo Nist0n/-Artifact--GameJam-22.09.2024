@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 124430118473297701}
   - component: {fileID: -3738813032445671486}
   - component: {fileID: 1461354539741179196}
-  - component: {fileID: -456462015008414354}
   - component: {fileID: 2622096652916457682}
   - component: {fileID: -262269445535432881}
   m_Layer: 0
@@ -92,11 +91,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 914e206c0bb160b4bb00a4b1c3ea3b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amberBomb: {fileID: 2296879339028380043, guid: 69714c940f361554889e20502d036ee1, type: 3}
-  saphireBomb: {fileID: 3369569070268995835, guid: eb469f6ebb51fc646bbbabafd0ad6faa, type: 3}
-  emeraldBomb: {fileID: 4984192377918074956, guid: 006fefcdc0d024d489138a8842896b67, type: 3}
-  diamondBomb: {fileID: -456462015008414354}
-  rubyBomb: {fileID: -6703857217748586729, guid: a35cce8f96542bb429661747b0b75d69, type: 3}
+  isAbilityUsed: 0
+  abilityCooldown: 45
+  timer: 0
+  rangeOfAction: 5
+  actionCollider: {fileID: 4883840351844022898, guid: b5e9ef341db43924292a519ebe3fc783, type: 3}
+  actionRadius: {fileID: 0}
+  cost: 5
+  activeAbilityName: "\u0410\u043B\u043C\u0430\u0437\u043D\u0430\u044F \u0431\u043E\u043C\u0431\u0430"
+  description: "\u0417\u0430\u043C\u043E\u0440\u0430\u0436\u0438\u0432\u0430\u0435\u0442
+    \u0432\u0440\u0430\u0433\u043E\u0432 \u0432 \u043E\u0431\u043B\u0430\u0441\u0442\u0438
+    \u043D\u0430 \u0432\u0440\u0435\u043C\u044F"
 --- !u!114 &1461354539741179196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,25 +146,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &-456462015008414354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4500373888269952220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67005fd135906e84f8ff78dc37505db8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsAbilityUsed: 0
-  AbilityCooldown: 45
-  Timer: 0
-  RangeOfAction: 5
-  ActionCollider: {fileID: 4883840351844022898, guid: b5e9ef341db43924292a519ebe3fc783, type: 3}
-  ActionRadius: {fileID: 0}
-  Cost: 5
 --- !u!114 &2622096652916457682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipPrefab: {fileID: 2261655398193748972, guid: b79453b23b0418448be7c2c061f7128f, type: 3}
+  tooltipTransform: {fileID: 0}
 --- !u!114 &-262269445535432881
 MonoBehaviour:
   m_ObjectHideFlags: 0

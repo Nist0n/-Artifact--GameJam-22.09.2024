@@ -36,9 +36,9 @@ namespace UI.InGame
             }
             else if (gameObject.TryGetComponent(out ActiveAbility active))
             {
-                abilityName = active.Name(gameObject.name);
-                cost = active.Cost(gameObject.name);
-                description = active.Description(gameObject.name);
+                abilityName = active.Name();
+                cost = active.Cost();
+                description = active.Description();
             }
             else
             {

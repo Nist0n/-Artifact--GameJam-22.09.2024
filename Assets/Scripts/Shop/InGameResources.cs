@@ -13,6 +13,8 @@ public class InGameResources : MonoBehaviour
 
     private ResourceTypes _curentResource;
 
+    public List<ResourceTypes> GetResourceTypes() => resourceTypes;
+
     private void Start()
     {
         if (resourceTypes != null) _curentResource = resourceTypes[0]; 
@@ -26,13 +28,24 @@ public class InGameResources : MonoBehaviour
         _curentResource.TimeUpdate(Time.deltaTime);
     }
 
-    public void ChangeResource(Resource type)
+    private void ChangeResource(Resource type)
     {
         foreach (var resource in resourceTypes)
         {
             if (resource.ResourceType == type)
             {
                 _curentResource = resource;
+            }
+        }
+    }
+
+    public void DecreaseCount(Resource type, int count)
+    {
+        foreach (var resource in resourceTypes)
+        {
+            if (resource.ResourceType == type)
+            {
+                resource.Count -= count;
             }
         }
     }

@@ -63,7 +63,7 @@ namespace Towers
                 // }
                 if (TowerSelected)
                 {
-                    _imageCooldowns.GetProperties(_active.Timer(_active.name), _active.AbilityCooldown(_active.name));
+                    _imageCooldowns.GetProperties(_active.Timer(), _active.AbilityCooldown());
                 }
             }
 

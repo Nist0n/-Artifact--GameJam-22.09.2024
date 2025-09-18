@@ -4,302 +4,74 @@ namespace Abilities.Active
 {
     public class ActiveAbility : MonoBehaviour
     {
-        [SerializeField] private AmberBomb amberBomb;
-        [SerializeField] private SaphireBomb saphireBomb;
-        [SerializeField] private EmeraldBomb emeraldBomb;
-        [SerializeField] private DiamondBomb diamondBomb;
-        [SerializeField] private RubyBomb rubyBomb;
+        [SerializeField] private bool isAbilityUsed = false;
 
-        private const string Amber = "AmberBomb";
-        private const string Saphire = "SaphireBomb";
-        private const string Emerald = "EmeraldBomb";
-        private const string Diamond = "DiamondBomb";
-        private const string Ruby = "RubyBomb";
+        [SerializeField] private float abilityCooldown;
 
-        public float Cost(string name)
+        [SerializeField] private float timer;
+
+        [SerializeField] private float rangeOfAction;
+
+        [SerializeField] private GameObject actionCollider;
+
+        [SerializeField] private GameObject actionRadius;
+
+        [SerializeField] private float cost;
+
+        [SerializeField] private string activeAbilityName;
+
+        [SerializeField] private string description;
+
+        private void Update()
         {
-            if (name.Contains(Amber))
-            {
-                return amberBomb.Cost;
-            }
-            else if (name.Contains(Saphire))
-            {
-                return saphireBomb.Cost;
-            }
-            else if (name.Contains(Emerald))
-            {
-                return emeraldBomb.Cost;
-            }
-            else if (name.Contains(Ruby))
-            {
-                return rubyBomb.Cost;
-            }
-            else if (name.Contains(Diamond))
-            {
-                return diamondBomb.Cost;
-            }
-
-            return 0;
+            CheckAbilityCooldown();
         }
+
+
+        [ContextMenu("Z")]
+        public void ActivateAbility(Vector3 pos)
+        {
+            if (!isAbilityUsed)
+            {
+                Instantiate(actionCollider, pos, Quaternion.identity);
+                isAbilityUsed = true;
+            }
+        }
+
+        public void ActivateAbilityRadius(Vector3 pos)
+        {
+            actionRadius.transform.position = pos;
+        }
+
+        protected void CheckAbilityCooldown()
+        {
+            if (isAbilityUsed)
+            {
+                timer += Time.deltaTime;
+                if (timer > abilityCooldown)
+                {
+                    isAbilityUsed = false;
+                    timer = 0;
+                }
+            }
+        }
+
+        public float Cost() => cost;
     
-        public float RangeOfAction(string name)
-        {
-            if (name.Contains(Amber))
-            {
-                return amberBomb.RangeOfAction;
-            }
-            else if (name.Contains(Saphire))
-            {
-                return saphireBomb.RangeOfAction;
-            }
-            else if (name.Contains(Emerald))
-            {
-                return emeraldBomb.RangeOfAction;
-            }
-            else if (name.Contains(Ruby))
-            {
-                return rubyBomb.RangeOfAction;
-            }
-            else if (name.Contains(Diamond))
-            {
-                return diamondBomb.RangeOfAction;
-            }
-
-            return 0;
-        }
-
-        public void ActivateAbilityRadius(string name, Vector3 pos)
-        {
-            if (name.Contains(Amber))
-            {
-                amberBomb.ActivateAbilityRadius(pos);
-            }
-            else if (name.Contains(Saphire))
-            {
-                saphireBomb.ActivateAbilityRadius(pos);
-            }
-            else if (name.Contains(Emerald))
-            {
-                emeraldBomb.ActivateAbilityRadius(pos);
-            }
-            else if (name.Contains(Ruby))
-            {
-                rubyBomb.ActivateAbilityRadius(pos);
-            }
-            else if (name.Contains(Diamond))
-            {
-                diamondBomb.ActivateAbilityRadius(pos);
-            }
-        }
+        public float RangeOfAction() => rangeOfAction;
     
-        public void ActivateAbility(string name, Vector3 pos, GameObject abil)
-        {
-            if (name.Contains(Amber))
-            {
-                abil.GetComponent<AmberBomb>().ActivateAbility(pos);
-            }
-            else if (name.Contains(Saphire))
-            {
-                abil.GetComponent<SaphireBomb>().ActivateAbility(pos);
-            }
-            else if (name.Contains(Emerald))
-            {
-                abil.GetComponent<EmeraldBomb>().ActivateAbility(pos);
-            }
-            else if (name.Contains(Ruby))
-            {
-                abil.GetComponent<RubyBomb>().ActivateAbility(pos);
-            }
-            else if (name.Contains(Diamond))
-            {
-                abil.GetComponent<DiamondBomb>().ActivateAbility(pos);
-            }
-        }
+        public bool IsAbilityUsed() => !isAbilityUsed;
     
-        public bool IsAbilityUsed(string name)
-        {
-            if (name.Contains(Amber))
-            {
-                return amberBomb.IsAbilityUsed;
-            }
-            else if (name.Contains(Saphire))
-            {
-                return saphireBomb.IsAbilityUsed;
-            }
-            else if (name.Contains(Emerald))
-            {
-                return emeraldBomb.IsAbilityUsed;
-            }
-            else if (name.Contains(Ruby))
-            {
-                return rubyBomb.IsAbilityUsed;
-            }
-            else if (name.Contains(Diamond))
-            {
-                return diamondBomb.IsAbilityUsed;
-            }
+        public void ActionRadius(GameObject radius) => actionRadius = radius;
 
-            return false;
-        }
-    
-        public void ActionRadius(string name, GameObject radius)
-        {
-            if (name.Contains(Amber))
-            {
-                amberBomb.ActionRadius = radius;
-            }
-            else if (name.Contains(Saphire))
-            {
-                saphireBomb.ActionRadius = radius;
-            }
-            else if (name.Contains(Emerald))
-            {
-                emeraldBomb.ActionRadius = radius;
-            }
-            else if (name.Contains(Ruby))
-            {
-                rubyBomb.ActionRadius = radius;
-            }
-            else if (name.Contains(Diamond))
-            {
-                diamondBomb.ActionRadius = radius;
-            }
-        }
-    
-        public float Timer(string name)
-        {
-            if (name.Contains(Amber))
-            {
-                return amberBomb.Timer;
-            }
-            else if (name.Contains(Saphire))
-            {
-                return saphireBomb.Timer;
-            }
-            else if (name.Contains(Emerald))
-            {
-                return emeraldBomb.Timer;
-            }
-            else if (name.Contains(Ruby))
-            {
-                return rubyBomb.Timer;
-            }
-            else if (name.Contains(Diamond))
-            {
-                return diamondBomb.Timer;
-            }
+        public float Timer() => timer;
 
-            return 0;
-        }
-    
-        public float AbilityCooldown(string name)
-        {
-            if (name.Contains(Amber))
-            {
-                return amberBomb.AbilityCooldown;
-            }
-            else if (name.Contains(Saphire))
-            {
-                return saphireBomb.AbilityCooldown;
-            }
-            else if (name.Contains(Emerald))
-            {
-                return emeraldBomb.AbilityCooldown;
-            }
-            else if (name.Contains(Ruby))
-            {
-                return rubyBomb.AbilityCooldown;
-            }
-            else if (name.Contains(Diamond))
-            {
-                return diamondBomb.AbilityCooldown;
-            }
+        public float AbilityCooldown() => abilityCooldown;
 
-            return 0;
-        }
-    
-        public void ChangeAbilityCooldown(string name, float percent, GameObject abil)
-        {
-            if (name.Contains(Amber))
-            {
-                abil.GetComponent<AmberBomb>().AbilityCooldown *= percent;
-            }
-            else if (name.Contains(Saphire))
-            {
-                abil.GetComponent<SaphireBomb>().AbilityCooldown *= percent;
-            }
-            else if (name.Contains(Emerald))
-            {
-                abil.GetComponent<EmeraldBomb>().AbilityCooldown *= percent;
-            }
-            else if (name.Contains(Ruby))
-            {
-                abil.GetComponent<RubyBomb>().AbilityCooldown *= percent;
-            }
-            else if (name.Contains(Diamond))
-            {
-                abil.GetComponent<DiamondBomb>().AbilityCooldown *= percent;
-            }
-        }
+        public void ChangeAbilityCooldown(float percent) => abilityCooldown *= percent;
 
-        public string Description(string abilityName)
-        {
-            if (abilityName.Contains(Amber))
-            {
-                return amberBomb.Description;
-            }
-
-            if (abilityName.Contains(Saphire))
-            {
-                return saphireBomb.Description;
-            }
-
-            if (abilityName.Contains(Emerald))
-            {
-                return emeraldBomb.Description;
-            }
-
-            if (abilityName.Contains(Ruby))
-            {
-                return rubyBomb.Description;
-            }
-
-            if (abilityName.Contains(Diamond))
-            {
-                return diamondBomb.Description;
-            }
-
-            return "Error! You were not meant to see this";
-        }
+        public string Description() => description;
         
-        public string Name(string abilityName)
-        {
-            if (abilityName.Contains(Amber))
-            {
-                return amberBomb.Name;
-            }
-
-            if (abilityName.Contains(Saphire))
-            {
-                return saphireBomb.Name;
-            }
-
-            if (abilityName.Contains(Emerald))
-            {
-                return emeraldBomb.Name;
-            }
-
-            if (abilityName.Contains(Ruby))
-            {
-                return rubyBomb.Name;
-            }
-
-            if (abilityName.Contains(Diamond))
-            {
-                return diamondBomb.Name;
-            }
-
-            return "Error! You were not meant to see this";
-        }
+        public string Name() => activeAbilityName;
     }
 }
