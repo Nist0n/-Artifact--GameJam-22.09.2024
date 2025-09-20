@@ -1,6 +1,6 @@
-using Abilities.Active;
 using TMPro;
 using Towers;
+using Towers.Abilities.Active;
 using UnityEngine;
 
 namespace Abilities.Passive

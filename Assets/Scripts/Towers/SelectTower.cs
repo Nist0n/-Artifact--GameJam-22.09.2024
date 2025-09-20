@@ -86,6 +86,7 @@ namespace Towers
                     {
                         AudioManager.instance.PlaySFX("Click");
                         Tower tower = hit.collider.gameObject.GetComponent<Tower>();
+                        hit.collider.gameObject.GetComponent<AbilitiesSlots>().UpdateAbilityUI();
                         
                         buyingSystem.ResetLists(); // чистка выбора умений
 

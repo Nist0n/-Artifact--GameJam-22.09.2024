@@ -45564,6 +45564,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1603239491}
     m_Modifications:
+    - target: {fileID: 759864683091612680, guid: ca575fa051db6974fb636705bd346d03, type: 3}
+      propertyPath: m_StreamingVersion
+      value: 20241001
+      objectReference: {fileID: 0}
     - target: {fileID: 994077674886679309, guid: ca575fa051db6974fb636705bd346d03, type: 3}
       propertyPath: Circle
       value: 
@@ -45831,6 +45835,10 @@ PrefabInstance:
       propertyPath: mainBuildingTransform
       value: 
       objectReference: {fileID: 612368117110926638}
+    - target: {fileID: 782202365097143688, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
+      propertyPath: m_StreamingVersion
+      value: 20241001
+      objectReference: {fileID: 0}
     - target: {fileID: 1527353363443726447, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
       propertyPath: Circle
       value: 
@@ -45999,6 +46007,10 @@ PrefabInstance:
       propertyPath: mainCameraListener
       value: 
       objectReference: {fileID: 117611329}
+    - target: {fileID: 2266872799919430642, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
+      propertyPath: m_StreamingVersion
+      value: 20241001
+      objectReference: {fileID: 0}
     - target: {fileID: 4482845753825977457, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
       propertyPath: Circle
       value: 
@@ -46083,6 +46095,10 @@ PrefabInstance:
       propertyPath: mainBuildingTransform
       value: 
       objectReference: {fileID: 612368117110926638}
+    - target: {fileID: 3147052024303866609, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
+      propertyPath: m_StreamingVersion
+      value: 20241001
+      objectReference: {fileID: 0}
     - target: {fileID: 4096085081091214255, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
       propertyPath: m_Name
       value: MainTower5
@@ -46203,6 +46219,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1603239491}
     m_Modifications:
+    - target: {fileID: 406616510283332052, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
+      propertyPath: m_StreamingVersion
+      value: 20241001
+      objectReference: {fileID: 0}
     - target: {fileID: 2505902630796933185, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
       propertyPath: mainCameraListener
       value: 
@@ -46326,6 +46346,10 @@ PrefabInstance:
     - target: {fileID: 1125817258941263679, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
       propertyPath: m_Name
       value: MainTower3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4839637161733035625, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
+      propertyPath: m_StreamingVersion
+      value: 20241001
       objectReference: {fileID: 0}
     - target: {fileID: 6812714626815986796, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
       propertyPath: m_LocalPosition.x

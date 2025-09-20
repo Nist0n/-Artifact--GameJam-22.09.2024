@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Abilities.Active;
 using GameConfiguration;
 using StaticClasses;
+using Towers.Abilities.Active;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
@@ -170,8 +170,11 @@ namespace Towers
             
             if (Input.GetMouseButton(1) && !_isAbilityActived)
             {
+                Debug.Log("Прошли первую проверку");
+                Debug.Log($"Проверка на метод {_abilities.Ability.GetComponent<ActiveAbility>().IsAbilityUsed()}");
                 if (_abilities.HasActiveAbility && !_abilities.Ability.GetComponent<ActiveAbility>().IsAbilityUsed())
                 {
+                    Debug.Log("Прошли вторую проверку");
                     DisableImage();
                     _abilityRange.transform.localScale *= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction();
                     _abilities.Ability.GetComponent<ActiveAbility>().ActionRadius(_abilityRange);
@@ -225,7 +228,7 @@ namespace Towers
                     }
                 }
 
-               // previousTarget = currentTarget;
+                // previousTarget = currentTarget;
 
                 currentTarget = closestEnemyToCenter;
 

@@ -1,6 +1,6 @@
-﻿using Abilities.Active;
-using Abilities.Passive;
+﻿using Abilities.Passive;
 using Audio;
+using Towers.Abilities.Active;
 using UnityEngine;
 
 namespace UI.InGame

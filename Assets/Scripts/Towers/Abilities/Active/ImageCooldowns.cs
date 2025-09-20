@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Abilities.Active
+namespace Towers.Abilities.Active
 {
     public class ImageCooldowns : MonoBehaviour
     {

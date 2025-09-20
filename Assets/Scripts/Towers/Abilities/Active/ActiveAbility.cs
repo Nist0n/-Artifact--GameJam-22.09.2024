@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Abilities.Active
+namespace Towers.Abilities.Active
 {
     public class ActiveAbility : MonoBehaviour
     {
@@ -60,7 +60,7 @@ namespace Abilities.Active
     
         public float RangeOfAction() => rangeOfAction;
     
-        public bool IsAbilityUsed() => !isAbilityUsed;
+        public bool IsAbilityUsed() => isAbilityUsed;
     
         public void ActionRadius(GameObject radius) => actionRadius = radius;
 

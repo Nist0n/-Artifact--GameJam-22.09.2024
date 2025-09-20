@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Abilities.Active;
 using Abilities.Passive;
+using Towers.Abilities.Active;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -56,11 +56,7 @@ namespace Towers
             if (_active)
             {
                 if (_passAbility) _passAbility.SetAbility(_active.gameObject);
-            
-                // if (!_imageCooldowns)
-                // {
-                //     _imageCooldowns = activeAbilityPosition.GetComponent<ImageCooldowns>();
-                // }
+
                 if (TowerSelected)
                 {
                     _imageCooldowns.GetProperties(_active.Timer(), _active.AbilityCooldown());
@@ -179,6 +175,14 @@ namespace Towers
             imagePositions.Clear();
 
             IsPassiveSet = false;
+        }
+
+        public void UpdateAbilityUI()
+        {
+            if (_active)
+            {
+                _imageCooldowns.GetProperties(_active.Timer(), _active.AbilityCooldown());
+            }
         }
     }
 }
