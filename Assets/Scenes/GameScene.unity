@@ -17323,6 +17323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   background: {fileID: 220916812}
   dreamCounter: {fileID: 1328672639127493518}
+  resourcesUI: {fileID: 2082766087}
 --- !u!114 &804337114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19629,6 +19630,7 @@ MonoBehaviour:
   objectsToHide:
   - {fileID: 1328672639127493518}
   - {fileID: 1266302421}
+  - {fileID: 2082766087}
   loseUI: {fileID: 8459963022333761646}
   victoryUI: {fileID: 8459963022281346612}
 --- !u!4 &930643878

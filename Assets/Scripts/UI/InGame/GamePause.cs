@@ -11,6 +11,7 @@ namespace UI.InGame
     {
         [SerializeField] GameObject background;
         [SerializeField] GameObject dreamCounter;
+        [SerializeField] GameObject resourcesUI;
 
         private void Update()
         {
@@ -50,6 +51,7 @@ namespace UI.InGame
             AudioManager.instance.PlaySFX("Click");
             background.SetActive(active);
             dreamCounter.SetActive(!active);
+            resourcesUI.SetActive(!active);
         }
     
         public void Quit()
