@@ -1,77 +1,45 @@
-using TMPro;
-using Towers;
+using Abilities.Passive;
 using Towers.Abilities.Active;
-using UnityEngine;
 
-namespace Abilities.Passive
+namespace Towers.Abilities.Passive
 {
-    public class SpeedBoom : MonoBehaviour
+    public class SpeedBoom : PassiveAbilities
     {
-        [SerializeField] private TextMeshProUGUI countText;
-        
-        public float Cost;
-        
-        public int Count;
-        
-        public bool ActiveOnTheTower = false;
+        private bool _isCountSet;
 
-        private bool _isCountSeted = false;
+        private const float PERCENT = 0.6f;
 
-        [SerializeField] private GameObject abil;
-    
-        [SerializeField] private float percent = 0.6f;
-
-        private bool _isPassiveUsed = false;
-        
-        private Tower _tower;
-        
-        private PassiveAbilities _passiveAbilities;
-
-        public string Name { private set; get; } = "Разящая шестерёнка";
-        
-        public string Description { private set; get; } = "Уменьшает перезарядку активных способностей на 40%";
-    
-        private void Start()
+        protected override void Update()
         {
-            _passiveAbilities = GetComponent<PassiveAbilities>();
-        }
-
-        private void Update()
-        {
-            if (ActiveOnTheTower)
+            if (activeOnTheTower)
             {
-                if (Count == 1)
+                if (count == 1)
                 {
                     countText.text = "";
                     return;
                 }
-                countText.text = $"{Count}x";
+                countText.text = $"{count}x";
                 return;
             }
-            
-            if (_passiveAbilities.tower)
-            {
-                _tower = _passiveAbilities.tower;
-            }
 
-            if (_tower && !_isCountSeted)
+            if (connectedTower && !_isCountSet)
             {
-                _isCountSeted = true;
-                ActiveOnTheTower = true;
+                _isCountSet = true;
+                activeOnTheTower = true;
             }
             
-            if (_passiveAbilities.ActiveAbil && !_isPassiveUsed)
+            if (activeAbility && !isPassiveUsed)
             {
                 SetPassiveBonus();
             }
         }
 
-        private void SetPassiveBonus()
+        protected override void SetPassiveBonus()
         {
-            _passiveAbilities.ActiveAbil.GetComponent<ActiveAbility>()
-                .ChangeAbilityCooldown(percent);
-            _isPassiveUsed = true;
-            ActiveOnTheTower = true;
+            activeAbility.GetComponent<ActiveAbility>()
+                .ChangeAbilityCooldown(PERCENT);
+            isPassiveUsed = true;
+            activeOnTheTower = true;
         }
     }
 }

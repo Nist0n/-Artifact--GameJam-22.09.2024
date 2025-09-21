@@ -126,7 +126,7 @@ namespace Towers
                             {
                                 equal = false;
                                 foundSample = true;
-                                passive.GetComponent<PassiveAbilities>().Count(passive.name, 1);
+                                passive.GetComponent<PassiveAbilities>().Count(1);
                             }
                         }
 
@@ -146,7 +146,7 @@ namespace Towers
             {
                 GameObject background = Instantiate(imageBackgroundPrefab, passivesTransform.transform);
                 var passiveAbility = Instantiate(passive, background.transform);
-                passiveAbility.GetComponent<PassiveAbilities>().DisableAbility(passive.name);
+                passiveAbility.GetComponent<PassiveAbilities>().DisableAbility();
                 passiveAbility.GetComponent<EventTrigger>().enabled = false;
                 imagePositions.Add(background);
             }
@@ -168,7 +168,7 @@ namespace Towers
             {
                 if (ability.GetComponent<PassiveAbilities>())
                 {
-                    ability.GetComponent<PassiveAbilities>().ClearCount(ability.name);
+                    ability.GetComponent<PassiveAbilities>().ClearCount();
                 }
             }
         

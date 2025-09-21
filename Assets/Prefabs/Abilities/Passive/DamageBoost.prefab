@@ -146,7 +146,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8935698370472753456}
   - component: {fileID: 3381435743322768229}
-  - component: {fileID: 7219446839537589289}
   - component: {fileID: 4427870242889155430}
   - component: {fileID: 5456941135957355335}
   - component: {fileID: 4181727613701978703}
@@ -191,31 +190,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04763da8c04fd524ba0efcf8cda021e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connectedTower: {fileID: 0}
+  activeAbility: {fileID: 0}
   countText: {fileID: 7297603213052306929}
-  Cost: 4
-  Count: 1
-  ActiveOnTheTower: 0
-  damage: 0.4
---- !u!114 &7219446839537589289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8316077456163229515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a84d1e53a5b95c46b5f7391ae8c0b86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tower: {fileID: 0}
-  ActiveAbil: {fileID: 0}
-  floatingTps: {fileID: 7367093388856574068, guid: 5caacb7c4542dfa45b23c93cb6eb3589, type: 3}
-  speedBoom: {fileID: 3109932182522619910, guid: 727eee4e4e3363145b4742646b1ae8aa, type: 3}
-  slowShit: {fileID: 6727523760656776056, guid: dd69992feb43c47409876ea2d4e1e92c, type: 3}
-  damageBoost: {fileID: 3381435743322768229}
-  fireBoost: {fileID: 5109628574048531971, guid: f622b9a36f00bb94ca71e1e5482d5717, type: 3}
-  rangeGiga: {fileID: 3565205544386098969, guid: c2ae51ea8901fea429c22449838835be, type: 3}
+  cost: 4
+  count: 1
+  activeOnTheTower: 0
+  isPassiveUsed: 0
+  passiveAbilityName: "\u0421\u0438\u043B\u043E\u0432\u044B\u0435 \u043F\u043E\u0440\u0448\u043D\u0438"
+  description: 
 --- !u!222 &4427870242889155430
 CanvasRenderer:
   m_ObjectHideFlags: 0

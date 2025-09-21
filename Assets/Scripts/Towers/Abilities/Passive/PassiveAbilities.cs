@@ -1,3 +1,4 @@
+using TMPro;
 using Towers;
 using UnityEngine;
 
@@ -5,231 +6,67 @@ namespace Abilities.Passive
 {
     public class PassiveAbilities : MonoBehaviour
     {
-        public Tower tower;
+        [SerializeField] protected Tower connectedTower;
 
-        public GameObject ActiveAbil;
+        [SerializeField] protected GameObject activeAbility;
+        
+        [SerializeField] protected TextMeshProUGUI countText;
 
-        [SerializeField] private FloatingTPS floatingTps;
-    
-        [SerializeField] private SpeedBoom speedBoom;
-    
-        [SerializeField] private SlowShit slowShit;
+        [SerializeField] protected float cost;
 
-        [SerializeField] private DamageBoost damageBoost;
-    
-        [SerializeField] private FireBoost fireBoost;
-    
-        [SerializeField] private RangeGiga rangeGiga;
+        [SerializeField] protected int count = 1;
         
-        private const string FireBoost = "FireBoost";
+        [SerializeField] protected bool activeOnTheTower = false;
+
+        [SerializeField] protected bool isPassiveUsed = false;
+
+        [SerializeField] protected string passiveAbilityName;
         
-        private const string RangeGiga = "RangeGiga";
+        [SerializeField] protected string description;
         
-        private const string DamageBoost = "DamageBoost";
-        
-        private const string FloatingTps = "FloatingTPS";
-        
-        private const string SlowShit = "SlowShit";
-        
-        private const string SpeedBoom = "SpeedBoom";
+        protected virtual void Update()
+        {
+            if (activeOnTheTower)
+            {
+                if (count == 1)
+                {
+                    countText.text = "";
+                    return;
+                }
+                countText.text = $"{count}x";
+                return;
+            }
+
+            if (connectedTower && !isPassiveUsed)
+            {
+                SetPassiveBonus();
+            }
+        }
+
+        protected virtual void SetPassiveBonus()
+        {
+        }
 
         public void SetTower(Tower tower)
         {
-            this.tower = tower;
+            connectedTower = tower;
         }
 
-        public float Cost(string name)
-        {
-            if (name.Contains("FloatingTPS"))
-            {
-                return floatingTps.Cost;
-            }
-        
-            if (name.Contains("SlowShit"))
-            {
-                return slowShit.Cost;
-            }
-        
-            if (name.Contains("SpeedBoom"))
-            {
-                return speedBoom.Cost;
-            }
-        
-            if (name.Contains("DamageBoost"))
-            {
-                return damageBoost.Cost;
-            }
-        
-            if (name.Contains("FireBoost"))
-            {
-                return fireBoost.Cost;
-            }
-        
-            if (name.Contains("RangeGiga"))
-            {
-                return rangeGiga.Cost;
-            }
+        public float Cost() => cost;
 
-            return 0;
-        }
-        
-        public void Count(string name, int count)
-        {
-            if (name.Contains(FloatingTps))
-            {
-                floatingTps.Count += count;
-            }
-            else if (name.Contains(FireBoost))
-            {
-                fireBoost.Count += count;
-            }
-            else if (name.Contains(RangeGiga))
-            {
-                rangeGiga.Count += count;
-            }
-            else if (name.Contains(DamageBoost))
-            {
-                damageBoost.Count += count;
-            }
-            else if (name.Contains(SlowShit))
-            {
-                slowShit.Count += count;
-            }
-            else if (name.Contains(SpeedBoom))
-            {
-                speedBoom.Count += count;
-            }
-        }
-        
-        public void ClearCount(string name)
-        {
-            if (name.Contains(FloatingTps))
-            {
-                floatingTps.Count = 1;
-            }
-            else if (name.Contains(FireBoost))
-            {
-                fireBoost.Count = 1;
-            }
-            else if (name.Contains(RangeGiga))
-            {
-                rangeGiga.Count = 1;
-            }
-            else if (name.Contains(DamageBoost))
-            {
-                damageBoost.Count = 1;
-            }
-            else if (name.Contains(SlowShit))
-            {
-                slowShit.Count = 1;
-            }
-            else if (name.Contains(SpeedBoom))
-            {
-                speedBoom.Count = 1;
-            }
-        }
-        
-        public void DisableAbility(string name)
-        {
-            if (name.Contains(FloatingTps))
-            {
-                floatingTps.ActiveOnTheTower = true;
-            }
-            else if (name.Contains(FireBoost))
-            {
-                fireBoost.ActiveOnTheTower = true;
-            }
-            else if (name.Contains(RangeGiga))
-            {
-                rangeGiga.ActiveOnTheTower = true;
-            }
-            else if (name.Contains(DamageBoost))
-            {
-                damageBoost.ActiveOnTheTower = true;
-            }
-            else if (name.Contains(SlowShit))
-            {
-                slowShit.ActiveOnTheTower = true;
-            }
-            else if (name.Contains(SpeedBoom))
-            {
-                speedBoom.ActiveOnTheTower = true;
-            }
-        }
+        public void Count(int addition) => count += addition;
 
-        public string Description(string abilityName)
-        {
-            if (abilityName.Contains("FloatingTPS"))
-            {
-                return floatingTps.Description;
-            }
-        
-            if (abilityName.Contains("SlowShit"))
-            {
-                return slowShit.Description;
-            }
-        
-            if (abilityName.Contains("SpeedBoom"))
-            {
-                return speedBoom.Description;
-            }
-        
-            if (abilityName.Contains("DamageBoost"))
-            {
-                return damageBoost.Description;
-            }
-        
-            if (abilityName.Contains("FireBoost"))
-            {
-                return fireBoost.Description;
-            }
-        
-            if (abilityName.Contains("RangeGiga"))
-            {
-                return rangeGiga.Description;
-            }
+        public void ClearCount() => count = 1;
 
-            return "Error! You were not meant to see this";
-        }
-    
-        public string Name(string abilityName)
-        {
-            if (abilityName.Contains("FloatingTPS"))
-            {
-                return floatingTps.Name;
-            }
-        
-            if (abilityName.Contains("SlowShit"))
-            {
-                return slowShit.Name;
-            }
-        
-            if (abilityName.Contains("SpeedBoom"))
-            {
-                return speedBoom.Name;
-            }
-        
-            if (abilityName.Contains("DamageBoost"))
-            {
-                return damageBoost.Name;
-            }
-        
-            if (abilityName.Contains("FireBoost"))
-            {
-                return fireBoost.Name;
-            }
-        
-            if (abilityName.Contains("RangeGiga"))
-            {
-                return rangeGiga.Name;
-            }
+        public void DisableAbility() => activeOnTheTower = true;
 
-            return "Error! You were not meant to see this";
-        }
+        public string Description() => description;
+
+        public string Name() => passiveAbilityName;
         
-        public void SetAbility(GameObject abil)
+        public void SetAbility(GameObject ability)
         {
-            this.ActiveAbil = abil;
+            activeAbility = ability;
         }
     }
 }

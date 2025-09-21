@@ -204,7 +204,7 @@ namespace Shop
             else
             {
                 tempCost = chosenUpgrade.gameObject.GetComponent<PassiveAbilities>()
-                    .Cost(chosenUpgrade.gameObject.name);
+                    .Cost();
             }
 
             if (tempCost <= SoulsCounter.Instance.Dreams)

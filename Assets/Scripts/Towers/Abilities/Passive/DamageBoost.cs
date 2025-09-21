@@ -1,64 +1,21 @@
-using TMPro;
-using Towers;
-using UnityEngine;
+using System;
 
 namespace Abilities.Passive
 {
-    public class DamageBoost : MonoBehaviour
+    public class DamageBoost : PassiveAbilities
     {
-        [SerializeField] private TextMeshProUGUI countText;
-        
-        private Tower _tower;
+        private const float DAMAGE = 0.4f;
 
-        public float Cost;
-        
-        public int Count;
-        
-        public bool ActiveOnTheTower = false;
-
-        [SerializeField] private static float damage = 0.4f;
-
-        private bool _isPassiveUsed = false;
-        private PassiveAbilities _passiveAbilities;
-
-        public string Name { private set; get; } = "Силовые поршни";
-        
-        public string Description { private set; get; } = $"Увеличивает урон башни на {damage * 100}%\n(+{damage * 100}% за штуку)";
-    
         private void Start()
         {
-            _passiveAbilities = GetComponent<PassiveAbilities>();
+            description = $"Увеличивает урон башни на {DAMAGE * 100}%\n(+{DAMAGE * 100}% за штуку)";
         }
 
-        private void Update()
+        protected override void SetPassiveBonus()
         {
-            if (ActiveOnTheTower)
-            {
-                if (Count == 1)
-                {
-                    countText.text = "";
-                    return;
-                }
-                countText.text = $"{Count}x";
-                return;
-            }
-            
-            if (_passiveAbilities.tower)
-            {
-                _tower = _passiveAbilities.tower;
-            }
-
-            if (_tower && !_isPassiveUsed)
-            {
-                SetPassiveBonus();
-            }
-        }
-
-        private void SetPassiveBonus()
-        {
-            _tower.gameObject.GetComponent<AbilityTowerBuff>().AbilityDamageBuff += damage;
-            _isPassiveUsed = true;
-            ActiveOnTheTower = true;
+            connectedTower.gameObject.GetComponent<AbilityTowerBuff>().AbilityDamageBuff += DAMAGE;
+            isPassiveUsed = true;
+            activeOnTheTower = true;
         }
     }
 }

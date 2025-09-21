@@ -1,65 +1,21 @@
-using TMPro;
-using Towers;
-using UnityEngine;
+using System;
 
 namespace Abilities.Passive
 {
-    public class FireBoost : MonoBehaviour
+    public class FireBoost : PassiveAbilities
     {
-        [SerializeField] private TextMeshProUGUI countText;
-        
-        private Tower _tower;
+        private const float TPS = 0.25f;
 
-        public float Cost;
-
-        public int Count;
-        
-        public bool ActiveOnTheTower = false;
-
-        [SerializeField] private static float tps = 0.25f;
-
-        private bool _isPassiveUsed = false;
-        
-        private PassiveAbilities _passiveAbilities;
-
-        public string Name { private set; get; } = "Скоропоточный двигатель";
-        
-        public string Description { private set; get; } = $"Увеличивает скорострельность башни на {tps * 100}%\n(+{tps * 100}% за штуку)";
-    
         private void Start()
         {
-            _passiveAbilities = GetComponent<PassiveAbilities>();
+            description = $"Увеличивает скорострельность башни на {TPS * 100}%\n(+{TPS * 100}% за штуку)";
         }
 
-        private void Update()
+        protected override void SetPassiveBonus()
         {
-            if (ActiveOnTheTower)
-            {
-                if (Count == 1)
-                {
-                    countText.text = "";
-                    return;
-                }
-                countText.text = $"{Count}x";
-                return;
-            }
-            
-            if (_passiveAbilities.tower)
-            {
-                _tower = _passiveAbilities.tower;
-            }
-
-            if (_tower && !_isPassiveUsed)
-            {
-                SetPassiveBonus();
-            }
-        }
-
-        private void SetPassiveBonus()
-        {
-            _tower.gameObject.GetComponent<AbilityTowerBuff>().AbilityFireRateBuff += tps;
-            _isPassiveUsed = true;
-            ActiveOnTheTower = true;
+            connectedTower.gameObject.GetComponent<AbilityTowerBuff>().AbilityFireRateBuff += TPS;
+            isPassiveUsed = true;
+            activeOnTheTower = true;
         }
     }
 }

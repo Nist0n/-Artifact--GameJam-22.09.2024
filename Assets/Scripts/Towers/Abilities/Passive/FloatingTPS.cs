@@ -1,68 +1,25 @@
-using TMPro;
-using Towers;
-using UnityEngine;
+using System;
+using Abilities.Passive;
 
-namespace Abilities.Passive
+namespace Towers.Abilities.Passive
 {
-    public class FloatingTPS : MonoBehaviour
+    public class FloatingTPS : PassiveAbilities
     {
-        [SerializeField] private TextMeshProUGUI countText;
-        
-        private Tower _tower;
+        private const float TPS = 0.6f;
 
-        public float Cost;
-        
-        public int Count;
-        
-        public bool ActiveOnTheTower = false;
+        private const float DAMAGE_BUFF = 1.25f;
 
-        public static float tps = 0.6f;
-        
-        public static float damageBuff = 1.25f;
-        
-        private bool _isPassiveUsed = false;
-        
-        private PassiveAbilities _passiveAbilities;
-
-        public string Name { private set; get; } = "Плавающий затвор";
-        
-        public string Description { private set; get; } = $"Увеличивает скорострельность башни на {(1 - tps) * 100}% и урон башни на {(damageBuff - 1) * 100}% в течение первых {Tower.buffDuration} секунд";
-    
         private void Start()
         {
-            _passiveAbilities = GetComponent<PassiveAbilities>();
+            description = $"Увеличивает скорострельность башни на {(1 - TPS) * 100}% и урон башни на {(DAMAGE_BUFF - 1) * 100}% в течение первых {Tower.buffDuration} секунд";
         }
 
-        private void Update()
+        protected override void SetPassiveBonus()
         {
-            if (ActiveOnTheTower)
-            {
-                if (Count == 1)
-                {
-                    countText.text = "";
-                    return;
-                }
-                countText.text = $"{Count}x";
-                return;
-            }
-            
-            if (_passiveAbilities.tower)
-            {
-                _tower = _passiveAbilities.tower;
-            }
-
-            if (_tower && !_isPassiveUsed)
-            {
-                SetPassiveBonus();
-            }
-        }
-
-        private void SetPassiveBonus()
-        {
-            _tower.buffedFireRatePercent *= tps;
-            _tower.buffedDamagePercent *= damageBuff;
-            _isPassiveUsed = true;
-            ActiveOnTheTower = true;
+            connectedTower.buffedFireRatePercent *= TPS;
+            connectedTower.buffedDamagePercent *= DAMAGE_BUFF;
+            isPassiveUsed = true;
+            activeOnTheTower = true;
         }
     }
 }

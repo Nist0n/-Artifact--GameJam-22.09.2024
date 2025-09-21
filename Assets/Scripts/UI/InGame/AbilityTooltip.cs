@@ -30,9 +30,9 @@ namespace UI.InGame
             string abilityName = "";
             if (gameObject.TryGetComponent(out PassiveAbilities passive))
             {
-                abilityName = passive.Name(gameObject.name);
-                cost = passive.Cost(gameObject.name);
-                description = passive.Description(gameObject.name);
+                abilityName = passive.Name();
+                cost = passive.Cost();
+                description = passive.Description();
             }
             else if (gameObject.TryGetComponent(out ActiveAbility active))
             {
