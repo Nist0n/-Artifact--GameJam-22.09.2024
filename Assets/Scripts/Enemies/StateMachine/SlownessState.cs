@@ -12,7 +12,7 @@ namespace Enemies.StateMachine
         public override void Do()
         {
             animationController.Run();
-            if (IsDamaged || IsAttacking || GameConfig.Instance.hasLost || IsFrozen || !IsSlowness)
+            if (IsDamaged || IsAttacking || GameConfig.Instance.HasLost || IsFrozen || !IsSlowness)
             {
                 IsComplete = true;
             }

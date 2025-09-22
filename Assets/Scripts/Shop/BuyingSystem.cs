@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Abilities.Passive;
 using Audio;
+using GameConfiguration;
 using Towers;
 using Towers.Abilities.Active;
 using UI.InGame;
@@ -274,6 +275,16 @@ namespace Shop
         public void HidePassiveAbilities()
         {
             _tower.HideAbilities();
+        }
+
+        public void CloseShop()
+        {
+            if (!GameConfig.Instance.IsInTower)
+            {
+                HidePassiveAbilities();
+            }
+            ResetLists();
+            GameConfig.Instance.ShopIsOpened = false;
         }
     }
 }

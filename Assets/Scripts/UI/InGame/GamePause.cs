@@ -15,7 +15,7 @@ namespace UI.InGame
 
         private void Update()
         {
-            if (GameConfig.Instance.hasLost || GameConfig.Instance.hasWon)
+            if (GameConfig.Instance.HasLost || GameConfig.Instance.HasWon)
             {
                 return;
             }

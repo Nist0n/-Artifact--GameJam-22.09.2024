@@ -6,6 +6,7 @@ using StaticClasses;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace GameConfiguration
@@ -22,13 +23,13 @@ namespace GameConfiguration
 
         [SerializeField] private GameObject boss;
 
-        public float gameTime;
+        public float GameTime;
 
         private float _timeMinutes;
     
         private float _timeSeconds;
 
-        public List<GameObject> enemyList;
+        public List<GameObject> EnemyList;
 
         [SerializeField] private List<Spawner> spawners;
 
@@ -38,7 +39,7 @@ namespace GameConfiguration
 
         private float _waveTime;
 
-        public bool hasLost; // still seems suspicious
+        public bool HasLost; // still seems suspicious
 
         private float _countOfUnits;
 
@@ -46,9 +47,11 @@ namespace GameConfiguration
 
         private bool _isBossSpawned;
 
-        public bool hasWon;
+        public bool HasWon;
 
-        public bool isInTower;
+        public bool IsInTower;
+
+        public bool ShopIsOpened;
         
         [SerializeField] private float waveTime;
         
@@ -101,14 +104,14 @@ namespace GameConfiguration
             //     return;
             // }
 
-            if (enemyList.Count <= 0 && gameTime > waveTime)
+            if (EnemyList.Count <= 0 && GameTime > waveTime)
             {
-                hasWon = true;
+                HasWon = true;
                 GameWon();
                 return;
             }
         
-            gameTime += Time.deltaTime;
+            GameTime += Time.deltaTime;
         
             Timer();
         
@@ -117,7 +120,7 @@ namespace GameConfiguration
 
         private void ControlCursor()
         {
-            if (!isInTower || hasLost || hasWon || Time.timeScale == 0)
+            if (!IsInTower || HasLost || HasWon || Time.timeScale == 0 || ShopIsOpened)
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
@@ -140,14 +143,14 @@ namespace GameConfiguration
 
         private void GameBrain()
         {
-            if (gameTime > waveTime && !_isBossSpawned)
+            if (GameTime > waveTime && !_isBossSpawned)
             {
                 StartCoroutine(spawners[1].SpawnBoss(boss));
                 _isWaveStarted = true;
                 _isBossSpawned = true;
             }
         
-            if (gameTime > _waveTime && !_isWaveStarted)
+            if (GameTime > _waveTime && !_isWaveStarted)
             {
                 AudioManager.instance.PlaySFX("SpawnMobs");
                 _percentAdvantage = Mathf.Round(_percentAdvantage *= 1.15f);
@@ -183,7 +186,7 @@ namespace GameConfiguration
 
         private void Timer()
         {
-            _timeMinutes = Mathf.Floor(gameTime / 60);
+            _timeMinutes = Mathf.Floor(GameTime / 60);
             if (_timeSeconds < 59) _timeSeconds += Time.deltaTime;
             else _timeSeconds = 0;
             timerText.text = $"Время: {_timeMinutes}:{_timeSeconds:00}";
@@ -191,7 +194,7 @@ namespace GameConfiguration
 
         private void GameLost()
         {
-            hasLost = true;
+            HasLost = true;
             AudioManager.instance.StopMusicSourceLoop();
             AudioManager.instance.PlayMusic("Defeat");
             loseCinemachineCamera.Priority = 2;
@@ -204,7 +207,7 @@ namespace GameConfiguration
 
         private void GameWon()
         {
-            hasWon = true;
+            HasWon = true;
             victoryUI.SetActive(true);
             foreach (var obj in objectsToHide)
             {

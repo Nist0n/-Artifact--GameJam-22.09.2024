@@ -10,7 +10,7 @@ public class DeathState : EnemyState
 {
     public override void Enter()
     {
-        GameConfig.Instance.enemyList.Remove(gameObject.GetComponentInParent<Enemy>().gameObject);
+        GameConfig.Instance.EnemyList.Remove(gameObject.GetComponentInParent<Enemy>().gameObject);
         AudioManager.instance.PlayLocalSound("Die", AudioSource);
         navMeshAgent.speed = 0;
         SoulsCounter.Instance.AddNightmares(Mathf.Round(Random.Range(DroppedCoinsMin, DroppedCoinsMax)));

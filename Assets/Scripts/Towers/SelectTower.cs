@@ -27,12 +27,12 @@ namespace Towers
 
         private void Update()
         {
-            if (GameConfig.Instance.hasLost)
+            if (GameConfig.Instance.HasLost)
             {
                 return;
             }
             
-            GameConfig.Instance.isInTower = mainCinemachineCamera.Priority == 0;
+            GameConfig.Instance.IsInTower = mainCinemachineCamera.Priority == 0;
 
             if (Input.GetKeyDown(KeyCode.Q)) // Exit tower
             {
@@ -59,6 +59,30 @@ namespace Towers
                 _currentTower.towerCamera.Priority = 0;
                 mainCinemachineCamera.Priority = 1;
                 buffImage.SetActive(false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                if (mainCinemachineCamera.Priority == 1)
+                {
+                    return;
+                }
+
+                if (!upgradeTowerControls.activeSelf)
+                {
+                    buyingSystem.ResetLists();
+                    buyingSystem.GetTower(_currentTower.gameObject.GetComponent<AbilitiesSlots>());
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                else
+                {
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+
+                GameConfig.Instance.ShopIsOpened = !upgradeTowerControls.activeSelf;
+                upgradeTowerControls.SetActive(!upgradeTowerControls.activeSelf);
             }
             
             if (mainCinemachineCamera.Priority == 0) // If we are already in a tower

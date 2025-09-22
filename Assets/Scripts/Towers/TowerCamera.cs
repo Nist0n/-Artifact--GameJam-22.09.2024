@@ -80,6 +80,7 @@ namespace Towers
         {
             if (Cursor.visible) // If game is paused/lost/won
             {
+                DisableImage();
                 return;
             }
             
