@@ -7,21 +7,13 @@ namespace Abilities.Passive
     public class PassiveAbilities : MonoBehaviour
     {
         [SerializeField] protected Tower connectedTower;
-
         [SerializeField] protected GameObject activeAbility;
-        
         [SerializeField] protected TextMeshProUGUI countText;
-
         [SerializeField] protected float cost;
-
         [SerializeField] protected int count = 1;
-        
         [SerializeField] protected bool activeOnTheTower = false;
-
         [SerializeField] protected bool isPassiveUsed = false;
-
         [SerializeField] protected string passiveAbilityName;
-        
         [SerializeField] protected string description;
         
         protected virtual void Update()

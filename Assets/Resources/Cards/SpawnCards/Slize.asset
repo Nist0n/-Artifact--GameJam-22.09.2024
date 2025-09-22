@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a255936ad13fd3f4d97cc66ac4258581, type: 3}
+  m_Name: Slize
+  m_EditorClassIdentifier: 
+  DirectorCreditCost: 9
+  Prefab: {fileID: 7306416952122180914, guid: dee0c1af7105f954eb310dad81da4a2e, type: 3}
+  UseSpawnEffect: 1
+  SpawnEffectPrefab: {fileID: 5777523137681749840, guid: f81238a5852845742b0cbd6c40f7efdf, type: 3}
+  SpawnEffectOffset: {x: 0, y: 1, z: 0}
+  DelayBeforeSpawnSeconds: 3.75
+  SpawnSfxName: SpawnMobs

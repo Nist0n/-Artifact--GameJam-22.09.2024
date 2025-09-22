@@ -11,6 +11,7 @@ TagManager:
   - Range
   - Active
   - Tooltip
+  - Spawner
   layers:
   - Default
   - TransparentFX

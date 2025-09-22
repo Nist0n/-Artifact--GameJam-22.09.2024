@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 680fb0d81111a194d852927e60ba64a1, type: 3}
+  m_Name: Slize
+  m_EditorClassIdentifier: 
+  spawnCard: {fileID: 11400000, guid: 5702f4f06cf0e0a4098759f48bc4e6f2, type: 2}
+  SelectionWeight: 6

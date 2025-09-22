@@ -14845,10 +14845,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 702292364}
-  - component: {fileID: 702292365}
   m_Layer: 0
   m_Name: Spawner 2
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14868,22 +14867,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 930643878}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &702292365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702292363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2941dad61f04d34dafe93dffbea5a94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bubble: {fileID: 5777523137681749840, guid: f81238a5852845742b0cbd6c40f7efdf, type: 3}
-  MaxTimeToSpawn: 4
-  MinTimeToSpawn: 2
-  _enemies: []
 --- !u!1 &704260454
 GameObject:
   m_ObjectHideFlags: 0
@@ -18220,10 +18203,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 877511405}
-  - component: {fileID: 877511406}
   m_Layer: 0
   m_Name: Spawner 1
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18243,22 +18225,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 930643878}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &877511406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877511404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2941dad61f04d34dafe93dffbea5a94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bubble: {fileID: 5777523137681749840, guid: f81238a5852845742b0cbd6c40f7efdf, type: 3}
-  MaxTimeToSpawn: 4
-  MinTimeToSpawn: 2
-  _enemies: []
 --- !u!1 &882903843
 GameObject:
   m_ObjectHideFlags: 0
@@ -19595,6 +19561,8 @@ GameObject:
   - component: {fileID: 930643879}
   - component: {fileID: 930643880}
   - component: {fileID: 930643881}
+  - component: {fileID: 930643883}
+  - component: {fileID: 930643882}
   m_Layer: 0
   m_Name: GameConfig
   m_TagString: Untagged
@@ -19620,13 +19588,6 @@ MonoBehaviour:
   timerText: {fileID: 812701639}
   loseCinemachineCamera: {fileID: 2051529544}
   boss: {fileID: 1042049111983135298, guid: 0481631e36099474198d77e49d4bae14, type: 3}
-  GameTime: 0
-  EnemyList: []
-  spawners: []
-  HasLost: 0
-  HasWon: 0
-  IsInTower: 0
-  ShopIsOpened: 0
   waveTime: 750
   objectsToHide:
   - {fileID: 1328672639127493518}
@@ -19634,6 +19595,16 @@ MonoBehaviour:
   - {fileID: 2082766087}
   loseUI: {fileID: 8459963022333761646}
   victoryUI: {fileID: 8459963022281346612}
+  combatDirector: {fileID: 930643882}
+  GameTime: 0
+  EnemyList: []
+  Spawners: []
+  HasLost: 0
+  HasWon: 0
+  IsInTower: 0
+  ShopIsOpened: 0
+  GameDifficulty: 0
+  EnemyLevel: 1
 --- !u!4 &930643878
 Transform:
   m_ObjectHideFlags: 0
@@ -19655,6 +19626,7 @@ Transform:
   - {fileID: 1936759336}
   - {fileID: 1371672028}
   - {fileID: 209999624}
+  - {fileID: 2130197341}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &930643879
@@ -19715,6 +19687,37 @@ MonoBehaviour:
   tarhuniumButton: {fileID: 501824075}
   kolikiButton: {fileID: 222297597}
   pantaloniButton: {fileID: 1660218026}
+--- !u!114 &930643882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930643876}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af6db67e082e4941ba4b685baa95ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: {fileID: 2130197342}
+  monsterCredit: 0
+  moneyWaveIntervals:
+  - Min: 0.75
+    Max: 1.25
+  - Min: 18
+    Max: 22
+--- !u!114 &930643883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930643876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62c8003ff85d2e499ba953c796ec025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &932428091
 GameObject:
   m_ObjectHideFlags: 0
@@ -22227,10 +22230,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1059465759}
-  - component: {fileID: 1059465760}
   m_Layer: 0
   m_Name: Spawner 3
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22250,22 +22252,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 930643878}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1059465760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1059465758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2941dad61f04d34dafe93dffbea5a94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bubble: {fileID: 5777523137681749840, guid: f81238a5852845742b0cbd6c40f7efdf, type: 3}
-  MaxTimeToSpawn: 4
-  MinTimeToSpawn: 2
-  _enemies: []
 --- !u!1 &1060544999
 GameObject:
   m_ObjectHideFlags: 0
@@ -44717,6 +44703,53 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115638632}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2130197340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2130197341}
+  - component: {fileID: 2130197342}
+  m_Layer: 0
+  m_Name: WeightSelection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2130197341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130197340}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 930643878}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2130197342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130197340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8644f8e07ca0d524ab1c78e38d3aaf20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 11400000, guid: 8a2710c80c48b1343b357a567bedb8de, type: 2}
+  - {fileID: 11400000, guid: 0707c726b557abc4d8c14c8e44a3e63e, type: 2}
 --- !u!1 &2130795963
 GameObject:
   m_ObjectHideFlags: 0

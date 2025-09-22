@@ -10,15 +10,15 @@ namespace Towers
 {
     public class SelectTower : MonoBehaviour
     {
-        private Camera _mainCamera;
-        private Tower _currentTower;
-
         [SerializeField] private CinemachineCamera mainCinemachineCamera;
         [SerializeField] private List<GameObject> towers;
         [SerializeField] private GameObject buffImage;
         [SerializeField] private GameObject selectTowerControls;
         [SerializeField] private GameObject upgradeTowerControls;
         [SerializeField] private BuyingSystem buyingSystem;
+        
+        private Camera _mainCamera;
+        private Tower _currentTower;
         
         private void Awake()
         {
@@ -27,13 +27,55 @@ namespace Towers
 
         private void Update()
         {
-            if (GameConfig.Instance.HasLost)
-            {
-                return;
-            }
+            if (GameConfig.Instance.HasLost) return;
             
             GameConfig.Instance.IsInTower = mainCinemachineCamera.Priority == 0;
 
+            DisableTowerView();
+
+            ToggleShopUI();
+            
+            if (mainCinemachineCamera.Priority == 0) return; // If we are already in a tower
+
+            OnTowerClicked();
+        }
+
+        private void ToggleSelectTowerControls(bool b)
+        {
+            selectTowerControls.SetActive(b);
+        }
+        
+        public void ToggleUpgradeTowerControls(bool b)
+        {
+            upgradeTowerControls.SetActive(!upgradeTowerControls.activeSelf);
+            ToggleSelectTowerControls(false);
+        }
+        
+        public void EnterCurrentTower()
+        {
+            ToggleSelectTowerControls(false);
+            AbilitiesSlots towerSlots = _currentTower.gameObject.GetComponent<AbilitiesSlots>();
+            towerSlots.SetAbilitiesImages();
+
+            towerSlots.TowerSelected = true;
+
+            foreach (var tw in towers)
+            {
+                if (tw != _currentTower.gameObject)
+                {
+                    tw.GetComponentInChildren<TowerCamera>().enabled = false;
+                }
+            }
+            
+            _currentTower.towerCamera.Priority = 1;
+            mainCinemachineCamera.Priority = 0;
+            _currentTower.piloted = true;
+                        
+            _currentTower.EmpowerTower();
+        }
+
+        private void DisableTowerView()
+        {
             if (Input.GetKeyDown(KeyCode.Q)) // Exit tower
             {
                 if (mainCinemachineCamera.Priority == 1)
@@ -60,7 +102,10 @@ namespace Towers
                 mainCinemachineCamera.Priority = 1;
                 buffImage.SetActive(false);
             }
+        }
 
+        private void ToggleShopUI()
+        {
             if (Input.GetKeyDown(KeyCode.B))
             {
                 if (mainCinemachineCamera.Priority == 1)
@@ -84,12 +129,10 @@ namespace Towers
                 GameConfig.Instance.ShopIsOpened = !upgradeTowerControls.activeSelf;
                 upgradeTowerControls.SetActive(!upgradeTowerControls.activeSelf);
             }
-            
-            if (mainCinemachineCamera.Priority == 0) // If we are already in a tower
-            {
-                return;
-            }
+        }
 
+        private void OnTowerClicked()
+        {
             if (Input.GetMouseButtonUp(0))
             {
                 if (EventSystem.current.IsPointerOverGameObject()) // If clicking on UI
@@ -132,40 +175,6 @@ namespace Towers
                     }
                 }
             }
-        }
-
-        private void ToggleSelectTowerControls(bool b)
-        {
-            selectTowerControls.SetActive(b);
-        }
-        
-        public void ToggleUpgradeTowerControls(bool b)
-        {
-            upgradeTowerControls.SetActive(!upgradeTowerControls.activeSelf);
-            ToggleSelectTowerControls(false);
-        }
-        
-        public void EnterCurrentTower()
-        {
-            ToggleSelectTowerControls(false);
-            AbilitiesSlots towerSlots = _currentTower.gameObject.GetComponent<AbilitiesSlots>();
-            towerSlots.SetAbilitiesImages();
-
-            towerSlots.TowerSelected = true;
-
-            foreach (var tw in towers)
-            {
-                if (tw != _currentTower.gameObject)
-                {
-                    tw.GetComponentInChildren<TowerCamera>().enabled = false;
-                }
-            }
-            
-            _currentTower.towerCamera.Priority = 1;
-            mainCinemachineCamera.Priority = 0;
-            _currentTower.piloted = true;
-                        
-            _currentTower.EmpowerTower();
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Audio;
+using GameConfiguration.Directors;
 using GameConfiguration.Spawners;
 using StaticClasses;
 using TMPro;
@@ -13,51 +14,35 @@ namespace GameConfiguration
 {
     public class GameConfig : MonoBehaviour
     {
-        public static GameConfig Instance;
-    
         [SerializeField] private List<GameObject> enemiesTypes;
-    
         [SerializeField] private TextMeshProUGUI timerText;
-
         [SerializeField] private CinemachineCamera loseCinemachineCamera;
-
         [SerializeField] private GameObject boss;
-
-        public float GameTime;
-
-        private float _timeMinutes;
-    
-        private float _timeSeconds;
-
-        public List<GameObject> EnemyList;
-
-        [SerializeField] private List<Spawner> spawners;
-
-        private float _previousCount = 10;
-
-        private float _percentAdvantage = 15;
-
-        private float _waveTime;
-
-        public bool HasLost; // still seems suspicious
-
-        private float _countOfUnits;
-
-        private bool _isWaveStarted;
-
-        private bool _isBossSpawned;
-
-        public bool HasWon;
-
-        public bool IsInTower;
-
-        public bool ShopIsOpened;
-        
         [SerializeField] private float waveTime;
-        
         [SerializeField] private List<GameObject> objectsToHide;
         [SerializeField] private GameObject loseUI;
         [SerializeField] private GameObject victoryUI;
+        [SerializeField] private CombatDirector combatDirector;
+
+        public static GameConfig Instance;
+        public float GameTime;
+        public List<GameObject> EnemyList;
+        public List<GameObject> Spawners;
+        public bool HasLost; // still seems suspicious
+        public bool HasWon;
+        public bool IsInTower;
+        public bool ShopIsOpened;
+        public float GameDifficulty;
+        public int EnemyLevel;
+        
+        private float _timeMinutes;
+        private readonly float _timeFactor = 0.2506f;
+        private float _timeSeconds;
+        private float _timerUpgrade;
+        private float _countOfUnits;
+        private bool _isWaveStarted;
+        private bool _isBossSpawned;
+        private float _waveTime;
 
         private void Awake()
         {
@@ -85,25 +70,16 @@ namespace GameConfiguration
 
         private void Start()
         {
+            GetSpawners();
             GameEvents.CheatGameWin += GameWon;
             AudioManager.instance.StartMusicShuffle();
-            GetSpawners();
+            combatDirector.enabled = true;
         }
 
         private void Update()
         {
             ControlCursor();
             
-            // if (hasLost)
-            // {
-            //     if (!loseUI.activeSelf)
-            //     {
-            //         GameLost();
-            //     }
-            //     
-            //     return;
-            // }
-
             if (EnemyList.Count <= 0 && GameTime > waveTime)
             {
                 HasWon = true;
@@ -114,8 +90,10 @@ namespace GameConfiguration
             GameTime += Time.deltaTime;
         
             Timer();
-        
-            GameBrain();
+            
+            UpdateTimeScale();
+            
+            IncreaseDifficulty();
         }
 
         private void ControlCursor()
@@ -133,54 +111,10 @@ namespace GameConfiguration
         }
 
         private void GetSpawners()
-        {   
-            var spawn = GetComponentsInChildren<Spawner>();
-            foreach (var spawner in spawn)
-            {
-                spawners.Add(spawner);
-            }
-        }
-
-        private void GameBrain()
         {
-            if (GameTime > waveTime && !_isBossSpawned)
+            foreach (var spawner in GameObject.FindGameObjectsWithTag("Spawner"))
             {
-                StartCoroutine(spawners[1].SpawnBoss(boss));
-                _isWaveStarted = true;
-                _isBossSpawned = true;
-            }
-        
-            if (GameTime > _waveTime && !_isWaveStarted)
-            {
-                AudioManager.instance.PlaySFX("SpawnMobs");
-                _percentAdvantage = Mathf.Round(_percentAdvantage *= 1.15f);
-                _countOfUnits = Random.Range(_previousCount, _percentAdvantage);
-                GetSummoners(_countOfUnits);
-                foreach (var spawner in spawners)
-                {
-                    spawner.MaxTimeToSpawn *= 0.89f;
-                    spawner.MinTimeToSpawn *= 0.92f;
-                    StartCoroutine(spawner.StartSpawn());
-                }
-
-                _previousCount = _percentAdvantage;
-
-                _isWaveStarted = true;
-
-                if (_waveTime < 75) _waveTime = 75;
-                else _waveTime += 75;
-
-                _isWaveStarted = false;
-            }
-        }
-
-        private void GetSummoners(float enemyCount)
-        {
-            for (int i = 0; i < enemyCount; i++)
-            {
-                var randSpawner = Random.Range(0, spawners.Count);
-                var randEnemy = Random.Range(0, enemiesTypes.Count);
-                spawners[randSpawner].SetEnemies(enemiesTypes[randEnemy]);
+                Spawners.Add(spawner);
             }
         }
 
@@ -191,10 +125,38 @@ namespace GameConfiguration
             else _timeSeconds = 0;
             timerText.text = $"Время: {_timeMinutes}:{_timeSeconds:00}";
         }
+        
+        private void UpdateTimeScale()
+        {
+            GameDifficulty = (1 + _timeMinutes * _timeFactor) * 1.15f;
+        }
+        
+        private void IncreaseDifficulty()
+        {
+            switch (_timeSeconds)
+            {
+                case > 120 and < 121:
+                case > 240 and < 241:
+                case > 320 and < 321:
+                case > 400 and < 401:
+                case > 440 and < 441:
+                    EnemyLevel = Mathf.FloorToInt(1 + (GameDifficulty - 1) / 0.33f);
+                    break;
+                case > 441:
+                    _timerUpgrade += Time.deltaTime;
+                    if (_timerUpgrade > 20)
+                    {
+                        EnemyLevel = Mathf.FloorToInt(1 + (GameDifficulty - 1) / 0.33f);
+                        _timerUpgrade -= 20;
+                    }
+                    break;
+            }
+        }
 
         private void GameLost()
         {
             HasLost = true;
+            combatDirector.enabled = false;
             AudioManager.instance.StopMusicSourceLoop();
             AudioManager.instance.PlayMusic("Defeat");
             loseCinemachineCamera.Priority = 2;
@@ -208,6 +170,7 @@ namespace GameConfiguration
         private void GameWon()
         {
             HasWon = true;
+            combatDirector.enabled = false;
             victoryUI.SetActive(true);
             foreach (var obj in objectsToHide)
             {

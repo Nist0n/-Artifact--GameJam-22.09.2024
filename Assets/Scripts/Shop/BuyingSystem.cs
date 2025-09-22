@@ -13,19 +13,12 @@ namespace Shop
     public class BuyingSystem : MonoBehaviour
     {
         [SerializeField] private Sprite plusIcon;
-        
         [SerializeField] private List<GameObject> activeAbilities;
-
         [SerializeField] private List<GameObject> passiveAbilities;
-
         [SerializeField] private List<GameObject> randomActiveAbilities;
-        
         [SerializeField] private List<GameObject> randomPassiveAbilities;
-
         [SerializeField] private List<GameObject> objectsForRandomActiveAbilities;
-        
         [SerializeField] private List<GameObject> objectsForRandomPassiveAbilities;
-
         [SerializeField] private GameObject abilitiesObj;
 
         private AbilitiesSlots _tower;

@@ -40,23 +40,11 @@ namespace GameConfiguration.Spawners
             _enemies.Clear();
         }
 
-        public void SetEnemies(GameObject enemy)
-        {
-            _enemies.Add(enemy);
-        }
-
         private IEnumerator SpawnEnemy(GameObject enemy)
         {
             yield return new WaitForSeconds(3.75f);
             var temp = Instantiate(enemy, transform.position, Quaternion.identity, transform);
             _gameConfig.EnemyList.Add(temp);
-        }
-
-        public IEnumerator SpawnBoss(GameObject boss)
-        {
-            var temp = Instantiate(boss, transform.position, Quaternion.identity, transform);
-            _gameConfig.EnemyList.Add(temp);
-            yield return new WaitForSeconds(1f);
         }
     }
 }

@@ -4,6 +4,7 @@ using Castle;
 using Enemies.StateMachine;
 using Events;
 using GameConfiguration;
+using GameConfiguration.Events;
 using UnityEngine;
 using UnityEngine.UI;
 
