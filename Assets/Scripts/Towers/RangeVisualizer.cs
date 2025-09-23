@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Towers
 {
-    [RequireComponent(typeof(LineRenderer))]
     public class RangeVisualizer : MonoBehaviour
     {
         [SerializeField] private Tower tower;

@@ -160,7 +160,10 @@ namespace Towers
                         buyingSystem.ResetLists(); // чистка выбора умений
 
                         selectTowerControls.transform.position = _mainCamera.WorldToScreenPoint(tower.transform.position);
-                        ToggleSelectTowerControls(!selectTowerControls.activeSelf);
+                        if (!selectTowerControls.activeSelf)
+                        {
+                            ToggleSelectTowerControls(!selectTowerControls.activeSelf);
+                        }
                         
                         _currentTower = tower;
                         _currentRangeViz = _currentTower.GetComponentInChildren<RangeVisualizer>(true);
@@ -168,7 +171,6 @@ namespace Towers
                         AbilitiesSlots towerSlots = _currentTower.gameObject.GetComponent<AbilitiesSlots>();
                         towerSlots.Circle.SetActive(true);
                         towerSlots.Circle.transform.position = new Vector3(1000f, 1000f, 1000f);
-                        // Hide all other towers' range visualizers, show only current
                         foreach (var tw in towers)
                         {
                             var viz = tw.GetComponentInChildren<RangeVisualizer>(true);
@@ -188,7 +190,6 @@ namespace Towers
                     {
                         ToggleSelectTowerControls(false);
                         buyingSystem.ResetLists();
-                        // Hide all range visualizers if clicked not on tower
                         foreach (var tw in towers)
                         {
                             var viz = tw.GetComponentInChildren<RangeVisualizer>(true);
