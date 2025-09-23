@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a255936ad13fd3f4d97cc66ac4258581, type: 3}
   m_Name: Glass
   m_EditorClassIdentifier: 
-  DirectorCreditCost: 9
+  DirectorCreditCost: 8
   Prefab: {fileID: 8142872892816006428, guid: c65e9b8c6d5834c42aa5ec6f50355f9b, type: 3}
   UseSpawnEffect: 1
   SpawnEffectPrefab: {fileID: 5777523137681749840, guid: f81238a5852845742b0cbd6c40f7efdf, type: 3}

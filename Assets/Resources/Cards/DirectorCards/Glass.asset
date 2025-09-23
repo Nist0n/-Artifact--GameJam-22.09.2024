@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Glass
   m_EditorClassIdentifier: 
   spawnCard: {fileID: 11400000, guid: 9dfee127fc7b3b3489a974cb8ec42f52, type: 2}
-  SelectionWeight: 8
+  SelectionWeight: 1

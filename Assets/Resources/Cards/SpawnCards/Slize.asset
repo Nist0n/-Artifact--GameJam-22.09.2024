@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a255936ad13fd3f4d97cc66ac4258581, type: 3}
   m_Name: Slize
   m_EditorClassIdentifier: 
-  DirectorCreditCost: 9
+  DirectorCreditCost: 10
   Prefab: {fileID: 7306416952122180914, guid: dee0c1af7105f954eb310dad81da4a2e, type: 3}
   UseSpawnEffect: 1
   SpawnEffectPrefab: {fileID: 5777523137681749840, guid: f81238a5852845742b0cbd6c40f7efdf, type: 3}

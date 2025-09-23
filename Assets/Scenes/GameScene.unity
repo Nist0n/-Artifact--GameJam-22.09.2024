@@ -5427,6 +5427,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2e15c8f993495db0acfcfbd46aae29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: d1b348893b2595c4c9e3e78604a42eec, type: 2}
+  onEventTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1371672027}
+        m_TargetAssemblyTypeName: Achievements.AchievementHandler, Assembly-CSharp
+        m_MethodName: OnEnemyDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &213228779
 GameObject:
   m_ObjectHideFlags: 0
@@ -19546,7 +19562,6 @@ GameObject:
   - component: {fileID: 930643880}
   - component: {fileID: 930643881}
   - component: {fileID: 930643883}
-  - component: {fileID: 930643882}
   m_Layer: 0
   m_Name: GameConfig
   m_TagString: Untagged
@@ -19579,7 +19594,9 @@ MonoBehaviour:
   - {fileID: 2082766087}
   loseUI: {fileID: 8459963022333761646}
   victoryUI: {fileID: 8459963022281346612}
-  combatDirector: {fileID: 930643882}
+  combatDirectors:
+  - {fileID: 1160632651}
+  - {fileID: 1289056726}
   GameTime: 0
   EnemyList: []
   Spawners: []
@@ -19611,6 +19628,8 @@ Transform:
   - {fileID: 1371672028}
   - {fileID: 209999624}
   - {fileID: 2130197341}
+  - {fileID: 1160632650}
+  - {fileID: 1289056725}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &930643879
@@ -19671,25 +19690,6 @@ MonoBehaviour:
   tarhuniumButton: {fileID: 501824075}
   kolikiButton: {fileID: 222297597}
   pantaloniButton: {fileID: 1660218026}
---- !u!114 &930643882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 930643876}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7af6db67e082e4941ba4b685baa95ff9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  category: {fileID: 2130197342}
-  monsterCredit: 0
-  moneyWaveIntervals:
-  - Min: 0.75
-    Max: 1.25
-  - Min: 18
-    Max: 22
 --- !u!114 &930643883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24195,6 +24195,57 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1159560915}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1160632649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1160632650}
+  - component: {fileID: 1160632651}
+  m_Layer: 0
+  m_Name: FastCombatDirector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1160632650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160632649}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 930643878}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1160632651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160632649}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af6db67e082e4941ba4b685baa95ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: {fileID: 2130197342}
+  monsterCredit: 0
+  moneyWaveIntervals:
+  - Min: 0.75
+    Max: 1.25
+  minRerollSpawnInterval: 4.5
+  maxRerollSpawnInterval: 9
 --- !u!1 &1163301454
 GameObject:
   m_ObjectHideFlags: 0
@@ -27608,6 +27659,57 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283455405}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1289056724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1289056725}
+  - component: {fileID: 1289056726}
+  m_Layer: 0
+  m_Name: SlowCombatDirector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1289056725
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289056724}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 930643878}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1289056726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289056724}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af6db67e082e4941ba4b685baa95ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: {fileID: 2130197342}
+  monsterCredit: 0
+  moneyWaveIntervals:
+  - Min: 0.75
+    Max: 1.25
+  minRerollSpawnInterval: 22.5
+  maxRerollSpawnInterval: 30
 --- !u!1 &1303577204
 GameObject:
   m_ObjectHideFlags: 0

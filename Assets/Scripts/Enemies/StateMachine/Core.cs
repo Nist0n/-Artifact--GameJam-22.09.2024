@@ -64,7 +64,7 @@ namespace Enemies.StateMachine
         protected void SetStats()
         {
             Level = GameConfig.Instance.EnemyLevel;
-            MaxHealth *= 0.5f + Level / 2f;
+            MaxHealth *= Level / 2f;
             Health = MaxHealth;
         }
     }

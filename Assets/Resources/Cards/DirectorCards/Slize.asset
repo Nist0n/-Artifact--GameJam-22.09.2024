@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Slize
   m_EditorClassIdentifier: 
   spawnCard: {fileID: 11400000, guid: 5702f4f06cf0e0a4098759f48bc4e6f2, type: 2}
-  SelectionWeight: 6
+  SelectionWeight: 1

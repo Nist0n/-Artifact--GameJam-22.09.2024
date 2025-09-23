@@ -137,7 +137,7 @@ namespace GameConfiguration
         
         private void IncreaseDifficulty()
         {
-            switch (_timeSeconds)
+            switch (GameTime)
             {
                 case > 120 and < 121:
                 case > 240 and < 241:
