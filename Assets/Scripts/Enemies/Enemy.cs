@@ -2,9 +2,9 @@
 using Audio;
 using Castle;
 using Enemies.StateMachine;
-using Events;
 using GameConfiguration;
 using GameConfiguration.Events;
+using StaticClasses;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,11 +30,12 @@ namespace Enemies
 
         private Coroutine _hpBarCoroutine;
 
-        [SerializeField] private GameEvent deathEvent;
+        [SerializeField] private AchievementEvent deathEvent;
         
         private void Start()
         {
             Health = MaxHealth;
+            SetStats();
             SetupInstances();
             Set(Running);
         }
@@ -124,6 +125,7 @@ namespace Enemies
         private void KillEnemy()
         {
             Destroy(gameObject);
+            GameEvents.OnEnemyDeath(deathRewards.goldReward, deathRewards.expReward);
             deathEvent.TriggerEvent();
         }
 

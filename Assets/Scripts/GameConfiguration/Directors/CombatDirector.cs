@@ -2,6 +2,7 @@ using System;
 using GameConfiguration.Cards;
 using GameConfiguration.Directors.Functions;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace GameConfiguration.Directors
@@ -14,8 +15,8 @@ namespace GameConfiguration.Directors
     
         private const float MinSeriesSpawnInterval = 0.1f;
         private const float MaxSeriesSpawnInterval = 1f;
-        private const float MinRerollSpawnInterval = 15f;
-        private const float MaxRerollSpawnInterval = 25f;
+        [SerializeField] private float minRerollSpawnInterval;
+        [SerializeField] private float maxRerollSpawnInterval;
         private const int MaxConsecutiveCheapSkips = int.MaxValue;
         private const int MaximumNumberToSpawnBeforeSkipping = 12;
     
@@ -126,7 +127,7 @@ namespace GameConfiguration.Directors
             }
             else
             {
-                monsterSpawnTimer += Random.Range(MinRerollSpawnInterval, MaxRerollSpawnInterval);
+                monsterSpawnTimer += Random.Range(minRerollSpawnInterval, maxRerollSpawnInterval);
                 _currentMonsterCard = null;
                 if (!_shouldSpawnOneWave || !_hasStartedWave)
                     return;

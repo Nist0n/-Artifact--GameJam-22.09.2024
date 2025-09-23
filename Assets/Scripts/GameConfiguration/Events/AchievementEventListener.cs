@@ -1,13 +1,11 @@
-using System;
-using GameConfiguration.Events;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Events
+namespace GameConfiguration.Events
 {
-    public class GameEventListener : MonoBehaviour
+    public class AchievementEventListener : MonoBehaviour
     {
-        public GameEvent gameEvent;
+        public AchievementEvent gameEvent;
         public UnityEvent onEventTriggered;
 
         private void OnEnable()

@@ -1,29 +1,27 @@
 using Audio;
-using Enemies;
 using GameConfiguration;
-using UI.InGame;
 using Unity.Mathematics;
-using UnityEngine;
-using Random = UnityEngine.Random;
 
-public class DeathState : EnemyState
+namespace Enemies.StateMachine
 {
-    public override void Enter()
+    public class DeathState : EnemyState
     {
-        GameConfig.Instance.EnemyList.Remove(gameObject.GetComponentInParent<Enemy>().gameObject);
-        AudioManager.instance.PlayLocalSound("Die", AudioSource);
-        navMeshAgent.speed = 0;
-        SoulsCounter.Instance.AddNightmares(Mathf.Round(Random.Range(DroppedCoinsMin, DroppedCoinsMax)));
-        Instantiate(soul, transform.position, quaternion.identity);
-        animator.Play("Death");
-    }
+        public override void Enter()
+        {
+            GameConfig.Instance.EnemyList.Remove(gameObject.GetComponentInParent<Enemy>().gameObject);
+            AudioManager.instance.PlayLocalSound("Die", AudioSource);
+            navMeshAgent.speed = 0;
+            Instantiate(soul, transform.position, quaternion.identity);
+            animator.Play("Death");
+        }
     
-    public override void Do()
-    {
-    }
+        public override void Do()
+        {
+        }
     
-    public override void Exit()
-    {
+        public override void Exit()
+        {
         
+        }
     }
 }

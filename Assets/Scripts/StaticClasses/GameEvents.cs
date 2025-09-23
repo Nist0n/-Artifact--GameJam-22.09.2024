@@ -10,7 +10,8 @@ namespace StaticClasses
         public static Action CheatGameWin;
 
         public static Action GameLost;
-        // public static Action GameWon;
+
+        public static Action<float, float> EnemyDeath;
         
         public static void OnGamePause(bool var)
         {
@@ -20,6 +21,11 @@ namespace StaticClasses
         public static void OnCheatGameWin()
         {
             CheatGameWin?.Invoke();
+        }
+        
+        public static void OnEnemyDeath(float money, float souls)
+        {
+            EnemyDeath?.Invoke(money, souls);
         }
     }
 }

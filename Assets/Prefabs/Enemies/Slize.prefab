@@ -2081,6 +2081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5751aef57cc94d5b8adc61b8d69a4477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathRewards: {fileID: 7587252557289561334}
   navMeshAgent: {fileID: 3300995936046839246}
   animationController: {fileID: 3005919790545713870}
   animator: {fileID: 2128716366485521467}
@@ -2088,8 +2089,6 @@ MonoBehaviour:
   Speed: 2
   Slowness: 0.6
   Health: 0
-  DroppedCoinsMax: 20
-  DroppedCoinsMin: 45
   MaxHealth: 9
   Damage: 5
   IsFrozen: 0

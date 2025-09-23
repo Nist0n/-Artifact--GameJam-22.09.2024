@@ -1,3 +1,5 @@
+using GameConfiguration;
+using GameConfiguration.Cards;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -5,6 +7,8 @@ namespace Enemies.StateMachine
 {
     public abstract class Core : MonoBehaviour
     {
+        public DeathRewards deathRewards;
+        
         public NavMeshAgent navMeshAgent;
 
         public AnimationController animationController;
@@ -21,10 +25,6 @@ namespace Enemies.StateMachine
 
         public float Health;
 
-        public float DroppedCoinsMax;
-    
-        public float DroppedCoinsMin;
-
         public float MaxHealth;
 
         public float Damage;
@@ -36,10 +36,12 @@ namespace Enemies.StateMachine
         public bool IsAttacking = false;
 
         public bool IsCelebrating;
+        
+        public int Level;
 
         public GameObject Soul;
 
-        public EnemyState State => Machine.State;
+        protected EnemyState State => Machine.State;
 
         public bool IsDamaged = false;
 
@@ -48,7 +50,7 @@ namespace Enemies.StateMachine
             Machine.Set(newState, forceReset);
         }
 
-        public void SetupInstances()
+        protected void SetupInstances()
         {
             Machine = new global::StateMachine();
 
@@ -57,6 +59,13 @@ namespace Enemies.StateMachine
             {
                 state.SetCore(this);
             }
+        }
+        
+        protected void SetStats()
+        {
+            Level = GameConfig.Instance.EnemyLevel;
+            MaxHealth *= 0.5f + Level / 2f;
+            Health = MaxHealth;
         }
     }
 }

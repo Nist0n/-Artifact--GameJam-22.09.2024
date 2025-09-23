@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Audio;
 using GameConfiguration.Directors;
 using GameConfiguration.Spawners;
+using NUnit.Framework;
 using StaticClasses;
 using TMPro;
 using Unity.Cinemachine;
@@ -22,7 +23,7 @@ namespace GameConfiguration
         [SerializeField] private List<GameObject> objectsToHide;
         [SerializeField] private GameObject loseUI;
         [SerializeField] private GameObject victoryUI;
-        [SerializeField] private CombatDirector combatDirector;
+        [SerializeField] private List<CombatDirector> combatDirectors;
 
         public static GameConfig Instance;
         public float GameTime;
@@ -73,7 +74,10 @@ namespace GameConfiguration
             GetSpawners();
             GameEvents.CheatGameWin += GameWon;
             AudioManager.instance.StartMusicShuffle();
-            combatDirector.enabled = true;
+            foreach (var combatDirector in combatDirectors)
+            {
+                combatDirector.enabled = true;
+            }
         }
 
         private void Update()
@@ -156,7 +160,10 @@ namespace GameConfiguration
         private void GameLost()
         {
             HasLost = true;
-            combatDirector.enabled = false;
+            foreach (var combatDirector in combatDirectors)
+            {
+                combatDirector.enabled = false;
+            }
             AudioManager.instance.StopMusicSourceLoop();
             AudioManager.instance.PlayMusic("Defeat");
             loseCinemachineCamera.Priority = 2;
@@ -170,7 +177,10 @@ namespace GameConfiguration
         private void GameWon()
         {
             HasWon = true;
-            combatDirector.enabled = false;
+            foreach (var combatDirector in combatDirectors)
+            {
+                combatDirector.enabled = false;
+            }
             victoryUI.SetActive(true);
             foreach (var obj in objectsToHide)
             {

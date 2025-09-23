@@ -1,14 +1,13 @@
 using System.Collections.Generic;
-using Events;
 using UnityEngine;
 
 namespace GameConfiguration.Events
 {
-    [CreateAssetMenu(menuName = "Game Event")]
-    public class GameEvent : ScriptableObject
+    [CreateAssetMenu(menuName = "Achievement Event")]
+    public class AchievementEvent : ScriptableObject
     {
-        private List<GameEventListener> listeners = new();
-
+        private List<AchievementEventListener> listeners = new();
+        
         public void TriggerEvent()
         {
             for (int i = listeners.Count - 1; i >= 0; i--)
@@ -16,13 +15,13 @@ namespace GameConfiguration.Events
                 listeners[i].OnEventTriggered();
             }
         }
-
-        public void AddListener(GameEventListener listener)
+        
+        public void AddListener(AchievementEventListener listener)
         {
             listeners.Add(listener);
         }
-
-        public void RemoveListener(GameEventListener listener)
+        
+        public void RemoveListener(AchievementEventListener listener)
         {
             listeners.Remove(listener);
         }

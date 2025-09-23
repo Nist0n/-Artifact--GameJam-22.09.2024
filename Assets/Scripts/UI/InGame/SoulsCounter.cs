@@ -1,3 +1,5 @@
+using System;
+using StaticClasses;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,7 +25,12 @@ namespace UI.InGame
         private float _chipSpeed = 3f;
 
         private float _lerpTimer;
-    
+
+        private void OnEnable()
+        {
+            GameEvents.EnemyDeath += GetRewards;
+        }
+
         private void Awake()
         {
             if (Instance == null)
@@ -75,8 +82,14 @@ namespace UI.InGame
                 frontBar.fillAmount = Mathf.Lerp(fillFrontBar, backBar.fillAmount, percentComplete);
             }
         }
+
+        private void GetRewards(float money, float souls)
+        {
+            AddNightmares(souls);
+            //AddMoney
+        }
     
-        public void AddNightmares(float count) 
+        private void AddNightmares(float count) 
         {
             Nightmares += count;
             _lerpTimer = 0f;

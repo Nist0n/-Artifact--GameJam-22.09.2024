@@ -5427,22 +5427,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2e15c8f993495db0acfcfbd46aae29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: d1b348893b2595c4c9e3e78604a42eec, type: 2}
-  onEventTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1371672027}
-        m_TargetAssemblyTypeName: Achievements.AchievementHandler, Assembly-CSharp
-        m_MethodName: OnEnemyDeath
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &213228779
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,8 +25,8 @@ namespace GameConfiguration.Cards
             spawnResult.Success = true;
             GameConfig.Instance.EnemyList.Add(spawnResult.SpawnedInstance);
         }
-        
-        public SpawnResult DoSpawn(Transform transform, Quaternion rotation, DirectorSpawnRequest spawnRequest)
+
+        private SpawnResult DoSpawn(Transform transform, Quaternion rotation, DirectorSpawnRequest spawnRequest)
         {
             SpawnResult spawnResult = new SpawnResult()
             {
