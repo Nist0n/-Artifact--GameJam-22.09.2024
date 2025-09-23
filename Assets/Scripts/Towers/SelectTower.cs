@@ -19,6 +19,7 @@ namespace Towers
         
         private Camera _mainCamera;
         private Tower _currentTower;
+        private RangeVisualizer _currentRangeViz;
         
         private void Awake()
         {
@@ -96,6 +97,7 @@ namespace Towers
                 }
                 
                 towerSlots.Circle.SetActive(false);
+                if (_currentRangeViz) _currentRangeViz.SetVisible(false);
                 _currentTower.piloted = false;
                 AudioManager.instance.PlaySFX("Click");
                 _currentTower.towerCamera.Priority = 0;
@@ -161,10 +163,24 @@ namespace Towers
                         ToggleSelectTowerControls(!selectTowerControls.activeSelf);
                         
                         _currentTower = tower;
+                        _currentRangeViz = _currentTower.GetComponentInChildren<RangeVisualizer>(true);
                         
                         AbilitiesSlots towerSlots = _currentTower.gameObject.GetComponent<AbilitiesSlots>();
                         towerSlots.Circle.SetActive(true);
                         towerSlots.Circle.transform.position = new Vector3(1000f, 1000f, 1000f);
+                        // Hide all other towers' range visualizers, show only current
+                        foreach (var tw in towers)
+                        {
+                            var viz = tw.GetComponentInChildren<RangeVisualizer>(true);
+                            if (viz)
+                            {
+                                viz.SetVisible(tw == _currentTower.gameObject);
+                                if (tw == _currentTower.gameObject)
+                                {
+                                    viz.Redraw();
+                                }
+                            }
+                        }
                         
                         buyingSystem.GetTower(tower.gameObject.GetComponent<AbilitiesSlots>());
                     }
@@ -172,6 +188,12 @@ namespace Towers
                     {
                         ToggleSelectTowerControls(false);
                         buyingSystem.ResetLists();
+                        // Hide all range visualizers if clicked not on tower
+                        foreach (var tw in towers)
+                        {
+                            var viz = tw.GetComponentInChildren<RangeVisualizer>(true);
+                            if (viz) viz.SetVisible(false);
+                        }
                     }
                 }
             }
