@@ -1,24 +1,17 @@
-using System;
 using System.Collections.Generic;
 using Audio;
 using GameConfiguration.Directors;
-using GameConfiguration.Spawners;
-using NUnit.Framework;
 using StaticClasses;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 
 namespace GameConfiguration
 {
     public class GameConfig : MonoBehaviour
     {
-        [SerializeField] private List<GameObject> enemiesTypes;
         [SerializeField] private TextMeshProUGUI timerText;
         [SerializeField] private CinemachineCamera loseCinemachineCamera;
-        [SerializeField] private GameObject boss;
         [SerializeField] private float waveTime;
         [SerializeField] private List<GameObject> objectsToHide;
         [SerializeField] private GameObject loseUI;
@@ -40,10 +33,6 @@ namespace GameConfiguration
         private readonly float _timeFactor = 0.2506f;
         private float _timeSeconds;
         private float _timerUpgrade;
-        private float _countOfUnits;
-        private bool _isWaveStarted;
-        private bool _isBossSpawned;
-        private float _waveTime;
 
         private void Awake()
         {

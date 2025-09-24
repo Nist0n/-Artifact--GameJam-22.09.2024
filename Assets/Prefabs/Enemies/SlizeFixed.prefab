@@ -2373,6 +2373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2633812283172192401}
   - component: {fileID: 8856074088349571208}
+  - component: {fileID: 6222995962284629935}
   m_Layer: 3
   m_Name: Target
   m_TagString: Untagged
@@ -2407,6 +2408,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87ee87042de41a7418cc2b5b4c8ea2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6222995962284629935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526858608795693058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1624a765f8a4c54c9d90436e4116866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8529001337484171297
 GameObject:
   m_ObjectHideFlags: 0
@@ -2438,7 +2451,7 @@ Transform:
   m_GameObject: {fileID: 8529001337484171297}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 500.20245, y: 0.11245477, z: 213.4996}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2483,6 +2496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5751aef57cc94d5b8adc61b8d69a4477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathRewards: {fileID: 6222995962284629935}
   navMeshAgent: {fileID: 1671921356436024059}
   animationController: {fileID: 7783259600791971723}
   animator: {fileID: 4408944662625507171}
@@ -2490,14 +2504,13 @@ MonoBehaviour:
   Speed: 2
   Slowness: 0.6
   Health: 0
-  DroppedCoinsMax: 20
-  DroppedCoinsMin: 45
   MaxHealth: 9
   Damage: 5
   IsFrozen: 0
   IsSlowness: 0
   IsAttacking: 0
   IsCelebrating: 0
+  Level: 0
   Soul: {fileID: 1277085015814301893, guid: ff37baff706d86848addca8e6f134b91, type: 3}
   IsDamaged: 0
   back: {fileID: 8048343046329501299}
