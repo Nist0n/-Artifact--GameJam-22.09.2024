@@ -66,6 +66,7 @@ namespace GameConfiguration
             foreach (var combatDirector in combatDirectors)
             {
                 combatDirector.enabled = true;
+                combatDirector.ResetGame();
             }
         }
 

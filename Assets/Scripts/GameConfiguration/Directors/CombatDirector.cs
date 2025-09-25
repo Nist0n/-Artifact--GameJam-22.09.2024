@@ -74,14 +74,12 @@ namespace GameConfiguration.Directors
             _currentMonsterCard = monsterCard;
             lastAttemptedMonsterCard = _currentMonsterCard;
             _spawnCountInCurrentWave = 0;
-
-            // Reset elite selection
+            
             _currentEliteTier = null;
             _currentEliteDef = null;
 
             if (_currentMonsterCard && !_currentMonsterCard.NoElites && _currentMonsterCard.AllowedEliteTiers != null && _currentMonsterCard.AllowedEliteTiers.Length > 0)
             {
-                // Pick the most expensive tier we can afford to bias toward elites, similar to RoR2
                 float availableCredits = monsterCredit;
                 EliteTierDef bestTier = null;
                 foreach (var tier in _currentMonsterCard.AllowedEliteTiers)
@@ -90,11 +88,12 @@ namespace GameConfiguration.Directors
                     float eliteCost = _currentMonsterCard.Cost * tier.CostMultiplier;
                     if (eliteCost <= availableCredits)
                     {
-                        if (bestTier == null || tier.CostMultiplier > bestTier.CostMultiplier) bestTier = tier;
+                        if (!bestTier || tier.CostMultiplier > bestTier.CostMultiplier) bestTier = tier;
                     }
                 }
                 _currentEliteTier = bestTier;
-                _currentEliteDef = _currentEliteTier ? _currentEliteTier.GetRandomAvailableEliteDef() : null;
+                if (_currentEliteTier) _currentEliteDef = _currentEliteTier.GetRandomAvailableEliteDef();
+                else _currentEliteDef = null;
             }
         }
 
@@ -121,8 +120,7 @@ namespace GameConfiguration.Directors
                 }
             }
             SpawnCard spawnCard = _currentMonsterCard.spawnCard;
-
-            // Evaluate elite affordability and set value multiplier
+            
             float valueMultiplier = 1f;
             EliteDef eliteToApply = null;
             if (_currentEliteTier && _currentEliteDef)
@@ -149,8 +147,8 @@ namespace GameConfiguration.Directors
             _consecutiveCheapSkips = 0;
             return true;
         }
-        
-        public bool Spawn(SpawnCard spawnCard, Transform spawnTarget, EliteDef elite = null, float valueMultiplier = 1f)
+
+        private bool Spawn(SpawnCard spawnCard, Transform spawnTarget, EliteDef elite = null, float valueMultiplier = 1f)
         {
             DirectorCore.instance.TrySpawnObjectWithEffect(new DirectorSpawnRequest(spawnCard, elite, valueMultiplier), spawnTarget, this, null);
             return true;

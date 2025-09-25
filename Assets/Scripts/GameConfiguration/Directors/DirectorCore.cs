@@ -83,6 +83,17 @@ namespace GameConfiguration.Directors
                         }
                     }
                 }
+
+                if (request.Elite.Modifiers != null)
+                {
+                    foreach (var modifier in request.Elite.Modifiers)
+                    {
+                        if (modifier)
+                        {
+                            modifier.OnApply(bodyObject);
+                        }
+                    }
+                }
             }
         }
     }

@@ -9,6 +9,7 @@ namespace GameConfiguration.Directors.Elites
         public float HealthBoostCoefficient = 1f;
         public float DamageBoostCoefficient = 1f;
         public Material OverrideMaterial;
+        public EliteModifier[] Modifiers;
 
         public bool IsAvailable()
         {
