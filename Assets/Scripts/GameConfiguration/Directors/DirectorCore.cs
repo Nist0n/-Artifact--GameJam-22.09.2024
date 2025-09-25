@@ -2,6 +2,7 @@ using System;
 using GameConfiguration.Cards;
 using GameConfiguration.Directors.Functions;
 using UnityEngine;
+using GameConfiguration.Directors.Elites;
 
 namespace GameConfiguration.Directors
 {
@@ -29,20 +30,21 @@ namespace GameConfiguration.Directors
             {
                 if (result.SpawnedInstance)
                 {
-                    OnCardSpawned(result, spawnCard);
+                    OnCardSpawned(result, spawnCard, directorSpawnRequest);
                 }
                 onComplete?.Invoke(result);
             });
         }
     
-        private void OnCardSpawned(SpawnCard.SpawnResult result, SpawnCard spawn)
+        private void OnCardSpawned(SpawnCard.SpawnResult result, SpawnCard spawn, DirectorSpawnRequest request)
         {
             SpawnCard spawnCard = spawn;
             GameObject bodyObject = result.SpawnedInstance;
             DeathRewards component3 = bodyObject.GetComponentInChildren<DeathRewards>();
             if (component3)
             {
-                float b = spawnCard.DirectorCreditCost;
+                float valueMultiplier = Mathf.Max(1f, request.EliteValueMultiplier);
+                float b = spawnCard.DirectorCreditCost * valueMultiplier;
                 component3.spawnValue = (int) Mathf.Max(1f, b);
                 if (b > Mathf.Epsilon)
                 {
@@ -53,6 +55,33 @@ namespace GameConfiguration.Directors
                 {
                     component3.expReward = 0;
                     component3.goldReward = 0;
+                }
+            }
+            
+            if (request.Elite)
+            {
+                var enemyCore = bodyObject.GetComponentInChildren<Enemies.StateMachine.Core>();
+                if (enemyCore)
+                {
+                    enemyCore.MaxHealth *= request.Elite.HealthBoostCoefficient;
+                    enemyCore.Health = Mathf.Min(enemyCore.Health * request.Elite.HealthBoostCoefficient, enemyCore.MaxHealth);
+                    enemyCore.Damage *= request.Elite.DamageBoostCoefficient;
+                }
+                var renderer = bodyObject.GetComponentInChildren<Renderer>();
+                if (renderer)
+                {
+                    if (request.Elite.OverrideMaterial)
+                    {
+                        renderer.material = request.Elite.OverrideMaterial;
+                    }
+                    else
+                    {
+                        if (renderer.material && renderer.material.HasProperty("_Color"))
+                        {
+                            var c = request.Elite.TintColor;
+                            renderer.material.color = c;
+                        }
+                    }
                 }
             }
         }

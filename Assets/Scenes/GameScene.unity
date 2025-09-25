@@ -19581,12 +19581,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c5c4cc371ca1b3449f16894407667ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesTypes:
-  - {fileID: 8529001337484171297, guid: 3bfa84d4c960e22499f35ea12d36ea72, type: 3}
-  - {fileID: 8142872892816006428, guid: c65e9b8c6d5834c42aa5ec6f50355f9b, type: 3}
   timerText: {fileID: 812701639}
   loseCinemachineCamera: {fileID: 2051529544}
-  boss: {fileID: 1042049111983135298, guid: 0481631e36099474198d77e49d4bae14, type: 3}
   waveTime: 750
   objectsToHide:
   - {fileID: 1328672639127493518}
@@ -28024,7 +28020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   category: {fileID: 2130197342}
-  monsterCredit: 0
+  monsterCredit: 60
   moneyWaveIntervals:
   - Min: 0.75
     Max: 1.25

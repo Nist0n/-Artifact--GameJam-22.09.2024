@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 680fb0d81111a194d852927e60ba64a1, type: 3}
-  m_Name: Glass
+  m_Script: {fileID: 11500000, guid: 645e56f459d8ef44f8cfd0e07cfd639c, type: 3}
+  m_Name: EliteTierDef
   m_EditorClassIdentifier: 
-  spawnCard: {fileID: 11400000, guid: 9dfee127fc7b3b3489a974cb8ec42f52, type: 2}
-  SelectionWeight: 1
-  NoElites: 1
-  AllowedEliteTiers: []
+  CostMultiplier: 6
+  EliteTypes:
+  - {fileID: 11400000, guid: e2ce7a083fee3b24994bf7c00ee7fe0d, type: 2}
+  CanSelectWithoutAvailableEliteDef: 0

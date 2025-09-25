@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnCard: {fileID: 11400000, guid: 5702f4f06cf0e0a4098759f48bc4e6f2, type: 2}
   SelectionWeight: 1
+  NoElites: 0
+  AllowedEliteTiers:
+  - {fileID: 11400000, guid: e0d4b5f6545c9924fbab178233e4c711, type: 2}

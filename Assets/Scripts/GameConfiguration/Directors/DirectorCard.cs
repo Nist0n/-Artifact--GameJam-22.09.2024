@@ -1,4 +1,5 @@
 using GameConfiguration.Cards;
+using GameConfiguration.Directors.Elites;
 using UnityEngine;
 
 namespace GameConfiguration.Directors
@@ -9,6 +10,8 @@ namespace GameConfiguration.Directors
         public SpawnCard spawnCard;
         
         public int SelectionWeight;
+        public bool NoElites;
+        public EliteTierDef[] AllowedEliteTiers;
 
         public int Cost => spawnCard.DirectorCreditCost;
     }

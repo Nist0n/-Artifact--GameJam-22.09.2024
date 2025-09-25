@@ -4,6 +4,7 @@ using GameConfiguration.Directors.Functions;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
+using GameConfiguration.Directors.Elites;
 
 namespace GameConfiguration.Directors
 {
@@ -23,6 +24,8 @@ namespace GameConfiguration.Directors
         private bool _shouldSpawnOneWave;
         private bool _hasStartedWave;
         private DirectorCard _currentMonsterCard;
+        private EliteTierDef _currentEliteTier;
+        private EliteDef _currentEliteDef;
         private int _consecutiveCheapSkips;
         private int _spawnCountInCurrentWave;
         private DirectorMoneyWave[] _moneyWaves;
@@ -40,6 +43,16 @@ namespace GameConfiguration.Directors
                 {
                     DirectorCard directorCard = category.GetChoice(i);
                     int b = directorCard.Cost;
+                    if (!directorCard.NoElites && directorCard.AllowedEliteTiers != null)
+                    {
+                        float maxMult = 1f;
+                        foreach (var tier in directorCard.AllowedEliteTiers)
+                        {
+                            if (tier && tier.CanSelect())
+                                maxMult = Mathf.Max(maxMult, tier.CostMultiplier);
+                        }
+                        b = Mathf.RoundToInt(b * maxMult);
+                    }
                     a = Mathf.Max(a, b);
                 }
                 return a;
@@ -61,6 +74,28 @@ namespace GameConfiguration.Directors
             _currentMonsterCard = monsterCard;
             lastAttemptedMonsterCard = _currentMonsterCard;
             _spawnCountInCurrentWave = 0;
+
+            // Reset elite selection
+            _currentEliteTier = null;
+            _currentEliteDef = null;
+
+            if (_currentMonsterCard && !_currentMonsterCard.NoElites && _currentMonsterCard.AllowedEliteTiers != null && _currentMonsterCard.AllowedEliteTiers.Length > 0)
+            {
+                // Pick the most expensive tier we can afford to bias toward elites, similar to RoR2
+                float availableCredits = monsterCredit;
+                EliteTierDef bestTier = null;
+                foreach (var tier in _currentMonsterCard.AllowedEliteTiers)
+                {
+                    if (!tier || !tier.CanSelect()) continue;
+                    float eliteCost = _currentMonsterCard.Cost * tier.CostMultiplier;
+                    if (eliteCost <= availableCredits)
+                    {
+                        if (bestTier == null || tier.CostMultiplier > bestTier.CostMultiplier) bestTier = tier;
+                    }
+                }
+                _currentEliteTier = bestTier;
+                _currentEliteDef = _currentEliteTier ? _currentEliteTier.GetRandomAvailableEliteDef() : null;
+            }
         }
 
         private bool AttemptSpawnOnTarget()
@@ -87,6 +122,20 @@ namespace GameConfiguration.Directors
             }
             SpawnCard spawnCard = _currentMonsterCard.spawnCard;
 
+            // Evaluate elite affordability and set value multiplier
+            float valueMultiplier = 1f;
+            EliteDef eliteToApply = null;
+            if (_currentEliteTier && _currentEliteDef)
+            {
+                int eliteCost = Mathf.RoundToInt(_currentMonsterCard.Cost * _currentEliteTier.CostMultiplier);
+                if (eliteCost <= monsterCredit)
+                {
+                    num1 = eliteCost;
+                    valueMultiplier = _currentEliteTier.CostMultiplier;
+                    eliteToApply = _currentEliteDef;
+                }
+            }
+
             if (num1 > monsterCredit)
             {
                 return false;
@@ -94,16 +143,16 @@ namespace GameConfiguration.Directors
       
             Transform spawnTarget1 = TakeRandomPositionToSpawn();
       
-            if (!Spawn(spawnCard, spawnTarget1)) return false;
+            if (!Spawn(spawnCard, spawnTarget1, eliteToApply, valueMultiplier)) return false;
             monsterCredit -= num1;
             ++_spawnCountInCurrentWave;
             _consecutiveCheapSkips = 0;
             return true;
         }
         
-        public bool Spawn(SpawnCard spawnCard, Transform spawnTarget)
+        public bool Spawn(SpawnCard spawnCard, Transform spawnTarget, EliteDef elite = null, float valueMultiplier = 1f)
         {
-            DirectorCore.instance.TrySpawnObjectWithEffect(new DirectorSpawnRequest(spawnCard), spawnTarget, this, null);
+            DirectorCore.instance.TrySpawnObjectWithEffect(new DirectorSpawnRequest(spawnCard, elite, valueMultiplier), spawnTarget, this, null);
             return true;
         }
     
@@ -161,9 +210,8 @@ namespace GameConfiguration.Directors
                 _timer += deltaTime;
                 if (_timer > Interval)
                 {
-                    float num = 0.5f;
                     _timer -= Interval;
-                    _accumulatedAward += Interval * (1.0f + 0.4f * difficultyCoefficient) * num;
+                    _accumulatedAward += Interval * (1.0f + 0.4f * difficultyCoefficient);
                 }
                 float num1 = Mathf.FloorToInt(_accumulatedAward);
                 _accumulatedAward -= num1;

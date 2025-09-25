@@ -2504,7 +2504,7 @@ MonoBehaviour:
   Speed: 2
   Slowness: 0.6
   Health: 0
-  MaxHealth: 9
+  MaxHealth: 10
   Damage: 5
   IsFrozen: 0
   IsSlowness: 0

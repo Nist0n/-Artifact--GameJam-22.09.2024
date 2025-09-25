@@ -1362,12 +1362,13 @@ MonoBehaviour:
   Speed: 4.5
   Slowness: 0.6
   Health: 0
-  MaxHealth: 7
+  MaxHealth: 6
   Damage: 3
   IsFrozen: 0
   IsSlowness: 0
   IsAttacking: 0
   IsCelebrating: 0
+  Level: 0
   Soul: {fileID: 1277085015814301893, guid: ff37baff706d86848addca8e6f134b91, type: 3}
   IsDamaged: 0
   back: {fileID: 1637030215264534352}
