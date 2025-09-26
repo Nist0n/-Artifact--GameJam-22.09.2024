@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -1257799758603471070}
   - component: {fileID: -5379149836656309113}
   m_Layer: 0
-  m_Name: FureMeltBombDamage
+  m_Name: FireMeltBombDamage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
