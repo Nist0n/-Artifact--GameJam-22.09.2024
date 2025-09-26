@@ -15,4 +15,5 @@ MonoBehaviour:
   CostMultiplier: 6
   EliteTypes:
   - {fileID: 11400000, guid: e2ce7a083fee3b24994bf7c00ee7fe0d, type: 2}
+  - {fileID: 11400000, guid: 4a9112218cd707e4d865dbfbc51492d7, type: 2}
   CanSelectWithoutAvailableEliteDef: 0

@@ -95,6 +95,11 @@ namespace GameConfiguration.Directors
                     }
                 }
             }
+            
+            if (bodyObject.CompareTag("Enemy"))
+            {
+                IceTrailManager.Instance.CheckNewEnemy(bodyObject);
+            }
         }
     }
 }

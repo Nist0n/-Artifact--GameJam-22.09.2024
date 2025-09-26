@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 302fe8c4655825e4395ab3ee1f38e697, type: 3}
-  m_Name: Tank
+  m_Name: Ice
   m_EditorClassIdentifier: 
   TintColor: {r: 1, g: 1, b: 1, a: 1}
-  HealthBoostCoefficient: 3
-  DamageBoostCoefficient: 0.5
-  OverrideMaterial: {fileID: 2100000, guid: 051a16876ec93b84b9e218d8b6f7363e, type: 2}
-  Modifiers: []
+  HealthBoostCoefficient: 2
+  DamageBoostCoefficient: 1
+  OverrideMaterial: {fileID: 2100000, guid: 8321ae0b1290c014eb754318a8497849, type: 2}
+  Modifiers:
+  - {fileID: 11400000, guid: a71606282d5db5d49b6c6c1737a03df6, type: 2}

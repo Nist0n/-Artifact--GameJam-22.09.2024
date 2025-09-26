@@ -7471,6 +7471,7 @@ MonoBehaviour:
   - {fileID: 4500373888269952220, guid: 006fefcdc0d024d489138a8842896b67, type: 3}
   - {fileID: 4500373888269952220, guid: a35cce8f96542bb429661747b0b75d69, type: 3}
   - {fileID: 4500373888269952220, guid: eb469f6ebb51fc646bbbabafd0ad6faa, type: 3}
+  - {fileID: 4500373888269952220, guid: 62c0f8aca2fa66048844479260e7a4a4, type: 3}
   passiveAbilities:
   - {fileID: 8316077456163229515, guid: 753921215f0b55d4897ff446d7e4ee2b, type: 3}
   - {fileID: 4389482718115497517, guid: f622b9a36f00bb94ca71e1e5482d5717, type: 3}
@@ -28020,7 +28021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   category: {fileID: 2130197342}
-  monsterCredit: 60
+  monsterCredit: 0
   moneyWaveIntervals:
   - Min: 0.75
     Max: 1.25
@@ -45790,7 +45791,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 11400000, guid: 8a2710c80c48b1343b357a567bedb8de, type: 2}
   - {fileID: 11400000, guid: 0707c726b557abc4d8c14c8e44a3e63e, type: 2}
 --- !u!1 &2130795963
 GameObject:

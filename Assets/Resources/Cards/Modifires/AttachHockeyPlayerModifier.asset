@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 302fe8c4655825e4395ab3ee1f38e697, type: 3}
-  m_Name: Tank
+  m_Script: {fileID: 11500000, guid: 5e0b835a2fdc77f458caf31ec68088df, type: 3}
+  m_Name: AttachHockeyPlayerModifier
   m_EditorClassIdentifier: 
-  TintColor: {r: 1, g: 1, b: 1, a: 1}
-  HealthBoostCoefficient: 3
-  DamageBoostCoefficient: 0.5
-  OverrideMaterial: {fileID: 2100000, guid: 051a16876ec93b84b9e218d8b6f7363e, type: 2}
-  Modifiers: []
+  TrailWidth: 1.8
+  SpeedBoost: 1.5
+  IceLifetime: 20
+  MeltTime: 2
+  IceTrailPrefab: {fileID: 6751735403798661672, guid: 820ac95d10ee94a4c87944ea668652dc, type: 3}

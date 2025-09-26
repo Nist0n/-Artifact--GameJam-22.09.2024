@@ -124,6 +124,8 @@ namespace Enemies
 
         private void KillEnemy()
         {
+            GameConfiguration.Directors.Elites.IceTrailManager.Instance.CleanupEnemy(gameObject);
+            
             Destroy(gameObject);
             GameEvents.OnEnemyDeath(deathRewards.goldReward, deathRewards.expReward);
             deathEvent.TriggerEvent();
