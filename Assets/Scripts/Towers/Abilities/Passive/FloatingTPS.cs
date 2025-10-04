@@ -10,7 +10,7 @@ namespace Towers.Abilities.Passive
 
         private void Start()
         {
-            description = $"Увеличивает скорострельность башни на {(1 - TPS) * 100}% и урон башни на {(DAMAGE_BUFF - 1) * 100}% в течение первых {Tower.buffDuration} секунд";
+            description = $"Увеличивает скорострельность башни на {(1 - TPS) * 100}% и урон башни на {(DAMAGE_BUFF - 1) * 100}% в течение первых {Tower.BuffDuration} секунд";
         }
 
         protected override void SetPassiveBonus()

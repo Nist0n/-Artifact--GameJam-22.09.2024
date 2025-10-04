@@ -119,7 +119,7 @@ namespace FIMSpace.FEditor
                 tgtInfo.RestoreOn(tgtImporter, source, false);
 
                 EditorUtility.ClearProgressBar();
-                UnityEngine.Debug.LogError("[Fimpo Image Tools] Something went wrong when channeling textures! " + exc);
+                UnityEngine.Debug.LogError("[Fimpo AbilityImage Tools] Something went wrong when channeling textures! " + exc);
             }
         }
 

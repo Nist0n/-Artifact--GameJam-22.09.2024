@@ -19,9 +19,9 @@ namespace Towers
 
         [SerializeField] private GameObject projectilePrefab;
 
-        [SerializeField] private GameObject buffImage;
-
         [SerializeField] private AbilityTowerBuff abilityTowerBuff;
+
+        [SerializeField] private RechargeAbility rechargeAbility;
 
         public TowerCamera towerCameraComp;
         
@@ -30,10 +30,15 @@ namespace Towers
         protected GameObject CurrentTarget;
 
         private bool _canShoot = true;
-        public bool piloted;
+        public bool Piloted;
 
-        public static float buffDuration = 10f;
-        public bool isOnCooldown;
+        public static float BuffDuration = 10f;
+        private static float _cdDuration = 60f;
+
+        private float _buffTimer;
+        private float _cdTimer;
+        
+        public bool IsOnCooldown;
         
         public List<GameObject> enemiesInRange;
 
@@ -57,6 +62,28 @@ namespace Towers
         
         private void Update()
         {
+            if (isBuffed)
+            {
+                _buffTimer += Time.deltaTime;
+                if (_buffTimer >= BuffDuration)
+                {
+                    isBuffed = false;
+                    IsOnCooldown = true;
+                    _buffTimer = 0;
+                    ResetTowerStats();
+                }
+            }
+
+            if (IsOnCooldown)
+            {
+                _cdTimer += Time.deltaTime;
+                if (_cdTimer >= _cdDuration)
+                {
+                    IsOnCooldown = false;
+                    _cdTimer = 0;
+                }
+            }
+            
             if (GameConfig.Instance.HasLost || GameConfig.Instance.HasWon || GameConfig.Instance.ShopIsOpened)
             {
                 return;
@@ -118,19 +145,17 @@ namespace Towers
                 
             if (_canShoot)
             {
-                if (!piloted)
+                if (!Piloted)
                 {
                     SuppressTower();
                     StartCoroutine(Shoot(transform.position, CurrentTarget)); 
                 }
             }
 
-            if (!piloted)
+            if (!Piloted)
             {
                 return;
             }
-            
-            buffImage.SetActive(isBuffed);
             
             if (Input.GetMouseButton(0)) // Player shooting
             {
@@ -195,31 +220,19 @@ namespace Towers
 
         public void EmpowerTower()
         {
-            if (isOnCooldown || isBuffed)
+            if (IsOnCooldown || isBuffed)
             {
                 return;
             }
             
-            StartCoroutine(Buff());
+            Buff();
         }
 
-        private IEnumerator Buff()
+        private void Buff()
         {
             isBuffed = true;
             initialFireRate = fireRate / (1 + abilityTowerBuff.AbilityFireRateBuff) * buffedFireRatePercent;
             initialDamage = Mathf.Round(damage * abilityTowerBuff.AbilityDamageBuff) * buffedDamagePercent;
-            StartCoroutine(BuffCooldown());
-            yield return new WaitForSeconds(buffDuration);
-            
-            isBuffed = false;
-            ResetTowerStats();
-        }
-
-        private IEnumerator BuffCooldown()
-        {
-            isOnCooldown = true;
-            yield return new WaitForSeconds(60f);
-            isOnCooldown = false;
         }
 
         private void ResetTowerStats()
@@ -245,6 +258,20 @@ namespace Towers
         public void SetSlowness()
         {
             slowness = true;
+        }
+
+        public void DisplayCd()
+        {
+            if (isBuffed)
+            {
+                rechargeAbility.AbilityImage.enabled = true;
+                rechargeAbility.GetProperties(_buffTimer, BuffDuration);
+            }
+            else
+            {
+                rechargeAbility.AbilityImage.enabled = false;
+                rechargeAbility.GetProperties(_cdTimer, _cdDuration);
+            }
         }
     }
 }

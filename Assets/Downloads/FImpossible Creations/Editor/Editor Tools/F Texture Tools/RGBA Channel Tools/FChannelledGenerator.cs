@@ -632,7 +632,7 @@ namespace FIMSpace.FEditor
             catch (System.Exception exc)
             {
                 EditorUtility.ClearProgressBar();
-                UnityEngine.Debug.LogError("[Fimpo Image Tools] Something went wrong when channeling textures!");
+                UnityEngine.Debug.LogError("[Fimpo AbilityImage Tools] Something went wrong when channeling textures!");
                 UnityEngine.Debug.LogException(exc);
             }
         }
@@ -666,7 +666,7 @@ namespace FIMSpace.FEditor
             catch (System.Exception exc)
             {
                 EditorUtility.ClearProgressBar();
-                UnityEngine.Debug.LogError("[Fimpo Image Tools] Something went wrong when scaling textures! " + exc);
+                UnityEngine.Debug.LogError("[Fimpo AbilityImage Tools] Something went wrong when scaling textures! " + exc);
             }
 
             importer.isReadable = wasRead;

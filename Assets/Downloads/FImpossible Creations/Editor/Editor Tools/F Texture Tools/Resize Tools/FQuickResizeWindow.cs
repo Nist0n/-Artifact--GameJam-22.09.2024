@@ -80,7 +80,7 @@ namespace FIMSpace.FEditor
                 catch (System.Exception exc)
                 {
                     EditorUtility.ClearProgressBar();
-                    Debug.LogError("[Fimpo Image Tools] Something went wrong when scaling textures! " + exc);
+                    Debug.LogError("[Fimpo AbilityImage Tools] Something went wrong when scaling textures! " + exc);
                 }
             }
         }

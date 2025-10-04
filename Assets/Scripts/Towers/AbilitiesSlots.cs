@@ -18,7 +18,6 @@ namespace Towers
         private ImageCooldowns _imageCooldowns;
         private ActiveAbility _active;
         private Dictionary<string, int> _myDict;
-        private Image _activeAbilityPosition;
         
         public List<GameObject> RandomActiveAbilities;
         public List<GameObject> RandomPassiveAbilities;
@@ -34,7 +33,6 @@ namespace Towers
         private void Start()
         {
             _imageCooldowns = FindAnyObjectByType<ImageCooldowns>();
-            _activeAbilityPosition = FindAnyObjectByType<ImageCooldowns>().gameObject.GetComponent<Image>();
         }
 
         private void Update()
@@ -87,9 +85,9 @@ namespace Towers
             {
                 if (ability.GetComponent<ActiveAbility>())
                 {
-                    _activeAbilityPosition.enabled = true;
+                    _imageCooldowns.AbilityImage.enabled = true;
                     _imageCooldowns.ParentImage.enabled = true;
-                    _activeAbilityPosition.sprite = ability.GetComponent<Image>().sprite;
+                    _imageCooldowns.AbilityImage.sprite = ability.GetComponent<Image>().sprite;
                     _imageCooldowns.ParentImage.sprite = Resources.Load<Sprite>("UI/ability-bg");
                     _imageCooldowns.TextTimer.enabled = true;
                 }
@@ -141,9 +139,9 @@ namespace Towers
 
         public void HideAbilities()
         {
-            _activeAbilityPosition.enabled = false;
+            _imageCooldowns.AbilityImage.enabled = false;
             _imageCooldowns.ParentImage.enabled = false;
-            _activeAbilityPosition.sprite = null;
+            _imageCooldowns.AbilityImage.sprite = null;
             _imageCooldowns.ParentImage.sprite = null;
             _imageCooldowns.TextTimer.enabled = false;
 

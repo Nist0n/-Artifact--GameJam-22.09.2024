@@ -1,20 +1,27 @@
+using System;
 using System.Globalization;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Towers
 {
     public class RechargeAbility : MonoBehaviour
     {
-        [SerializeField] protected Image image;
-        
+        public Image AbilityImage;
         public TextMeshProUGUI TextTimer;
+        public Image ParentImage;
 
         private float _timer;
         private float _cd;
 
-        protected void DisplayOfCd()
+        private void Update()
+        {
+            DisplayOfCd();
+        }
+
+        private void DisplayOfCd()
         {
             if (_timer > 0)
             {
@@ -22,18 +29,18 @@ namespace Towers
                 if (_timer >= _cd)
                 {
                     _timer = _cd;
-                    image.fillAmount = _timer / _cd;
+                    AbilityImage.fillAmount = _timer / _cd;
                 }
                 else
                 {
                     _timer += Time.deltaTime;
-                    image.fillAmount = _timer / _cd;
+                    AbilityImage.fillAmount = _timer / _cd;
                 }
             }
-            else if (image)
+            else if (AbilityImage)
             {
                 TextTimer.text = null;
-                image.fillAmount = 1;
+                AbilityImage.fillAmount = 1;
             }
         }
         

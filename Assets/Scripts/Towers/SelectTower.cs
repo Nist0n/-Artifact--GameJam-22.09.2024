@@ -14,7 +14,7 @@ namespace Towers
     {
         [SerializeField] private CinemachineCamera mainCinemachineCamera;
         [SerializeField] private List<GameObject> towers;
-        [SerializeField] private GameObject buffImage;
+        [SerializeField] private RechargeAbility rechargeAbility;
         [SerializeField] private GameObject selectTowerControls;
         [SerializeField] private GameObject upgradeTowerControls;
         [SerializeField] private BuyingSystem buyingSystem;
@@ -33,6 +33,11 @@ namespace Towers
             if (GameConfig.Instance.HasLost) return;
             
             GameConfig.Instance.IsInTower = mainCinemachineCamera.Priority == 0;
+            
+            if (GameConfig.Instance.IsInTower)
+            {
+                _currentTower.DisplayCd();
+            }
 
             DisableTowerView();
 
@@ -72,7 +77,10 @@ namespace Towers
             
             _currentTower.towerCamera.Priority = 1;
             mainCinemachineCamera.Priority = 0;
-            _currentTower.piloted = true;
+            _currentTower.Piloted = true;
+            rechargeAbility.TextTimer.enabled = true;
+            rechargeAbility.ParentImage.enabled = true;
+            rechargeAbility.AbilityImage.enabled = true;
                         
             _currentTower.EmpowerTower();
         }
@@ -100,11 +108,13 @@ namespace Towers
                 
                 towerSlots.Circle.SetActive(false);
                 if (_currentRangeViz) _currentRangeViz.SetVisible(false);
-                _currentTower.piloted = false;
+                _currentTower.Piloted = false;
                 AudioManager.Instance.PlaySFX("Click");
                 _currentTower.towerCamera.Priority = 0;
                 mainCinemachineCamera.Priority = 1;
-                buffImage.SetActive(false);
+                rechargeAbility.TextTimer.enabled = false;
+                rechargeAbility.ParentImage.enabled = false;
+                rechargeAbility.AbilityImage.enabled = false;
             }
         }
 

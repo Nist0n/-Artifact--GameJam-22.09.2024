@@ -23,7 +23,7 @@ namespace FIMSpace.FEditor
             }
             else
             {
-                Debug.LogError("[Fimpo Image Tools] No Texture!");
+                Debug.LogError("[Fimpo AbilityImage Tools] No Texture!");
                 return null;
             }
         }
@@ -42,7 +42,7 @@ namespace FIMSpace.FEditor
 
                 if (extension == FETextureExtension.UNSUPPORTED)
                 {
-                    Debug.LogError("[Fimpo Image Tools] Not supported format to scale texture, Fimpo Image Tools supports only .JPG .PNG .TGA .EXR files!");
+                    Debug.LogError("[Fimpo AbilityImage Tools] Not supported format to scale texture, Fimpo AbilityImage Tools supports only .JPG .PNG .TGA .EXR files!");
                     return src;
                 }
 
@@ -63,7 +63,7 @@ namespace FIMSpace.FEditor
             catch (System.Exception exc)
             {
                 src.RestoreOn(sourceTex, source, false);
-                Debug.LogError("[Fimpo Image Tools] Something went wrong when modifying image file! " + exc);
+                Debug.LogError("[Fimpo AbilityImage Tools] Something went wrong when modifying image file! " + exc);
             }
 
             return src;
@@ -94,7 +94,7 @@ namespace FIMSpace.FEditor
 
                 if (extension == FETextureExtension.UNSUPPORTED)
                 {
-                    Debug.LogError("[Fimpo Image Tools] Not supported format to scale texture, Fimpo Image Tools supports only .JPG .PNG .TGA .EXR files!");
+                    Debug.LogError("[Fimpo AbilityImage Tools] Not supported format to scale texture, Fimpo AbilityImage Tools supports only .JPG .PNG .TGA .EXR files!");
                     return new TextureInfo();
                 }
 
@@ -115,7 +115,7 @@ namespace FIMSpace.FEditor
             catch (System.Exception exc)
             {
                 src.RestoreOn(sourceTex, source, false);
-                Debug.LogError("[Fimpo Image Tools] Something went wrong when modifying image file! " + exc);
+                Debug.LogError("[Fimpo AbilityImage Tools] Something went wrong when modifying image file! " + exc);
             }
 
             return src;
@@ -349,7 +349,7 @@ namespace FIMSpace.FEditor
             if (output)
                 if (output.width == (int)dimensions.x && output.height == (int)dimensions.y)
                 {
-                    Debug.Log("[Fimpo Image Tools] " + source.name + " have already dimensions " + dimensions.x + " x " + dimensions.y);
+                    Debug.Log("[Fimpo AbilityImage Tools] " + source.name + " have already dimensions " + dimensions.x + " x " + dimensions.y);
                     return;
                 }
 
@@ -380,7 +380,7 @@ namespace FIMSpace.FEditor
 
                     if (extension == FETextureExtension.UNSUPPORTED)
                     {
-                        Debug.LogError("[Fimpo Image Tools] Not supported format to scale texture, Fimpo Image Tools supports only .JPG .PNG .TGA .EXR files!");
+                        Debug.LogError("[Fimpo AbilityImage Tools] Not supported format to scale texture, Fimpo AbilityImage Tools supports only .JPG .PNG .TGA .EXR files!");
                         return;
                     }
 
@@ -433,7 +433,7 @@ namespace FIMSpace.FEditor
                     if (fileBytes != null)
                         if (!Mathf.IsPowerOfTwo(output.width) || !Mathf.IsPowerOfTwo(output.height))
                         {
-                            Debug.Log("<b>[Fimpo Image Tools]</b> " + output.name + " resized to " + output.width + "x" + output.height + " So there is no power of 2, that means texture can't be compressed to take less memory in build. If it was intended ignore this message. (changing texture settings 'Power of two' under '/advanced/' to 'None')");
+                            Debug.Log("<b>[Fimpo AbilityImage Tools]</b> " + output.name + " resized to " + output.width + "x" + output.height + " So there is no power of 2, that means texture can't be compressed to take less memory in build. If it was intended ignore this message. (changing texture settings 'Power of two' under '/advanced/' to 'None')");
                             outTex.npotScale = TextureImporterNPOTScale.None;
                         }
 
@@ -465,12 +465,12 @@ namespace FIMSpace.FEditor
                     AssetDatabase.ImportAsset(sPath);
                     if (source != output) AssetDatabase.ImportAsset(oPath);
                     AssetDatabase.Refresh();
-                    Debug.LogError("[Fimpo Image Tools] Something went wrong when rescalling image file! " + exc);
+                    Debug.LogError("[Fimpo AbilityImage Tools] Something went wrong when rescalling image file! " + exc);
                 }
             }
             else
             {
-                Debug.LogError("[Fimpo Image Tools] No Texture to Rescale!");
+                Debug.LogError("[Fimpo AbilityImage Tools] No Texture to Rescale!");
             }
         }
 
@@ -516,12 +516,12 @@ namespace FIMSpace.FEditor
                     sourceTex.isReadable = swasReadable;
                     AssetDatabase.ImportAsset(sPath);
                     AssetDatabase.Refresh();
-                    Debug.LogError("[Fimpo Image Tools] Something went wrong when rescalling image file! " + exc);
+                    Debug.LogError("[Fimpo AbilityImage Tools] Something went wrong when rescalling image file! " + exc);
                 }
             }
             else
             {
-                Debug.LogError("[Fimpo Image Tools] No Texture to Rescale!");
+                Debug.LogError("[Fimpo AbilityImage Tools] No Texture to Rescale!");
             }
 
             return generatedTex;
