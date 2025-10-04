@@ -81,6 +81,8 @@ namespace Towers
             rechargeAbility.TextTimer.enabled = true;
             rechargeAbility.ParentImage.enabled = true;
             rechargeAbility.AbilityImage.enabled = true;
+            
+            _currentTower.towerCamera.GetComponent<TowerCamera>().ActivateTowerListener();
                         
             _currentTower.EmpowerTower();
         }
@@ -109,7 +111,9 @@ namespace Towers
                 towerSlots.Circle.SetActive(false);
                 if (_currentRangeViz) _currentRangeViz.SetVisible(false);
                 _currentTower.Piloted = false;
-                AudioManager.Instance.PlaySFX("Click");
+                
+                _currentTower.towerCamera.GetComponent<TowerCamera>().ActivateMainCameraListener();
+                
                 _currentTower.towerCamera.Priority = 0;
                 mainCinemachineCamera.Priority = 1;
                 rechargeAbility.TextTimer.enabled = false;

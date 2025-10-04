@@ -84,15 +84,6 @@ namespace Towers
                 DisableImage();
                 return;
             }
-            
-            if (_currentCamera.IsLive && !_isTowerCameraActive)
-            {
-                ActivateTowerListener();
-            }
-            else if (!_currentCamera.IsLive && _isTowerCameraActive)
-            {
-                ActivateMainCameraListener();
-            }
 
             if (!_currentCamera.IsLive)
             {
@@ -249,7 +240,7 @@ namespace Towers
             }
         }
 
-        private void ActivateTowerListener()
+        public void ActivateTowerListener()
         {
             if (!towerAudioListener.enabled)
             {
@@ -259,7 +250,7 @@ namespace Towers
             }
         }
 
-        private void ActivateMainCameraListener()
+        public void ActivateMainCameraListener()
         {
             if (!mainCameraListener.enabled)
             {
