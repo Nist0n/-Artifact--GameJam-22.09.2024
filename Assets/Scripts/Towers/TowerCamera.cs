@@ -171,11 +171,8 @@ namespace Towers
             
             if (Input.GetMouseButton(1) && !_isAbilityActived)
             {
-                Debug.Log("Прошли первую проверку");
-                Debug.Log($"Проверка на метод {_abilities.Ability.GetComponent<ActiveAbility>().IsAbilityUsed()}");
                 if (_abilities.HasActiveAbility && !_abilities.Ability.GetComponent<ActiveAbility>().IsAbilityUsed())
                 {
-                    Debug.Log("Прошли вторую проверку");
                     DisableImage();
                     _abilityRange.transform.localScale *= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction();
                     _abilities.Ability.GetComponent<ActiveAbility>().ActionRadius(_abilityRange);
@@ -229,14 +226,7 @@ namespace Towers
                     }
                 }
 
-                // previousTarget = currentTarget;
-
                 currentTarget = closestEnemyToCenter;
-
-                //if (currentTarget != previousTarget || currentTarget.GetComponent<Enemy>().Health <= 0)
-                //{
-                 //   DisableImage();
-                //}
 
                 var targetPos = currentTarget.GetComponentInChildren<EnemyTarget>().transform.position;
                 Vector3 imagePos = _mainCamera.WorldToScreenPoint(targetPos);

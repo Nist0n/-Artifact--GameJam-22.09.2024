@@ -5,6 +5,8 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using GameConfiguration;
+using UnityEngine.UI;
+using Cursor = UnityEngine.Cursor;
 
 namespace Towers
 {
@@ -117,6 +119,15 @@ namespace Towers
 
                 if (!upgradeTowerControls.activeSelf)
                 {
+                    GameObject activeButton = new GameObject();
+                    foreach (var button in upgradeTowerControls.GetComponentsInChildren<ButtonFrozen>())
+                    {
+                        if (button.gameObject.CompareTag("Active"))
+                        {
+                            activeButton = button.gameObject;
+                        }
+                    }
+                    buyingSystem.ActivateActiveSlot(activeButton.GetComponent<Button>());
                     buyingSystem.ResetLists();
                     buyingSystem.GetTower(_currentTower.gameObject.GetComponent<AbilitiesSlots>());
                     Cursor.visible = true;
