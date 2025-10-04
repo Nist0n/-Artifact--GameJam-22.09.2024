@@ -125,7 +125,7 @@ namespace Towers
 
                 Vector3 abilityUsePoint = new Vector3();
 
-                if (Physics.Raycast(ray, out hit, _searchRadius + 9, 1 << 0))
+                if (Physics.Raycast(ray, out hit, _searchRadius + 9, 1 << 7))
                 {
                     _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbilityRadius(hit.point);
                     abilityUsePoint = hit.point;
