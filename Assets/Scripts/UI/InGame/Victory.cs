@@ -7,10 +7,9 @@ namespace UI.InGame
     public class Victory : MonoBehaviour
     {
         [SerializeField] private List<GameObject> objects;
-        
         [SerializeField] private GameObject victoryUI;
-        
         [SerializeField] private float timer;
+        
         private bool _gameRun = true;
         
         void Update()

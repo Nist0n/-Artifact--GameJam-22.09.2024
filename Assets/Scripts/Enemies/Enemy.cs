@@ -1,9 +1,9 @@
 ﻿using System.Collections;
-using Audio;
 using Castle;
 using Enemies.StateMachine;
 using GameConfiguration;
 using GameConfiguration.Events;
+using GameConfiguration.Settings.Audio;
 using StaticClasses;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,12 +13,12 @@ namespace Enemies
     public class Enemy : Core
     {
         [SerializeField] private Image back;
-        
         [SerializeField] private Image front;
+        [SerializeField] private AchievementEvent deathEvent;
 
         private float _lerpTimer;
-        
         private float _slowTimer;
+        private Coroutine _hpBarCoroutine;
 
         public RunningState Running;
         public TakingDamageState TakingDamage;
@@ -27,10 +27,6 @@ namespace Enemies
         public AttackingState Attacking;
         public CelebratingState Celebrating;
         public SlownessState Slow;
-
-        private Coroutine _hpBarCoroutine;
-
-        [SerializeField] private AchievementEvent deathEvent;
         
         private void Start()
         {
@@ -148,7 +144,7 @@ namespace Enemies
 
         public void AttackCastle()
         {
-            AudioManager.instance.PlayRandomSoundByName("GateBreak", AudioSource);
+            AudioManager.Instance.PlayRandomSoundByName("GateBreak", AudioSource);
             GameObject.FindGameObjectWithTag("Castle").GetComponent<CastleHealth>().ReceiveDamage(Damage);
         }
         

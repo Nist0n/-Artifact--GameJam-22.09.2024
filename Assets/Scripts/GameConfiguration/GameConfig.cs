@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Audio;
 using GameConfiguration.Directors;
+using GameConfiguration.Settings.Audio;
 using StaticClasses;
 using TMPro;
 using Unity.Cinemachine;
@@ -17,8 +17,14 @@ namespace GameConfiguration
         [SerializeField] private GameObject loseUI;
         [SerializeField] private GameObject victoryUI;
         [SerializeField] private List<CombatDirector> combatDirectors;
-
+        
+        private float _timeMinutes;
+        private readonly float _timeFactor = 0.2506f;
+        private float _timeSeconds;
+        private float _timerUpgrade;
+        
         public static GameConfig Instance;
+        
         public float GameTime;
         public List<GameObject> EnemyList;
         public List<GameObject> Spawners;
@@ -28,11 +34,6 @@ namespace GameConfiguration
         public bool ShopIsOpened;
         public float GameDifficulty;
         public int EnemyLevel;
-        
-        private float _timeMinutes;
-        private readonly float _timeFactor = 0.2506f;
-        private float _timeSeconds;
-        private float _timerUpgrade;
 
         private void Awake()
         {
@@ -62,7 +63,7 @@ namespace GameConfiguration
         {
             GetSpawners();
             GameEvents.CheatGameWin += GameWon;
-            AudioManager.instance.StartMusicShuffle();
+            AudioManager.Instance.StartMusicShuffle();
             foreach (var combatDirector in combatDirectors)
             {
                 combatDirector.enabled = true;
@@ -154,8 +155,8 @@ namespace GameConfiguration
             {
                 combatDirector.enabled = false;
             }
-            AudioManager.instance.StopMusicSourceLoop();
-            AudioManager.instance.PlayMusic("Defeat");
+            AudioManager.Instance.StopMusicSourceLoop();
+            AudioManager.Instance.PlayMusic("Defeat");
             loseCinemachineCamera.Priority = 2;
             loseUI.SetActive(true);
             foreach (var gameObj in objectsToHide)

@@ -1,26 +1,28 @@
 using GameConfiguration;
-using UnityEngine;
 
-public class FreezingState : EnemyState
+namespace Enemies.StateMachine
 {
-    public override void Enter()
+    public class FreezingState : EnemyState
     {
-        navMeshAgent.speed = 0f;
-        animator.speed = 0f;
-    }
-    
-    public override void Do()
-    {
-        if (!IsFrozen || GameConfig.Instance.HasLost)
+        public override void Enter()
         {
-            navMeshAgent.speed = 1f;
-            animator.speed = 1f;
-            IsComplete = true;
+            navMeshAgent.speed = 0f;
+            animator.speed = 0f;
         }
-    }
     
-    public override void Exit()
-    {
+        public override void Do()
+        {
+            if (!IsFrozen || GameConfig.Instance.HasLost)
+            {
+                navMeshAgent.speed = 1f;
+                animator.speed = 1f;
+                IsComplete = true;
+            }
+        }
+    
+        public override void Exit()
+        {
         
+        }
     }
 }

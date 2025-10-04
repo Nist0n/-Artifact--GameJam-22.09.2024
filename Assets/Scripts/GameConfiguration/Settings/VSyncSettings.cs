@@ -1,8 +1,7 @@
-using System;
 using TMPro;
 using UnityEngine;
 
-namespace Settings
+namespace GameConfiguration.Settings
 {
     public class VSyncSettings : MonoBehaviour
     {

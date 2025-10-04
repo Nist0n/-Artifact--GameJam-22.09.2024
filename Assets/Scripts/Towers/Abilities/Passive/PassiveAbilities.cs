@@ -1,8 +1,7 @@
 using TMPro;
-using Towers;
 using UnityEngine;
 
-namespace Abilities.Passive
+namespace Towers.Abilities.Passive
 {
     public class PassiveAbilities : MonoBehaviour
     {

@@ -7,7 +7,6 @@ namespace UI.InGame
     public class Lose : MonoBehaviour
     {
         [SerializeField] private List<GameObject> objectsToHide;
-        
         [SerializeField] private GameObject loseUI;
         
         private bool _gameRun = true;

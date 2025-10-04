@@ -6,11 +6,8 @@ namespace Towers.Abilities.Active
     public class ImageCooldowns : MonoBehaviour
     {
         private Image _image;
-    
         private float _timerAbi;
-
         private float _cd;
-
         private bool _isGot = false;
     
         void Update()

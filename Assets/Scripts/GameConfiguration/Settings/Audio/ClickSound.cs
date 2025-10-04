@@ -1,17 +1,17 @@
 using UnityEngine;
 
-namespace Audio
+namespace GameConfiguration.Settings.Audio
 {
     public class ClickSound : MonoBehaviour
     {
         public void PlaySoundHighlighted()
         {
-            AudioManager.instance.PlaySFX("Aimed");
+            AudioManager.Instance.PlaySFX("Aimed");
         }
     
         public void PlaySoundPressed()
         {
-            AudioManager.instance.PlaySFX("Click");
+            AudioManager.Instance.PlaySFX("Click");
         }
     }
 }

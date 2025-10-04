@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1384230001851284935}
   - component: {fileID: 2453668044048165361}
   - component: {fileID: 4580696801576309704}
-  - component: {fileID: 8795431630661136550}
   m_Layer: 5
   m_Name: PurpleCircle
   m_TagString: Untagged
@@ -76,21 +75,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8795431630661136550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 800591928580452847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee135ecc991166f459aea68457348c76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soulsCounter: {fileID: 0}
-  FillAmount: 10
-  image: {fileID: 0}
 --- !u!1 &2144032466256791023
 GameObject:
   m_ObjectHideFlags: 0

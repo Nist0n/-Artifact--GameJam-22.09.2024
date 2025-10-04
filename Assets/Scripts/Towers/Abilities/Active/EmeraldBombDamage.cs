@@ -1,46 +1,48 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Enemies;
 using GameConfiguration.Spawners;
 using UnityEngine;
 
-public class EmeraldBombDamage : MonoBehaviour
+namespace Towers.Abilities.Active
 {
-    [SerializeField] private List<GameObject> enemies;
+    public class EmeraldBombDamage : MonoBehaviour
+    {
+        [SerializeField] private List<GameObject> enemies;
     
-    private Vector3 _spanwerPos;
+        private Vector3 _spanwerPos;
 
-    private void Start()
-    {
-        StartCoroutine(ActivateTeleport());
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
+        private void Start()
         {
-            enemies.Add(other.gameObject);
+            StartCoroutine(ActivateTeleport());
         }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
+        private void OnTriggerEnter(Collider other)
         {
-            enemies.Remove(other.gameObject);
+            if (other.CompareTag("Enemy"))
+            {
+                enemies.Add(other.gameObject);
+            }
         }
-    }
 
-    private IEnumerator ActivateTeleport()
-    {
-        yield return new WaitForSeconds(3.5f);
-        foreach (var enemy in enemies)
+        private void OnTriggerExit(Collider other)
         {
-            enemy.transform.position = enemy.GetComponentInParent<Spawner>().gameObject.transform.position;
-            enemy.GetComponent<Enemy>().HealHP(enemy.GetComponent<Enemy>().Health * 0.4f);
+            if (other.CompareTag("Enemy"))
+            {
+                enemies.Remove(other.gameObject);
+            }
         }
+
+        private IEnumerator ActivateTeleport()
+        {
+            yield return new WaitForSeconds(3.5f);
+            foreach (var enemy in enemies)
+            {
+                enemy.transform.position = enemy.GetComponentInParent<Spawner>().gameObject.transform.position;
+                enemy.GetComponent<Enemy>().HealHP(enemy.GetComponent<Enemy>().Health * 0.4f);
+            }
         
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

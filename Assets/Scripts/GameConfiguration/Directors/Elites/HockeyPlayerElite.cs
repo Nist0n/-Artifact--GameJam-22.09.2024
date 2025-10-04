@@ -1,22 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameConfiguration.Directors.Elites
 {
     public class HockeyPlayerElite : EliteAbility
     {
-        public float TrailWidth = 1.8f;
-        public float SpeedBoost = 1.5f;
-        public float IceLifetime = 20f;
-        public GameObject IceTrailPrefab;
-        
         private Transform _enemyTransform;
         private Vector3 _lastTrailPosition;
         private float _trailUpdateTimer;
         private const float TrailUpdateInterval = 0.5f;
         private int _trailId;
         private static int _nextTrailId = 1;
+        
+        public float TrailWidth = 1.8f;
+        public float SpeedBoost = 1.5f;
+        public float IceLifetime = 20f;
+        public GameObject IceTrailPrefab;
         
         public override void Initialize(GameObject enemyRoot)
         {

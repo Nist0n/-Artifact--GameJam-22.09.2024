@@ -1,3 +1,4 @@
+using Animations.Enemies;
 using GameConfiguration;
 using GameConfiguration.Cards;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace Enemies.StateMachine
     
         public Animator animator;
 
-        public global::StateMachine Machine;
+        public global::Enemies.StateMachine.StateMachine Machine;
     
         public AudioSource AudioSource;
 
@@ -52,7 +53,7 @@ namespace Enemies.StateMachine
 
         protected void SetupInstances()
         {
-            Machine = new global::StateMachine();
+            Machine = new global::Enemies.StateMachine.StateMachine();
 
             EnemyState[] allchildStates = GetComponentsInChildren<EnemyState>();
             foreach (EnemyState state in allchildStates)

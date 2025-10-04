@@ -1,31 +1,12 @@
-using System;
 using System.IO;
-using Unity.VisualScripting;
 using UnityEngine;
 
-namespace SaveSystem
+namespace GameConfiguration.SaveSystem
 {
     public class SaveAchievementValues
     {
-        // public static SaveAchievementValues Instance;
-        
         private readonly string _savePath = Application.persistentDataPath +
                                             "/achievement-values.json";
-
-        // private void Awake()
-        // {
-        //     if (Instance == null)
-        //     {
-        //         Instance = this;
-        //         DontDestroyOnLoad(gameObject);
-        //     }
-        //     else
-        //     {
-        //         Destroy(gameObject);
-        //     }
-        //     
-        //     
-        // }
 
         public void Save(AchievementsData data)
         {

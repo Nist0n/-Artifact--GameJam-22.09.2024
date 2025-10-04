@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class VFXClear : MonoBehaviour
+namespace VFX
 {
-    void Start()
+    public class VFXClear : MonoBehaviour
     {
-        Destroy(gameObject, 4.7f);
+        void Start()
+        {
+            Destroy(gameObject, 4.7f);
+        }
     }
 }

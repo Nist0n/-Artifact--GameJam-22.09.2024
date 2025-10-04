@@ -1,20 +1,22 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NavMeshNavigator : MonoBehaviour
+namespace Enemies.NavMesh
 {
-    [SerializeField] private Transform moveTransform;
-
-    private NavMeshAgent _navMeshAgent;
-
-    private void Awake()
+    public class NavMeshNavigator : MonoBehaviour
     {
-        _navMeshAgent = GetComponent<NavMeshAgent>();
-    }
+        [SerializeField] private Transform moveTransform;
 
-    private void Update()
-    {
-        _navMeshAgent.destination = moveTransform.position;
+        private NavMeshAgent _navMeshAgent;
+
+        private void Awake()
+        {
+            _navMeshAgent = GetComponent<NavMeshAgent>();
+        }
+
+        private void Update()
+        {
+            _navMeshAgent.destination = moveTransform.position;
+        }
     }
 }

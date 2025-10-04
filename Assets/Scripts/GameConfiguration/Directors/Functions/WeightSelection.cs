@@ -1,18 +1,19 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameConfiguration.Directors.Functions
 {
     public class WeightSelection : MonoBehaviour
     {
-        public DirectorCard[] cards;
-
         private float _totalWeight;
+        
+        public DirectorCard[] Cards;
     
-        public DirectorCard GetChoice(int i) => cards[i];
+        public DirectorCard GetChoice(int i) => Cards[i];
 
         public DirectorCard Evaluate(float normalizedIndex)
         {
-            return cards[EvaluateToChoiceIndex(normalizedIndex)];
+            return Cards[EvaluateToChoiceIndex(normalizedIndex)];
         }
 
         public int EvaluateToChoiceIndex(float normalizedIndex)
@@ -22,9 +23,9 @@ namespace GameConfiguration.Directors.Functions
             float num2 = 0.0f;
             while (num1 > num2)
             {
-                for (int toChoiceIndex = 0; toChoiceIndex < cards.Length; ++toChoiceIndex)
+                for (int toChoiceIndex = 0; toChoiceIndex < Cards.Length; ++toChoiceIndex)
                 {
-                    num2 += cards[toChoiceIndex].SelectionWeight;
+                    num2 += Cards[toChoiceIndex].SelectionWeight;
                     if (num1 <= num2) return toChoiceIndex;
                 }
             }
@@ -35,8 +36,8 @@ namespace GameConfiguration.Directors.Functions
         private float RecalculateTotalWeight()
         {
             float weight = 0.0f;
-            for (int index = 0; index < cards.Length; ++index)
-                weight += cards[index].SelectionWeight;
+            for (int index = 0; index < Cards.Length; ++index)
+                weight += Cards[index].SelectionWeight;
             return weight;
         }
     }

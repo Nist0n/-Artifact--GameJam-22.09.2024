@@ -1,5 +1,4 @@
 using System;
-using Abilities.Passive;
 
 namespace Towers.Abilities.Passive
 {

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Settings
+namespace GameConfiguration.Settings
 {
     public class ResolutionSettings : MonoBehaviour
     {

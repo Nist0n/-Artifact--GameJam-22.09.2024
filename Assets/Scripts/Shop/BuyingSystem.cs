@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Abilities.Passive;
-using Audio;
 using GameConfiguration;
+using GameConfiguration.Settings.Audio;
 using Towers;
 using Towers.Abilities.Active;
+using Towers.Abilities.Passive;
 using UI.InGame;
 using UnityEngine;
 using UnityEngine.UI;
@@ -206,7 +206,7 @@ namespace Shop
                 SetAbilityOnTower(chosenUpgrade);
                 ResetLists();
                 SoulsCounter.Instance.Dreams -= tempCost;
-                AudioManager.instance.PlaySFX("Coin");
+                AudioManager.Instance.PlaySFX("Coin");
             }
             else
             {

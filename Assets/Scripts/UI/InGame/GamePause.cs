@@ -1,6 +1,6 @@
 using System;
-using Audio;
 using GameConfiguration;
+using GameConfiguration.Settings.Audio;
 using StaticClasses;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,9 +9,9 @@ namespace UI.InGame
 {
     public class GamePause : MonoBehaviour
     {
-        [SerializeField] GameObject background;
-        [SerializeField] GameObject dreamCounter;
-        [SerializeField] GameObject resourcesUI;
+        [SerializeField] private GameObject background;
+        [SerializeField] private GameObject dreamCounter;
+        [SerializeField] private GameObject resourcesUI;
 
         private void Update()
         {
@@ -48,7 +48,7 @@ namespace UI.InGame
 
         private void ToggleSettings(bool active)
         {
-            AudioManager.instance.PlaySFX("Click");
+            AudioManager.Instance.PlaySFX("Click");
             background.SetActive(active);
             dreamCounter.SetActive(!active);
             resourcesUI.SetActive(!active);
@@ -56,7 +56,7 @@ namespace UI.InGame
     
         public void Quit()
         {
-            AudioManager.instance.StopMusic();
+            AudioManager.Instance.StopMusic();
             SceneManager.LoadScene("MenuScene");
             SetPause(false);
         }

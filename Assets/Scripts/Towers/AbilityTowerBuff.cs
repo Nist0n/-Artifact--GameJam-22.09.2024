@@ -1,10 +1,11 @@
 using UnityEngine;
 
-public class AbilityTowerBuff : MonoBehaviour
+namespace Towers
 {
-    public float AbilityFireRateBuff;
-
-    public float AbilityDamageBuff = 1;
-    
-    public float AbilityRangeBuff;
+    public class AbilityTowerBuff : MonoBehaviour
+    {
+        public float AbilityFireRateBuff;
+        public float AbilityDamageBuff = 1;
+        public float AbilityRangeBuff;
+    }
 }

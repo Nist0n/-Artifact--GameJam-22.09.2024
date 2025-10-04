@@ -1,24 +1,26 @@
 using GameConfiguration;
-using UnityEngine;
 
-public class AttackingState : EnemyState
+namespace Enemies.StateMachine
 {
-    public override void Enter()
+    public class AttackingState : EnemyState
     {
-        navMeshAgent.speed = 0;
-    }
-    
-    public override void Do()
-    {
-        animationController.Attacking();
-        if (!IsAttacking || GameConfig.Instance.HasLost || IsFrozen)
+        public override void Enter()
         {
-            IsComplete = true;
+            navMeshAgent.speed = 0;
         }
-    }
     
-    public override void Exit()
-    {
+        public override void Do()
+        {
+            animationController.Attacking();
+            if (!IsAttacking || GameConfig.Instance.HasLost || IsFrozen)
+            {
+                IsComplete = true;
+            }
+        }
+    
+        public override void Exit()
+        {
         
+        }
     }
 }

@@ -13,14 +13,14 @@ namespace GameConfiguration.Directors
         [SerializeField] private WeightSelection category;
         [SerializeField] private float monsterCredit;
         [SerializeField] private RangeFloat[] moneyWaveIntervals;
+        [SerializeField] private float minRerollSpawnInterval;
+        [SerializeField] private float maxRerollSpawnInterval;
     
         private const float MinSeriesSpawnInterval = 0.1f;
         private const float MaxSeriesSpawnInterval = 1f;
-        [SerializeField] private float minRerollSpawnInterval;
-        [SerializeField] private float maxRerollSpawnInterval;
         private const int MaxConsecutiveCheapSkips = int.MaxValue;
         private const int MaximumNumberToSpawnBeforeSkipping = 12;
-    
+        
         private bool _shouldSpawnOneWave;
         private bool _hasStartedWave;
         private DirectorCard _currentMonsterCard;
@@ -39,7 +39,7 @@ namespace GameConfiguration.Directors
             get
             {
                 int a = 0;
-                for (int i = 0; i < category.cards.Length; ++i)
+                for (int i = 0; i < category.Cards.Length; ++i)
                 {
                     DirectorCard directorCard = category.GetChoice(i);
                     int b = directorCard.Cost;

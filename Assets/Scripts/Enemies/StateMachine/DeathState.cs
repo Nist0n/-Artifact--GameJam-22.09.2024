@@ -1,5 +1,5 @@
-using Audio;
 using GameConfiguration;
+using GameConfiguration.Settings.Audio;
 using Unity.Mathematics;
 
 namespace Enemies.StateMachine
@@ -9,7 +9,7 @@ namespace Enemies.StateMachine
         public override void Enter()
         {
             GameConfig.Instance.EnemyList.Remove(gameObject.GetComponentInParent<Enemy>().gameObject);
-            AudioManager.instance.PlayLocalSound("Die", AudioSource);
+            AudioManager.Instance.PlayLocalSound("Die", AudioSource);
             navMeshAgent.speed = 0;
             Instantiate(soul, transform.position, quaternion.identity);
             animator.Play("Death");

@@ -1,4 +1,3 @@
-using Abilities.Passive;
 using Towers.Abilities.Active;
 
 namespace Towers.Abilities.Passive

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Audio;
 using Shop;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using GameConfiguration;
+using GameConfiguration.Settings.Audio;
 using UnityEngine.UI;
 using Cursor = UnityEngine.Cursor;
 
@@ -101,7 +101,7 @@ namespace Towers
                 towerSlots.Circle.SetActive(false);
                 if (_currentRangeViz) _currentRangeViz.SetVisible(false);
                 _currentTower.piloted = false;
-                AudioManager.instance.PlaySFX("Click");
+                AudioManager.Instance.PlaySFX("Click");
                 _currentTower.towerCamera.Priority = 0;
                 mainCinemachineCamera.Priority = 1;
                 buffImage.SetActive(false);
@@ -164,7 +164,7 @@ namespace Towers
                 {
                     if (hit.collider.gameObject.CompareTag("Tower")) // If clicking on a tower
                     {
-                        AudioManager.instance.PlaySFX("Click");
+                        AudioManager.Instance.PlaySFX("Click");
                         Tower tower = hit.collider.gameObject.GetComponent<Tower>();
                         hit.collider.gameObject.GetComponent<AbilitiesSlots>().UpdateAbilityUI();
                         

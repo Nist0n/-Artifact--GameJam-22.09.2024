@@ -1,29 +1,30 @@
-using System;
 using Enemies;
 using UnityEngine;
 
-public class AmberBombDamage : MonoBehaviour
+namespace Towers.Abilities.Active
 {
-    [SerializeField] private float destroyTime;
-    
-    private float _lastAttackTime;
-
-    [SerializeField] private float damage;
-
-    private void Start()
+    public class AmberBombDamage : MonoBehaviour
     {
-        Destroy(gameObject, destroyTime);
-    }
+        [SerializeField] private float destroyTime;
+        [SerializeField] private float damage;
+        
+        private float _lastAttackTime;
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
+        private void Start()
         {
-            if (Time.time - _lastAttackTime < 1) return;
+            Destroy(gameObject, destroyTime);
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                if (Time.time - _lastAttackTime < 1) return;
             
-            other.GetComponent<Enemy>().ReceiveDamageActivate(damage);
+                other.GetComponent<Enemy>().ReceiveDamageActivate(damage);
             
-            _lastAttackTime = Time.time;
+                _lastAttackTime = Time.time;
+            }
         }
     }
 }

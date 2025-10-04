@@ -1,5 +1,3 @@
-using Abilities.Passive;
-
 namespace Towers.Abilities.Passive
 {
     public class SlowShit : PassiveAbilities

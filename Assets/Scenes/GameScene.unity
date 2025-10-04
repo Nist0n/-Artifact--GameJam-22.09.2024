@@ -11840,6 +11840,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 509734606}
   m_CullTransparentMesh: 1
+--- !u!114 &523563758 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2505902630796933185, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
+  m_PrefabInstance: {fileID: 7016436364397875027}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e4380fe62c6b849954e645d081394f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &523563761 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 406616510283332052, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
+  m_PrefabInstance: {fileID: 7016436364397875027}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &523981134
 GameObject:
   m_ObjectHideFlags: 0
@@ -19641,12 +19663,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f4d8168707cbf498bad69791835f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Nightmares: 0
-  Dreams: 0
   text: {fileID: 8201021608046985848}
   newText: 
   frontBar: {fileID: 4580696801591028444}
   backBar: {fileID: 771928808}
+  Nightmares: 0
+  Dreams: 0
 --- !u!114 &930643880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38936,6 +38958,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1788816289}
   m_CullTransparentMesh: 1
+--- !u!82 &1792234105 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8230746893766988098, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
+  m_PrefabInstance: {fileID: 7016436364397875027}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1799723827
 GameObject:
   m_ObjectHideFlags: 0
@@ -45790,7 +45817,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8644f8e07ca0d524ab1c78e38d3aaf20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cards:
+  Cards:
+  - {fileID: 11400000, guid: 8a2710c80c48b1343b357a567bedb8de, type: 2}
   - {fileID: 11400000, guid: 0707c726b557abc4d8c14c8e44a3e63e, type: 2}
 --- !u!1 &2130795963
 GameObject:
@@ -47375,6 +47403,18 @@ PrefabInstance:
       propertyPath: buffImage
       value: 
       objectReference: {fileID: 1615537439}
+    - target: {fileID: 2597579229329932202, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
+      propertyPath: TowerCamera
+      value: 
+      objectReference: {fileID: 523563761}
+    - target: {fileID: 2597579229329932202, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1792234105}
+    - target: {fileID: 2597579229329932202, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
+      propertyPath: TowerCameraComp
+      value: 
+      objectReference: {fileID: 523563758}
     - target: {fileID: 2597579229329932202, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
       propertyPath: abilityTowerBuff
       value: 

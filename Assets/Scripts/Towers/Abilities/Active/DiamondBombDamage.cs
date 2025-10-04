@@ -1,34 +1,35 @@
-using System.Collections;
 using System.Collections.Generic;
 using Enemies;
 using UnityEngine;
 
-public class DiamondBombDamage : MonoBehaviour
+namespace Towers.Abilities.Active
 {
-    [SerializeField] private List<GameObject> enemies;
-
-    [SerializeField] private float freezeTime;
-
-    private void Start()
+    public class DiamondBombDamage : MonoBehaviour
     {
-        Invoke("ActivateFreeze", 1f);
-    }
+        [SerializeField] private List<GameObject> enemies;
+        [SerializeField] private float freezeTime;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
+        private void Start()
         {
-            enemies.Add(other.gameObject);
-        }
-    }
-
-    private void ActivateFreeze()
-    {
-        foreach (var enemy in enemies)
-        {
-            enemy.GetComponent<Enemy>().FreezeEnemyActivate(freezeTime);
+            Invoke(nameof(ActivateFreeze), 1f);
         }
 
-        Destroy(gameObject);
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                enemies.Add(other.gameObject);
+            }
+        }
+
+        private void ActivateFreeze()
+        {
+            foreach (var enemy in enemies)
+            {
+                enemy.GetComponent<Enemy>().FreezeEnemyActivate(freezeTime);
+            }
+
+            Destroy(gameObject);
+        }
     }
 }

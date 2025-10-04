@@ -4,17 +4,17 @@ namespace Enemies.StateMachine
 {
     public class CelebratingState : EnemyState
     {
-        private int r;
+        private int _randNum;
         public override void Enter()
         {
             navMeshAgent.speed = 0;
-            r = Random.Range(0, 2);
+            _randNum = Random.Range(0, 2);
             AudioSource.enabled = false;
         }
     
         public override void Do()
         {
-            if (r == 0)
+            if (_randNum == 0)
             {
                 animationController.Celebrating1();
             }

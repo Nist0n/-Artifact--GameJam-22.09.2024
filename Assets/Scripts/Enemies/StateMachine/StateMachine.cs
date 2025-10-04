@@ -1,17 +1,18 @@
-using UnityEngine;
-
-public class StateMachine
+namespace Enemies.StateMachine
 {
-    public EnemyState State;
-
-    public void Set(EnemyState newState, bool forceReset = false)
+    public class StateMachine
     {
-        if (State != newState || forceReset)
+        public EnemyState State;
+
+        public void Set(EnemyState newState, bool forceReset = false)
         {
-            State?.Exit();
-            State = newState;
-            State.Initialise(this);
-            State.Enter();
+            if (State != newState || forceReset)
+            {
+                State?.Exit();
+                State = newState;
+                State.Initialise(this);
+                State.Enter();
+            }
         }
     }
 }

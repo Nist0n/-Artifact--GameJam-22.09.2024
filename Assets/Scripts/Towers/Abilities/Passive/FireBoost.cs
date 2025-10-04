@@ -1,6 +1,4 @@
-using System;
-
-namespace Abilities.Passive
+namespace Towers.Abilities.Passive
 {
     public class FireBoost : PassiveAbilities
     {

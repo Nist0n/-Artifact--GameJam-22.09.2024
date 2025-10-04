@@ -1,5 +1,5 @@
 using System.Collections;
-using Audio;
+using GameConfiguration.Settings.Audio;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -13,9 +13,9 @@ namespace UI.MainMenu
         [SerializeField] private Canvas canvas;
         [SerializeField] private GameObject mainMenuButtonsGroup;
         [SerializeField] private GameObject settingsButtonsGroup;
-    
         [SerializeField] private CinemachineCamera sphereCamera;
         [SerializeField] private Volume volume;
+        
         private VolumeProfile _volumeProfile;
         private Canvas _canvasComponent;
 
@@ -24,7 +24,7 @@ namespace UI.MainMenu
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             _canvasComponent = canvas.GetComponent<Canvas>();
-            AudioManager.instance.PlayMusic("MainMenu");
+            AudioManager.Instance.PlayMusic("MainMenu");
         }
 
         public void PlayGame()

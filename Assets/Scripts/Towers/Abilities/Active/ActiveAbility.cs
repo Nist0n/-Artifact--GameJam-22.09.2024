@@ -5,21 +5,13 @@ namespace Towers.Abilities.Active
     public class ActiveAbility : MonoBehaviour
     {
         [SerializeField] private bool isAbilityUsed = false;
-
         [SerializeField] private float abilityCooldown;
-
         [SerializeField] private float timer;
-
         [SerializeField] private float rangeOfAction;
-
         [SerializeField] private GameObject actionCollider;
-
         [SerializeField] private GameObject actionRadius;
-
         [SerializeField] private float cost;
-
         [SerializeField] private string activeAbilityName;
-
         [SerializeField] private string description;
 
         private void Update()

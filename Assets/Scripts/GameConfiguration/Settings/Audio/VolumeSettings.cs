@@ -3,13 +3,13 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-namespace Audio
+namespace GameConfiguration.Settings.Audio
 {
     public class VolumeSettings : MonoBehaviour
     {
-        [SerializeField] AudioMixer audioMixer;
-        [SerializeField] Slider musicSlider;
-        [SerializeField] Slider SFXSlider;
+        [SerializeField] private AudioMixer audioMixer;
+        [SerializeField] private Slider musicSlider;
+        [SerializeField] private Slider SFXSlider;
 
         private void Start()
         {

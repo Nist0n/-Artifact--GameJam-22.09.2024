@@ -2,22 +2,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace Audio
+namespace GameConfiguration.Settings.Audio
 {
     public class AudioManager : MonoBehaviour
     {
-        public static AudioManager instance;
+        public static AudioManager Instance;
 
-        [SerializeField] AudioSource musicSource;
-        [SerializeField] AudioSource SFXSource;
+        [SerializeField] private AudioSource musicSource;
+        [SerializeField] private AudioSource SFXSource;
         [SerializeField] private AudioResource musicAudioRandomController;
-        [SerializeField] List<Sound> music, sounds;
+        [SerializeField] private List<Sound> music, sounds;
 
         private void Awake()
         {
-            if (instance == null)
+            if (!Instance)
             {
-                instance = this;
+                Instance = this;
                 DontDestroyOnLoad(gameObject);
             }
             else

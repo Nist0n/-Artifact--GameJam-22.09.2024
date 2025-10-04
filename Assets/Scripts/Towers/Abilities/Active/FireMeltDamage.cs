@@ -1,5 +1,6 @@
 using System.Collections;
 using GameConfiguration.Directors.Elites;
+using GameConfiguration.Settings.Audio;
 using UnityEngine;
 
 namespace Towers.Abilities.Active
@@ -18,9 +19,9 @@ namespace Towers.Abilities.Active
 
         private IEnumerator ExecuteFireMelt()
         {
-            if (!string.IsNullOrEmpty(fireSfxName) && Audio.AudioManager.instance)
+            if (!string.IsNullOrEmpty(fireSfxName) && AudioManager.Instance)
             {
-                Audio.AudioManager.instance.PlaySFX(fireSfxName);
+                AudioManager.Instance.PlaySFX(fireSfxName);
             }
         
             if (fireEffectPrefab)

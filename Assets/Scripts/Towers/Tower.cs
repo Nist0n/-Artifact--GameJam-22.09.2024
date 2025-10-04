@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Audio;
 using Enemies;
 using GameConfiguration;
+using GameConfiguration.Settings.Audio;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -179,7 +179,7 @@ namespace Towers
                     projectile.damage = initialDamage;
                     projectile.slowness = slowness;
                     projectile.CurrentTarget = target;
-                    AudioManager.instance.PlayLocalSound("Tower", audioSource);
+                    AudioManager.Instance.PlayLocalSound("Tower", audioSource);
                 }
             }
 

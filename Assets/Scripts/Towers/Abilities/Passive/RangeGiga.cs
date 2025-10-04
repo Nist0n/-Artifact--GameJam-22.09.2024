@@ -1,4 +1,3 @@
-using Abilities.Passive;
 using UnityEngine;
 
 namespace Towers.Abilities.Passive

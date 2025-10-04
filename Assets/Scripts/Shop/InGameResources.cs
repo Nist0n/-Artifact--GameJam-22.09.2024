@@ -1,87 +1,88 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InGameResources : MonoBehaviour
+namespace Shop
 {
-    [SerializeField] private List<ResourceTypes> resourceTypes;
-    [SerializeField] private Button tarhuniumButton;
-    [SerializeField] private Button kolikiButton;
-    [SerializeField] private Button pantaloniButton;
-
-    private ResourceTypes _curentResource;
-
-    public List<ResourceTypes> GetResourceTypes() => resourceTypes;
-
-    private void Start()
+    public class InGameResources : MonoBehaviour
     {
-        if (resourceTypes != null) _curentResource = resourceTypes[0]; 
-        tarhuniumButton.onClick.AddListener(() => ChangeResource(Resource.tarhunium));
-        kolikiButton.onClick.AddListener(() => ChangeResource(Resource.koliki));
-        pantaloniButton.onClick.AddListener(() => ChangeResource(Resource.pantaloni));
-    }
+        [SerializeField] private List<ResourceTypes> resourceTypes;
+        [SerializeField] private Button tarhuniumButton;
+        [SerializeField] private Button kolikiButton;
+        [SerializeField] private Button pantaloniButton;
 
-    private void Update()
-    {
-        _curentResource.TimeUpdate(Time.deltaTime);
-    }
+        private ResourceTypes _curentResource;
 
-    private void ChangeResource(Resource type)
-    {
-        foreach (var resource in resourceTypes)
+        public List<ResourceTypes> GetResourceTypes() => resourceTypes;
+
+        private void Start()
         {
-            if (resource.ResourceType == type)
+            if (resourceTypes != null) _curentResource = resourceTypes[0]; 
+            tarhuniumButton.onClick.AddListener(() => ChangeResource(Resource.tarhunium));
+            kolikiButton.onClick.AddListener(() => ChangeResource(Resource.koliki));
+            pantaloniButton.onClick.AddListener(() => ChangeResource(Resource.pantaloni));
+        }
+
+        private void Update()
+        {
+            _curentResource.TimeUpdate(Time.deltaTime);
+        }
+
+        private void ChangeResource(Resource type)
+        {
+            foreach (var resource in resourceTypes)
             {
-                _curentResource = resource;
+                if (resource.ResourceType == type)
+                {
+                    _curentResource = resource;
+                }
+            }
+        }
+
+        public void DecreaseCount(Resource type, int count)
+        {
+            foreach (var resource in resourceTypes)
+            {
+                if (resource.ResourceType == type)
+                {
+                    resource.Count -= count;
+                }
             }
         }
     }
 
-    public void DecreaseCount(Resource type, int count)
+    [Serializable]
+    public class ResourceTypes 
     {
-        foreach (var resource in resourceTypes)
+        public Resource ResourceType;
+        public int Count;
+        public float TimeToGather;
+
+        private float _timer;
+
+        public ResourceTypes(Resource resourceType, int count, float timeToGather)
         {
-            if (resource.ResourceType == type)
+            ResourceType = resourceType;
+            Count = count;
+            TimeToGather = timeToGather;
+        }
+
+        public void TimeUpdate(float deltaTime)
+        {
+            _timer += deltaTime;
+            if (_timer >= TimeToGather)
             {
-                resource.Count -= count;
+                _timer = 0;
+                Count++;
             }
         }
     }
-}
 
-[Serializable]
-public class ResourceTypes 
-{
-    public Resource ResourceType;
-    public int Count;
-    public float TimeToGather;
-
-    private float _timer;
-
-    public ResourceTypes(Resource resourceType, int count, float timeToGather)
+    public enum Resource
     {
-        ResourceType = resourceType;
-        Count = count;
-        TimeToGather = timeToGather;
-    }
-
-    public void TimeUpdate(float deltaTime)
-    {
-        _timer += deltaTime;
-        if (_timer >= TimeToGather)
-        {
-            _timer = 0;
-            Count++;
-        }
+        tarhunium,
+        koliki,
+        pantaloni
     }
 }
-
-public enum Resource
-{
-    tarhunium,
-    koliki,
-    pantaloni
-}
-

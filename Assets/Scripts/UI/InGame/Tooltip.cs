@@ -1,21 +1,17 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace UI.InGame
 {
     public class Tooltip : MonoBehaviour
     {
-        public TextMeshProUGUI textComponent;
+        public TextMeshProUGUI TextComponent;
 
         private void Start()
         {
             gameObject.SetActive(false);
-        }
-
-        private void Update()
-        {
-            // transform.position = Input.mousePosition;
         }
     }
 }

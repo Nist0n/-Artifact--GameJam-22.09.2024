@@ -4,13 +4,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-namespace Settings
+namespace GameConfiguration.Settings
 {
     public class AntialiasingSettings : MonoBehaviour
     {
         [SerializeField] private TMP_Dropdown cameraAaDropdown;
         [SerializeField] private TMP_Dropdown msaaDropdown;
-
         [SerializeField] private List<String> options;
 
         public const string CameraAaKey = "CAMERA_AA";
@@ -153,7 +152,7 @@ namespace Settings
 
         private static bool IsTaaEnabled()
         {
-            if (Camera.main == null)
+            if (!Camera.main)
             {
                 Debug.LogWarning("No main camera found");
                 return false;

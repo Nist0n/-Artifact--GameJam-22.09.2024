@@ -5,8 +5,8 @@ namespace UI.InGame
 {
     public class FirstTimeCheck : MonoBehaviour
     {
-        [SerializeField] GameObject firstLaunchText;
-        [SerializeField] GameObject arrow;
+        [SerializeField] private GameObject firstLaunchText;
+        [SerializeField] private GameObject arrow;
 
         private const string FirstLaunchKey = "FirstLaunch";
 

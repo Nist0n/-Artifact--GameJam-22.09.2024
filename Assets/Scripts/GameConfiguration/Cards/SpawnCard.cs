@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
-using Audio;
 using GameConfiguration.Directors.Functions;
+using GameConfiguration.Settings.Audio;
 using UnityEngine;
 
 namespace GameConfiguration.Cards
@@ -51,9 +51,9 @@ namespace GameConfiguration.Cards
 
         private IEnumerator SpawnWithEffectRoutine(Transform transform, Quaternion rotation, DirectorSpawnRequest spawnRequest, Action<SpawnResult> onComplete)
         {
-            if (!string.IsNullOrEmpty(SpawnSfxName) && AudioManager.instance)
+            if (!string.IsNullOrEmpty(SpawnSfxName) && AudioManager.Instance)
             {
-                AudioManager.instance.PlaySFX(SpawnSfxName);
+                AudioManager.Instance.PlaySFX(SpawnSfxName);
             }
             
             if (UseSpawnEffect && SpawnEffectPrefab)

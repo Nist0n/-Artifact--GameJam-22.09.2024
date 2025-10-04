@@ -1,10 +1,12 @@
-using System;
 using UnityEngine;
 
-public class LookAtCamera : MonoBehaviour
+namespace StaticClasses
 {
-    void Update()
+    public class LookAtCamera : MonoBehaviour
     {
-        this.transform.LookAt(Camera.main.transform);
+        void Update()
+        {
+            transform.LookAt(Camera.main.transform);
+        }
     }
 }

@@ -13,7 +13,6 @@ namespace UI
         [SerializeField] private GameObject expandableCheats;
         [SerializeField] private TMP_Text gameSpeedValueText;
         
-        
         private void Start()
         {
             #if UNITY_EDITOR

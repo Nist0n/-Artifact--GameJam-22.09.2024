@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Abilities.Passive;
 using Towers.Abilities.Active;
+using Towers.Abilities.Passive;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -11,40 +11,25 @@ namespace Towers
     public class AbilitiesSlots : MonoBehaviour
     {
         [SerializeField] private Image activeAbilityPosition;
-    
         [SerializeField] private List<GameObject> imagePositions;
-
         [SerializeField] private GameObject passivesTransform;
-
         [SerializeField] private GameObject imageBackgroundPrefab;
         
-        public List<GameObject> RandomActiveAbilities;
-        
-        public List<GameObject> RandomPassiveAbilities;
-    
-        public bool HasActiveAbility = false;
-    
-        public List<GameObject> Abilities;
-
-        public GameObject Ability;
-
-        public bool IsPassiveSet = false;
-    
-        public bool TowerSelected = false;
-
-        public GameObject Circle;
-
-        public bool PassivesShowed = false;
-    
-        public bool ActivesShowed = false;
-
         private PassiveAbilities _passAbility;
-
         private ImageCooldowns _imageCooldowns;
-
         private ActiveAbility _active;
-
         private Dictionary<string, int> _myDict;
+        
+        public List<GameObject> RandomActiveAbilities;
+        public List<GameObject> RandomPassiveAbilities;
+        public bool HasActiveAbility = false;
+        public List<GameObject> Abilities;
+        public GameObject Ability;
+        public bool IsPassiveSet = false;
+        public bool TowerSelected = false;
+        public GameObject Circle;
+        public bool PassivesShowed = false;
+        public bool ActivesShowed = false;
 
         private void Start()
         {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Achievements
+namespace GameConfiguration.Achievements
 {
     [CreateAssetMenu(menuName = "Achievement")]
     public class Achievement : ScriptableObject

@@ -1,9 +1,8 @@
-using System;
 using System.Collections.Generic;
-using SaveSystem;
+using GameConfiguration.SaveSystem;
 using UnityEngine;
 
-namespace Achievements
+namespace GameConfiguration.Achievements
 {
     public class AchievementHandler : MonoBehaviour
     {
@@ -35,10 +34,10 @@ namespace Achievements
         public void OnEnemyDeath()
         {
             // kill 100 enemies
-            _achievementsData.enemiesKilledCounter++;
+            _achievementsData.EnemiesKilledCounter++;
             SaveData();
             
-            if (_achievementsData.enemiesKilledCounter < 100)
+            if (_achievementsData.EnemiesKilledCounter < 100)
             {
                 return;
             }

@@ -1,29 +1,31 @@
 using GameConfiguration;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class RunningState : EnemyState
+namespace Enemies.StateMachine
 {
-    private Transform _target;
+    public class RunningState : EnemyState
+    {
+        private Transform _target;
 
-    public override void Enter()
-    {
-        _target = GameObject.FindGameObjectWithTag("Castle").transform;
-        navMeshAgent.speed = Speed;
-    }
-    
-    public override void Do()
-    {
-        navMeshAgent.destination = _target.position;
-        animationController.Run();
-        if (IsDamaged || IsAttacking || GameConfig.Instance.HasLost || IsFrozen)
+        public override void Enter()
         {
-            IsComplete = true;
+            _target = GameObject.FindGameObjectWithTag("Castle").transform;
+            navMeshAgent.speed = Speed;
         }
-    }
     
-    public override void Exit()
-    {
+        public override void Do()
+        {
+            navMeshAgent.destination = _target.position;
+            animationController.Run();
+            if (IsDamaged || IsAttacking || GameConfig.Instance.HasLost || IsFrozen)
+            {
+                IsComplete = true;
+            }
+        }
+    
+        public override void Exit()
+        {
         
+        }
     }
 }

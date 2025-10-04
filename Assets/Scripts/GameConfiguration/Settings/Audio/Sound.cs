@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Audio
+namespace GameConfiguration.Settings.Audio
 {
     [System.Serializable]
     public class Sound

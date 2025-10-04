@@ -8,23 +8,17 @@ namespace UI.InGame
 {
     public class SoulsCounter : MonoBehaviour
     {
-        public static SoulsCounter Instance;
-    
-        public float Nightmares;
-    
-        public float Dreams;
-    
         [SerializeField] private TextMeshProUGUI text;
-    
         [SerializeField] private string newText;
-
         [SerializeField] private Image frontBar;
-
         [SerializeField] private Image backBar;
 
         private float _chipSpeed = 3f;
-
         private float _lerpTimer;
+        
+        public static SoulsCounter Instance;
+        public float Nightmares;
+        public float Dreams;
 
         private void OnEnable()
         {

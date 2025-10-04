@@ -1,17 +1,13 @@
-using System;
-using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-namespace Settings
+namespace GameConfiguration.Settings
 {
     public class URPSettings : MonoBehaviour
     {
         [SerializeField] private TMP_Dropdown graphicsLevelDropdown;
-
         [SerializeField] private UniversalRenderPipelineAsset[] qualityLevels;
-
         [SerializeField] private TMP_Dropdown shadowResolutionDropdown;
         
         private void Start()

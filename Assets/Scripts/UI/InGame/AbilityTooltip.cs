@@ -1,6 +1,6 @@
-﻿using Abilities.Passive;
-using Audio;
+﻿using GameConfiguration.Settings.Audio;
 using Towers.Abilities.Active;
+using Towers.Abilities.Passive;
 using UnityEngine;
 
 namespace UI.InGame
@@ -23,7 +23,7 @@ namespace UI.InGame
 
         public void SetAndShowTooltip()
         {
-            AudioManager.instance.PlaySFX("Aimed");
+            AudioManager.Instance.PlaySFX("Aimed");
             _tooltip.SetActive(true);
             float cost = 0;
             string description = "";
@@ -45,13 +45,13 @@ namespace UI.InGame
                 Debug.Log("Couldn't find script");
             }
             
-            _tooltip.GetComponent<Tooltip>().textComponent.text = $"{abilityName}\nСтоимость: {cost}\n{description}";
+            _tooltip.GetComponent<Tooltip>().TextComponent.text = $"{abilityName}\nСтоимость: {cost}\n{description}";
         }
         
         public void HideTooltip()
         {
             _tooltip.SetActive(false);
-            _tooltip.GetComponent<Tooltip>().textComponent.text = string.Empty;
+            _tooltip.GetComponent<Tooltip>().TextComponent.text = string.Empty;
         }
 
         private void OnDestroy()

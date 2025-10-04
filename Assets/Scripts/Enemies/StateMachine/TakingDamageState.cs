@@ -1,26 +1,28 @@
-using Audio;
 using GameConfiguration;
-using UnityEngine;
+using GameConfiguration.Settings.Audio;
 
-public class TakingDamageState : EnemyState
+namespace Enemies.StateMachine
 {
-    public override void Enter()
+    public class TakingDamageState : EnemyState
     {
-        navMeshAgent.speed -= 0.5f;
-        AudioManager.instance.PlayRandomSoundByName("GetDamage", AudioSource);
-    }
-    
-    public override void Do()
-    {
-        animationController.TakeDamage();
-        if (!IsDamaged || GameConfig.Instance.HasLost || IsFrozen)
+        public override void Enter()
         {
-            IsComplete = true;
+            navMeshAgent.speed -= 0.5f;
+            AudioManager.Instance.PlayRandomSoundByName("GetDamage", AudioSource);
         }
-    }
     
-    public override void Exit()
-    {
+        public override void Do()
+        {
+            animationController.TakeDamage();
+            if (!IsDamaged || GameConfig.Instance.HasLost || IsFrozen)
+            {
+                IsComplete = true;
+            }
+        }
+    
+        public override void Exit()
+        {
         
+        }
     }
 }

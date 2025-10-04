@@ -1,6 +1,7 @@
 ﻿using GameConfiguration;
 using StaticClasses;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Castle
@@ -8,32 +9,27 @@ namespace Castle
     public class CastleHealth : MonoBehaviour
     {
         [SerializeField] private Image back;
-    
         [SerializeField] private Image front;
-
-        private float _timer = 4f;
-
-        private float _cooldown = 3f;
-
-        private float _lerpTimer;
-
-        public float health;
-
-        private float _maxHealth = 100;
-
         [SerializeField] private Color frontColor;
         [SerializeField] private Color backColor;
 
+        private float _timer = 4f;
+        private float _cooldown = 3f;
+        private float _lerpTimer;
+        private float _maxHealth = 100;
+
+        public float Health;
+
         private void Start()
         {
-            health = _maxHealth;
+            Health = _maxHealth;
         }
 
         private void Update()
         {
-            health = Mathf.Clamp(health, 0, _maxHealth);
+            Health = Mathf.Clamp(Health, 0, _maxHealth);
     
-            if (health <= 0)
+            if (Health <= 0)
             {
                 GameEvents.GameLost?.Invoke();
             }
@@ -58,16 +54,15 @@ namespace Castle
 
         public void ReceiveDamage(float damage)
         {
-            health -= damage;
+            Health -= damage;
             _timer = 0;
             _lerpTimer = 0;
         }
 
         private void UpdateHpBar()
         {
-            // float fillFrontBar = front.fillAmount;
             float fillBackBar = back.fillAmount;
-            float hFraction = health / _maxHealth;
+            float hFraction = Health / _maxHealth;
 
             if (fillBackBar > hFraction)
             {
@@ -78,16 +73,6 @@ namespace Castle
                 percentComplete *= percentComplete;
                 back.fillAmount = Mathf.Lerp(fillBackBar, hFraction, percentComplete);
             }
-        
-            // if (fillFrontBar < hFraction)
-            // {
-            //     back.color = Color.green;
-            //     back.fillAmount = hFraction;
-            //     _lerpTimer += Time.deltaTime;
-            //     float percentComplete = _lerpTimer / 3;
-            //     percentComplete *= percentComplete;
-            //     front.fillAmount = Mathf.Lerp(fillFrontBar, back.fillAmount, percentComplete);
-            // }
         }
     }
 }
