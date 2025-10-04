@@ -49,18 +49,54 @@ namespace Towers
         public float initialFireRate;
         private float _initialAttackRange;
 
-        [FormerlySerializedAs("_audioSource")] public AudioSource audioSource;
+        public AudioSource audioSource;
 
         [SerializeField] private bool isBuffed;
+        
+        private readonly List<GameObject> _tempEnemiesList = new List<GameObject>();
+        private float _lastEnemyCheckTime;
+        private const float EnemyCheckInterval = 0.1f;
+        private float _attackRangeSqr;
         
         private void Start()
         {
             initialDamage = damage;
             initialFireRate = fireRate;
             _initialAttackRange = attackRange;
+            _attackRangeSqr = attackRange * attackRange;
+            
+            if (enemiesInRange == null)
+            {
+                enemiesInRange = new List<GameObject>();
+            }
         }
         
         private void Update()
+        {
+            UpdateBuffsAndCooldowns();
+            
+            if (GameConfig.Instance.HasLost || GameConfig.Instance.HasWon || GameConfig.Instance.ShopIsOpened)
+            {
+                return;
+            }
+            
+            if (Time.time - _lastEnemyCheckTime >= EnemyCheckInterval)
+            {
+                UpdateEnemiesInRange();
+                _lastEnemyCheckTime = Time.time;
+            }
+
+            if (enemiesInRange.Count == 0)
+            {
+                return;
+            }
+            
+            UpdateCurrentTarget();
+            
+            HandleShooting();
+        }
+        
+        private void UpdateBuffsAndCooldowns()
         {
             if (isBuffed)
             {
@@ -83,52 +119,53 @@ namespace Towers
                     _cdTimer = 0;
                 }
             }
+        }
+        
+        private void UpdateEnemiesInRange()
+        {
+            enemiesInRange.Clear();
             
-            if (GameConfig.Instance.HasLost || GameConfig.Instance.HasWon || GameConfig.Instance.ShopIsOpened)
-            {
-                return;
-            }
-            
-            enemiesInRange = new List<GameObject>();
             if (GameConfig.Instance.EnemyList.Count == 0)
             {
                 ResetVariables();
                 return;
             }
             
+            Vector3 towerPos = transform.position;
+            
             foreach (GameObject enemy in GameConfig.Instance.EnemyList)
             {
-                if (enemy)
+                if (!enemy) continue;
+                
+                if (Vector3.SqrMagnitude(enemy.transform.position - towerPos) < _attackRangeSqr)
                 {
-                    if (Vector3.SqrMagnitude(enemy.transform.position - transform.position) < attackRange * attackRange)
-                    {
-                        if (!enemiesInRange.Contains(enemy))
-                        {
-                            enemiesInRange.Add(enemy);
-                        }
-                    } 
-                }
-                else
-                {
-                    if (enemiesInRange.Contains(enemy))
-                    {
-                        enemiesInRange.Remove(enemy);
-                    }
+                    enemiesInRange.Add(enemy);
                 }
             }
-
+        }
+        
+        private void UpdateCurrentTarget()
+        {
             if (enemiesInRange.Count == 0)
             {
+                CurrentTarget = null;
                 return;
             }
             
             float smallestSqrDist = float.MaxValue;
             GameObject closestEnemyToMainBuilding = enemiesInRange[0];
-            foreach (var t in enemiesInRange)
+            
+            foreach (var enemy in enemiesInRange)
             {
-                Enemy enemy = t.GetComponent<Enemy>();
+                if (!enemy) continue;
+                
+                Enemy enemyComponent = enemy.GetComponent<Enemy>();
+                
+                if (enemyComponent?.navMeshAgent?.path?.corners == null) continue;
+                
                 float sqrDistance = 0;
-                var corners = enemy.navMeshAgent.path.corners;
+                var corners = enemyComponent.navMeshAgent.path.corners;
+                
                 for (int j = 0; j < corners.Length - 1; ++j)
                 {
                     sqrDistance += (corners[j] - corners[j + 1]).sqrMagnitude;
@@ -137,48 +174,36 @@ namespace Towers
                 if (sqrDistance < smallestSqrDist)
                 {
                     smallestSqrDist = sqrDistance;
-                    closestEnemyToMainBuilding = t;
+                    closestEnemyToMainBuilding = enemy;
                 }
             }
             
             CurrentTarget = closestEnemyToMainBuilding;
-                
-            if (_canShoot)
-            {
-                if (!Piloted)
-                {
-                    SuppressTower();
-                    StartCoroutine(Shoot(transform.position, CurrentTarget)); 
-                }
-            }
-
+        }
+        
+        private void HandleShooting()
+        {
+            if (!_canShoot) return;
+            
             if (!Piloted)
             {
+                SuppressTower();
+                StartCoroutine(Shoot(transform.position, CurrentTarget)); 
                 return;
             }
             
-            if (Input.GetMouseButton(0)) // Player shooting
+            if (Input.GetMouseButton(0))
             {
-                if (!towerCameraComp.currentTarget)
-                {
-                    return;
-                }
+                if (!towerCameraComp?.CurrentTarget) return;
                 
-                if (_canShoot)
-                {
-                    var enemyPos = towerCameraComp.currentTarget.transform.position;
-                    var position = transform.position;
-                    
-                    float sqrDistance = Vector3.SqrMagnitude(position - enemyPos);
-                    if (sqrDistance > attackRange * attackRange)
-                    {
-                        return;
-                    }
+                var enemyPos = towerCameraComp.CurrentTarget.transform.position;
+                var position = transform.position;
+                
+                float sqrDistance = Vector3.SqrMagnitude(position - enemyPos);
+                if (sqrDistance > _attackRangeSqr) return;
 
-                    ResetTowerStats();
-                    
-                    StartCoroutine(Shoot(position, towerCameraComp.currentTarget));
-                }
+                ResetTowerStats();
+                StartCoroutine(Shoot(position, towerCameraComp.CurrentTarget));
             }
         }
 
@@ -204,7 +229,7 @@ namespace Towers
                     projectile.damage = initialDamage;
                     projectile.slowness = slowness;
                     projectile.CurrentTarget = target;
-                    projectile.FiringTower = this; // Устанавливаем ссылку на башню
+                    projectile.FiringTower = this;
                     AudioManager.Instance.PlayLocalSound("Tower", audioSource);
                 }
             }
@@ -248,6 +273,8 @@ namespace Towers
             initialDamage = Mathf.Round(damage * abilityTowerBuff.AbilityDamageBuff);
             initialFireRate = fireRate / (1 + abilityTowerBuff.AbilityFireRateBuff);
             attackRange = _initialAttackRange + (1.4f * abilityTowerBuff.AbilityRangeBuff / (0.1f * abilityTowerBuff.AbilityRangeBuff + 0.3f));
+            
+            _attackRangeSqr = attackRange * attackRange;
         }
 
         private void SuppressTower()

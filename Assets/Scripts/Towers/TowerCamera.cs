@@ -5,46 +5,42 @@ using StaticClasses;
 using Towers.Abilities.Active;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Towers
 {
     public class TowerCamera : MonoBehaviour
     {
-        private GameObject _abilityRange;
-        private AbilitiesSlots _abilities;
-        [SerializeField] private bool _isAbilityActived;
+        [SerializeField] private bool isAbilityActived;
         [SerializeField] private float turnSpeed = 4.0f;
         [SerializeField] private GameObject tower;
+        [SerializeField] private CinemachineCamera currentCamera;
+        [SerializeField] private float crosshairRadius;
+        [SerializeField] private Image reticle;
+        
+        private readonly List<GameObject> _cachedHitEnemies = new List<GameObject>();
+        private readonly RaycastHit[] _cachedRaycastHits = new RaycastHit[1000];
         private const float MinTurnAngle = -90.0f;
+        
+        private GameObject _abilityRange;
+        private AbilitiesSlots _abilities;
         private float _maxTurnAngle;
         private float _rotX;
-
         private Transform _camTransform;
-
-        public GameObject currentTarget;
-        public GameObject previousTarget;
-
         private float _searchRadius;
-        [SerializeField] private float crosshairRadius;
-
         private Vector3 _sphereGizmoPoint;
-
-        [SerializeField] private Image reticle;
-
-        [SerializeField] private List<GameObject> hitEnemies;
-
         private Camera _mainCamera;
-        [SerializeField] private CinemachineCamera _currentCamera;
-
         private Tower _towerComp;
-
+        private bool _isTowerCameraActive;
+        private CinemachineBrain _cinemachineBrain;
+        private Vector3 _cachedCenter;
+        private Ray _cachedRay;
+        
+        public GameObject CurrentTarget;
         public AudioListener mainCameraListener;
         public AudioListener towerAudioListener; 
         public GameObject _audio;
-        private bool _isTowerCameraActive;
-        
-        private CinemachineBrain _cinemachineBrain;
         
         private void Start()
         {
@@ -56,13 +52,15 @@ namespace Towers
             _camTransform = transform;
             
             _mainCamera = Camera.main;
-            _currentCamera = GetComponent<CinemachineCamera>();
+            currentCamera = GetComponent<CinemachineCamera>();
 
             _towerComp = gameObject.GetComponentInParent<Tower>();
 
             reticle = reticle.GetComponent<Image>();
             
             _cinemachineBrain = CinemachineBrain.GetActiveBrain(0);
+            
+            _cachedCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
         }
         
         private void OnEnable()
@@ -85,11 +83,11 @@ namespace Towers
                 return;
             }
 
-            if (!_currentCamera.IsLive)
+            if (!currentCamera.IsLive)
             {
-                if (_isAbilityActived)
+                if (isAbilityActived)
                 {
-                    _isAbilityActived = false;
+                    isAbilityActived = false;
                     _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction();
                 }
                 DisableImage();
@@ -98,141 +96,159 @@ namespace Towers
             
             MoveCamera();
             
-            List<GameObject> enemies = _towerComp.enemiesInRange;
-            
-            Ray ray = _mainCamera.ViewportPointToRay(new Vector3 (0.5f, 0.5f, 0));
-            
-            if (_isAbilityActived)
+            if (isAbilityActived)
             {
-                DisableImage();
-                if (Input.GetMouseButton(0))
-                {
-                    _isAbilityActived = false;
-                    _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction();
-                    _abilityRange.transform.position = new Vector3(1000f, 1000f, 1000f);
-                    return;
-                }
-                
-                RaycastHit hit;
-
-                Vector3 abilityUsePoint = new Vector3();
-
-                if (Physics.Raycast(ray, out hit, _searchRadius + 9, 1 << 7))
-                {
-                    _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbilityRadius(hit.point);
-                    abilityUsePoint = hit.point;
-                }
-                else
-                {
-                    float x = ray.direction.x;
-                    float z = ray.direction.z;
-
-                    Vector3 temp = new Vector3();
-
-                    if (z > 0)
-                    {
-                        temp.x = _towerComp.attackRange * Mathf.Sin(Mathf.Atan(x / z)) + _towerComp.gameObject.transform.position.x;
-
-                        temp.y = _towerComp.gameObject.transform.position.y + 0.5f;
-                    
-                        temp.z = _towerComp.attackRange * Mathf.Cos(Mathf.Atan(x / z)) + _towerComp.gameObject.transform.position.z;
-                    }
-                    else
-                    {
-                        temp.x = -(_towerComp.attackRange * Mathf.Sin(Mathf.Atan(x / z))) + _towerComp.gameObject.transform.position.x;
-
-                        temp.y = _towerComp.gameObject.transform.position.y + 1;
-                    
-                        temp.z = -(_towerComp.attackRange * Mathf.Cos(Mathf.Atan(x / z))) + _towerComp.gameObject.transform.position.z;
-                    }
-
-                    _abilities.Ability.GetComponent<ActiveAbility>()
-                        .ActivateAbilityRadius(temp);
-                    
-                    abilityUsePoint = temp;
-                }
-                if (Input.GetKey(KeyCode.E))
-                {
-                    _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbility(abilityUsePoint);
-                    _isAbilityActived = false;
-                    _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction();
-                    _abilityRange.transform.position = new Vector3(1000f, 1000f, 1000f);
-                }
+                HandleAbilityMode();
                 return;
             }
             
-            if (Input.GetMouseButton(1) && !_isAbilityActived)
+            if (Input.GetMouseButton(1) && !isAbilityActived)
             {
-                if (_abilities.HasActiveAbility && !_abilities.Ability.GetComponent<ActiveAbility>().IsAbilityUsed())
-                {
-                    DisableImage();
-                    _abilityRange.transform.localScale *= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction();
-                    _abilities.Ability.GetComponent<ActiveAbility>().ActionRadius(_abilityRange);
-                    _isAbilityActived = true;
-                    return;
-                }
+                HandleAbilityActivation();
+                return;
             }
+            
+            UpdateTarget();
+        }
+        
+        private void HandleAbilityMode()
+        {
+            DisableImage();
+            if (Input.GetMouseButton(0))
+            {
+                isAbilityActived = false;
+                _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction();
+                _abilityRange.transform.position = new Vector3(1000f, 1000f, 1000f);
+                return;
+            }
+            
+            _cachedRay = _mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            RaycastHit hit;
+            Vector3 abilityUsePoint = new Vector3();
 
+            if (Physics.Raycast(_cachedRay, out hit, _searchRadius + 9, 1 << 7))
+            {
+                _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbilityRadius(hit.point);
+                abilityUsePoint = hit.point;
+            }
+            else
+            {
+                abilityUsePoint = CalculateAbilityPoint();
+                _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbilityRadius(abilityUsePoint);
+            }
+            
+            if (Input.GetKey(KeyCode.E))
+            {
+                _abilities.Ability.GetComponent<ActiveAbility>().ActivateAbility(abilityUsePoint);
+                isAbilityActived = false;
+                _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction();
+                _abilityRange.transform.position = new Vector3(1000f, 1000f, 1000f);
+            }
+        }
+        
+        private Vector3 CalculateAbilityPoint()
+        {
+            float x = _cachedRay.direction.x;
+            float z = _cachedRay.direction.z;
+            Vector3 temp = new Vector3();
+
+            if (z > 0)
+            {
+                temp.x = _towerComp.attackRange * Mathf.Sin(Mathf.Atan(x / z)) + _towerComp.gameObject.transform.position.x;
+                temp.y = _towerComp.gameObject.transform.position.y + 0.5f;
+                temp.z = _towerComp.attackRange * Mathf.Cos(Mathf.Atan(x / z)) + _towerComp.gameObject.transform.position.z;
+            }
+            else
+            {
+                temp.x = -(_towerComp.attackRange * Mathf.Sin(Mathf.Atan(x / z))) + _towerComp.gameObject.transform.position.x;
+                temp.y = _towerComp.gameObject.transform.position.y + 1;
+                temp.z = -(_towerComp.attackRange * Mathf.Cos(Mathf.Atan(x / z))) + _towerComp.gameObject.transform.position.z;
+            }
+            
+            return temp;
+        }
+        
+        private void HandleAbilityActivation()
+        {
+            if (_abilities.HasActiveAbility && !_abilities.Ability.GetComponent<ActiveAbility>().IsAbilityUsed())
+            {
+                DisableImage();
+                _abilityRange.transform.localScale *= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction();
+                _abilities.Ability.GetComponent<ActiveAbility>().ActionRadius(_abilityRange);
+                isAbilityActived = true;
+            }
+        }
+        
+        private void UpdateTarget()
+        {
+            List<GameObject> enemies = _towerComp.enemiesInRange;
+            
             if (enemies.Count == 0)
             {
                 DisableImage();
                 return;
             }
             
-            Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+            _cachedRay = _mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
-            RaycastHit[] raycastHits = new RaycastHit[1000];
-
-            int size = Physics.SphereCastNonAlloc(tower.transform.position, crosshairRadius, ray.direction, raycastHits,
+            int size = Physics.SphereCastNonAlloc(tower.transform.position, crosshairRadius, _cachedRay.direction, _cachedRaycastHits,
                 _searchRadius + 100);
             
-            if (raycastHits.Length == 0)
+            if (size == 0)
             {
+                DisableImage();
                 return;
             }
             
-            hitEnemies = new();
+            _cachedHitEnemies.Clear();
+            
             for (int i = 0; i < size; ++i)
             {
-                _sphereGizmoPoint = raycastHits[i].point;
-                if (enemies.Contains(raycastHits[i].collider.gameObject))
+                _sphereGizmoPoint = _cachedRaycastHits[i].point;
+                if (enemies.Contains(_cachedRaycastHits[i].collider.gameObject))
                 {
-                    hitEnemies.Add(raycastHits[i].collider.gameObject);
+                    _cachedHitEnemies.Add(_cachedRaycastHits[i].collider.gameObject);
                 }
             }
 
-            if (hitEnemies.Count > 0)
+            if (_cachedHitEnemies.Count > 0)
             {
-                GameObject closestEnemyToCenter = hitEnemies[0];
-                float minDistanceSqr = 1000 * 1000; // Random value squared
-                foreach (var enemyHit in hitEnemies)
+                UpdateReticlePosition();
+            }
+            else
+            {
+                DisableImage();
+            }
+        }
+        
+        private void UpdateReticlePosition()
+        {
+            GameObject closestEnemyToCenter = _cachedHitEnemies[0];
+            float minDistanceSqr = 1000 * 1000; // Random value squared
+            
+            foreach (var enemyHit in _cachedHitEnemies)
+            {
+                Vector3 screenPos = _mainCamera.WorldToScreenPoint(enemyHit.transform.position);
+                screenPos.z = 0;
+                float distanceSqr = Vector3.SqrMagnitude(screenPos - _cachedCenter);
+                
+                if (distanceSqr < minDistanceSqr)
                 {
-                    Vector3 screenPos = _mainCamera.WorldToScreenPoint(enemyHit.transform.position);
-                    
-                    screenPos.z = 0;
-                    float distanceSqr = Vector3.SqrMagnitude(screenPos - center);
-                    if (distanceSqr < minDistanceSqr)
-                    {
-                        minDistanceSqr = distanceSqr;
-                        closestEnemyToCenter = enemyHit;
-                    }
+                    minDistanceSqr = distanceSqr;
+                    closestEnemyToCenter = enemyHit;
                 }
+            }
 
-                currentTarget = closestEnemyToCenter;
+            CurrentTarget = closestEnemyToCenter;
 
-                var targetPos = currentTarget.GetComponentInChildren<EnemyTarget>().transform.position;
-                Vector3 imagePos = _mainCamera.WorldToScreenPoint(targetPos);
+            var targetPos = CurrentTarget.GetComponentInChildren<EnemyTarget>().transform.position;
+            Vector3 imagePos = _mainCamera.WorldToScreenPoint(targetPos);
 
-                reticle.rectTransform.transform.position = imagePos;
+            reticle.rectTransform.transform.position = imagePos;
 
-                if (_currentCamera.Priority > 0)
-                {
-                    reticle.enabled = true;
-                }
-                else
-                {
-                    DisableImage();
-                }
+            if (currentCamera.Priority > 0)
+            {
+                reticle.enabled = true;
             }
             else
             {
@@ -262,7 +278,7 @@ namespace Towers
 
         private void MoveCamera()
         {
-            if (_currentCamera.Priority == 0 || _cinemachineBrain.IsBlending)
+            if (currentCamera.Priority == 0 || _cinemachineBrain.IsBlending)
             {
                 return;
             }

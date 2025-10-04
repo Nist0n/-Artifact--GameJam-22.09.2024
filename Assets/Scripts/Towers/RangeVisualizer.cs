@@ -14,6 +14,8 @@ namespace Towers
         private LineRenderer _line;
         private float _lastRange;
         private Vector3 _lastPosition;
+        private float _lastUpdateTime;
+        private const float UpdateInterval = 0.1f;
 
         private void Awake()
         {
@@ -35,10 +37,14 @@ namespace Towers
         private void Update()
         {
             if (!tower) return;
-
-            if (!Mathf.Approximately(_lastRange, tower.attackRange) || (transform.position != _lastPosition))
+            
+            if (Time.time - _lastUpdateTime >= UpdateInterval)
             {
-                Redraw();
+                if (!Mathf.Approximately(_lastRange, tower.attackRange) || (transform.position != _lastPosition))
+                {
+                    Redraw();
+                }
+                _lastUpdateTime = Time.time;
             }
         }
 

@@ -18,7 +18,10 @@ namespace Towers
 
         private void Update()
         {
-            DisplayOfCd();
+            if (_timer > 0 || AbilityImage.fillAmount < 1)
+            {
+                DisplayOfCd();
+            }
         }
 
         private void DisplayOfCd()

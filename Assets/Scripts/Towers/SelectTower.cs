@@ -32,20 +32,26 @@ namespace Towers
         {
             if (GameConfig.Instance.HasLost) return;
             
-            GameConfig.Instance.IsInTower = mainCinemachineCamera.Priority == 0;
+            bool isInTower = mainCinemachineCamera.Priority == 0;
+            GameConfig.Instance.IsInTower = isInTower;
             
-            if (GameConfig.Instance.IsInTower)
+            if (isInTower && _currentTower)
             {
                 _currentTower.DisplayCd();
             }
-
+            
+            HandleInput();
+        }
+        
+        private void HandleInput()
+        {
             DisableTowerView();
-
             ToggleShopUI();
             
-            if (mainCinemachineCamera.Priority == 0) return; // If we are already in a tower
-
-            OnTowerClicked();
+            if (mainCinemachineCamera.Priority != 0)
+            {
+                OnTowerClicked();
+            }
         }
 
         private void ToggleSelectTowerControls(bool b)

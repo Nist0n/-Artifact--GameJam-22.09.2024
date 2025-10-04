@@ -37,16 +37,11 @@ namespace Towers
 
         private void Update()
         {
-            if (_active)
+            if (_active && TowerSelected)
             {
                 if (_passAbility) _passAbility.SetAbility(_active.gameObject);
-
-                if (TowerSelected)
-                {
-                    _imageCooldowns.GetProperties(_active.Timer(), _active.AbilityCooldown());
-                }
+                _imageCooldowns.GetProperties(_active.Timer(), _active.AbilityCooldown());
             }
-
             else if (_passAbility)
             {
                 _passAbility.SetAbility(null);
