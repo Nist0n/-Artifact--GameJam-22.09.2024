@@ -36,12 +36,12 @@ namespace GameConfiguration
         public float GameDifficulty;
         public int EnemyLevel;
         
-        // Events
         public event Action<Towers.Tower> OnTowerChanged;
+        public event Action<GameObject> OnEnemyAdded;
 
         private void Awake()
         {
-            if (Instance == null)
+            if (!Instance)
             {
                 Instance = this;
             }
@@ -79,7 +79,7 @@ namespace GameConfiguration
         {
             ControlCursor();
             
-            if (EnemyList.Count <= 0 && GameTime > waveTime)
+            if (GameTime > waveTime && EnemyList.Count <= 0 && !HasWon)
             {
                 HasWon = true;
                 GameWon();
@@ -186,6 +186,11 @@ namespace GameConfiguration
             {
                 obj.SetActive(false);
             }
+        }
+
+        public void OnOnEnemyAdded(GameObject obj)
+        {
+            OnEnemyAdded?.Invoke(obj);
         }
     }
 }

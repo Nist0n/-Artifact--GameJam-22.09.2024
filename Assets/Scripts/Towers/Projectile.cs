@@ -12,20 +12,41 @@ namespace Towers
         private Enemy _enemy;
         private EnemyTarget _enemyTarget;
         
-        // Ссылка на башню, которая выстрелила этот снаряд
         public Tower FiringTower { get; set; }
+        
+        private bool _isInitialized = false;
 
         private void Start()
         {
+            InitializeProjectile();
+        }
+        
+        private void OnEnable()
+        {
+            _hitStatus = false;
+            _isInitialized = false;
+        }
+        
+        private void InitializeProjectile()
+        {
+            if (_isInitialized || !CurrentTarget) return;
+            
             _enemyTarget = CurrentTarget.GetComponentInChildren<EnemyTarget>();
             _enemy = CurrentTarget.GetComponent<Enemy>();
+            _isInitialized = true;
         }
 
         private void Update()
         {
+            if (!_isInitialized)
+            {
+                InitializeProjectile();
+                if (!_isInitialized) return;
+            }
+            
             if (!CurrentTarget || _enemy.Health <= 0) // If object doesn't exist anymore or enemy's death animation is playing
             {
-                Destroy(gameObject);
+                ReturnToPool();
                 return;
             }
 
@@ -41,14 +62,13 @@ namespace Towers
                 return;
             }
             
-            if (_hitStatus) // Already hit in this frame
+            if (_hitStatus)
             {
                 return;
             }
 
             _enemy.ReceiveDamageActivate(damage);
             
-            // Уведомляем моба о том, какая башня его атакует
             var killTracker = _enemy.GetComponent<Combo.EnemyKillTrackerComponent>();
             if (killTracker)
             {
@@ -68,7 +88,34 @@ namespace Towers
         {
             hit.SetActive(true);
             yield return new WaitForSeconds(0.27f);
-            Destroy(gameObject);
+            ReturnToPool();
+        }
+        
+        private void ReturnToPool()
+        {
+            if (ProjectilePool.Instance)
+            {
+                ProjectilePool.Instance.ReturnProjectile(this);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+        
+        public void ResetProjectile()
+        {
+            _hitStatus = false;
+            _isInitialized = false;
+            CurrentTarget = null;
+            FiringTower = null;
+            _enemy = null;
+            _enemyTarget = null;
+            
+            if (hit)
+            {
+                hit.SetActive(false);
+            }
         }
     }
 }

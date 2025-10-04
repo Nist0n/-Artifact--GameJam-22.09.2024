@@ -24,6 +24,8 @@ namespace GameConfiguration.Cards
             spawnResult.SpawnedInstance = gameObject;
             spawnResult.Success = true;
             GameConfig.Instance.EnemyList.Add(spawnResult.SpawnedInstance);
+            
+            GameConfig.Instance.OnOnEnemyAdded(spawnResult.SpawnedInstance);
         }
 
         private SpawnResult DoSpawn(Transform transform, Quaternion rotation, DirectorSpawnRequest spawnRequest)

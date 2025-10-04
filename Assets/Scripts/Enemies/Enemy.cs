@@ -38,69 +38,77 @@ namespace Enemies
 
         private void Update()
         {
-            Health = Mathf.Clamp(Health, 0, MaxHealth);
+            // Оптимизация: проверяем здоровье только при изменении
+            if (Health < 0 || Health > MaxHealth)
+            {
+                Health = Mathf.Clamp(Health, 0, MaxHealth);
+            }
 
+            // Оптимизация: обновляем таймер замедления только если он активен
             if (_slowTimer <= 3f)
             {
                 _slowTimer += Time.deltaTime;
-                IsSlowness = true;
+                if (!IsSlowness)
+                {
+                    IsSlowness = true;
+                }
             }
-            else
+            else if (IsSlowness)
             {
                 IsSlowness = false;
             }
             
+            // Оптимизация: проверяем состояние только если текущее состояние завершено
             if (State.IsComplete)
             {
-                if (GameConfig.Instance.HasLost)
-                {
-                    Set(Celebrating);
-                    return;
-                }
-                
-                if (IsFrozen)
-                {
-                    Set(Freeze);
-                }
-                else
-                {
-                    if (IsAttacking)
-                    {
-                        Set(Attacking);
-                    }
-                    else
-                    {
-                        if (IsDamaged)
-                        {
-                            Set(TakingDamage);
-                        }
-                        else
-                        {
-                            if (IsSlowness)
-                            {
-                                Set(Slow);
-                            }
-                            else
-                            {
-                                Set(Running);
-                            }
-                        }
-                    }
-                }
+                UpdateEnemyState();
             }
 
-            if (Health <= 0)
+            // Оптимизация: проверяем смерть только если здоровье критично
+            if (Health <= 0 && State != Death)
             {
                 Set(Death);
                 Invoke(nameof(KillEnemy), 1f);
+                return; // Не обновляем остальное, если враг умирает
             }
 
-            if (front.color.a != 0)
+            // Оптимизация: обновляем HP бар только если он видим
+            if (front.color.a > 0)
             {
                 UpdateHpBar();
             }
 
             State.DoBranch();
+        }
+        
+        private void UpdateEnemyState()
+        {
+            if (GameConfig.Instance.HasLost)
+            {
+                Set(Celebrating);
+                return;
+            }
+            
+            if (IsFrozen)
+            {
+                Set(Freeze);
+            }
+            else if (IsAttacking)
+            {
+                Set(Attacking);
+            }
+            else if (IsDamaged)
+            {
+                Set(TakingDamage);
+            }
+            else if (IsSlowness)
+            {
+                Set(Slow);
+            }
+            else
+            {
+                Set(Running);
+            }
         }
 
         public void HealHP(float heal)

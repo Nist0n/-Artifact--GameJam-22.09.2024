@@ -1,36 +1,30 @@
+using GameConfiguration;
 using UnityEngine;
 using GameConfiguration.Directors.Functions;
 
 namespace Combo
 {
-    /// <summary>
-    /// Инициализатор для добавления EnemyKillTrackerComponent к мобам при их создании
-    /// </summary>
     public class EnemyKillTrackerInitializer : MonoBehaviour
     {
         private void Start()
         {
-            // Подписываемся на событие создания мобов
-            // Это будет вызываться при создании нового моба
-            InvokeRepeating(nameof(CheckForNewEnemies), 0f, 0.1f);
+            GameConfig.Instance.OnEnemyAdded += OnEnemyAdded;
         }
         
-        private void CheckForNewEnemies()
+        private void OnEnemyAdded(GameObject enemy)
         {
-            // Проверяем всех мобов в списке
-            foreach (var enemy in GameConfiguration.GameConfig.Instance.EnemyList)
+            if (enemy && !enemy.GetComponent<EnemyKillTrackerComponent>())
             {
-                if (enemy && !enemy.GetComponent<EnemyKillTrackerComponent>())
-                {
-                    // Добавляем компонент отслеживания убийств
-                    enemy.AddComponent<EnemyKillTrackerComponent>();
-                }
+                enemy.AddComponent<EnemyKillTrackerComponent>();
             }
         }
         
         private void OnDestroy()
         {
-            CancelInvoke(nameof(CheckForNewEnemies));
+            if (GameConfig.Instance)
+            {
+                GameConfig.Instance.OnEnemyAdded -= OnEnemyAdded;
+            }
         }
     }
 }

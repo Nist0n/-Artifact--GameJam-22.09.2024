@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Enemies;
 using GameConfiguration;
 using GameConfiguration.Settings.Audio;
+using Optimization;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -159,7 +160,7 @@ namespace Towers
             {
                 if (!enemy) continue;
                 
-                Enemy enemyComponent = enemy.GetComponent<Enemy>();
+                Enemy enemyComponent = ComponentCache.GetCachedComponent<Enemy>(enemy);
                 
                 if (enemyComponent?.navMeshAgent?.path?.corners == null) continue;
                 
@@ -220,17 +221,32 @@ namespace Towers
             
             if (target is not null)
             {
-                Enemy enemy = target.GetComponent<Enemy>();
-                if (enemy.Health > 0)
+                Enemy enemy = ComponentCache.GetCachedComponent<Enemy>(target);
+                if (enemy && enemy.Health > 0)
                 {
-                    Vector3 projectilePos =
-                        new Vector3(currentPos.x, currentPos.y + 12.7f, currentPos.z);
-                    Projectile projectile = Instantiate(projectilePrefab, projectilePos, Quaternion.identity).GetComponent<Projectile>();
-                    projectile.damage = initialDamage;
-                    projectile.slowness = slowness;
-                    projectile.CurrentTarget = target;
-                    projectile.FiringTower = this;
-                    AudioManager.Instance.PlayLocalSound("Tower", audioSource);
+                    Projectile projectile = ProjectilePool.Instance?.GetProjectile();
+                    if (projectile)
+                    {
+                        Vector3 projectilePos =
+                            new Vector3(currentPos.x, currentPos.y + 12.7f, currentPos.z);
+                        projectile.transform.position = projectilePos;
+                        projectile.damage = initialDamage;
+                        projectile.slowness = slowness;
+                        projectile.CurrentTarget = target;
+                        projectile.FiringTower = this;
+                        AudioManager.Instance.PlayLocalSound("Tower", audioSource);
+                    }
+                    else
+                    {
+                        Vector3 projectilePos =
+                            new Vector3(currentPos.x, currentPos.y + 12.7f, currentPos.z);
+                        Projectile fallbackProjectile = Instantiate(projectilePrefab, projectilePos, Quaternion.identity).GetComponent<Projectile>();
+                        fallbackProjectile.damage = initialDamage;
+                        fallbackProjectile.slowness = slowness;
+                        fallbackProjectile.CurrentTarget = target;
+                        fallbackProjectile.FiringTower = this;
+                        AudioManager.Instance.PlayLocalSound("Tower", audioSource);
+                    }
                 }
             }
 
