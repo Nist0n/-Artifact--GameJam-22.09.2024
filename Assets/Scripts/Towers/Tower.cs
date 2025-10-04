@@ -204,6 +204,7 @@ namespace Towers
                     projectile.damage = initialDamage;
                     projectile.slowness = slowness;
                     projectile.CurrentTarget = target;
+                    projectile.FiringTower = this; // Устанавливаем ссылку на башню
                     AudioManager.Instance.PlayLocalSound("Tower", audioSource);
                 }
             }

@@ -85,6 +85,8 @@ namespace Towers
             _currentTower.towerCamera.GetComponent<TowerCamera>().ActivateTowerListener();
                         
             _currentTower.EmpowerTower();
+            
+            GameConfig.Instance.NotifyTowerChanged(_currentTower);
         }
 
         private void DisableTowerView()
@@ -119,6 +121,8 @@ namespace Towers
                 rechargeAbility.TextTimer.enabled = false;
                 rechargeAbility.ParentImage.enabled = false;
                 rechargeAbility.AbilityImage.enabled = false;
+                
+                GameConfig.Instance.NotifyTowerChanged(null);
             }
         }
 

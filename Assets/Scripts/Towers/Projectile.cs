@@ -11,6 +11,9 @@ namespace Towers
         [SerializeField] private GameObject hit;
         private Enemy _enemy;
         private EnemyTarget _enemyTarget;
+        
+        // Ссылка на башню, которая выстрелила этот снаряд
+        public Tower FiringTower { get; set; }
 
         private void Start()
         {
@@ -44,6 +47,13 @@ namespace Towers
             }
 
             _enemy.ReceiveDamageActivate(damage);
+            
+            // Уведомляем моба о том, какая башня его атакует
+            var killTracker = _enemy.GetComponent<Combo.EnemyKillTrackerComponent>();
+            if (killTracker)
+            {
+                killTracker.SetLastHittingTower(FiringTower);
+            }
             
             if (slowness)
             {

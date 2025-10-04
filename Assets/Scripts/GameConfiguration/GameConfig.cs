@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using GameConfiguration.Directors;
 using GameConfiguration.Settings.Audio;
@@ -34,6 +35,9 @@ namespace GameConfiguration
         public bool ShopIsOpened;
         public float GameDifficulty;
         public int EnemyLevel;
+        
+        // Events
+        public event Action<Towers.Tower> OnTowerChanged;
 
         private void Awake()
         {
@@ -111,6 +115,11 @@ namespace GameConfiguration
             {
                 Spawners.Add(spawner);
             }
+        }
+        
+        public void NotifyTowerChanged(Towers.Tower newTower)
+        {
+            OnTowerChanged?.Invoke(newTower);
         }
 
         private void Timer()
