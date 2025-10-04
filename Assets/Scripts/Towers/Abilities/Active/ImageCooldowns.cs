@@ -1,11 +1,18 @@
+using System.Globalization;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Towers.Abilities.Active
 {
     public class ImageCooldowns : MonoBehaviour
     {
-        private Image _image;
+        [SerializeField] private Image image;
+        
+        public TextMeshProUGUI TextTimer;
+        public Image ParentImage;
+        
         private float _timerAbi;
         private float _cd;
         private bool _isGot = false;
@@ -14,29 +21,30 @@ namespace Towers.Abilities.Active
         {
             if (_isGot && _timerAbi > 0)
             {
+                TextTimer.text = Mathf.Floor(_cd - _timerAbi).ToString(CultureInfo.CurrentCulture);
                 if (_timerAbi >= _cd)
                 {
                     _timerAbi = _cd;
-                    _image.fillAmount = _timerAbi / _cd;
+                    image.fillAmount = _timerAbi / _cd;
                 }
                 else
                 {
                     _timerAbi += Time.deltaTime;
-                    _image.fillAmount = _timerAbi / _cd;
+                    image.fillAmount = _timerAbi / _cd;
                 }
             }
-            else if (_image)
+            else if (image)
             {
-                _image.fillAmount = 1;
+                TextTimer.text = null;
+                image.fillAmount = 1;
             }
         }
 
-        public void GetProperties(float _timer, float _Cd)
+        public void GetProperties(float time, float cd)
         {
-            _timerAbi = _timer;
-            _cd = _Cd;
+            _timerAbi = time;
+            _cd = cd;
             _isGot = true;
-            _image = GetComponent<Image>();
         }
     }
 }

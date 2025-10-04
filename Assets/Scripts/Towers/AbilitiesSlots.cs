@@ -10,7 +10,6 @@ namespace Towers
 {
     public class AbilitiesSlots : MonoBehaviour
     {
-        [SerializeField] private Image activeAbilityPosition;
         [SerializeField] private List<GameObject> imagePositions;
         [SerializeField] private GameObject passivesTransform;
         [SerializeField] private GameObject imageBackgroundPrefab;
@@ -19,6 +18,7 @@ namespace Towers
         private ImageCooldowns _imageCooldowns;
         private ActiveAbility _active;
         private Dictionary<string, int> _myDict;
+        private Image _activeAbilityPosition;
         
         public List<GameObject> RandomActiveAbilities;
         public List<GameObject> RandomPassiveAbilities;
@@ -33,7 +33,8 @@ namespace Towers
 
         private void Start()
         {
-            _imageCooldowns = activeAbilityPosition.GetComponent<ImageCooldowns>();
+            _imageCooldowns = FindAnyObjectByType<ImageCooldowns>();
+            _activeAbilityPosition = FindAnyObjectByType<ImageCooldowns>().gameObject.GetComponent<Image>();
         }
 
         private void Update()
@@ -86,10 +87,11 @@ namespace Towers
             {
                 if (ability.GetComponent<ActiveAbility>())
                 {
-                    activeAbilityPosition.enabled = true;
-                    activeAbilityPosition.transform.parent.GetComponent<Image>().enabled = true;
-                    activeAbilityPosition.sprite = ability.GetComponent<Image>().sprite;
-                    activeAbilityPosition.transform.parent.GetComponent<Image>().sprite = Resources.Load<Sprite>("UI/ability-bg");
+                    _activeAbilityPosition.enabled = true;
+                    _imageCooldowns.ParentImage.enabled = true;
+                    _activeAbilityPosition.sprite = ability.GetComponent<Image>().sprite;
+                    _imageCooldowns.ParentImage.sprite = Resources.Load<Sprite>("UI/ability-bg");
+                    _imageCooldowns.TextTimer.enabled = true;
                 }
 
                 if (ability.GetComponent<PassiveAbilities>())
@@ -139,10 +141,11 @@ namespace Towers
 
         public void HideAbilities()
         {
-            activeAbilityPosition.enabled = false;
-            activeAbilityPosition.transform.parent.GetComponent<Image>().enabled = false;
-            activeAbilityPosition.sprite = null;
-            activeAbilityPosition.transform.parent.GetComponent<Image>().sprite = null;
+            _activeAbilityPosition.enabled = false;
+            _imageCooldowns.ParentImage.enabled = false;
+            _activeAbilityPosition.sprite = null;
+            _imageCooldowns.ParentImage.sprite = null;
+            _imageCooldowns.TextTimer.enabled = false;
 
             foreach (var image in imagePositions)
             {
