@@ -11,18 +11,20 @@ namespace Combo
     {
         public Tower LastHittingTower { get; private set; }
         public float LastHitTime { get; private set; }
+		private bool _lastHitWasPiloted;
         
-        public void SetLastHittingTower(Tower tower)
+		public void SetLastHittingTower(Tower tower)
         {
-            LastHittingTower = tower;
-            LastHitTime = Time.time;
+			LastHittingTower = tower;
+			LastHitTime = Time.time;
+			_lastHitWasPiloted = tower && tower.Piloted;
         }
         
         public bool WasKilledByPlayerTower()
         {
-            if (!LastHittingTower) return false;
-            
-            return LastHittingTower.Piloted;
+			if (!LastHittingTower) return false;
+			
+			return _lastHitWasPiloted;
         }
     }
 }

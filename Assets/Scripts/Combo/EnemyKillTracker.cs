@@ -14,6 +14,10 @@ namespace Combo
         
         private const int MAX_RECENT_KILLS = 10;
         
+		private float _lastPlayerShotTime = 0f; // legacy, no longer used for validation
+		
+		private const float KILL_VALIDATION_TIME = 3f; // legacy, retained for compatibility
+        
         public static System.Action<GameObject, bool> OnEnemyKilled;
         
         private void Awake()
@@ -99,16 +103,19 @@ namespace Combo
             return false;
         }
         
-        private bool WasKilledByPlayerTower(GameObject enemy)
+		private bool WasKilledByPlayerTower(GameObject enemy)
         {
             if (!enemy) return false;
             
             var killTracker = enemy.GetComponent<EnemyKillTrackerComponent>();
             if (!killTracker) return false;
             
-            if (!killTracker.WasKilledByPlayerTower()) return false;
-            
-            return true;
+			return killTracker.WasKilledByPlayerTower();
+        }
+        
+        public void UpdatePlayerShotTime()
+        {
+            _lastPlayerShotTime = Time.time;
         }
     }
 }

@@ -202,6 +202,11 @@ namespace Towers
                 
                 float sqrDistance = Vector3.SqrMagnitude(position - enemyPos);
                 if (sqrDistance > _attackRangeSqr) return;
+                
+                if (Combo.EnemyKillTracker.Instance)
+                {
+                    Combo.EnemyKillTracker.Instance.UpdatePlayerShotTime();
+                }
 
                 ResetTowerStats();
                 StartCoroutine(Shoot(position, towerCameraComp.CurrentTarget));
