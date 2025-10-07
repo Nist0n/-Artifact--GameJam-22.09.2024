@@ -17,6 +17,9 @@ namespace Towers
         public float attackRange;
 
         [SerializeField] protected bool slowness;
+        
+		private float _slowMultiplier = 1f; 
+		private float _slowDuration = 3f;
 
         [SerializeField] private GameObject projectilePrefab;
 
@@ -202,11 +205,6 @@ namespace Towers
                 
                 float sqrDistance = Vector3.SqrMagnitude(position - enemyPos);
                 if (sqrDistance > _attackRangeSqr) return;
-                
-                if (Combo.EnemyKillTracker.Instance)
-                {
-                    Combo.EnemyKillTracker.Instance.UpdatePlayerShotTime();
-                }
 
                 ResetTowerStats();
                 StartCoroutine(Shoot(position, towerCameraComp.CurrentTarget));
@@ -220,7 +218,7 @@ namespace Towers
             StopCoroutine(nameof(Shoot));
         }
 
-        private IEnumerator Shoot(Vector3 currentPos, GameObject target)
+		private IEnumerator Shoot(Vector3 currentPos, GameObject target)
         {
             _canShoot = false;
             
@@ -235,8 +233,10 @@ namespace Towers
                         Vector3 projectilePos =
                             new Vector3(currentPos.x, currentPos.y + 12.7f, currentPos.z);
                         projectile.transform.position = projectilePos;
-                        projectile.damage = initialDamage;
-                        projectile.slowness = slowness;
+							projectile.damage = initialDamage;
+							projectile.slowness = slowness;
+							projectile.SlowMultiplier = _slowMultiplier;
+							projectile.SlowDuration = _slowDuration;
                         projectile.CurrentTarget = target;
                         projectile.FiringTower = this;
                         AudioManager.Instance.PlayLocalSound("Tower", audioSource);
@@ -246,8 +246,10 @@ namespace Towers
                         Vector3 projectilePos =
                             new Vector3(currentPos.x, currentPos.y + 12.7f, currentPos.z);
                         Projectile fallbackProjectile = Instantiate(projectilePrefab, projectilePos, Quaternion.identity).GetComponent<Projectile>();
-                        fallbackProjectile.damage = initialDamage;
-                        fallbackProjectile.slowness = slowness;
+							fallbackProjectile.damage = initialDamage;
+							fallbackProjectile.slowness = slowness;
+							fallbackProjectile.SlowMultiplier = _slowMultiplier;
+							fallbackProjectile.SlowDuration = _slowDuration;
                         fallbackProjectile.CurrentTarget = target;
                         fallbackProjectile.FiringTower = this;
                         AudioManager.Instance.PlayLocalSound("Tower", audioSource);
@@ -304,10 +306,12 @@ namespace Towers
             initialFireRate = fireRate / (1 + abilityTowerBuff.AbilityFireRateBuff) * 2;
         }
 
-        public void SetSlowness()
-        {
-            slowness = true;
-        }
+		public void SetSlowness(float multiplier, float duration)
+		{
+			slowness = true;
+			_slowMultiplier = Mathf.Clamp(multiplier, 0.1f, 1f);
+			_slowDuration = Mathf.Max(0.1f, duration);
+		}
 
         public void DisplayCd()
         {

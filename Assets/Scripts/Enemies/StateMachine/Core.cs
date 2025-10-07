@@ -22,7 +22,7 @@ namespace Enemies.StateMachine
 
         public float Speed;
 
-        public float Slowness = 0.6f;
+        public float Slowness;
 
         public float Health;
 

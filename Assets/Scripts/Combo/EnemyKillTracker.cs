@@ -14,10 +14,6 @@ namespace Combo
         
         private const int MAX_RECENT_KILLS = 10;
         
-		private float _lastPlayerShotTime = 0f; // legacy, no longer used for validation
-		
-		private const float KILL_VALIDATION_TIME = 3f; // legacy, retained for compatibility
-        
         public static System.Action<GameObject, bool> OnEnemyKilled;
         
         private void Awake()
@@ -111,11 +107,6 @@ namespace Combo
             if (!killTracker) return false;
             
 			return killTracker.WasKilledByPlayerTower();
-        }
-        
-        public void UpdatePlayerShotTime()
-        {
-            _lastPlayerShotTime = Time.time;
         }
     }
 }

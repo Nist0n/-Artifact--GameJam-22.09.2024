@@ -22,7 +22,7 @@ namespace Enemies.StateMachine
     
         protected AudioSource AudioSource => core.AudioSource;
     
-        protected bool IsSlowness => core.IsDamaged;
+        protected bool IsSlowness => core.IsSlowness;
 
         protected bool IsAttacking => core.IsAttacking;
 

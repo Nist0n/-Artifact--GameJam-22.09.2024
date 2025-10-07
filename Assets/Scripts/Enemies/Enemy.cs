@@ -18,6 +18,8 @@ namespace Enemies
 
         private float _lerpTimer;
         private float _slowTimer;
+        private float _currentSlowMultiplier = 1f;
+        private float _currentSlowDuration = 0f;
         private Coroutine _hpBarCoroutine;
 
         public RunningState Running;
@@ -26,7 +28,7 @@ namespace Enemies
         public DeathState Death;
         public AttackingState Attacking;
         public CelebratingState Celebrating;
-        public SlownessState Slow;
+        
         
         private void Start()
         {
@@ -38,41 +40,45 @@ namespace Enemies
 
         private void Update()
         {
-            // Оптимизация: проверяем здоровье только при изменении
             if (Health < 0 || Health > MaxHealth)
             {
                 Health = Mathf.Clamp(Health, 0, MaxHealth);
             }
-
-            // Оптимизация: обновляем таймер замедления только если он активен
-            if (_slowTimer <= 3f)
+            
+            if (_currentSlowDuration > 0f)
             {
                 _slowTimer += Time.deltaTime;
-                if (!IsSlowness)
+                if (_slowTimer >= _currentSlowDuration)
+                {
+                    _currentSlowDuration = 0f;
+                    _currentSlowMultiplier = 1f;
+                    IsSlowness = false;
+                    Slowness = 1f;
+                }
+                else
                 {
                     IsSlowness = true;
+                    Slowness = _currentSlowMultiplier;
                 }
             }
-            else if (IsSlowness)
+            else
             {
                 IsSlowness = false;
+                Slowness = 1f;
             }
             
-            // Оптимизация: проверяем состояние только если текущее состояние завершено
             if (State.IsComplete)
             {
                 UpdateEnemyState();
             }
-
-            // Оптимизация: проверяем смерть только если здоровье критично
+            
             if (Health <= 0 && State != Death)
             {
                 Set(Death);
                 Invoke(nameof(KillEnemy), 1f);
-                return; // Не обновляем остальное, если враг умирает
+                return;
             }
-
-            // Оптимизация: обновляем HP бар только если он видим
+            
             if (front.color.a > 0)
             {
                 UpdateHpBar();
@@ -101,10 +107,6 @@ namespace Enemies
             {
                 Set(TakingDamage);
             }
-            else if (IsSlowness)
-            {
-                Set(Slow);
-            }
             else
             {
                 Set(Running);
@@ -116,9 +118,31 @@ namespace Enemies
             Health += heal;
         }
 
-        public void SetSlowness()
+        public void ApplySlow(float multiplier, float duration)
         {
-            _slowTimer = 0;
+            const float minSpeedFraction = 0.2f;
+            float cappedMultiplier = Mathf.Clamp(multiplier, minSpeedFraction, 1f);
+            
+            bool isStronger = cappedMultiplier < _currentSlowMultiplier;
+            if (isStronger)
+            {
+                _currentSlowMultiplier = cappedMultiplier;
+                _currentSlowDuration = duration;
+                _slowTimer = 0f;
+            }
+            else if (_currentSlowDuration > 0f)
+            {
+                if (duration > (_currentSlowDuration - _slowTimer))
+                {
+                    _currentSlowDuration = _slowTimer + duration;
+                }
+            }
+            else
+            {
+                _currentSlowMultiplier = cappedMultiplier;
+                _currentSlowDuration = duration;
+                _slowTimer = 0f;
+            }
         }
 
         private void FixedUpdate()

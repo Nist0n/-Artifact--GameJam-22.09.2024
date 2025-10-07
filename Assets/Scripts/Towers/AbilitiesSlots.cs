@@ -68,6 +68,7 @@ namespace Towers
                 if (ability.name.Contains("SpeedBoom"))
                 {
                     _passAbility = ability.GetComponent<PassiveAbilities>();
+                    ability.GetComponent<PassiveAbilities>().SetTower(GetComponent<Tower>());
                 }
             }
         }

@@ -8,8 +8,9 @@ namespace Towers.Abilities.Passive
 
         private const float PERCENT = 0.6f;
 
-        protected override void Update()
+        public override void SetTower(Tower tower)
         {
+            connectedTower = tower;
             if (activeOnTheTower)
             {
                 if (count == 1)

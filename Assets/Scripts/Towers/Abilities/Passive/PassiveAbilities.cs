@@ -14,9 +14,14 @@ namespace Towers.Abilities.Passive
         [SerializeField] protected bool isPassiveUsed = false;
         [SerializeField] protected string passiveAbilityName;
         [SerializeField] protected string description;
-        
-        protected virtual void Update()
+
+        protected virtual void SetPassiveBonus()
         {
+        }
+
+        public virtual void SetTower(Tower tower)
+        {
+            connectedTower = tower;
             if (activeOnTheTower)
             {
                 if (count == 1)
@@ -32,15 +37,6 @@ namespace Towers.Abilities.Passive
             {
                 SetPassiveBonus();
             }
-        }
-
-        protected virtual void SetPassiveBonus()
-        {
-        }
-
-        public void SetTower(Tower tower)
-        {
-            connectedTower = tower;
         }
 
         public float Cost() => cost;

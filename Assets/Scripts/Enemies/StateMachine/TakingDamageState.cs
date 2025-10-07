@@ -7,13 +7,14 @@ namespace Enemies.StateMachine
     {
         public override void Enter()
         {
-            navMeshAgent.speed -= 0.5f;
             AudioManager.Instance.PlayRandomSoundByName("GetDamage", AudioSource);
+            navMeshAgent.speed = Speed * Slowness;
         }
     
         public override void Do()
         {
             animationController.TakeDamage();
+            navMeshAgent.speed = Speed * Slowness;
             if (!IsDamaged || GameConfig.Instance.HasLost || IsFrozen)
             {
                 IsComplete = true;

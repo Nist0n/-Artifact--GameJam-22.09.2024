@@ -1698,50 +1698,6 @@ Transform:
   - {fileID: 5611404242353263738}
   m_Father: {fileID: 1243550668749084744}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6801416760245912995
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4029469147058101655}
-  - component: {fileID: 5947483245266585327}
-  m_Layer: 3
-  m_Name: Slowness
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4029469147058101655
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6801416760245912995}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6001358166431894723}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5947483245266585327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6801416760245912995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6a6e00724fe8074185542e97c33e672, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6857584732574309126
 GameObject:
   m_ObjectHideFlags: 0
@@ -1903,7 +1859,6 @@ Transform:
   - {fileID: 3208471376148685051}
   - {fileID: 1135337503685011172}
   - {fileID: 5389989556484146273}
-  - {fileID: 4029469147058101655}
   m_Father: {fileID: 6778841334841270316}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7461085594446640642
@@ -2515,14 +2470,13 @@ MonoBehaviour:
   IsDamaged: 0
   back: {fileID: 8048343046329501299}
   front: {fileID: 9032650612959045259}
+  deathEvent: {fileID: 11400000, guid: d1b348893b2595c4c9e3e78604a42eec, type: 2}
   Running: {fileID: 175182312685677221}
   TakingDamage: {fileID: 436456900748812856}
   Freeze: {fileID: 8884748304252547886}
   Death: {fileID: 9209318169999914554}
   Attacking: {fileID: 1960129806069850145}
   Celebrating: {fileID: 447904791863723882}
-  Slow: {fileID: 5947483245266585327}
-  deathEvent: {fileID: 11400000, guid: d1b348893b2595c4c9e3e78604a42eec, type: 2}
 --- !u!95 &4408944662625507171
 Animator:
   serializedVersion: 7

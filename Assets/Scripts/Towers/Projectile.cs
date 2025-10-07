@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Enemies;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Towers
 {
@@ -15,6 +16,9 @@ namespace Towers
         public Tower FiringTower { get; set; }
         
         private bool _isInitialized = false;
+        
+		public float SlowMultiplier = 1f;
+		public float SlowDuration = 3f;
 
         private void Start()
         {
@@ -77,7 +81,10 @@ namespace Towers
             
             if (slowness)
             {
-                _enemy.SetSlowness();
+                if (_enemy)
+                {
+                    _enemy.ApplySlow(SlowMultiplier, SlowDuration);
+                }
             }
             
             _hitStatus = true;
