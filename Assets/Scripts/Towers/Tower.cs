@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Enemies;
 using GameConfiguration;
 using GameConfiguration.Settings.Audio;
 using Optimization;
+using Towers.Abilities.Passive;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -62,7 +64,17 @@ namespace Towers
         private float _lastEnemyCheckTime;
         private const float EnemyCheckInterval = 0.1f;
         private float _attackRangeSqr;
-        
+
+        private void OnEnable()
+        {
+            RangeGiga.OnRangeBuff += ResetTowerStats;
+        }
+
+        private void OnDisable()
+        {
+            RangeGiga.OnRangeBuff -= ResetTowerStats;
+        }
+
         private void Start()
         {
             initialDamage = damage;
