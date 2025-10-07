@@ -20,6 +20,7 @@ namespace Towers
         
 		private float _slowMultiplier = 1f; 
 		private float _slowDuration = 3f;
+        private float _slowCount;
 
         [SerializeField] private GameObject projectilePrefab;
 
@@ -306,10 +307,18 @@ namespace Towers
             initialFireRate = fireRate / (1 + abilityTowerBuff.AbilityFireRateBuff) * 2;
         }
 
-		public void SetSlowness(float multiplier, float duration)
-		{
+		public void SetSlowness()
+        {
+            _slowCount++;
+            
+            float multiplier = Mathf.Max(0.2f, Mathf.Pow(0.9f, _slowCount));
+            
+            float duration = Mathf.Min(6f, 2.5f + 0.2f * _slowCount);
+            
 			slowness = true;
+            
 			_slowMultiplier = Mathf.Clamp(multiplier, 0.1f, 1f);
+            
 			_slowDuration = Mathf.Max(0.1f, duration);
 		}
 

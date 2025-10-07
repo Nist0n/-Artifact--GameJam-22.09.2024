@@ -75,60 +75,54 @@ namespace Towers
 
         public void SetAbilitiesImages()
         {
-            List<GameObject> tempPassives = new List<GameObject>();
+            Dictionary<string, (GameObject prefab, int count) > grouped = new Dictionary<string, (GameObject prefab, int count)>();
 
             foreach (var ability in Abilities)
             {
-                if (ability.GetComponent<ActiveAbility>())
+                var active = ability.GetComponent<ActiveAbility>();
+                if (active)
                 {
                     _imageCooldowns.AbilityImage.enabled = true;
                     _imageCooldowns.ParentImage.enabled = true;
                     _imageCooldowns.AbilityImage.sprite = ability.GetComponent<Image>().sprite;
                     _imageCooldowns.ParentImage.sprite = Resources.Load<Sprite>("UI/ability-bg");
                     _imageCooldowns.TextTimer.enabled = true;
+                    continue;
                 }
 
-                if (ability.GetComponent<PassiveAbilities>())
+                var passive = ability.GetComponent<PassiveAbilities>();
+                if (!passive) continue;
+
+                string key = passive.Name();
+                if (string.IsNullOrEmpty(key))
                 {
-                    if (tempPassives.Count > 0)
-                    {
-                        bool equal = false;
+                    key = ability.name;
+                }
 
-                        bool foundSample = false;
-                    
-                        foreach (var passive in tempPassives)
-                        {
-                            if (!ability.name.Contains(passive.name) && !foundSample)
-                            {
-                                equal = true;
-                            }
-
-                            if (ability.name.Contains(passive.name))
-                            {
-                                equal = false;
-                                foundSample = true;
-                                passive.GetComponent<PassiveAbilities>().Count(1);
-                            }
-                        }
-
-                        if (equal)
-                        {
-                            tempPassives.Add(ability);
-                        }
-                    }
-                    else
-                    {
-                        tempPassives.Add(ability);
-                    }
+                if (grouped.TryGetValue(key, out var entry))
+                {
+                    grouped[key] = (entry.prefab, entry.count + 1);
+                }
+                else
+                {
+                    grouped[key] = (ability, 1);
                 }
             }
 
-            foreach (var passive in tempPassives)
+            foreach (var kv in grouped)
             {
                 GameObject background = Instantiate(imageBackgroundPrefab, passivesTransform.transform);
-                var passiveAbility = Instantiate(passive, background.transform);
-                passiveAbility.GetComponent<PassiveAbilities>().DisableAbility();
-                passiveAbility.GetComponent<EventTrigger>().enabled = false;
+                var passiveAbility = Instantiate(kv.Value.prefab, background.transform);
+                var pa = passiveAbility.GetComponent<PassiveAbilities>();
+                pa.DisableAbility();
+                var evt = passiveAbility.GetComponent<EventTrigger>();
+                if (evt) evt.enabled = false;
+                int extra = Mathf.Max(0, kv.Value.count - 1);
+                if (extra > 0)
+                {
+                    pa.Count(extra);
+                    pa.SetTower(GetComponent<Tower>());
+                }
                 imagePositions.Add(background);
             }
         }
