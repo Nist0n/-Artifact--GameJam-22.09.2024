@@ -13,6 +13,7 @@ namespace Shop
     public class BuyingSystem : MonoBehaviour
     {
         [SerializeField] private Sprite plusIcon;
+        [SerializeField] private GameObject deleteAbilityButton;
         [SerializeField] private List<GameObject> activeAbilities;
         [SerializeField] private List<GameObject> passiveAbilities;
         [SerializeField] private List<GameObject> randomActiveAbilities;
@@ -180,11 +181,24 @@ namespace Shop
             }
         }
 
-        public void SetAbilityOnTower(Button upgrade)
+        private void SetAbilityOnTower(Button upgrade)
         {
             var temp = Instantiate(upgrade.gameObject, abilitiesObj.transform);
             _tower.Abilities.Add(temp);
             _tower.CheckForActiveAbility();
+        }
+
+        public void DeleteActiveAbility(Button activeButton)
+        {
+            _tower.ClearActiveAbility();
+            
+            HidePassiveAbilities();
+            
+            SetPassivesImages();
+            
+            SetRandomActiveAbilities(activeButton);
+            
+            ActivateActiveSlot(activeButton);
         }
         
         private void OnAbilitySelected(Button selectedSlot, Button chosenUpgrade, int upgradeIndex)
@@ -223,6 +237,7 @@ namespace Shop
                 Image slotImage = selectedSlot.GetComponent<Image>();
                 Image upgradeImage = chosenUpgrade.GetComponent<Image>();
                 slotImage.sprite = upgradeImage.sprite;
+                deleteAbilityButton.SetActive(true);
                 
                 DisableSlotWithoutChangingAppearance(selectedSlot);
             }
@@ -250,11 +265,13 @@ namespace Shop
         {
             if (!_tower.HasActiveAbility)
             {
+                deleteAbilityButton.SetActive(false);
                 slotButton.interactable = true;
                 slotButton.gameObject.GetComponent<Image>().sprite = plusIcon;
             }
             else
             {
+                deleteAbilityButton.SetActive(true);
                 slotButton.gameObject.GetComponent<Image>().sprite = _tower.Ability.GetComponent<Image>().sprite;
                 slotButton.interactable = false;
             }

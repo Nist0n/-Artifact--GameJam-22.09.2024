@@ -107,6 +107,7 @@ namespace Towers
                 AbilitiesSlots towerSlots = _currentTower.gameObject.GetComponent<AbilitiesSlots>();
                 towerSlots.TowerSelected = false;
                 towerSlots.HideAbilities();
+                upgradeTowerControls.SetActive(false);
                 
                 foreach (var tw in towers)
                 {

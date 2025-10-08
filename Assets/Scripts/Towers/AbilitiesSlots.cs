@@ -160,5 +160,16 @@ namespace Towers
                 _imageCooldowns.GetProperties(_active.Timer(), _active.AbilityCooldown());
             }
         }
+
+        public void ClearActiveAbility()
+        {
+            Abilities.Remove(Ability);
+            Destroy(Ability);
+            _active = null;
+            ActivesShowed = false;
+            RandomActiveAbilities.Clear();
+            Ability = null;
+            HasActiveAbility = false;
+        }
     }
 }

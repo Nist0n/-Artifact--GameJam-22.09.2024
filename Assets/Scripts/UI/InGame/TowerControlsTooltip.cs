@@ -1,23 +1,12 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace UI.InGame
 {
-    public class TowerControlsTooltip : MonoBehaviour
+    public class TowerControlsTooltip : BaseTooltip
     {
-        [SerializeField] private TMP_Text tooltipText;
-        
-        private readonly Vector3 _offset = new(-75, -75, 0);
-
-        private void Update()
+        public override void ShowTooltip(GameObject obj)
         {
-            gameObject.transform.position = Input.mousePosition + _offset;
-        }
-
-        public void ShowTooltip(GameObject obj)
-        {
-            gameObject.transform.position = Input.mousePosition + _offset;
+            gameObject.transform.position = Input.mousePosition + offset;
             gameObject.SetActive(true);
             string info;
             if (obj.name == "EnterTowerButton")
@@ -34,12 +23,6 @@ namespace UI.InGame
             }
 
             tooltipText.text = info;
-        }
-
-        public void HideTooltip()
-        {
-            gameObject.SetActive(false);
-            tooltipText.text = String.Empty;
         }
     }
 }
