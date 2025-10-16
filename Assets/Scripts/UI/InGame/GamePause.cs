@@ -23,12 +23,12 @@ namespace UI.InGame
             {
                 if (!background.activeSelf)
                 {
-                    GameEvents.OnGamePause(true);
+                    StaticClasses.GameEvents.OnGamePause(true);
                     SetPause(true);
                 }
                 else
                 {
-                    GameEvents.OnGamePause(false);
+                    StaticClasses.GameEvents.OnGamePause(false);
                     SetPause(false);
                 }
             }

@@ -31,7 +31,7 @@ namespace Castle
     
             if (Health <= 0)
             {
-                GameEvents.GameLost?.Invoke();
+                StaticClasses.GameEvents.GameLost?.Invoke();
             }
 
             if (_timer <= _cooldown)

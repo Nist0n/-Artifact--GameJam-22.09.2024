@@ -167,7 +167,7 @@ namespace Enemies.StateMachine
             GameConfiguration.Directors.Elites.IceTrailManager.Instance.CleanupEnemy(gameObject);
             
             Destroy(gameObject);
-            GameEvents.OnEnemyDeath(deathRewards.goldReward, deathRewards.expReward);
+            StaticClasses.GameEvents.OnEnemyDeath(deathRewards.goldReward, deathRewards.expReward);
             DeathEvent.TriggerEvent();
         }
 

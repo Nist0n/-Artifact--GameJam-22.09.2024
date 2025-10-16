@@ -65,14 +65,14 @@ namespace Towers
         
         private void OnEnable()
         {
-            GameEvents.GamePause += OnGamePause;
-            GameEvents.GameLost += DisableImage;
+            StaticClasses.GameEvents.GamePause += OnGamePause;
+            StaticClasses.GameEvents.GameLost += DisableImage;
         }
 
         private void OnDisable()
         {
-            GameEvents.GamePause -= OnGamePause;
-            GameEvents.GameLost -= DisableImage;
+            StaticClasses.GameEvents.GamePause -= OnGamePause;
+            StaticClasses.GameEvents.GameLost -= DisableImage;
         }
         
         private void Update()

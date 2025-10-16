@@ -13,7 +13,7 @@ namespace Towers.Abilities.Active
         [SerializeField] private float burnDamagePerSecond = 5f;
         [SerializeField] private int overlapBufferSize = 64;
         [SerializeField] private GameObject fireEffectPrefab;
-        [SerializeField] private string fireSfxName = "FireMelt";
+        // [SerializeField] private string fireSfxName = "FireMelt";
         
         private Collider[] _overlapResults;
 
@@ -69,7 +69,6 @@ namespace Towers.Abilities.Active
                     if (burnDuration > 0f)
                     {
                         core.ActivateBurn(burnDuration, burnDamagePerSecond);
-                        Debug.Log("Ага, попался");
                     }
                     else core.ActivateBurn(duration, burnDamagePerSecond);
                 }

@@ -28,7 +28,7 @@ namespace GameConfiguration
         
         public float GameTime;
         public List<GameObject> EnemyList;
-        public List<GameObject> Spawners;
+		public List<GameObject> Spawners;
         public bool HasLost; // still seems suspicious
         public bool HasWon;
         public bool IsInTower;
@@ -53,20 +53,22 @@ namespace GameConfiguration
 
         private void OnEnable()
         {
-            GameEvents.CheatGameWin += GameWon;
-            GameEvents.GameLost += GameLost;
+            StaticClasses.GameEvents.CheatGameWin += GameWon;
+            StaticClasses.GameEvents.GameLost += GameLost;
         }
 
         private void OnDisable()
         {
-            GameEvents.CheatGameWin -= GameWon;
-            GameEvents.GameLost -= GameLost;
+            StaticClasses.GameEvents.CheatGameWin -= GameWon;
+            StaticClasses.GameEvents.GameLost -= GameLost;
         }
 
         private void Start()
         {
+			if (EnemyList == null) EnemyList = new List<GameObject>();
+			if (Spawners == null) Spawners = new List<GameObject>();
             GetSpawners();
-            GameEvents.CheatGameWin += GameWon;
+            StaticClasses.GameEvents.CheatGameWin += GameWon;
             AudioManager.Instance.StartMusicShuffle();
             foreach (var combatDirector in combatDirectors)
             {

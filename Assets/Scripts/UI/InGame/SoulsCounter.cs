@@ -22,7 +22,7 @@ namespace UI.InGame
 
         private void OnEnable()
         {
-            GameEvents.EnemyDeath += GetRewards;
+            StaticClasses.GameEvents.EnemyDeath += GetRewards;
         }
 
         private void Awake()

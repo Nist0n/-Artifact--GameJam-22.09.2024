@@ -24,7 +24,7 @@ namespace UI
         {
             if (Input.GetKeyDown(KeyCode.A))
             {
-                GameEvents.OnCheatGameWin();
+                StaticClasses.GameEvents.OnCheatGameWin();
             }
         }
 
@@ -40,7 +40,7 @@ namespace UI
 
         public void WinGame()
         {
-            GameEvents.OnCheatGameWin();
+            StaticClasses.GameEvents.OnCheatGameWin();
         }
 
         public void OnChangeGameSpeed(float value)
