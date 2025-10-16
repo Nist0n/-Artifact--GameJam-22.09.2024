@@ -9,20 +9,30 @@ namespace Towers.Abilities.Active
     {
         [SerializeField] private float meltRadius = 5f;
         [SerializeField] private float duration = 3f;
+        [SerializeField] private float burnDuration = 4f;
+        [SerializeField] private float burnDamagePerSecond = 5f;
+        [SerializeField] private int overlapBufferSize = 64;
         [SerializeField] private GameObject fireEffectPrefab;
         [SerializeField] private string fireSfxName = "FireMelt";
+        
+        private Collider[] _overlapResults;
 
         private void Start()
         {
+            if (overlapBufferSize < 1)
+            {
+                overlapBufferSize = 16;
+            }
+            _overlapResults = new Collider[overlapBufferSize];
             StartCoroutine(ExecuteFireMelt());
         }
 
         private IEnumerator ExecuteFireMelt()
         {
-            if (!string.IsNullOrEmpty(fireSfxName) && AudioManager.Instance)
-            {
-                AudioManager.Instance.PlaySFX(fireSfxName);
-            }
+            // if (!string.IsNullOrEmpty(fireSfxName) && AudioManager.Instance)
+            // {
+            //     AudioManager.Instance.PlaySFX(fireSfxName);
+            // }
         
             if (fireEffectPrefab)
             {
@@ -30,9 +40,10 @@ namespace Towers.Abilities.Active
                 Destroy(fireEffect, duration);
             }
         
-            MeltNearbyIceTrails();
-
             yield return new WaitForSeconds(duration);
+            
+            MeltNearbyIceTrails();
+            ApplyBurnToEnemies();
         
             Destroy(gameObject);
         }
@@ -40,6 +51,29 @@ namespace Towers.Abilities.Active
         private void MeltNearbyIceTrails()
         {
             IceTrailManager.Instance.MeltTrails(transform.position, meltRadius);
+        }
+
+        private void ApplyBurnToEnemies()
+        {
+            int count = Physics.OverlapSphereNonAlloc(transform.position, meltRadius, _overlapResults);
+            for (int i = 0; i < count; i++)
+            {
+                Collider col = _overlapResults[i];
+                if (!col)
+                {
+                    continue;
+                }
+                var core = col.GetComponentInParent<Enemies.StateMachine.Core>();
+                if (core)
+                {
+                    if (burnDuration > 0f)
+                    {
+                        core.ActivateBurn(burnDuration, burnDamagePerSecond);
+                        Debug.Log("Ага, попался");
+                    }
+                    else core.ActivateBurn(duration, burnDamagePerSecond);
+                }
+            }
         }
     }
 }

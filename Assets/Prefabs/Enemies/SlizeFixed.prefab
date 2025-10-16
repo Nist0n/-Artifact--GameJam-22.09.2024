@@ -2468,9 +2468,9 @@ MonoBehaviour:
   Level: 0
   Soul: {fileID: 1277085015814301893, guid: ff37baff706d86848addca8e6f134b91, type: 3}
   IsDamaged: 0
-  back: {fileID: 8048343046329501299}
-  front: {fileID: 9032650612959045259}
-  deathEvent: {fileID: 11400000, guid: d1b348893b2595c4c9e3e78604a42eec, type: 2}
+  Back: {fileID: 8048343046329501299}
+  Front: {fileID: 9032650612959045259}
+  DeathEvent: {fileID: 11400000, guid: d1b348893b2595c4c9e3e78604a42eec, type: 2}
   Running: {fileID: 175182312685677221}
   TakingDamage: {fileID: 436456900748812856}
   Freeze: {fileID: 8884748304252547886}

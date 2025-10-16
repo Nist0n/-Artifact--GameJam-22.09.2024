@@ -96,7 +96,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meltRadius: 5
-  duration: 3
+  duration: 1
+  burnDuration: 4
+  burnDamagePerSecond: 2
+  overlapBufferSize: 64
   fireEffectPrefab: {fileID: 0}
   fireSfxName: FireMelt
 --- !u!1001 &368964100755617605

@@ -184,6 +184,7 @@ namespace Shop
         private void SetAbilityOnTower(Button upgrade)
         {
             var temp = Instantiate(upgrade.gameObject, abilitiesObj.transform);
+            temp.SetActive(true);
             _tower.Abilities.Add(temp);
             _tower.CheckForActiveAbility();
         }
@@ -238,6 +239,7 @@ namespace Shop
                 Image upgradeImage = chosenUpgrade.GetComponent<Image>();
                 slotImage.sprite = upgradeImage.sprite;
                 deleteAbilityButton.SetActive(true);
+                _tower.UpdateAbilityUI();
                 
                 DisableSlotWithoutChangingAppearance(selectedSlot);
             }
