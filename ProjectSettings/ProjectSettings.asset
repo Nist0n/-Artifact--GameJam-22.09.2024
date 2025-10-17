@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: UnluckySeven
-  productName: Nightmare Siege 1.0.4
+  productName: Nightmare Siege
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -86,6 +86,7 @@ PlayerSettings:
   muteOtherAudioSources: 0
   Prepare IOS For Recording: 0
   Force IOS Speakers When Recording: 0
+  audioSpatialExperience: 0
   deferSystemGesturesMode: 0
   hideHomeButton: 0
   submitAnalytics: 1
@@ -140,7 +141,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 1.0.4
+  bundleVersion: 1.1.0
   preloadedAssets:
   - {fileID: 7306416952122180914, guid: dee0c1af7105f954eb310dad81da4a2e, type: 3}
   - {fileID: 1104144673388554703, guid: 2838955df129f0a4b8f9628c4faa7b28, type: 3}
@@ -276,6 +277,9 @@ PlayerSettings:
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
+  androidAppCategory: 3
+  useAndroidAppCategory: 1
+  androidAppCategoryOther: 
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
@@ -552,6 +556,7 @@ PlayerSettings:
   - serializedVersion: 2
     m_BuildTarget: Android
     m_EncodingQuality: 1
+  m_BuildTargetGroupHDRCubemapEncodingQuality: []
   m_BuildTargetGroupLightmapSettings: []
   m_BuildTargetGroupLoadStoreDebugModeSettings: []
   m_BuildTargetNormalMapEncoding:
