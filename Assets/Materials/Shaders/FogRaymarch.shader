@@ -2,14 +2,19 @@ Shader "Custom/FogRaymarch"
 {
 	Properties
 	{
-		_FogColor ("Fog Color", Color) = (0.7, 0.8, 1, 1)
-		_Density  ("Base Density", Range(0, 2)) = 0.15
+		_FogColor ("Fog Color", Color) = (0.3, 0.3, 0.4, 1)
+		_Density  ("Base Density", Range(0, 5)) = 0.8
 		_HeightFalloff ("Height Falloff", Range(0, 5)) = 0.0
 		_HeightRef ("Height Reference", Float) = 0.0
 		_MaxDistance ("Max Ray Distance", Float) = 150.0
 		_Steps ("Raymarch Steps", Range(8, 128)) = 48
 		_Softness ("Reveal Softness", Range(0, 10)) = 2.0
 		_RevealCount ("Reveal Count", Float) = 0
+		
+		// Shadow parameters for static objects
+		_ShadowIntensity ("Shadow Intensity", Range(0, 2)) = 1.0
+		_ShadowRadius ("Shadow Radius", Range(0, 50)) = 15.0
+		_ShadowSoftness ("Shadow Softness", Range(0, 20)) = 5.0
 
 		_RevealTower0 ("RevealTower0", Vector) = (0,0,0,0)
 		_RevealTower1 ("RevealTower1", Vector) = (0,0,0,0)
@@ -19,6 +24,16 @@ Shader "Custom/FogRaymarch"
 		_RevealTower5 ("RevealTower5", Vector) = (0,0,0,0)
 		_RevealTower6 ("RevealTower6", Vector) = (0,0,0,0)
 		_RevealTower7 ("RevealTower7", Vector) = (0,0,0,0)
+		
+		// Static object shadow positions
+		_StaticObject0 ("StaticObject0", Vector) = (0,0,0,0)
+		_StaticObject1 ("StaticObject1", Vector) = (0,0,0,0)
+		_StaticObject2 ("StaticObject2", Vector) = (0,0,0,0)
+		_StaticObject3 ("StaticObject3", Vector) = (0,0,0,0)
+		_StaticObject4 ("StaticObject4", Vector) = (0,0,0,0)
+		_StaticObject5 ("StaticObject5", Vector) = (0,0,0,0)
+		_StaticObject6 ("StaticObject6", Vector) = (0,0,0,0)
+		_StaticObject7 ("StaticObject7", Vector) = (0,0,0,0)
 	}
 
 	SubShader
@@ -45,6 +60,12 @@ Shader "Custom/FogRaymarch"
 			float  _Steps;
 			float  _Softness;
 			float  _RevealCount;
+			
+			// Shadow parameters
+			float  _ShadowIntensity;
+			float  _ShadowRadius;
+			float  _ShadowSoftness;
+			
 			float4 _RevealTower0;
 			float4 _RevealTower1;
 			float4 _RevealTower2;
@@ -53,6 +74,16 @@ Shader "Custom/FogRaymarch"
 			float4 _RevealTower5;
 			float4 _RevealTower6;
 			float4 _RevealTower7;
+			
+			// Static object positions
+			float4 _StaticObject0;
+			float4 _StaticObject1;
+			float4 _StaticObject2;
+			float4 _StaticObject3;
+			float4 _StaticObject4;
+			float4 _StaticObject5;
+			float4 _StaticObject6;
+			float4 _StaticObject7;
 			CBUFFER_END
 
 			struct Attributes
@@ -120,6 +151,40 @@ Shader "Custom/FogRaymarch"
 				return exp(-_HeightFalloff * max(worldPos.y - _HeightRef, 0.0));
 			}
 
+			float StaticObjectShadow(float3 worldPos)
+			{
+				float shadow = 0.0;
+				float s = max(_ShadowSoftness, 1e-5);
+				float r = _ShadowRadius;
+				
+				// Check all static objects for shadow contribution
+				float d0 = distance(worldPos, _StaticObject0.xyz);
+				if (_StaticObject0.w > 0) shadow = max(shadow, 1.0 - smoothstep(max(r - s, 0.0), r, d0));
+				
+				float d1 = distance(worldPos, _StaticObject1.xyz);
+				if (_StaticObject1.w > 0) shadow = max(shadow, 1.0 - smoothstep(max(r - s, 0.0), r, d1));
+				
+				float d2 = distance(worldPos, _StaticObject2.xyz);
+				if (_StaticObject2.w > 0) shadow = max(shadow, 1.0 - smoothstep(max(r - s, 0.0), r, d2));
+				
+				float d3 = distance(worldPos, _StaticObject3.xyz);
+				if (_StaticObject3.w > 0) shadow = max(shadow, 1.0 - smoothstep(max(r - s, 0.0), r, d3));
+				
+				float d4 = distance(worldPos, _StaticObject4.xyz);
+				if (_StaticObject4.w > 0) shadow = max(shadow, 1.0 - smoothstep(max(r - s, 0.0), r, d4));
+				
+				float d5 = distance(worldPos, _StaticObject5.xyz);
+				if (_StaticObject5.w > 0) shadow = max(shadow, 1.0 - smoothstep(max(r - s, 0.0), r, d5));
+				
+				float d6 = distance(worldPos, _StaticObject6.xyz);
+				if (_StaticObject6.w > 0) shadow = max(shadow, 1.0 - smoothstep(max(r - s, 0.0), r, d6));
+				
+				float d7 = distance(worldPos, _StaticObject7.xyz);
+				if (_StaticObject7.w > 0) shadow = max(shadow, 1.0 - smoothstep(max(r - s, 0.0), r, d7));
+				
+				return saturate(shadow * _ShadowIntensity);
+			}
+
 			float4 frag(Varyings i) : SV_Target
 			{
 				// Build view ray in world space
@@ -158,11 +223,18 @@ Shader "Custom/FogRaymarch"
 				{
 					float3 posWS = TransformObjectToWorld(posOS);
 					float mask = RevealMask(posWS);
-					float density = sigma * HeightAtten(posWS) * (1.0 - mask);
+					float shadow = StaticObjectShadow(posWS);
+					
+					// Apply shadow to increase density around static objects
+					float shadowMultiplier = 1.0 + shadow;
+					float density = sigma * HeightAtten(posWS) * (1.0 - mask) * shadowMultiplier;
 
 					float absorb = exp(-density * dt);
 					float contrib = 1.0 - absorb; // simple isotropic scattering approximation
-					col += _FogColor.rgb * contrib * transmittance;
+					
+					// Darken fog color in shadowed areas
+					float3 fogColor = lerp(_FogColor.rgb, _FogColor.rgb * 0.3, shadow);
+					col += fogColor * contrib * transmittance;
 					transmittance *= absorb;
 
 					if (transmittance < 0.01) break;

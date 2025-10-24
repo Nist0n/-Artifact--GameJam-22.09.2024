@@ -30,7 +30,7 @@ namespace GameEvents.Timed.Events
         {
             Towers.Remove(t);
         }
-
+        
         private void LateUpdate()
         {
             if (!fogMaterial) return;
@@ -39,10 +39,11 @@ namespace GameEvents.Timed.Events
             {
                 var t = Towers[i];
                 Vector3 p = t.transform.position;
-                _towerData[i] = new Vector4(p.x, p.y, p.z, Mathf.Max(t.Radius, 0f));
+                float radius = t.GetEffectiveRadius();
+                _towerData[i] = new Vector4(p.x, p.y, p.z, radius);
             }
             for (int i = _count; i < 8; i++) _towerData[i] = Vector4.zero;
-
+            
             fogMaterial.SetFloat("_RevealCount", _count);
             fogMaterial.SetFloat("_Softness", softness);
             fogMaterial.SetVector("_RevealTower0", _towerData[0]);
