@@ -3529,6 +3529,7 @@ GameObject:
   - component: {fileID: 117611332}
   - component: {fileID: 117611333}
   - component: {fileID: 117611334}
+  - component: {fileID: 117611335}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3710,6 +3711,23 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 11400000, guid: 4686f34d8015a774f88925424a9c6ce5, type: 2}
+--- !u!114 &117611335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117611328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 048646cb49a94ca469af724d58d823e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableDepthTexture: 1
+  depthTextureMode: 1
+  enableMotionVectors: 0
+  _camera: {fileID: 0}
+  _urpAsset: {fileID: 0}
 --- !u!1 &128764943
 GameObject:
   m_ObjectHideFlags: 0
@@ -48132,7 +48150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a715b8748e3b32045bb625bc6ab76587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Radius: 19
+  Radius: 0
+  RangeMultiplier: 1.7
+  MinRadius: 5
+  MaxRadius: 50
 --- !u!1 &919132149047070389 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8269471945438881495, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
@@ -48176,7 +48197,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a715b8748e3b32045bb625bc6ab76587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Radius: 19
+  Radius: 0
+  RangeMultiplier: 1.7
+  MinRadius: 5
+  MaxRadius: 50
 --- !u!1 &1328672639127493518
 GameObject:
   m_ObjectHideFlags: 0
@@ -48386,7 +48410,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a715b8748e3b32045bb625bc6ab76587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Radius: 19
+  Radius: 0
+  RangeMultiplier: 1.7
+  MinRadius: 5
+  MaxRadius: 50
 --- !u!114 &3575425489190128925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48655,7 +48682,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a715b8748e3b32045bb625bc6ab76587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Radius: 19
+  Radius: 0
+  RangeMultiplier: 1.7
+  MinRadius: 5
+  MaxRadius: 50
 --- !u!114 &4580696801591028444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48734,7 +48764,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a715b8748e3b32045bb625bc6ab76587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Radius: 19
+  Radius: 0
+  RangeMultiplier: 1.7
+  MinRadius: 5
+  MaxRadius: 50
 --- !u!1001 &6252351810708379095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49204,7 +49237,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a715b8748e3b32045bb625bc6ab76587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Radius: 19
+  Radius: 0
+  RangeMultiplier: 1.7
+  MinRadius: 5
+  MaxRadius: 50
 --- !u!1001 &7016436364397875027
 PrefabInstance:
   m_ObjectHideFlags: 0
