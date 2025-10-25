@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameEvents.Timed.Events
+namespace GameEvents.Timed.Events.Fog
 {
     public class FogRevealerManager : MonoBehaviour
     {

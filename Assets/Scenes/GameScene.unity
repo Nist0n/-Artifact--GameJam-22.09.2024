@@ -3529,7 +3529,6 @@ GameObject:
   - component: {fileID: 117611332}
   - component: {fileID: 117611333}
   - component: {fileID: 117611334}
-  - component: {fileID: 117611335}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3711,23 +3710,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 11400000, guid: 4686f34d8015a774f88925424a9c6ce5, type: 2}
---- !u!114 &117611335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 117611328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 048646cb49a94ca469af724d58d823e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enableDepthTexture: 1
-  depthTextureMode: 1
-  enableMotionVectors: 0
-  _camera: {fileID: 0}
-  _urpAsset: {fileID: 0}
 --- !u!1 &128764943
 GameObject:
   m_ObjectHideFlags: 0
@@ -8605,8 +8587,9 @@ MonoBehaviour:
   allEvents:
   - {fileID: 11400000, guid: 44869cb517538e44aaef01434d52bdbb, type: 2}
   - {fileID: 11400000, guid: fe3ce40b3ed22794bbbb39e506b2b09f, type: 2}
+  - {fileID: 11400000, guid: bcf5df7039691374e978c9d6bac4a342, type: 2}
   eventsPerCycle: 4
-  intervalBetweenEvents: 450
+  intervalBetweenEvents: 30
   autoStartOnAwake: 1
   loopCycles: 1
   debugLogs: 1
@@ -48411,8 +48394,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Radius: 0
-  RangeMultiplier: 1.7
-  MinRadius: 5
+  RangeMultiplier: 2
+  MinRadius: 20
   MaxRadius: 50
 --- !u!114 &3575425489190128925
 MonoBehaviour:
@@ -49238,7 +49221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Radius: 0
-  RangeMultiplier: 1.7
+  RangeMultiplier: 2
   MinRadius: 5
   MaxRadius: 50
 --- !u!1001 &7016436364397875027

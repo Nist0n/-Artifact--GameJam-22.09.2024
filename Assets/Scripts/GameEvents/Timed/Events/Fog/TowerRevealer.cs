@@ -1,7 +1,7 @@
-using UnityEngine;
 using Towers;
+using UnityEngine;
 
-namespace GameEvents.Timed.Events
+namespace GameEvents.Timed.Events.Fog
 {
     public class TowerRevealer : MonoBehaviour
     {
@@ -9,7 +9,7 @@ namespace GameEvents.Timed.Events
         public float Radius = 0f;
         
         [Tooltip("Multiplier for tower's attack range when calculating reveal radius")]
-        [Range(0.5f, 1.7f)]
+        [Range(0.5f, 2f)]
         public float RangeMultiplier = 1.0f;
         
         [Tooltip("Minimum reveal radius regardless of tower range")]
