@@ -42,7 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -1440,12 +1441,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d3c14149b1c345b3f68a986100328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionParallax: 5
-  positionParallaxScale: {x: 1, y: 1}
-  positionLerpSpeed: 10
-  rotationParallax: 5
-  rotationParallaxScale: {x: 1, y: 1}
-  rotationLerpSpeed: 10
+  PositionParallax: 1
+  PositionParallaxScale: {x: 1, y: 1}
+  PositionLerpSpeed: 10
+  RotationParallax: 15
+  RotationParallaxScale: {x: 1, y: 1}
+  RotationLerpSpeed: 10
 --- !u!1 &252687465
 GameObject:
   m_ObjectHideFlags: 0
@@ -3144,8 +3145,8 @@ GameObject:
   - component: {fileID: 603684593}
   - component: {fileID: 603684595}
   - component: {fileID: 603684596}
-  - component: {fileID: 603684597}
   - component: {fileID: 603684598}
+  - component: {fileID: 603684599}
   m_Layer: 5
   m_Name: OpenSettingsButton
   m_TagString: Untagged
@@ -3339,22 +3340,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &603684597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603684591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a28bca01513ea84f93f1e1591389581, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainMenuButtonsGroup: {fileID: 1532125309}
-  settingsButtonsGroup: {fileID: 232733838}
-  playGameButton: {fileID: 331084007}
-  quitButton: {fileID: 652158371}
 --- !u!114 &603684598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3367,6 +3352,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f02d8ab63cd2346a562ec3ec21ff00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &603684599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603684591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325e11fcb6cb35c4385ff58ff759b3cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenuButtonsGroup: {fileID: 1532125309}
+  settingsButtonsGroup: {fileID: 232733838}
 --- !u!1 &613960843
 GameObject:
   m_ObjectHideFlags: 0
@@ -3768,7 +3767,7 @@ MonoBehaviour:
     m_Value: 1
   OutputChannel: 1
   StandbyUpdate: 2
-  m_StreamingVersion: 20230301
+  m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
     TrackingTarget: {fileID: 0}
@@ -7303,8 +7302,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1907611152}
-  mainMenuButtonsGroup: {fileID: 1532125309}
-  settingsButtonsGroup: {fileID: 232733838}
   sphereCamera: {fileID: 1429402084}
   volume: {fileID: 2036106573}
 --- !u!4 &1348903515
@@ -7361,7 +7358,7 @@ MonoBehaviour:
     m_Value: 3
   OutputChannel: 1
   StandbyUpdate: 2
-  m_StreamingVersion: 20230301
+  m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
     TrackingTarget: {fileID: 0}
@@ -7984,12 +7981,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252d3c14149b1c345b3f68a986100328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionParallax: 5
-  positionParallaxScale: {x: 1, y: 1}
-  positionLerpSpeed: 10
-  rotationParallax: 15
-  rotationParallaxScale: {x: 1, y: 1}
-  rotationLerpSpeed: 10
+  PositionParallax: 1
+  PositionParallaxScale: {x: 1, y: 1}
+  PositionLerpSpeed: 10
+  RotationParallax: 15
+  RotationParallaxScale: {x: 1, y: 1}
+  RotationLerpSpeed: 10
 --- !u!1 &1535003141
 GameObject:
   m_ObjectHideFlags: 0
@@ -10831,8 +10828,8 @@ GameObject:
   - component: {fileID: 2059700872}
   - component: {fileID: 2059700871}
   - component: {fileID: 2059700870}
-  - component: {fileID: 2059700874}
   - component: {fileID: 2059700875}
+  - component: {fileID: 2059700876}
   m_Layer: 5
   m_Name: BackToMenuButton
   m_TagString: Untagged
@@ -11026,22 +11023,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059700868}
   m_CullTransparentMesh: 1
---- !u!114 &2059700874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2059700868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc0a140b26842564e9119569395ff491, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainMenuButtonsGroup: {fileID: 1532125309}
-  settingsButtonsGroup: {fileID: 232733838}
-  playGameButton: {fileID: 331084007}
-  quitButton: {fileID: 652158371}
 --- !u!114 &2059700875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11054,6 +11035,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f02d8ab63cd2346a562ec3ec21ff00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2059700876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059700868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 325e11fcb6cb35c4385ff58ff759b3cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenuButtonsGroup: {fileID: 1532125309}
+  settingsButtonsGroup: {fileID: 232733838}
 --- !u!1 &2094176527
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,8 +11,6 @@ namespace UI.MainMenu
     public class ButtonManager : MonoBehaviour
     {
         [SerializeField] private Canvas canvas;
-        [SerializeField] private GameObject mainMenuButtonsGroup;
-        [SerializeField] private GameObject settingsButtonsGroup;
         [SerializeField] private CinemachineCamera sphereCamera;
         [SerializeField] private Volume volume;
         
