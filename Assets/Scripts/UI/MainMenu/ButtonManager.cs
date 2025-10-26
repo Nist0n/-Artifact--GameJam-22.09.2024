@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using GameConfiguration.Settings.Audio;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace UI.MainMenu
 
         private void Start()
         {
+            canvas.GetComponent<CanvasGroup>().DOFade(1, 3);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             _canvasComponent = canvas.GetComponent<Canvas>();
@@ -33,15 +35,10 @@ namespace UI.MainMenu
         private IEnumerator ChangeCamera()
         {
             _canvasComponent.enabled = false;
-            _volumeProfile = volume.profile;
-            _volumeProfile.TryGet(out DepthOfField dpf);
-            dpf.active = false;
-            _volumeProfile.TryGet(out Vignette vignette);
-            vignette.intensity = new ClampedFloatParameter(0.6f, 0f, 1f, true);
             sphereCamera.Priority = 2;
         
-            yield return new WaitForSeconds(3f);
-            SceneManager.LoadScene("GameScene");
+            yield return new WaitForSeconds(2f);
+            LoadingScreen.Instance.LoadScene("GameScene");
         }
     
         public void QuitGame()

@@ -24,7 +24,7 @@ namespace GameEvents.Timed
         public System.Action OnBossSpawned;
         public System.Action OnEventsContinued;
         
-        private void Awake()
+        private void Start()
         {
             ValidateCenterSpawnerIndex();
         }
