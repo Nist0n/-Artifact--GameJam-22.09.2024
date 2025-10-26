@@ -3552,7 +3552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5751aef57cc94d5b8adc61b8d69a4477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathRewards: {fileID: 0}
+  deathRewards: {fileID: 3955192194497993978}
   navMeshAgent: {fileID: 7599041218178109952}
   animationController: {fileID: 3861515968349280852}
   animator: {fileID: 2447767959242321802}
@@ -3569,9 +3569,10 @@ MonoBehaviour:
   Level: 0
   Soul: {fileID: 1277085015814301893, guid: ff37baff706d86848addca8e6f134b91, type: 3}
   IsDamaged: 0
-  Back: {fileID: 0}
-  Front: {fileID: 0}
-  DeathEvent: {fileID: 0}
+  Back: {fileID: 8667929164844559694}
+  Front: {fileID: 5175500859143392944}
+  DeathEvent: {fileID: 11400000, guid: d1b348893b2595c4c9e3e78604a42eec, type: 2}
+  IsBurning: 0
   Running: {fileID: 6755229276482035284}
   TakingDamage: {fileID: 6835847986223872029}
   Freeze: {fileID: 8699779116623240230}
@@ -5334,6 +5335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4279268050277942621}
   - component: {fileID: 4825178784544832151}
+  - component: {fileID: 3955192194497993978}
   m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
@@ -5366,6 +5368,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87ee87042de41a7418cc2b5b4c8ea2d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3955192194497993978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698123830206781677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1624a765f8a4c54c9d90436e4116866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1702718131180203007

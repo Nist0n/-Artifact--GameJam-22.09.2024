@@ -14,7 +14,8 @@ namespace GameEvents.Timed
 		[SerializeField] private bool autoStartOnAwake = true;
 		[SerializeField] private bool loopCycles = true;
 		[SerializeField] private bool debugLogs = true;
-
+		[SerializeField] private BossChoiceManager bossChoiceManager;
+	
 		private readonly Queue<TimedEvent> _queue = new Queue<TimedEvent>();
 		private Coroutine _runner;
 		private GameConfig _config;
@@ -29,6 +30,12 @@ namespace GameEvents.Timed
 			{
 				_config = FindAnyObjectByType<GameConfig>();
 				if (debugLogs) Debug.Log("[TimedEventManager] GameConfig resolved in Awake via FindAnyObjectByType: " + (_config));
+			}
+			
+			// Find BossChoiceManager if not assigned
+			if (!bossChoiceManager)
+			{
+				bossChoiceManager = FindAnyObjectByType<BossChoiceManager>();
 			}
 		}
 
@@ -110,15 +117,50 @@ namespace GameEvents.Timed
 			_runner = null;
 			if (loopCycles)
 			{
-				// Wait for decision: summon boss or continue
+				ShowBossChoice();
 			}
 		}
 		
-		public void SummonFinalBoss()
+		private void ShowBossChoice()
 		{
-			// TODO: hook into existing boss system (not present yet)
-			// Placeholder: simply stop further cycles
+			if (bossChoiceManager)
+			{
+				bossChoiceManager.ShowBossChoice();
+			}
+			else
+			{
+				Debug.LogWarning("[TimedEventManager] BossChoiceManager not found! Cannot show boss choice.");
+			}
+		}
+		
+		private void OnEnable()
+		{
+			if (bossChoiceManager)
+			{
+				bossChoiceManager.OnBossSpawned += OnBossSpawned;
+				bossChoiceManager.OnEventsContinued += OnEventsContinued;
+			}
+		}
+		
+		private void OnDisable()
+		{
+			if (bossChoiceManager)
+			{
+				bossChoiceManager.OnBossSpawned -= OnBossSpawned;
+				bossChoiceManager.OnEventsContinued -= OnEventsContinued;
+			}
+		}
+		
+		private void OnBossSpawned()
+		{
+			if (debugLogs) Debug.Log("[TimedEventManager] Boss spawned - stopping event cycles");
 			loopCycles = false;
+		}
+		
+		private void OnEventsContinued()
+		{
+			if (debugLogs) Debug.Log("[TimedEventManager] Events continued - starting next cycle");
+			StartCoroutine(StartNextCycle());
 		}
 	}
 }

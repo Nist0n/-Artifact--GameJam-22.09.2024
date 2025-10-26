@@ -15,8 +15,8 @@ MonoBehaviour:
   EventId: 321313
   DisplayName: "\u0413\u043B\u043E\u0431\u0430\u043B\u044C\u043D\u044B\u0439 \u0441\u043F\u0438\u0434"
   Description: "\u043D\u0443 \u0442\u0438\u043F\u0430 \u0441\u043F\u0438\u0434 \u0432\u0441\u0435\u043C"
-  MinDifficulty: 0
-  MaxDifficulty: 3
-  SelectionWeight: 0.007
+  MinDifficulty: 3
+  MaxDifficulty: 4
+  SelectionWeight: 1
   DefaultDuration: 20
   SpeedMultiplier: 1.7

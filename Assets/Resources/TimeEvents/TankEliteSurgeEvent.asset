@@ -16,11 +16,11 @@ MonoBehaviour:
   DisplayName: "\u041D\u0443 \u0438 \u0436\u0438\u0440"
   Description: "\u041D\u0443 \u0442\u0438\u043F\u0430 \u0432\u043E\u0440\u043B\u0434
     \u043E\u0444 \u0442\u044D\u043D\u043A\u0441 \u043D\u0430\u0447\u0438\u043D\u0430\u0435\u0442\u0441\u044F"
-  MinDifficulty: 0
-  MaxDifficulty: 3
-  SelectionWeight: 0.017
+  MinDifficulty: 5
+  MaxDifficulty: 7
+  SelectionWeight: 1
   DefaultDuration: 30
   MonsterCard: {fileID: 11400000, guid: 0707c726b557abc4d8c14c8e44a3e63e, type: 2}
   MonsterEliteDef: {fileID: 11400000, guid: e2ce7a083fee3b24994bf7c00ee7fe0d, type: 2}
-  SpawnCount: 12
+  SpawnCount: 8
   EliteValueMultiplier: 1.5

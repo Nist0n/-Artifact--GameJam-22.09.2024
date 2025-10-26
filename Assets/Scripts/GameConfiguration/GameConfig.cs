@@ -179,10 +179,7 @@ namespace GameConfiguration
         private void GameWon()
         {
             HasWon = true;
-            foreach (var combatDirector in combatDirectors)
-            {
-                combatDirector.enabled = false;
-            }
+            DisableAllDirectors();
             victoryUI.SetActive(true);
             foreach (var obj in objectsToHide)
             {
@@ -193,6 +190,14 @@ namespace GameConfiguration
         public void OnOnEnemyAdded(GameObject obj)
         {
             OnEnemyAdded?.Invoke(obj);
+        }
+
+        public void DisableAllDirectors()
+        {
+            foreach (var combatDirector in combatDirectors)
+            {
+                combatDirector.enabled = false;
+            }
         }
     }
 }
