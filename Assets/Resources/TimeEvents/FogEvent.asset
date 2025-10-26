@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: 
   MinDifficulty: 1
   MaxDifficulty: 4
-  SelectionWeight: 1
+  SelectionWeight: 0.01
   DefaultDuration: 28
   fogMaterial: {fileID: 2100000, guid: a0db3a3999f5b2243b0267cbe3b917df, type: 2}
   maxDensity: 5

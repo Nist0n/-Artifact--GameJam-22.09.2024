@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Enemies;
 using GameConfiguration;
+using GameEvents.Timed.Events;
 using StaticClasses;
 using Towers.Abilities.Active;
 using Unity.Cinemachine;
@@ -67,6 +68,7 @@ namespace Towers
         {
             StaticClasses.GameEvents.GamePause += OnGamePause;
             StaticClasses.GameEvents.GameLost += DisableImage;
+            TowerAbilitiesDisableEvent.HandleAbilityUse += HandleAbilityUsing;
         }
 
         private void OnDisable()
@@ -170,7 +172,9 @@ namespace Towers
         
         private void HandleAbilityActivation()
         {
-            if (_abilities.HasActiveAbility && !_abilities.Ability.GetComponent<ActiveAbility>().IsAbilityUsed())
+            if (!_abilities.HasActiveAbility) return;
+
+            if (!_abilities.Ability.GetComponent<ActiveAbility>().IsAbilityUsed() && _abilities.CanUseActiveAbility)
             {
                 DisableImage();
                 _abilityRange.transform.localScale *= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction();
@@ -309,6 +313,14 @@ namespace Towers
             {
                 reticle.enabled = !condition;
             }
+        }
+
+        private void HandleAbilityUsing(bool temp)
+        {
+            if (!_abilities.HasActiveAbility) return;
+            isAbilityActived = false;
+            _abilityRange.transform.localScale /= _abilities.Ability.GetComponent<ActiveAbility>().RangeOfAction();
+            _abilityRange.transform.position = new Vector3(1000f, 1000f, 1000f);
         }
     }
 }

@@ -2,10 +2,6 @@ using UnityEngine;
 
 namespace Optimization
 {
-    /// <summary>
-    /// Система очистки кэша для предотвращения утечек памяти
-    /// Автоматически очищает кэш от уничтоженных объектов
-    /// </summary>
     public class CacheCleanup : MonoBehaviour
     {
         [SerializeField] private float cleanupInterval = 5f; // Очищаем каждые 5 секунд
@@ -30,7 +26,6 @@ namespace Optimization
         {
             if (pauseStatus)
             {
-                // Очищаем кэш при паузе приложения
                 ComponentCache.ClearAllCache();
             }
         }

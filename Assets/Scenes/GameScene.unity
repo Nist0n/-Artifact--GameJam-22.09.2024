@@ -7830,6 +7830,7 @@ RectTransform:
   m_Children:
   - {fileID: 1496471280}
   - {fileID: 724700190}
+  - {fileID: 550171183}
   m_Father: {fileID: 1822457747}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8588,8 +8589,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 44869cb517538e44aaef01434d52bdbb, type: 2}
   - {fileID: 11400000, guid: fe3ce40b3ed22794bbbb39e506b2b09f, type: 2}
   - {fileID: 11400000, guid: bcf5df7039691374e978c9d6bac4a342, type: 2}
+  - {fileID: 11400000, guid: 8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e, type: 2}
   eventsPerCycle: 4
-  intervalBetweenEvents: 30
+  intervalBetweenEvents: 450
   autoStartOnAwake: 1
   loopCycles: 1
   debugLogs: 1
@@ -12643,6 +12645,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547829639}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &550171182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 550171183}
+  - component: {fileID: 550171185}
+  - component: {fileID: 550171184}
+  m_Layer: 5
+  m_Name: DisableAbility
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &550171183
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550171182}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.16, y: 2.16, z: 2.16}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 304915761}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 60, y: 60}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &550171184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550171182}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 7c12c97f9d2a7984d843c03b6d812bc5, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &550171185
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550171182}
+  m_CullTransparentMesh: 1
 --- !u!1 &550751098
 GameObject:
   m_ObjectHideFlags: 0
@@ -48453,6 +48530,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1822457746}
     - target: {fileID: 994077674886679309, guid: ca575fa051db6974fb636705bd346d03, type: 3}
+      propertyPath: abilityDisabled
+      value: 
+      objectReference: {fileID: 550171184}
+    - target: {fileID: 994077674886679309, guid: ca575fa051db6974fb636705bd346d03, type: 3}
       propertyPath: passivesTransform
       value: 
       objectReference: {fileID: 107072261}
@@ -48532,6 +48613,10 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1433570752}
+    - target: {fileID: 4887585456182582242, guid: ca575fa051db6974fb636705bd346d03, type: 3}
+      propertyPath: abilityDisabled
+      value: 
+      objectReference: {fileID: 550171184}
     - target: {fileID: 4887585456182582242, guid: ca575fa051db6974fb636705bd346d03, type: 3}
       propertyPath: rechargeAbility
       value: 
@@ -48768,6 +48853,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1143373561}
     - target: {fileID: 299173886661617663, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
+      propertyPath: abilityDisabled
+      value: 
+      objectReference: {fileID: 550171184}
+    - target: {fileID: 299173886661617663, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
       propertyPath: rechargeAbility
       value: 
       objectReference: {fileID: 645806253}
@@ -48799,6 +48888,10 @@ PrefabInstance:
       propertyPath: abilitiesObject
       value: 
       objectReference: {fileID: 1822457746}
+    - target: {fileID: 1527353363443726447, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
+      propertyPath: abilityDisabled
+      value: 
+      objectReference: {fileID: 550171184}
     - target: {fileID: 1527353363443726447, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
       propertyPath: passivesTransform
       value: 
@@ -48950,6 +49043,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1959881776}
     - target: {fileID: 1747375655861413608, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
+      propertyPath: abilityDisabled
+      value: 
+      objectReference: {fileID: 550171184}
+    - target: {fileID: 1747375655861413608, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
       propertyPath: rechargeAbility
       value: 
       objectReference: {fileID: 645806253}
@@ -48985,6 +49082,10 @@ PrefabInstance:
       propertyPath: abilitiesObject
       value: 
       objectReference: {fileID: 1822457746}
+    - target: {fileID: 4482845753825977457, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
+      propertyPath: abilityDisabled
+      value: 
+      objectReference: {fileID: 550171184}
     - target: {fileID: 4482845753825977457, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
       propertyPath: passivesTransform
       value: 
@@ -49056,6 +49157,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1712728332}
     - target: {fileID: 2819424521365261996, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
+      propertyPath: abilityDisabled
+      value: 
+      objectReference: {fileID: 550171184}
+    - target: {fileID: 2819424521365261996, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
       propertyPath: rechargeAbility
       value: 
       objectReference: {fileID: 645806253}
@@ -49091,6 +49196,10 @@ PrefabInstance:
       propertyPath: abilitiesObject
       value: 
       objectReference: {fileID: 1822457746}
+    - target: {fileID: 4592922054296886805, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
+      propertyPath: abilityDisabled
+      value: 
+      objectReference: {fileID: 550171184}
     - target: {fileID: 4592922054296886805, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
       propertyPath: passivesTransform
       value: 
@@ -49257,6 +49366,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 523563758}
     - target: {fileID: 2597579229329932202, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
+      propertyPath: abilityDisabled
+      value: 
+      objectReference: {fileID: 550171184}
+    - target: {fileID: 2597579229329932202, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
       propertyPath: rechargeAbility
       value: 
       objectReference: {fileID: 645806253}
@@ -49328,6 +49441,10 @@ PrefabInstance:
       propertyPath: abilitiesObject
       value: 
       objectReference: {fileID: 1822457746}
+    - target: {fileID: 8912294310350394961, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
+      propertyPath: abilityDisabled
+      value: 
+      objectReference: {fileID: 550171184}
     - target: {fileID: 8912294310350394961, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
       propertyPath: passivesTransform
       value: 
@@ -49435,6 +49552,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 784538994}
     - target: {fileID: 7328125474371382164, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
+      propertyPath: abilityDisabled
+      value: 
+      objectReference: {fileID: 550171184}
+    - target: {fileID: 7328125474371382164, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
       propertyPath: rechargeAbility
       value: 
       objectReference: {fileID: 645806253}
@@ -49470,6 +49591,10 @@ PrefabInstance:
       propertyPath: abilitiesObject
       value: 
       objectReference: {fileID: 1822457746}
+    - target: {fileID: 8868298108112695238, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
+      propertyPath: abilityDisabled
+      value: 
+      objectReference: {fileID: 550171184}
     - target: {fileID: 8868298108112695238, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
       propertyPath: passivesTransform
       value: 

@@ -3,21 +3,14 @@ using UnityEngine;
 
 namespace Optimization
 {
-    /// <summary>
-    /// Система кэширования компонентов для избежания дорогих GetComponent вызовов
-    /// Значительно улучшает производительность при частом обращении к компонентам
-    /// </summary>
     public static class ComponentCache
     {
         private static readonly Dictionary<GameObject, Dictionary<System.Type, Component>> _cache = 
             new Dictionary<GameObject, Dictionary<System.Type, Component>>();
         
-        /// <summary>
-        /// Получает компонент из кэша или добавляет его в кэш
-        /// </summary>
         public static T GetCachedComponent<T>(GameObject obj) where T : Component
         {
-            if (obj == null) return null;
+            if (!obj) return null;
             
             if (!_cache.ContainsKey(obj))
             {
@@ -35,9 +28,6 @@ namespace Optimization
             return objCache[type] as T;
         }
         
-        /// <summary>
-        /// Очищает кэш для конкретного объекта
-        /// </summary>
         public static void ClearCache(GameObject obj)
         {
             if (_cache.ContainsKey(obj))
@@ -46,24 +36,18 @@ namespace Optimization
             }
         }
         
-        /// <summary>
-        /// Очищает весь кэш
-        /// </summary>
         public static void ClearAllCache()
         {
             _cache.Clear();
         }
         
-        /// <summary>
-        /// Очищает кэш для уничтоженных объектов
-        /// </summary>
         public static void CleanupDestroyedObjects()
         {
             var keysToRemove = new List<GameObject>();
             
             foreach (var kvp in _cache)
             {
-                if (kvp.Key == null)
+                if (!kvp.Key)
                 {
                     keysToRemove.Add(kvp.Key);
                 }

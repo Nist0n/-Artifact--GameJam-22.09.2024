@@ -18,9 +18,9 @@ MonoBehaviour:
     \u043E\u0444 \u0442\u044D\u043D\u043A\u0441 \u043D\u0430\u0447\u0438\u043D\u0430\u0435\u0442\u0441\u044F"
   MinDifficulty: 0
   MaxDifficulty: 3
-  SelectionWeight: 1
+  SelectionWeight: 0.017
   DefaultDuration: 30
-  MonsterCard: {fileID: 0}
-  MonsterEliteDef: {fileID: 0}
+  MonsterCard: {fileID: 11400000, guid: 0707c726b557abc4d8c14c8e44a3e63e, type: 2}
+  MonsterEliteDef: {fileID: 11400000, guid: e2ce7a083fee3b24994bf7c00ee7fe0d, type: 2}
   SpawnCount: 12
   EliteValueMultiplier: 1.5

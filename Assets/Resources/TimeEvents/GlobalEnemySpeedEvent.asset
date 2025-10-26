@@ -17,6 +17,6 @@ MonoBehaviour:
   Description: "\u043D\u0443 \u0442\u0438\u043F\u0430 \u0441\u043F\u0438\u0434 \u0432\u0441\u0435\u043C"
   MinDifficulty: 0
   MaxDifficulty: 3
-  SelectionWeight: 1
+  SelectionWeight: 0.007
   DefaultDuration: 20
   SpeedMultiplier: 1.7

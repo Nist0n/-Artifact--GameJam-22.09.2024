@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using GameEvents.Timed.Events;
 using Towers.Abilities.Active;
 using Towers.Abilities.Passive;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Towers
         [SerializeField] private List<GameObject> imagePositions;
         [SerializeField] private GameObject passivesTransform;
         [SerializeField] private GameObject imageBackgroundPrefab;
+        [SerializeField] private Image abilityDisabled;
         
         private PassiveAbilities _passAbility;
         private ImageCooldowns _imageCooldowns;
@@ -22,6 +24,7 @@ namespace Towers
         public List<GameObject> RandomActiveAbilities;
         public List<GameObject> RandomPassiveAbilities;
         public bool HasActiveAbility = false;
+        public bool CanUseActiveAbility = true;
         public List<GameObject> Abilities;
         public GameObject Ability;
         public bool IsPassiveSet = false;
@@ -29,6 +32,16 @@ namespace Towers
         public GameObject Circle;
         public bool PassivesShowed = false;
         public bool ActivesShowed = false;
+
+        private void OnEnable()
+        {
+            TowerAbilitiesDisableEvent.HandleAbilityUse += HandleActiveAbilityUsing;
+        }
+
+        private void OnDisable()
+        {
+            TowerAbilitiesDisableEvent.HandleAbilityUse -= HandleActiveAbilityUsing;
+        }
 
         private void Start()
         {
@@ -82,6 +95,7 @@ namespace Towers
                 var active = ability.GetComponent<ActiveAbility>();
                 if (active)
                 {
+                    if (!CanUseActiveAbility) abilityDisabled.enabled = true;
                     _imageCooldowns.AbilityImage.enabled = true;
                     _imageCooldowns.ParentImage.enabled = true;
                     _imageCooldowns.AbilityImage.sprite = ability.GetComponent<Image>().sprite;
@@ -129,6 +143,7 @@ namespace Towers
 
         public void HideAbilities()
         {
+            abilityDisabled.enabled = false;
             _imageCooldowns.AbilityImage.enabled = false;
             _imageCooldowns.ParentImage.enabled = false;
             _imageCooldowns.AbilityImage.sprite = null;
@@ -170,6 +185,13 @@ namespace Towers
             RandomActiveAbilities.Clear();
             Ability = null;
             HasActiveAbility = false;
+        }
+
+        private void HandleActiveAbilityUsing(bool abilityCondition)
+        {
+            if (TowerSelected) abilityDisabled.enabled = !abilityCondition;
+            CanUseActiveAbility = abilityCondition;
+            abilityDisabled.gameObject.SetActive(!abilityCondition);
         }
     }
 }

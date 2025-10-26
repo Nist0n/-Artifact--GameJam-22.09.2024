@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using Enemies;
 using GameConfiguration;
 using GameConfiguration.Settings.Audio;
+using GameEvents.Timed.Events;
 using Optimization;
 using Towers.Abilities.Passive;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace Towers
 {
@@ -60,7 +62,6 @@ namespace Towers
 
         [SerializeField] private bool isBuffed;
         
-        private readonly List<GameObject> _tempEnemiesList = new List<GameObject>();
         private float _lastEnemyCheckTime;
         private const float EnemyCheckInterval = 0.1f;
         private float _attackRangeSqr;
