@@ -32,7 +32,6 @@ namespace GameEvents.Timed
 				if (debugLogs) Debug.Log("[TimedEventManager] GameConfig resolved in Awake via FindAnyObjectByType: " + (_config));
 			}
 			
-			// Find BossChoiceManager if not assigned
 			if (!bossChoiceManager)
 			{
 				bossChoiceManager = FindAnyObjectByType<BossChoiceManager>();

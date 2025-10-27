@@ -22,6 +22,10 @@ namespace Towers
             {
                 DisplayOfCd();
             }
+            else
+            {
+                TextTimer.text = null;
+            }
         }
 
         private void DisplayOfCd()
