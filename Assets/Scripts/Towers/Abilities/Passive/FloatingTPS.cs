@@ -15,8 +15,8 @@ namespace Towers.Abilities.Passive
 
         protected override void SetPassiveBonus()
         {
-            connectedTower.buffedFireRatePercent *= TPS;
-            connectedTower.buffedDamagePercent *= DAMAGE_BUFF;
+            connectedTower.BuffedFireRatePercent *= TPS;
+            connectedTower.BuffedDamagePercent *= DAMAGE_BUFF;
             isPassiveUsed = true;
             activeOnTheTower = true;
         }

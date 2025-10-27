@@ -4,88 +4,78 @@ using System.Collections.Generic;
 using Enemies;
 using GameConfiguration;
 using GameConfiguration.Settings.Audio;
-using GameEvents.Timed.Events;
 using Optimization;
 using Towers.Abilities.Passive;
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 namespace Towers
 {
     public class Tower : MonoBehaviour
     {
-        public float damage;
-        public float fireRate; // Time between shots (in seconds)
-        public float attackRange;
-
         [SerializeField] protected bool slowness;
-        
-		private float _slowMultiplier = 1f; 
-		private float _slowDuration = 3f;
-        private float _slowCount;
-
         [SerializeField] private GameObject projectilePrefab;
-
         [SerializeField] private AbilityTowerBuff abilityTowerBuff;
-
         [SerializeField] private RechargeAbility rechargeAbility;
-
-        public TowerCamera towerCameraComp;
-        
-        public CinemachineCamera towerCamera;
+        [SerializeField] private bool isBuffed;
 
         protected GameObject CurrentTarget;
-
-        private bool _canShoot = true;
-        public bool Piloted;
 
         public static float BuffDuration = 10f;
         private static float _cdDuration = 60f;
 
         private float _buffTimer;
         private float _cdTimer;
-        
-        public bool IsOnCooldown;
-        
-        public List<GameObject> enemiesInRange;
-
-        public float buffedFireRatePercent;
-        public float buffedDamagePercent;
-        
-        public float initialDamage;
-        public float initialFireRate;
+        private float _initialDamage;
+        private float _initialFireRate;
         private float _initialAttackRange;
-
-        public AudioSource audioSource;
-
-        [SerializeField] private bool isBuffed;
-        
+        private float _slowMultiplier = 1f; 
+        private float _slowDuration = 3f;
+        private float _slowCount;
         private float _lastEnemyCheckTime;
         private const float EnemyCheckInterval = 0.1f;
         private float _attackRangeSqr;
+        private bool _canShoot = true;
+        private float _experience = 0;
+        private int _level = 1;
+        private Action _onLevelUp;
+        
+        public bool IsOnCooldown;
+        public List<GameObject> EnemiesInRange;
+        public float BuffedFireRatePercent;
+        public float BuffedDamagePercent;
+        public TowerCamera TowerCameraComp;
+        public CinemachineCamera TowerCamera;
+        public AudioSource audioSource;
+        public bool Piloted;
+        public float damage;
+        public float fireRate; // Time between shots (in seconds)
+        public float attackRange;
 
         private void OnEnable()
         {
             RangeGiga.OnRangeBuff += ResetTowerStats;
+            StaticClasses.GameEvents.EnemyDeath += GetExp;
+            _onLevelUp += UpdateDamagePerLevel;
         }
 
         private void OnDisable()
         {
             RangeGiga.OnRangeBuff -= ResetTowerStats;
+            StaticClasses.GameEvents.EnemyDeath -= GetExp;
+            _onLevelUp -= UpdateDamagePerLevel;
         }
 
         private void Start()
         {
-            initialDamage = damage;
-            initialFireRate = fireRate;
+            _initialDamage = damage;
+            _initialFireRate = fireRate;
             _initialAttackRange = attackRange;
             _attackRangeSqr = attackRange * attackRange;
             
-            if (enemiesInRange == null)
+            if (EnemiesInRange == null)
             {
-                enemiesInRange = new List<GameObject>();
+                EnemiesInRange = new List<GameObject>();
             }
         }
         
@@ -104,7 +94,7 @@ namespace Towers
                 _lastEnemyCheckTime = Time.time;
             }
 
-            if (enemiesInRange.Count == 0)
+            if (EnemiesInRange.Count == 0)
             {
                 return;
             }
@@ -141,7 +131,7 @@ namespace Towers
         
         private void UpdateEnemiesInRange()
         {
-            enemiesInRange.Clear();
+            EnemiesInRange.Clear();
             
             if (GameConfig.Instance.EnemyList.Count == 0)
             {
@@ -157,23 +147,23 @@ namespace Towers
                 
                 if (Vector3.SqrMagnitude(enemy.transform.position - towerPos) < _attackRangeSqr)
                 {
-                    enemiesInRange.Add(enemy);
+                    EnemiesInRange.Add(enemy);
                 }
             }
         }
         
         private void UpdateCurrentTarget()
         {
-            if (enemiesInRange.Count == 0)
+            if (EnemiesInRange.Count == 0)
             {
                 CurrentTarget = null;
                 return;
             }
             
             float smallestSqrDist = float.MaxValue;
-            GameObject closestEnemyToMainBuilding = enemiesInRange[0];
+            GameObject closestEnemyToMainBuilding = EnemiesInRange[0];
             
-            foreach (var enemy in enemiesInRange)
+            foreach (var enemy in EnemiesInRange)
             {
                 if (!enemy) continue;
                 
@@ -212,16 +202,16 @@ namespace Towers
             
             if (Input.GetMouseButton(0))
             {
-                if (!towerCameraComp?.CurrentTarget) return;
+                if (!TowerCameraComp?.CurrentTarget) return;
                 
-                var enemyPos = towerCameraComp.CurrentTarget.transform.position;
+                var enemyPos = TowerCameraComp.CurrentTarget.transform.position;
                 var position = transform.position;
                 
                 float sqrDistance = Vector3.SqrMagnitude(position - enemyPos);
                 if (sqrDistance > _attackRangeSqr) return;
 
                 ResetTowerStats();
-                StartCoroutine(Shoot(position, towerCameraComp.CurrentTarget));
+                StartCoroutine(Shoot(position, TowerCameraComp.CurrentTarget));
             }
         }
 
@@ -247,7 +237,7 @@ namespace Towers
                         Vector3 projectilePos =
                             new Vector3(currentPos.x, currentPos.y + 12.7f, currentPos.z);
                         projectile.transform.position = projectilePos;
-							projectile.damage = initialDamage;
+							projectile.damage = _initialDamage;
 							projectile.slowness = slowness;
 							projectile.SlowMultiplier = _slowMultiplier;
 							projectile.SlowDuration = _slowDuration;
@@ -260,7 +250,7 @@ namespace Towers
                         Vector3 projectilePos =
                             new Vector3(currentPos.x, currentPos.y + 12.7f, currentPos.z);
                         Projectile fallbackProjectile = Instantiate(projectilePrefab, projectilePos, Quaternion.identity).GetComponent<Projectile>();
-							fallbackProjectile.damage = initialDamage;
+							fallbackProjectile.damage = _initialDamage;
 							fallbackProjectile.slowness = slowness;
 							fallbackProjectile.SlowMultiplier = _slowMultiplier;
 							fallbackProjectile.SlowDuration = _slowDuration;
@@ -271,7 +261,7 @@ namespace Towers
                 }
             }
 
-            yield return new WaitForSeconds(initialFireRate);
+            yield return new WaitForSeconds(_initialFireRate);
             _canShoot = true;
         }
 
@@ -294,21 +284,21 @@ namespace Towers
         private void Buff()
         {
             isBuffed = true;
-            initialFireRate = fireRate / (1 + abilityTowerBuff.AbilityFireRateBuff) * buffedFireRatePercent;
-            initialDamage = Mathf.Round(damage * abilityTowerBuff.AbilityDamageBuff) * buffedDamagePercent;
+            _initialFireRate = fireRate / (1 + abilityTowerBuff.AbilityFireRateBuff) * BuffedFireRatePercent;
+            _initialDamage = Mathf.Round(damage * abilityTowerBuff.AbilityDamageBuff) * BuffedDamagePercent;
         }
 
         private void ResetTowerStats()
         {
             if (isBuffed)
             {
-                initialDamage = Mathf.Round(damage * abilityTowerBuff.AbilityDamageBuff) * buffedDamagePercent;
-                initialFireRate = fireRate / (1 + abilityTowerBuff.AbilityFireRateBuff) * buffedFireRatePercent;
+                _initialDamage = Mathf.Round(damage * abilityTowerBuff.AbilityDamageBuff) * BuffedDamagePercent;
+                _initialFireRate = fireRate / (1 + abilityTowerBuff.AbilityFireRateBuff) * BuffedFireRatePercent;
                 return;
             }
             
-            initialDamage = Mathf.Round(damage * abilityTowerBuff.AbilityDamageBuff);
-            initialFireRate = fireRate / (1 + abilityTowerBuff.AbilityFireRateBuff);
+            _initialDamage = Mathf.Round(damage * abilityTowerBuff.AbilityDamageBuff);
+            _initialFireRate = fireRate / (1 + abilityTowerBuff.AbilityFireRateBuff);
             attackRange = _initialAttackRange + (1.4f * abilityTowerBuff.AbilityRangeBuff / (0.1f * abilityTowerBuff.AbilityRangeBuff + 0.3f));
             
             _attackRangeSqr = attackRange * attackRange;
@@ -316,8 +306,8 @@ namespace Towers
 
         private void SuppressTower()
         {
-            initialDamage = Mathf.Round(damage * abilityTowerBuff.AbilityDamageBuff) / 2;
-            initialFireRate = fireRate / (1 + abilityTowerBuff.AbilityFireRateBuff) * 2;
+            _initialDamage = Mathf.Round(damage * abilityTowerBuff.AbilityDamageBuff) / 2;
+            _initialFireRate = fireRate / (1 + abilityTowerBuff.AbilityFireRateBuff) * 2;
         }
 
 		public void SetSlowness()
@@ -347,6 +337,30 @@ namespace Towers
                 rechargeAbility.AbilityImage.enabled = false;
                 rechargeAbility.GetProperties(_cdTimer, _cdDuration);
             }
+        }
+        
+        private void GetExp(float money, float souls)
+        {
+            _experience += money;
+            UpdateLevel();
+        }
+
+        private void UpdateLevel()
+        {
+            int newLevel = Mathf.FloorToInt(Mathf.Log(1 + 0.0275f * _experience, 1.55f) + 1);
+            
+            if (newLevel != _level)
+            {
+                _level = newLevel;
+                Debug.Log($"Level: {_level}");
+                
+                _onLevelUp?.Invoke();
+            }
+        }
+
+        private void UpdateDamagePerLevel()
+        {
+            damage += 0.4f;
         }
     }
 }

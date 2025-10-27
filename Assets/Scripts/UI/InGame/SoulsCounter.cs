@@ -79,12 +79,10 @@ namespace UI.InGame
 
         private void GetRewards(float money, float souls)
         {
-            // Применяем множитель комбо к ресурсам
             float comboMultiplier = Combo.ComboManager.Instance?.GetResourceMultiplier() ?? 1f;
             float modifiedSouls = souls * comboMultiplier;
             
             AddNightmares(modifiedSouls);
-            //AddMoney - здесь тоже можно применить множитель
         }
     
         private void AddNightmares(float count) 

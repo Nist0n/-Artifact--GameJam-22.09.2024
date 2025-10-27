@@ -185,7 +185,7 @@ namespace Towers
         
         private void UpdateTarget()
         {
-            List<GameObject> enemies = _towerComp.enemiesInRange;
+            List<GameObject> enemies = _towerComp.EnemiesInRange;
             
             if (enemies.Count == 0)
             {

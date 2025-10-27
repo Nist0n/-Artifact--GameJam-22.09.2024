@@ -81,14 +81,14 @@ namespace Towers
                 }
             }
             
-            _currentTower.towerCamera.Priority = 1;
+            _currentTower.TowerCamera.Priority = 1;
             mainCinemachineCamera.Priority = 0;
             _currentTower.Piloted = true;
             rechargeAbility.TextTimer.enabled = true;
             rechargeAbility.ParentImage.enabled = true;
             rechargeAbility.AbilityImage.enabled = true;
             
-            _currentTower.towerCamera.GetComponent<TowerCamera>().ActivateTowerListener();
+            _currentTower.TowerCamera.GetComponent<TowerCamera>().ActivateTowerListener();
                         
             _currentTower.EmpowerTower();
             
@@ -121,9 +121,9 @@ namespace Towers
                 if (_currentRangeViz) _currentRangeViz.SetVisible(false);
                 _currentTower.Piloted = false;
                 
-                _currentTower.towerCamera.GetComponent<TowerCamera>().ActivateMainCameraListener();
+                _currentTower.TowerCamera.GetComponent<TowerCamera>().ActivateMainCameraListener();
                 
-                _currentTower.towerCamera.Priority = 0;
+                _currentTower.TowerCamera.Priority = 0;
                 mainCinemachineCamera.Priority = 1;
                 rechargeAbility.TextTimer.enabled = false;
                 rechargeAbility.ParentImage.enabled = false;
