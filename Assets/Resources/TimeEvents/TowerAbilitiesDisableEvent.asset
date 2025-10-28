@@ -19,7 +19,9 @@ MonoBehaviour:
     \u0441\u043F\u043E\u0441\u043E\u0431\u043D\u043E\u0441\u0442\u0438 \u0431\u0430\u0448\u0435\u043D
     \u043E\u0442\u043A\u043B\u044E\u0447\u0435\u043D\u044B \u043D\u0430 \u0432\u0440\u0435\u043C\u044F
     \u0441\u043E\u0431\u044B\u0442\u0438\u044F"
-  MinDifficulty: 7
-  MaxDifficulty: 9
+  MinDifficulty: 1
+  MaxDifficulty: 0
   SelectionWeight: 1
+  MinGameTimeMinutes: 3
+  MaxGameTimeMinutes: 0
   DefaultDuration: 30

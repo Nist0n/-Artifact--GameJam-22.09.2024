@@ -6,27 +6,28 @@ namespace GameEvents.Timed
 {
 	public abstract class TimedEvent : ScriptableObject
 	{
-		[Header("Identification")]
 		public string EventId;
 		public string DisplayName;
-		
-		[TextArea]
 		public string Description;
-
-		[Header("Selection & Gating")]
 		public float MinDifficulty = 1f;
 		public float MaxDifficulty = 0f;
 		[Range(0f, 1f)] public float SelectionWeight = 1f;
-
-		[Header("Timing")]
+		public float MinGameTimeMinutes = 0f;
+		public float MaxGameTimeMinutes = 0f;
 		public float DefaultDuration = 20f;
 
 		public virtual bool IsEligible(GameConfig config)
 		{
 			if (!config) return false;
+			
 			float difficulty = config.GameDifficulty;
 			if (difficulty < MinDifficulty) return false;
 			if (MaxDifficulty > 0f && difficulty > MaxDifficulty) return false;
+			
+			float gameTimeMinutes = config.GameTime / 60f;
+			if (gameTimeMinutes < MinGameTimeMinutes) return false;
+			if (MaxGameTimeMinutes > 0f && gameTimeMinutes > MaxGameTimeMinutes) return false;
+			
 			return true;
 		}
 

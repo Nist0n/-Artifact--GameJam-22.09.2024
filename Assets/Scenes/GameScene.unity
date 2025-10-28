@@ -5011,6 +5011,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173160048}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &178925841 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3147052024303866609, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
+  m_PrefabInstance: {fileID: 6506187005050180147}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &178925844 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2597354718296248088, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
+  m_PrefabInstance: {fileID: 6506187005050180147}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e4380fe62c6b849954e645d081394f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &182773791
 GameObject:
   m_ObjectHideFlags: 0
@@ -8551,6 +8573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 335193305}
   - component: {fileID: 335193306}
+  - component: {fileID: 335193307}
   m_Layer: 0
   m_Name: GameEvents
   m_TagString: Untagged
@@ -8591,11 +8614,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bcf5df7039691374e978c9d6bac4a342, type: 2}
   - {fileID: 11400000, guid: 8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e, type: 2}
   eventsPerCycle: 4
-  intervalBetweenEvents: 450
+  intervalBetweenEvents: 60
   autoStartOnAwake: 1
   loopCycles: 1
   debugLogs: 0
   bossChoiceManager: {fileID: 1577312793}
+--- !u!114 &335193307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335193304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190aae9582b5ada449815cfff0e620ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoSetupOnStart: 1
+  createDebugUI: 1
 --- !u!1 &336868874
 GameObject:
   m_ObjectHideFlags: 0
@@ -12509,6 +12546,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2033658528}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &532764340 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 782202365097143688, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
+  m_PrefabInstance: {fileID: 6252351810708379095}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &532764343 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4124598613440498813, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
+  m_PrefabInstance: {fileID: 6252351810708379095}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e4380fe62c6b849954e645d081394f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &534857866
 GameObject:
   m_ObjectHideFlags: 0
@@ -34686,6 +34745,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1523154418}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1523373187 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8451893764317487575, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
+  m_PrefabInstance: {fileID: 7374142040803707717}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e4380fe62c6b849954e645d081394f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1523373190 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4839637161733035625, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
+  m_PrefabInstance: {fileID: 7374142040803707717}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1529771953
 GameObject:
   m_ObjectHideFlags: 0
@@ -43068,6 +43149,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860199815}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1860724386 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2053784674779635135, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
+  m_PrefabInstance: {fileID: 6349152167454527003}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e4380fe62c6b849954e645d081394f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1860724389 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2266872799919430642, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
+  m_PrefabInstance: {fileID: 6349152167454527003}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1869532512
 GameObject:
   m_ObjectHideFlags: 0
@@ -48475,6 +48578,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115638632}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2119964510 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 759864683091612680, guid: ca575fa051db6974fb636705bd346d03, type: 3}
+  m_PrefabInstance: {fileID: 3900584085631118497}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2119964514 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4956288290686549706, guid: ca575fa051db6974fb636705bd346d03, type: 3}
+  m_PrefabInstance: {fileID: 3900584085631118497}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e4380fe62c6b849954e645d081394f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2130197340
 GameObject:
   m_ObjectHideFlags: 0
@@ -49529,6 +49654,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1615537439}
     - target: {fileID: 4887585456182582242, guid: ca575fa051db6974fb636705bd346d03, type: 3}
+      propertyPath: TowerCamera
+      value: 
+      objectReference: {fileID: 2119964510}
+    - target: {fileID: 4887585456182582242, guid: ca575fa051db6974fb636705bd346d03, type: 3}
       propertyPath: attackRange
       value: 16
       objectReference: {fileID: 0}
@@ -49536,6 +49665,10 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1433570752}
+    - target: {fileID: 4887585456182582242, guid: ca575fa051db6974fb636705bd346d03, type: 3}
+      propertyPath: TowerCameraComp
+      value: 
+      objectReference: {fileID: 2119964514}
     - target: {fileID: 4887585456182582242, guid: ca575fa051db6974fb636705bd346d03, type: 3}
       propertyPath: abilityDisabled
       value: 
@@ -49549,8 +49682,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6036592554327397317}
     - target: {fileID: 4887585456182582242, guid: ca575fa051db6974fb636705bd346d03, type: 3}
+      propertyPath: BuffedDamagePercent
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887585456182582242, guid: ca575fa051db6974fb636705bd346d03, type: 3}
       propertyPath: buffedDamagePercent
       value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887585456182582242, guid: ca575fa051db6974fb636705bd346d03, type: 3}
+      propertyPath: BuffedFireRatePercent
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 4887585456182582242, guid: ca575fa051db6974fb636705bd346d03, type: 3}
       propertyPath: buffedFireRatePercent
@@ -49772,9 +49913,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1615537439}
     - target: {fileID: 299173886661617663, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
+      propertyPath: TowerCamera
+      value: 
+      objectReference: {fileID: 532764340}
+    - target: {fileID: 299173886661617663, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1143373561}
+    - target: {fileID: 299173886661617663, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
+      propertyPath: TowerCameraComp
+      value: 
+      objectReference: {fileID: 532764343}
     - target: {fileID: 299173886661617663, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
       propertyPath: abilityDisabled
       value: 
@@ -49788,8 +49937,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6626380498211078082}
     - target: {fileID: 299173886661617663, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
+      propertyPath: BuffedDamagePercent
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 299173886661617663, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
       propertyPath: buffedDamagePercent
       value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 299173886661617663, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
+      propertyPath: BuffedFireRatePercent
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 299173886661617663, guid: 1d910a1d6108bca42b4f422e220ecb9f, type: 3}
       propertyPath: buffedFireRatePercent
@@ -49962,9 +50119,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1615537439}
     - target: {fileID: 1747375655861413608, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
+      propertyPath: TowerCamera
+      value: 
+      objectReference: {fileID: 1860724389}
+    - target: {fileID: 1747375655861413608, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1959881776}
+    - target: {fileID: 1747375655861413608, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
+      propertyPath: TowerCameraComp
+      value: 
+      objectReference: {fileID: 1860724386}
     - target: {fileID: 1747375655861413608, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
       propertyPath: abilityDisabled
       value: 
@@ -49978,8 +50143,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 919132149047070393}
     - target: {fileID: 1747375655861413608, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
+      propertyPath: BuffedDamagePercent
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747375655861413608, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
       propertyPath: buffedDamagePercent
       value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747375655861413608, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
+      propertyPath: BuffedFireRatePercent
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1747375655861413608, guid: 2e24a6a1c631f4948a70fbd0db8be122, type: 3}
       propertyPath: buffedFireRatePercent
@@ -50076,9 +50249,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1615537439}
     - target: {fileID: 2819424521365261996, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
+      propertyPath: TowerCamera
+      value: 
+      objectReference: {fileID: 178925841}
+    - target: {fileID: 2819424521365261996, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1712728332}
+    - target: {fileID: 2819424521365261996, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
+      propertyPath: TowerCameraComp
+      value: 
+      objectReference: {fileID: 178925844}
     - target: {fileID: 2819424521365261996, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
       propertyPath: abilityDisabled
       value: 
@@ -50092,8 +50273,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3304698995504800081}
     - target: {fileID: 2819424521365261996, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
+      propertyPath: BuffedDamagePercent
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2819424521365261996, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
       propertyPath: buffedDamagePercent
       value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2819424521365261996, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
+      propertyPath: BuffedFireRatePercent
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 2819424521365261996, guid: 59391c2a3f2191d468896620f71fcf65, type: 3}
       propertyPath: buffedFireRatePercent
@@ -50301,8 +50490,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4476347012782590330}
     - target: {fileID: 2597579229329932202, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
+      propertyPath: BuffedDamagePercent
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2597579229329932202, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
       propertyPath: buffedDamagePercent
       value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2597579229329932202, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
+      propertyPath: BuffedFireRatePercent
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 2597579229329932202, guid: 0c97850feda4f344691bce616ea2d367, type: 3}
       propertyPath: buffedFireRatePercent
@@ -50471,9 +50668,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1615537439}
     - target: {fileID: 7328125474371382164, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
+      propertyPath: TowerCamera
+      value: 
+      objectReference: {fileID: 1523373190}
+    - target: {fileID: 7328125474371382164, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 784538994}
+    - target: {fileID: 7328125474371382164, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
+      propertyPath: TowerCameraComp
+      value: 
+      objectReference: {fileID: 1523373187}
     - target: {fileID: 7328125474371382164, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
       propertyPath: abilityDisabled
       value: 
@@ -50487,8 +50692,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 919132148034661545}
     - target: {fileID: 7328125474371382164, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
+      propertyPath: BuffedDamagePercent
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7328125474371382164, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
       propertyPath: buffedDamagePercent
       value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7328125474371382164, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
+      propertyPath: BuffedFireRatePercent
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7328125474371382164, guid: ae89427769f4c47499d8134a6cd4d44c, type: 3}
       propertyPath: buffedFireRatePercent

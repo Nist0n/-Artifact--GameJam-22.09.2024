@@ -15,9 +15,11 @@ MonoBehaviour:
   EventId: Fog
   DisplayName: agfa
   Description: 
-  MinDifficulty: 9
-  MaxDifficulty: 11
+  MinDifficulty: 1
+  MaxDifficulty: 0
   SelectionWeight: 1
+  MinGameTimeMinutes: 4
+  MaxGameTimeMinutes: 0
   DefaultDuration: 28
   fogMaterial: {fileID: 2100000, guid: a0db3a3999f5b2243b0267cbe3b917df, type: 2}
   maxDensity: 5
