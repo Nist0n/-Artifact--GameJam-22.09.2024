@@ -22,6 +22,9 @@ namespace Towers
         private Camera _mainCamera;
         private Tower _currentTower;
         private RangeVisualizer _currentRangeViz;
+        private Tower _hoveredTower;
+        private RangeVisualizer _hoveredRangeViz;
+        private bool _isSelectionLocked;
         
         private void Awake()
         {
@@ -50,7 +53,68 @@ namespace Towers
             
             if (mainCinemachineCamera.Priority != 0)
             {
+                UpdateHoverRange();
                 OnTowerClicked();
+            }
+        }
+
+        private void UpdateHoverRange()
+        {
+            if (EventSystem.current && EventSystem.current.IsPointerOverGameObject())
+            {
+                if (_hoveredRangeViz && _hoveredTower != _currentTower)
+                {
+                    _hoveredRangeViz.SetVisible(false);
+                }
+                _hoveredTower = null;
+                _hoveredRangeViz = null;
+
+                if (_currentRangeViz && _isSelectionLocked)
+                {
+                    _currentRangeViz.SetVisible(true);
+                }
+                return;
+            }
+
+            Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+            Tower newHoveredTower = null;
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                if (hit.collider.gameObject.CompareTag("Tower"))
+                {
+                    newHoveredTower = hit.collider.gameObject.GetComponent<Tower>();
+                }
+            }
+
+            if (newHoveredTower == _hoveredTower)
+            {
+                return;
+            }
+            
+            if (_hoveredRangeViz && _hoveredTower != _currentTower)
+            {
+                _hoveredRangeViz.SetVisible(false);
+            }
+
+            _hoveredTower = newHoveredTower;
+            _hoveredRangeViz = _hoveredTower ? _hoveredTower.GetComponentInChildren<RangeVisualizer>(true) : null;
+
+            if (_hoveredRangeViz)
+            {
+                if (_currentRangeViz && _isSelectionLocked)
+                {
+                    _currentRangeViz.SetVisible(true);
+                }
+                _hoveredRangeViz.SetVisible(true);
+                _hoveredRangeViz.Redraw();
+            }
+            else
+            {
+                if (_currentRangeViz && _isSelectionLocked)
+                {
+                    _currentRangeViz.SetVisible(true);
+                    _currentRangeViz.Redraw();
+                }
             }
         }
 
@@ -128,6 +192,7 @@ namespace Towers
                 rechargeAbility.TextTimer.enabled = false;
                 rechargeAbility.ParentImage.enabled = false;
                 rechargeAbility.AbilityImage.enabled = false;
+                _isSelectionLocked = false;
                 
                 GameConfig.Instance.NotifyTowerChanged(null);
             }
@@ -203,6 +268,7 @@ namespace Towers
                         
                         _currentTower = tower;
                         _currentRangeViz = _currentTower.GetComponentInChildren<RangeVisualizer>(true);
+                        _isSelectionLocked = true;
                         
                         AbilitiesSlots towerSlots = _currentTower.gameObject.GetComponent<AbilitiesSlots>();
                         towerSlots.Circle.SetActive(true);
@@ -226,6 +292,7 @@ namespace Towers
                     {
                         ToggleSelectTowerControls(false);
                         buyingSystem.ResetLists();
+                        _isSelectionLocked = false;
                         foreach (var tw in towers)
                         {
                             var viz = tw.GetComponentInChildren<RangeVisualizer>(true);
