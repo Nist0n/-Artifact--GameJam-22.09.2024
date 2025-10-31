@@ -15,11 +15,13 @@ namespace UI
         [SerializeField] private Canvas loadingCanvas;
         [SerializeField] private string nextSceneName = "MenuScene";
         [SerializeField] private float minimumLoadingTime = 2f;
-        [SerializeField] private float progressUpdateSpeed = 1f;
+        [SerializeField] private float progressUpdateSpeed = 2f;
+        [SerializeField] private bool autoLoadOnStart = false;
         
         private float _currentProgress = 0f;
         private bool _isLoading = false;
         private CanvasGroup _canvasGroup;
+        private bool _isInitialized = false;
         
         private void Awake()
         {
@@ -31,25 +33,70 @@ namespace UI
             else
             {
                 Destroy(gameObject);
+                return;
             }
         }
 
         private void Start()
         {
-            _canvasGroup = loadingCanvas.GetComponent<CanvasGroup>();
+            InitializeComponents();
+            
+            if (fillImage)
+            {
+                fillImage.fillAmount = 0f;
+            }
+            
+            if (loadingCanvas)
+            {
+                loadingCanvas.gameObject.SetActive(false);
+            }
+            
+            if (autoLoadOnStart)
+            {
+                StartAutoLoad();
+            }
+        }
+
+        private void InitializeComponents()
+        {
+            if (loadingCanvas && !_isInitialized)
+            {
+                _canvasGroup = loadingCanvas.GetComponent<CanvasGroup>();
+                if (!_canvasGroup)
+                {
+                    _canvasGroup = loadingCanvas.gameObject.AddComponent<CanvasGroup>();
+                }
+                _isInitialized = true;
+            }
+        }
+
+        private void StartAutoLoad()
+        {
+            if (string.IsNullOrEmpty(nextSceneName)) return;
+            
             InitializeLoadingScreen();
             StartLoading();
         }
 
         private void InitializeLoadingScreen()
         {
+            InitializeComponents();
+            
             if (loadingCanvas)
             {
                 loadingCanvas.gameObject.SetActive(true);
-                _canvasGroup.DOFade(1, 1);
+                if (_canvasGroup)
+                {
+                    _canvasGroup.alpha = 0f;
+                    _canvasGroup.DOFade(1, 1);
+                }
             }
-
+            
             _currentProgress = 0f;
+            if (fillImage)
+            {
+                fillImage.fillAmount = 0f;
+            }
             _isLoading = true;
         }
 
@@ -75,12 +122,15 @@ namespace UI
 
                 while (!loadOperation.isDone)
                 {
-                    var progress = Mathf.Clamp01(loadOperation.progress / 0.9f);
+                    var rawProgress = loadOperation.progress;
+                    var progress = Mathf.Clamp01(rawProgress / 0.9f);
+                    
                     await UpdateProgressBar(progress);
 
                     var elapsedTime = Time.time - startTime;
                     if (elapsedTime >= minimumLoadingTime && progress >= 0.9f)
                     {
+                        await UpdateProgressBar(0.9f);
                         loadOperation.allowSceneActivation = true;
                         break;
                     }
@@ -88,28 +138,55 @@ namespace UI
                     await Task.Yield();
                 }
             }
-
+            
             await UpdateProgressBar(1f);
             
             _isLoading = false;
             
-            _canvasGroup.DOFade(0, 2);
+            if (_canvasGroup)
+            {
+                _canvasGroup.DOFade(0, 2);
+            }
 
             await Task.Delay(2000);
             
-            loadingCanvas.gameObject.SetActive(false);
+            if (loadingCanvas)
+            {
+                loadingCanvas.gameObject.SetActive(false);
+            }
         }
 
         private async Task UpdateProgressBar(float targetProgress)
         {
+            if (targetProgress <= _currentProgress) return;
+            
+            float lastFrameTime = Time.time;
+            
             while (_currentProgress < targetProgress && _isLoading)
             {
-                _currentProgress = Mathf.MoveTowards(_currentProgress, targetProgress, 
-                    progressUpdateSpeed * Time.deltaTime);
-
+                float currentTime = Time.time;
+                float deltaTime = currentTime - lastFrameTime;
+                lastFrameTime = currentTime;
+                
+                if (deltaTime > 0.1f) deltaTime = 0.016f;
+                if (deltaTime <= 0f) deltaTime = 0.016f;
+                
+                float step = progressUpdateSpeed * deltaTime;
+                _currentProgress = Mathf.MoveTowards(_currentProgress, targetProgress, step);
+                
                 if (fillImage)
                 {
-                    fillImage.fillAmount = _currentProgress;
+                    fillImage.fillAmount = Mathf.Clamp01(_currentProgress);
+                }
+                
+                if (Mathf.Approximately(_currentProgress, targetProgress) || _currentProgress >= targetProgress)
+                {
+                    _currentProgress = targetProgress;
+                    if (fillImage)
+                    {
+                        fillImage.fillAmount = Mathf.Clamp01(targetProgress);
+                    }
+                    break;
                 }
 
                 await Task.Yield();
@@ -123,7 +200,11 @@ namespace UI
         
         public async void LoadScene(string sceneName)
         {
-            if (_isLoading) return;
+            if (_isLoading || string.IsNullOrEmpty(sceneName)) 
+            {
+                Debug.LogWarning($"LoadingScreen: Cannot load scene. IsLoading: {_isLoading}, SceneName: {sceneName}");
+                return;
+            }
             
             nextSceneName = sceneName;
             InitializeLoadingScreen();
